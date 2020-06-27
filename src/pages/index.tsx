@@ -1,8 +1,9 @@
 import { frontMatter } from './blogg/*.mdx';
+import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
 export default function Home() {
   console.log(frontMatter);
   return (
-    <>
+    <ResponsiveContainer>
       <h1>Hello world h1</h1>
       <h2>Hello world h2</h2>
       <h3>Hello world h3</h3>
@@ -13,6 +14,6 @@ export default function Home() {
       <a href="">Hello world link</a>
       <br />
       <code>npm install hello-world</code>
-    </>
+    </ResponsiveContainer>
   );
 }
