@@ -1,7 +1,12 @@
 import React from 'react';
+import { FrontMatter } from '../types/FrontMatter';
 
-export default (frontMatter: any) => {
-  return ({ children }: { children: any }) => {
+interface PostProps {
+  children: React.ReactChildren;
+}
+
+export default (frontMatter: FrontMatter) => {
+  return ({ children }: PostProps) => {
     const fronty = frontMatter;
     return (
       <>
