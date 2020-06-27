@@ -2,6 +2,7 @@ import * as React from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { GlobalStyle } from '../components/ui/globalStyle';
+import { Navbar } from '../components/navbar/navbar';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -13,6 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="preload" href="/fonts/Montserrat-Regular.ttf" as="font" crossOrigin="" />
       </Head>
       <GlobalStyle />
+      <Navbar />
       <Component {...pageProps} />
     </>
   );
