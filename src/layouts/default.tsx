@@ -6,16 +6,8 @@ interface PostProps {
   children: React.ReactChildren;
 }
 
-export default (frontMatter: PostFrontMatter) => {
+export default (_frontMatter: PostFrontMatter) => {
   return ({ children }: PostProps) => {
-    const fronty = frontMatter;
-    return (
-      <ResponsiveContainer>
-        <div>
-          <p>{fronty.layout}</p>
-        </div>
-        {children}
-      </ResponsiveContainer>
-    );
+    return <ResponsiveContainer>{children}</ResponsiveContainer>;
   };
 };
