@@ -1,7 +1,17 @@
-export interface FrontMatter {
+interface FrontMatterBase {
   title: string;
-  layout: string;
   summary: string;
-  date: string;
   __resourcePath: string;
+}
+
+export interface PostFrontMatter extends FrontMatterBase {
+  layout: string;
+  date: string;
+}
+
+export interface ProjectFrontMatter extends FrontMatterBase {
+  urlExternal: string;
+  urlGithub: string;
+  urlImage: string;
+  tags: String[];
 }
