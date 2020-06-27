@@ -34,9 +34,16 @@ export const GlobalStyle = createGlobalStyle`
     --border-radius: 6px;
 
     /* Setup breakpoints */
-    --breakpoint-small: ${theme.breakpoints.small}
-    --breakpoint-medium: ${theme.breakpoints.medium}
-    --breakpoint-large: ${theme.breakpoints.large}
+    --breakpoint-small: ${theme.breakpoints.small};
+    --breakpoint-medium: ${theme.breakpoints.medium};
+    --breakpoint-large: ${theme.breakpoints.large};
+
+    /* Setup margins */
+    --margin-small: ${theme.margins.small};
+    --margin-medium: ${theme.margins.medium};
+    --margin-large: ${theme.margins.large};
+
+    --site-max-width: 750px;
 
     /* Setup themable variables depending on system color theme */
     ${setupThemeVariables(theme.colors.themed.light)}
@@ -86,6 +93,7 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: bold;
     text-decoration: none;
     font-size: 1rem;
+    cursor: pointer;
     &:hover {
       text-decoration: underline;
     }
