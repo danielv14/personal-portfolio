@@ -1,4 +1,6 @@
+import { frontMatter } from './blogg/*.mdx';
 export default function Home() {
+  console.log(frontMatter);
   return (
     <>
       <h1>Hello world h1</h1>
