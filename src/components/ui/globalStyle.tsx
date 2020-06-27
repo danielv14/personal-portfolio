@@ -28,6 +28,7 @@ export const GlobalStyle = createGlobalStyle`
 
     /* Setup colors */
     --primary-color: ${theme.colors.primary};
+    --primary-darken-color: ${theme.colors.primaryDarken};
 
     /* Setup border radiuses */
     --border-radius-small: 4px;
@@ -66,26 +67,39 @@ export const GlobalStyle = createGlobalStyle`
   h1,h2,h3,h4,h5,h6 {
     font-family: var(--headings-font);
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.6rem;
   }
 
   h1 {
     font-size: var(--font-size-h1);
+    margin-top: 1rem;
+    margin-bottom: 0.6rem;
   }
   h2 {
     font-size: var(--font-size-h2);
+    margin-top: 1rem;
+    margin-bottom: 0.6rem;
   }
   h3 {
     font-size: var(--font-size-h3);
+    margin-top: 0.6rem;
+    margin-bottom: 0.3rem;
   }
   h4 {
     font-size: var(--font-size-h4);
+    margin-top: 0.6rem;
+    margin-bottom: 0.3rem;
   }
   h5 {
     font-size: var(--font-size-h5);
+    margin-top: 0.6rem;
+    margin-bottom: 0.3rem;
   }
   h6 {
     font-size: var(--font-size-h6);
+    margin-top: 0.6rem;
+    margin-bottom: 0.3rem;
   }
 
   a {
@@ -97,6 +111,14 @@ export const GlobalStyle = createGlobalStyle`
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  p, li {
+    line-height: 1.5;
+  }
+
+  p {
+    margin: 0 0 1.2rem;
   }
 
   code {
