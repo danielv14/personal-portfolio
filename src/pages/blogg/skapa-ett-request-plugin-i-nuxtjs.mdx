@@ -1,0 +1,70 @@
+---
+layout: blogPost
+title: Skapa ett request plugin i Nuxt.js
+date: 2019-06-15
+---
+
+Pluginsystemet i Nuxt.js gör det enkelt att skapa ett eget request plugin för att hantera en Nuxt-baserad applikations alla HTTP anrop.
+
+[Nuxt.js](https://nuxtjs.org/) är ett ramverk byggt ovanpå Vue.js och en av tankarna bakom Nuxt är att tillhandahålla en modulär och kraftfull plattform att enklare utveckla bland annat SPA:s och statiskt genererade applikationer  baserade på Vue.
+
+## Request modul
+I verktygslådan som Nuxt tillhandahåller finns en [axios modul](https://axios.nuxtjs.org/) som integrerar axios (ett populärt promise baserat HTTP bibliotek) med Nuxt. En av fördelarna med att använda denna axios-modul är att den automatiskt sätter en base-URL för både klient och server kontext i en Nuxt applikation. 
+
+Hur kan man då använda axios modulen i en Nuxt applikation? Efter att man [lagt till](https://axios.nuxtjs.org/setup) modulen blir den tillgänglig direkt i `.vue` filer via `this.$axios`. För att göra en GET-request kan man exempelvis göra `this.$axios.get(URL)`.
+
+## Request plugin
+Det fungerar helt okej att använda axios modulen direkt i Vue komponenterna, vuex store eller vad det nu kan vara om det handlar om en enstaka request till en backend. Men man stöter snabbt på problem om samma HTTP anrop ska återanvändas och eventuell passning behövs innan svaret ska presenteras i gränssnittet. Det är då lätt hänt att Vue komponenterna börjar växa i onödan och får för mycket ansvar för saker och ting som inte hör komponenterna till.
+
+Det i det här läget man kan använda sig av en av fördelarna med Nuxt, nämligen [plugin-systemet](https://nuxtjs.org/guide/plugins), för att skapa ett request plugin.
+Det man då kan göra är att skapa en fil **plugins/api.js** som man i sin **nuxt.config.json** inkluderar på följande vis:
+
+```javascript
+// Other configuration
+plugins: [
+'@/plugins/api',
+],
+// Other configuration
+```
+
+Det innebär att Nuxt kommer läsa in **plugins/api.js** före applikationen startar
+
+Det är i **plugins/api.js** man gör en ”inject” för att registrera sitt plugin och gör det tillgängligt i applikationen.
+
+```javascript
+import API from './some/place/'
+export default ({ $axios }, inject) => {
+	// Create new api class with provided nuxt axios module
+	const api = new API({ request: $axios })
+	// Inject the api to make it available across app via this.$api
+	inject('api', api)
+}
+
+```
+
+Pluginet importerar en ”API” klass  och skapar upp en ny instans av klassen och gör axios modulen tillgänglig via dependency injection.  Att använda `inject()` här innebär att klass instansen blir tillgänglig  i bland annat Vue filer, men också i en eventuell Vuex store som man kan använda i en Nuxt applikation. 
+
+Det är då alltså i `API` klassen som alla requests via axios modulen görs.  Förenklat skulle man kunna skapa en `API.js` fil med följande innehåll:
+
+```javascript
+class API {
+	constructor({ request }) {
+		// this.request will referense nuxt axios mudule
+		this.request = request
+	}
+}
+export default API
+```
+
+Därefter är det bara att fylla på med de metoder som man anser behövs, konfigurerar upp eventuella request parsers och så vidare. 
+
+När väl pluginet är registrerat är det bara att börja använda `this.$api` i applikationen och exempelvis alla vue komponenter har tillgång till ett enkelt API utan att behöva göra alla HTTP anrop själva och behöva tänka på eventuell parsning av svar, token hantering med mera. 
+En async method i en vue komponent skulle till exempel kunna göra ett anrop med följande syntax:
+
+```javascript
+async getQuote() {
+	const { data } = await this.$api.getRandomQuote()
+	this.quote = data
+}
+```
+Metoden `getRandomQuote()` skulle kunna vara en metod i API klassen som gör ett anrop för att hämta ett slumpmässigt citat av något slag. 
