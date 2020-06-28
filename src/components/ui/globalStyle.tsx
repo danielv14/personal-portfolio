@@ -2,6 +2,7 @@ import { createGlobalStyle, css } from 'styled-components';
 import { theme } from '../../theme/theme';
 import { ColorTheme } from '../../theme/colors';
 import reset from 'styled-reset';
+import { syntaxHighlighting } from '../../theme/syntaxHighlighting';
 
 const setupThemeVariables = (theme: ColorTheme) => css`
   --bg-color: ${theme.backgroundColor};
@@ -12,6 +13,7 @@ const setupThemeVariables = (theme: ColorTheme) => css`
 
 export const GlobalStyle = createGlobalStyle`
   ${reset}
+  ${syntaxHighlighting}
   :root {
 
     /* Setup fonts */
@@ -146,7 +148,7 @@ export const GlobalStyle = createGlobalStyle`
 
   pre {
     border-radius: var(--border-radius);
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   blockquote {
@@ -166,7 +168,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   code {
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     font-size: 0.8rem;
     color: var(--text-color);
     background: var(--primary-color-lighten);

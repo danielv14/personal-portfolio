@@ -2,6 +2,7 @@ interface Fonts {
   fontFamily: {
     main: string;
     headings: string;
+    mono: string;
   };
   size: {
     base: string;
@@ -18,6 +19,7 @@ export const fonts: Fonts = {
   fontFamily: {
     main: `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;`,
     headings: `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;`,
+    mono: `'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
   },
   size: {
     base: '1rem',

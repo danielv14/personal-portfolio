@@ -5,6 +5,6 @@ module.exports = withMdxEnhanced({
   layoutPath: 'src/layouts',
   defaultLayout: true,
   fileExtensions: ['mdx'],
-  remarkPlugins: [],
+  remarkPlugins: [require('remark-code-titles')],
   rehypePlugins: [mdxPrism],
 })(/* your normal nextjs config */);

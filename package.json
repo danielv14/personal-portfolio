@@ -13,6 +13,7 @@
     "next-mdx-enhanced": "^3.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "remark-code-titles": "^0.1.1",
     "styled-components": "^5.0.0",
     "styled-reset": "^4.1.6"
   },
