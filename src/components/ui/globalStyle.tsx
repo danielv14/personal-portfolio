@@ -129,11 +129,14 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  ul, ol {
-    list-style: disc;
-    margin-bottom: 10px;
-  }
   ul {
+    list-style: disc;
+  }
+  ol {
+    list-style: decimal;  
+  }
+  ul, ol {
+    margin-bottom: 10px;
     padding-inline-start: 40px;
   }
 
