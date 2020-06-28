@@ -137,7 +137,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   ul, ol {
     margin-bottom: 10px;
-    padding-inline-start: 40px;
+    padding-inline-start: 1rem;
   }
 
   img {
@@ -168,11 +168,15 @@ export const GlobalStyle = createGlobalStyle`
   code {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     font-size: 0.8rem;
-    color: #FFFFFF;
-    background: var(--primary-color-darken);
+    color: var(--text-color);
+    background: var(--primary-color-lighten);
     border-radius: var(--border-radius-small);
     padding: 2px 4px;
     display: inline-block;
+    @media (prefers-color-scheme: dark) {
+      background: var(--bg-color-secondary);
+      color: var(--text-muted-color);
+    }
   }
 
   strong {
