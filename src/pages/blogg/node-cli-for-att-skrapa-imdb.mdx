@@ -51,7 +51,7 @@ $ npm install --save chalk request cheerio clear figlet inquirer ora table-maste
  
 Följande kod finns i min **index.js**:
 
-```javascript
+```javascript:index.js
 const clear = require('clear');
 const inquirer = require('inquirer');
 
@@ -83,7 +83,7 @@ inquirer.prompt(question).then((answer) => {
 ```
 Först och främst används `require` för att få in de npm-paket som används av filen, men även importeras de två klasserna som än så länge inte finns. 
 
-`const question = [...]` deklarerar en fråga med en tillhöande validering. Om inte valideringen går igenom så skrivs `inputError` strängen ut i terminalen. 
+`const question = [...]` deklarerar en fråga med en tillhörande validering. Om inte valideringen går igenom så skrivs `inputError` strängen ut i terminalen. 
 
 Därefter rensas terminalfönstret på samma sätt som att själv skriva `clear` i terminalen.
 Sedan kallas en statisk metod från IMDb klassen som av sitt namn kanske avslöjar vad den gör, men mer om metoden när jag går igenom min IMDb klass.
@@ -98,10 +98,8 @@ Men innan vi går igenom själva IMDb klassen där själva tyngdlyften i det hä
 
 **queryHelper.js** ser ut på följande vis:
 
-```javascript
+```javascript{7,8,9,11,12,13}:queryHelper.js
 exports.queryHelper = class {
-
-
   /**
    * Creates an instance of queryHelper.
    * @param {string} initialQuery 
@@ -110,7 +108,6 @@ exports.queryHelper = class {
   constructor(initialQuery) {
     this.query = initialQuery;
   }
-
    /**
     * returns the query but sanitized 
     * replace all spaces with pluses
@@ -119,7 +116,6 @@ exports.queryHelper = class {
   getSanitizedQuery() {
     return this.query.replace(/ /g, '+');
   }
-  
   /**
    * Match IMDb ID's from hrefs
    * 
@@ -139,7 +135,7 @@ Slutligen har vi kvar själva IMDb klassen **IMDb.js** som består av ett antal 
 
 Först så används require för att få in de övriga npm-paket som ännu inte använts, men också queryHelper klassen: 
 
-```javascript
+```javascript:IMDb.js
 const request = require('request');
 const cheerio = require('cheerio');
 const ora = require('ora');
@@ -152,7 +148,7 @@ const { queryHelper } = require('./queryHelper');
 
 Därefter skapas och exporteras själva IMDb klassen med en konstruktor: 
 
-```javascript
+```javascript:IMDb.js
 exports.IMDb = class {
 
   /**
@@ -175,7 +171,7 @@ Konstruktorn har två parametrar och det är alltså själva söksträngen i des
 
 Därefter innehåller klassen en statisk metod för att visa lite ascii-text. Metoden är statisk eftersom att den anropas i **index.js** innan en instans av själva IMDb klassen har skapats. Eftersom att metoden anropas innan klassen har skapats går den inte att använda IMDbfärgen som deklarerats som `this.outputColor` i klassens konstruktor. Det kan ändå vara bra att ha denna färg sparad om den gula färgen skulle användas längre fram till andra saker också. 
 
-```javascript
+```javascript:IMDb.js
   /**
    * Static method to display IMDB header for the CLI
    * 
@@ -188,7 +184,7 @@ Därefter innehåller klassen en statisk metod för att visa lite ascii-text. Me
 
 För att bygga ut `this.results` arrayen skapas ytterligare en metod på IMDb klassen som kan se ut på följande vis:
 
-```javascript
+```javascript:IMDb.js
   /**
    * Push to results array
    * 
@@ -205,7 +201,7 @@ Denna metod använder `push` för att bygga ut arrayen med ett objekt som inneh�
 
 IMDb klassen innehåller sedan en något tung metod för att utföra själva skrapandet av IMDb och komma åt sökresultaten. Metoden går kort och gott ut på att göra en request till IMDb och loopa genom ett ex antal sökresultat och pusha dessa till `this.results`
 
-```javascript
+```javascript:IMDb.js
  /**
    * Perform the scrape of imdb to gather search results
    * 
@@ -246,7 +242,7 @@ Några nyckeldetaljer i den här metoden är att först och främst används `or
 
 När loopen har stannat efter att de femton första sökresultaten har pushats till `this.results` stoppas spinnern med hjälp av `spinner.stop()` och en tabell med sökresultaten visas upp i terminalen med hjälp av metoden `this.renderSearchResults()`. Den metoden ser ut på följande vis:
 
-```javascript
+```javascript:IMDb.js
   /**
    * Render either a table with search results 
    * or a message of no search results were found
@@ -267,14 +263,14 @@ För att slippa skriva `node index.js` och hela tiden befinna sig i samma path s
 
 Börja med att uppgradera **package.json** med följande:
 
-```json
+```json:package.json
   "bin": {
     "imdb": "./index.js"
   }
 ```
 Detta binder kommandot `imdb` till att köra **index.js**. Lägg därefter till följande shebang högst upp i **index.js**:
 
-```javascript
+```javascript:index.js
 #!/usr/bin/env node
 const clear = require('clear');
 const inquirer = require('inquirer');
