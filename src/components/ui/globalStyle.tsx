@@ -162,7 +162,6 @@ export const GlobalStyle = createGlobalStyle`
     @media (prefers-color-scheme: light) {
       background: var(--primary-color-lighten);
     }
-    font-style: italic;
     p {
       margin-bottom: 0;
     }
