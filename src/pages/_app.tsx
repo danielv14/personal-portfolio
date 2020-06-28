@@ -3,7 +3,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { GlobalStyle } from '../components/ui/globalStyle';
 import { Navbar } from '../components/navbar/navbar';
-import './prism.css';
+import '../theme/prism.css';
 import { Footer } from '../components/footer/footer';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 
