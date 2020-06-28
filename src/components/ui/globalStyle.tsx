@@ -147,7 +147,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   blockquote {
-    margin: 1.5rem 0;
+    margin: 0 0 1rem 0;
     padding: 1rem;
     background: var(--bg-color-secondary);
     border-radius: .3rem;
@@ -156,6 +156,7 @@ export const GlobalStyle = createGlobalStyle`
     @media (prefers-color-scheme: light) {
       background: var(--primary-color-lighten);
     }
+    font-style: italic;
     p {
       margin-bottom: 0;
     }
@@ -168,5 +169,10 @@ export const GlobalStyle = createGlobalStyle`
     background: var(--primary-color-darken);
     border-radius: var(--border-radius-small);
     padding: 2px 4px;
+    display: inline-block;
+  }
+
+  strong {
+    font-weight: bold;
   }
 `;
