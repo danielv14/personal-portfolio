@@ -176,8 +176,8 @@ export const GlobalStyle = createGlobalStyle`
     padding: 2px 4px;
     display: inline-block;
     @media (prefers-color-scheme: dark) {
-      background: var(--bg-color-secondary);
-      color: var(--text-muted-color);
+      color: var(--bg-color);
+      background: var(--text-muted-color);
     }
   }
 
