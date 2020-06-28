@@ -17,7 +17,7 @@ export default (frontMatter: PostFrontMatter) => {
       <ResponsiveContainer>
         <Column>
           <MarginLarge />
-          <h1>{frontMatter.title}</h1>
+          <h2>{frontMatter.title}</h2>
           <TextMuted>{formatDate(frontMatter.date)}</TextMuted>
           <MarginMedium />
           {children}

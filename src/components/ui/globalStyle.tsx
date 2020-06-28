@@ -70,37 +70,37 @@ export const GlobalStyle = createGlobalStyle`
     font-family: var(--headings-font);
     font-weight: bold;
     margin-top: 1rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 1rem;
   }
 
   h1 {
     font-size: var(--font-size-h1);
     margin-top: 1rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 1rem;
   }
   h2 {
     font-size: var(--font-size-h2);
     margin-top: 1rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 1rem;
   }
   h3 {
     font-size: var(--font-size-h3);
-    margin-top: 0.6rem;
+    margin-top: 1rem;
     margin-bottom: 0.3rem;
   }
   h4 {
     font-size: var(--font-size-h4);
-    margin-top: 0.6rem;
+    margin-top: 1rem;
     margin-bottom: 0.3rem;
   }
   h5 {
     font-size: var(--font-size-h5);
-    margin-top: 0.6rem;
+    margin-top: 1rem;
     margin-bottom: 0.3rem;
   }
   h6 {
     font-size: var(--font-size-h6);
-    margin-top: 0.6rem;
+    margin-top: 1rem;
     margin-bottom: 0.3rem;
   }
 
