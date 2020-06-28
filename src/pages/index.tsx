@@ -29,12 +29,12 @@ export default function Home() {
           <MarginLarge />
           <AboutContent />
         </Column>
+        <MarginLarge />
         <Column>
-          <MarginLarge />
           <ToolBox />
         </Column>
+        <MarginLarge />
         <Column>
-          <MarginLarge />
           <ProjectsContent />
           <MarginLarge />
           <Row>
@@ -44,8 +44,8 @@ export default function Home() {
             </a>
             <Fill />
           </Row>
-          <MarginLarge />
         </Column>
+        <MarginLarge />
       </ResponsiveContainer>
     </>
   );
