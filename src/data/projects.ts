@@ -10,7 +10,7 @@ interface Project {
 export const projects: Project[] = [
   {
     title: 'ColorPix',
-    icon: '🖥',
+    icon: '🎨',
     summary: 'Webbapp som hjälper användaren hitta intressanta färgpaletter utifrån bilder',
     tags: ['Vue', 'Node'],
     urlSource: 'https://github.com/danielv14/ColorPix',
