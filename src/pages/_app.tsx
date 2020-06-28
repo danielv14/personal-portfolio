@@ -3,6 +3,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { GlobalStyle } from '../components/ui/globalStyle';
 import { Navbar } from '../components/navbar/navbar';
+import './prism.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
