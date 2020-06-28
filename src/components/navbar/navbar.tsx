@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { ResponsiveContainer } from '../ui/container/responsiveContainer';
 import Link from 'next/link';
-import { MarginMedium } from '../ui/margins/marginMedium';
 import { Fill } from '../ui/container/fill';
 import { Row } from '../ui/container/row';
 
@@ -18,10 +17,6 @@ export const Navbar = () => {
           <Row>
             <Link href="/blogg">
               <NavbarLink>Blogg</NavbarLink>
-            </Link>
-            <MarginMedium />
-            <Link href="/om">
-              <NavbarLink>Om</NavbarLink>
             </Link>
           </Row>
         </NavbarContentWrapper>
