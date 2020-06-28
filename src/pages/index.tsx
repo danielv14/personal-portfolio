@@ -20,11 +20,13 @@ import { PostFrontMatter } from '../types/FrontMatter';
 import { PostListItem } from '../components/postListItem';
 import Link from 'next/link';
 import { toBlogURL } from '../utils/frontMatterToUrl';
-import * as React from 'react';
+import { useRef, RefObject } from 'react';
 
 const examplePosts: PostFrontMatter[] = [aftonbladetCheckerData, colorPixUX, imdbCLIVersion230];
 
 export default function Home() {
+  const ProjectRef: RefObject<any> = useRef(null);
+  const ScrollToProjects = () => window.scrollTo({ top: ProjectRef.current.offsetTop, behavior: 'smooth' });
   return (
     <>
       <ResponsiveContainer>
@@ -32,6 +34,7 @@ export default function Home() {
           <MarginLarge />
           <TextCenter>
             <HeroContent />
+            <ButtonPrimary onClick={ScrollToProjects}>Portfolio</ButtonPrimary>
           </TextCenter>
         </Column>
         <MarginLarge />
@@ -44,7 +47,7 @@ export default function Home() {
           <ToolBox />
         </Column>
         <MarginLarge />
-        <Column>
+        <Column ref={ProjectRef}>
           <ProjectsContent />
           <MarginLarge />
           <Row>
@@ -80,11 +83,6 @@ const HeroContent = () => {
         <h1>👋 Hallå där!</h1>
         <h5>Daniel här. Webbutvecklare med förkärlek till JavaScript och tv-serier.</h5>
         <MarginMedium></MarginMedium>
-        <Row>
-          <Fill></Fill>
-          <ButtonPrimary>Portfolio</ButtonPrimary>
-          <Fill></Fill>
-        </Row>
       </Column>
     </>
   );
