@@ -17,7 +17,7 @@ interface Fonts {
 export const fonts: Fonts = {
   fontFamily: {
     main: `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;`,
-    headings: `'Montserrat', sans-serif`,
+    headings: `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;`,
   },
   size: {
     base: '1rem',

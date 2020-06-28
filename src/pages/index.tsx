@@ -1,19 +1,69 @@
-import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
-import { Column } from '../components/ui/container/column';
-import { MarginLarge } from '../components/ui/margins/marginLarge';
-import { TextCenter } from '../components/ui/textCenter';
-import { MarginMedium } from '../components/ui/margins/marginMedium';
-import { ButtonPrimary } from '../components/ui/buttons/ButtonPrimary';
-import { ThemedParagraph } from '../components/ui/content/themedContent';
+import { CardProject } from '../components/cardProject';
 import { ToolBox } from '../components/toolBox';
+import { ButtonPrimary } from '../components/ui/buttons/ButtonPrimary';
+import { Column } from '../components/ui/container/column';
+import { Fill } from '../components/ui/container/fill';
+import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
+import { ResponsiveGrid } from '../components/ui/container/responsiveGrid';
+import { Row } from '../components/ui/container/row';
+import { ThemedParagraph } from '../components/ui/content/themedContent';
+import { MarginLarge } from '../components/ui/margins/marginLarge';
+import { MarginMedium } from '../components/ui/margins/marginMedium';
+import { MarginSmall } from '../components/ui/margins/marginSmall';
+import { TextCenter } from '../components/ui/textCenter';
+import { projects } from '../data/projects';
+import { site } from '../data/site';
+
+export default function Home() {
+  return (
+    <>
+      <ResponsiveContainer>
+        <Column>
+          <MarginLarge />
+          <TextCenter>
+            <HeroContent />
+          </TextCenter>
+        </Column>
+        <MarginLarge />
+        <Column>
+          <MarginLarge />
+          <AboutContent />
+        </Column>
+        <Column>
+          <MarginLarge />
+          <ToolBox />
+        </Column>
+        <Column>
+          <MarginLarge />
+          <ProjectsContent />
+          <MarginLarge />
+          <Row>
+            <Fill />
+            <a href={site.urlGithub}>
+              <ButtonPrimary>Mer på GitHub</ButtonPrimary>
+            </a>
+            <Fill />
+          </Row>
+          <MarginLarge />
+        </Column>
+      </ResponsiveContainer>
+    </>
+  );
+}
 
 const HeroContent = () => {
   return (
     <>
-      <h1>👋 Hallå där!</h1>
-      <h5>Daniel här. Webbutvecklare med förkärlek till JavaScript och tv-serier.</h5>
-      <MarginLarge></MarginLarge>
-      <ButtonPrimary>Portfolio</ButtonPrimary>
+      <Column>
+        <h1>👋 Hallå där!</h1>
+        <h5>Daniel här. Webbutvecklare med förkärlek till JavaScript och tv-serier.</h5>
+        <MarginMedium></MarginMedium>
+        <Row>
+          <Fill></Fill>
+          <ButtonPrimary>Portfolio</ButtonPrimary>
+          <Fill></Fill>
+        </Row>
+      </Column>
     </>
   );
 };
@@ -31,26 +81,16 @@ const AboutContent = () => {
   );
 };
 
-export default function Home() {
+const ProjectsContent = () => {
   return (
     <>
-      <ResponsiveContainer>
-        <Column>
-          <MarginLarge></MarginLarge>
-          <TextCenter>
-            <HeroContent />
-          </TextCenter>
-        </Column>
-        <MarginLarge />
-        <Column>
-          <MarginLarge></MarginLarge>
-          <AboutContent />
-        </Column>
-        <Column>
-          <MarginLarge></MarginLarge>
-          <ToolBox />
-        </Column>
-      </ResponsiveContainer>
+      <h2>Projekt</h2>
+      <MarginSmall></MarginSmall>
+      <ResponsiveGrid itemWidth="350px" gutter="20px">
+        {projects.map(({ title, icon, ...rest }) => (
+          <CardProject key={title} title={`${icon} ${title}`} {...rest} />
+        ))}
+      </ResponsiveGrid>
     </>
   );
-}
+};

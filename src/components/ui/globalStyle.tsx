@@ -5,6 +5,7 @@ import reset from 'styled-reset';
 
 const setupThemeVariables = (theme: ColorTheme) => css`
   --bg-color: ${theme.backgroundColor};
+  --bg-color-card: ${theme.backgroundColorCard};
   --text-color: ${theme.textColor};
   --text-muted-color: ${theme.textMutedColor};
 `;
@@ -44,7 +45,7 @@ export const GlobalStyle = createGlobalStyle`
     --margin-medium: ${theme.margins.medium};
     --margin-large: ${theme.margins.large};
 
-    --site-max-width: 750px;
+    --site-max-width: 850px;
 
     /* Setup themable variables depending on system color theme */
     ${setupThemeVariables(theme.colors.themed.light)}

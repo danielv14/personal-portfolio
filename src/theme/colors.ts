@@ -9,18 +9,21 @@ interface Colors {
 
 export interface ColorTheme {
   backgroundColor: string;
+  backgroundColorCard: string;
   textColor: string;
   textMutedColor: string;
 }
 
 const darkTheme: ColorTheme = {
   backgroundColor: '#171923',
+  backgroundColorCard: '#202438',
   textColor: '#FFFFFF',
   textMutedColor: '#A0AEC0',
 };
 
 const lightTheme: ColorTheme = {
   backgroundColor: '#FFFFFF',
+  backgroundColorCard: '#FFFFFF',
   textColor: '#414141',
   textMutedColor: '#BDBDBD',
 };
