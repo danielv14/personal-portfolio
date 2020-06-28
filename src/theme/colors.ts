@@ -25,7 +25,7 @@ const darkTheme: ColorTheme = {
 const lightTheme: ColorTheme = {
   backgroundColor: '#FFFFFF',
   backgroundColorSecondary: '#FFFFFF',
-  textColor: '#414141',
+  textColor: '#585858',
   textMutedColor: '#BDBDBD',
 };
 
