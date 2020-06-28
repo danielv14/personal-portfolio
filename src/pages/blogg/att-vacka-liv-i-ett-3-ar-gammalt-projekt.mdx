@@ -28,7 +28,9 @@ Då jag inte ville spendera alldeles för mycket tid med att sätta upp en utvec
 * Snabbt att komma igång utan överdrivet mycket tooling
 
 ### 1.1 Rätt verktyg för jobbet
-Utifrån denna lista tyckte jag att react-ramverket Next.js checkade av de mesta av mina önskemål då det är reactbaserat, har bra TypeScript stöd, Serverless functions för enkel backend och en rad andra schyssta features. Steg 1 check!
+Utifrån denna lista tyckte jag att react-ramverket Next.js checkade av de mesta av mina önskemål då det är reactbaserat, har bra TypeScript stöd, Serverless functions för enkel backend och en rad andra schyssta features.
+
+✓ Steg 1 check!
  
 ## Steg 2: Exportera data och se över datamodellen
 Det tidigare projektet sparade alltså data i en Postgres-databas som snurrade på Heroku. Det var alltså inte speciellt svårt att exportera den databasen:
@@ -48,7 +50,7 @@ I och med att jag kör med JavaScript på backend-sidan så kändes det mest lä
 ### 2.2 Se över datamodellen
 Jag konverterade datan från csv-filen till json och såg över datamodellen något - döpte om något fält men i övrigt kändes det nya json-baserade datat redo för att importeras in i en ny källa.
 
-Steg 2 check!
+✓ Steg 2 check!
 
 ## Steg 3: Importera data till ny källa
 Jag ville ha en enkel lösning när det gällde datakälla och helst något baserat på NoSQL. Jag ville i princip bara spara en platt lista med json-objekt som representerade varje skrapad dag med antal checkers. Jag har tidigare använt Googles Firestore lösning för en enklare backend och denna gång använde jag mig av Googles nyare lösning - Firestore.
@@ -60,7 +62,7 @@ Men nu hade jag alltså data för 3 år som behöver seedas in i Firestore. Det 
 ### 3.2 API för att slanga in data
 En schysst grej med Next är att om man exporterar en modul i `pages/api/example.ts` så representerar modulen ett api anrop. Det är alltså filstrukturen som bestämmer hur api-anropen sätts upp.Jag skapade ett API-anrop på det här sättet och skyddade anropet bakom API nyckel och nu hade jag ett sätt att mata den nya källan med all historisk data. 
 
-Steg 3 check!
+✓ Steg 3 check!
 
 ## Steg 4: Bygg ny backend
 Som tidigare nämnt så bygger ju backend i Next på serverless functions. Min backend i det här fallet byggdes upp av olika API-anrop för att seeda, hämta data och även api-anrop för att skrapa dagens antal checkers. Att ha filstruktur-baserad API-anropsuppsättning (säg det snabbt tre gånger) var väldigt smidigt i ett sånt här projekt som ändå är så pass litet.
@@ -68,7 +70,7 @@ Som tidigare nämnt så bygger ju backend i Next på serverless functions. Min b
 ### 4.1 Enkel routing
 Jag behövde aldrig sätta upp egna route-handles p.g.a det utan behövde bara skapa rätt filer på rätt ställe i filstrukturen. I och med att jag inte ville lägga flera helger på detta projekt så passade Next:s upplägg med serverless functions perfekt.
 
-Steg 4 check!
+✓ Steg 4 check!
 
 ## Steg 5: Bygg ny frontend
 Historiskt sätt har jag ägnat mig mest åt Vue när det kommer till frontend - mycket för att jag tidigare använde en del Laravel  som hade Vue som sitt default frontend. Men av olika skäl använder jag mest React nuförtiden, som dessutom är som handen i handsken när det kommer till TypeScript.
@@ -79,7 +81,7 @@ Att bygga frontend gick rätt fort. Endast ett API-anrop till backend implemente
 ### 5.2 Fördelen med fullstack JavaScript
 Fördelen med fullstack JavaScript innebär ju att alla utils-funktioner skulle kunna refaktoreras att användas i en serverless function istället - om man nu vill flytta mer logik från frontend till backend. Men med tanke på projektets storlek kändes det som att frontenden lika gärna kunde göra ett anrop och sen massera samma data på olika sätt för att fylla graferna. 
 
-Steg 5 check!
+✓ Steg 5 check!
 
 ## Steg 6: Förbättra infrastrukturen och se över CI/CD
 Förbättra och förbättra… Infrastrukturen tyckte jag egentligen inte att jag behövde göra speciellt mycket åt. 
@@ -91,7 +93,7 @@ Jag kopplade Travis CI till repot och på varje push och merge request körs ett
 ### 6.2 Cronjob
 Men hur blev det med cronjob för att skrapa Aftonbladet dagligen? Ja… tidigare användes ju Laravel som hade väldigt schyssta möjligheter att schemalägga jobb. Next är lite mer barebones. Ett litet fulhack implementerades där ett vanligt bash-script CURL:ar API:et - som i sin tur skrapar dagens antal checkers och sparar ned dom i Firestore. I Heroku kan man schemalägga aktiviteter och helt enkelt så triggas det skriptet dagligen - enkelt men effektivt.
 
-Steg 6 check!
+✓ Steg 6 check!
 
 ## Slutet gott allting gott
 Det var alltså min lilla historia om hur jag i 6 steg väckte liv ett 3 år gammalt projekt. Eller tja.. väckte liv i och väkte liv i...Jag slängde ut allting förutom själva datan - men datan var ju ändå trots allt det viktigaste att spara och behålla i en återuppståndelse likt denna historia.

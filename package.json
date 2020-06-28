@@ -7,6 +7,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@styled-icons/feather": "^10.5.0",
     "mdx-prism": "^0.3.1",
     "next": "latest",
     "next-mdx-enhanced": "^3.0.0",

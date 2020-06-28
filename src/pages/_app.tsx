@@ -4,6 +4,8 @@ import Head from 'next/head';
 import { GlobalStyle } from '../components/ui/globalStyle';
 import { Navbar } from '../components/navbar/navbar';
 import './prism.css';
+import { Footer } from '../components/footer/footer';
+import { MarginLarge } from '../components/ui/margins/marginLarge';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -17,6 +19,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       <GlobalStyle />
       <Navbar />
       <Component {...pageProps} />
+      <MarginLarge />
+      <Footer />
     </>
   );
 }

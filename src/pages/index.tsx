@@ -13,6 +13,16 @@ import { MarginSmall } from '../components/ui/margins/marginSmall';
 import { TextCenter } from '../components/ui/textCenter';
 import { projects } from '../data/projects';
 import { site } from '../data/site';
+import { frontMatter as aftonbladetCheckerData } from './blogg/att-vacka-liv-i-ett-3-ar-gammalt-projekt.mdx';
+import { frontMatter as colorPixUX } from './blogg/colorpix-ux-forandringar.mdx';
+import { frontMatter as imdbCLIVersion230 } from './blogg/imdb-cli-version-2-3-0.mdx';
+import { PostFrontMatter } from '../types/FrontMatter';
+import { PostListItem } from '../components/postListItem';
+import Link from 'next/link';
+import { toBlogURL } from '../utils/frontMatterToUrl';
+import * as React from 'react';
+
+const examplePosts: PostFrontMatter[] = [aftonbladetCheckerData, colorPixUX, imdbCLIVersion230];
 
 export default function Home() {
   return (
@@ -46,6 +56,18 @@ export default function Home() {
           </Row>
         </Column>
         <MarginLarge />
+        <Column>
+          <MarginLarge />
+          <ArticlesContent articles={examplePosts} />
+          <MarginMedium />
+          <Row>
+            <Fill />
+            <Link href="/blogg">
+              <ButtonPrimary>Alla artiklar</ButtonPrimary>
+            </Link>
+            <Fill />
+          </Row>
+        </Column>
       </ResponsiveContainer>
     </>
   );
@@ -86,11 +108,29 @@ const ProjectsContent = () => {
     <>
       <h2>Projekt</h2>
       <MarginSmall></MarginSmall>
-      <ResponsiveGrid itemWidth="350px" gutter="20px">
+      <ResponsiveGrid itemWidth="280px" gutter="20px">
         {projects.map(({ title, icon, ...rest }) => (
           <CardProject key={title} title={`${icon} ${title}`} {...rest} />
         ))}
       </ResponsiveGrid>
+    </>
+  );
+};
+
+const ArticlesContent: React.FC<{ articles: PostFrontMatter[] }> = ({ articles }) => {
+  return (
+    <>
+      <TextCenter>
+        <h2>Ibland skriver jag om något förhoppningsvis intressant</h2>
+      </TextCenter>
+      <MarginMedium />
+      {articles.map((post) => (
+        <Link key={post.title} href={toBlogURL(post)}>
+          <div>
+            <PostListItem title={post.title} summary={post.summary} />
+          </div>
+        </Link>
+      ))}
     </>
   );
 };
