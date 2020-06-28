@@ -3,6 +3,8 @@ import { Column } from './ui/container/column';
 import { MarginSmall } from './ui/margins/marginSmall';
 import styled from 'styled-components';
 import { theme } from '../theme/theme';
+import { TextMuted } from './ui/content/textMuted';
+import { formatDate } from '../utils/formatDate';
 
 interface PostListItemProps {
   title: string;
@@ -27,17 +29,12 @@ const Item = styled.div`
   }
 `;
 
-const DateText = styled.span`
-  font-size: 0.8rem;
-  color: var(--text-muted-color);
-`;
-
 export const PostListItem: React.FC<PostListItemProps> = ({ title, summary, date }) => {
   return (
     <Column>
       <Item>
         <h4>{title}</h4>
-        {date && <DateText>{new Date(date).toLocaleDateString('sv')}</DateText>}
+        {date && <TextMuted>{formatDate(date)}</TextMuted>}
         <MarginSmall />
         <p>{summary}</p>
       </Item>

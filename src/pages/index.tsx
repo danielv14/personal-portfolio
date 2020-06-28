@@ -106,7 +106,7 @@ const ProjectsContent = () => {
     <>
       <h2>Projekt</h2>
       <MarginSmall></MarginSmall>
-      <ResponsiveGrid itemWidth="280px" gutter="20px">
+      <ResponsiveGrid itemWidth="250px" gutter="20px">
         {projects.map(({ title, icon, ...rest }) => (
           <CardProject key={title} title={`${icon} ${title}`} {...rest} />
         ))}
