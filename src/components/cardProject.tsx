@@ -18,7 +18,7 @@ const CardLink = styled.a`
 interface CardProjectProps {
   title: string;
   summary: string;
-  tags: string[];
+  tags?: string[];
   urlSource: string;
   url?: string;
 }
@@ -37,11 +37,12 @@ export const CardProject: React.FC<CardProjectProps> = ({ title, summary, tags, 
           <ThemedParagraph>{summary}</ThemedParagraph>
           <Fill></Fill>
           <Row>
-            {tags.map((tag, index) => (
-              <>
-                <Tag key={tag + index}>{tag}</Tag>
-              </>
-            ))}
+            {tags &&
+              tags.map((tag, index) => (
+                <>
+                  <Tag key={tag + index}>{tag}</Tag>
+                </>
+              ))}
             <Fill></Fill>
             {url && <a href={url}>Visa</a>}
           </Row>
