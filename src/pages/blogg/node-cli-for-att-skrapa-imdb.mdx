@@ -8,14 +8,14 @@ date: 2017-09-01
 
 För ett tag sedan stod jag inför en uppgift som delvis gick ut på att använda filmer och tv-seriers IMDb ID:n. Att manuellt söka upp filmer i webbläsaren och kopiera ID:n från URLen vart fort tradigt... Node-baserat CLI to the rescue!
 
-För den som inte vet vad ett IMDb ID är så är det kortfattat ett unikt identifieringsnummer för varje film, tv-serie, skådespelarare och så vidare. Dessa id:n används bland annat i URLen på följande sätt: *http://www.imdb.com/title/**tt0411008**/*. Strängen som börjar på **"tt"** är sjävla id:t. Just **tt0411008** är id:t för tv-serien Lost för övrigt.
+För den som inte vet vad ett IMDb ID är så är det kortfattat ett unikt identifieringsnummer för varje film, tv-serie, skådespelarare och så vidare. Dessa id:n används bland annat i URLen på följande sätt: `http://www.imdb.com/title/tt0411008/`. Strängen som börjar på **"tt"** är sjävla id:t. Just **tt0411008** är id:t för tv-serien Lost för övrigt.
 
 Jag behövde alltså på ett smidigt sätt komma åt just de här numren och efter att ha gjort manuella sökningar på IMDbs hemsida ett ex antal gånger, klickat mig in på rätt sökresultat och kopierat id:t från URLen så kändes hela den processen väldigt tradig. Dags att effektivisera!
 
 Det här var dessutom ett utmärkt tillfälle att skapa ett Node-baserat CLI och lära mig lite mer om det då jag inte skapat så många sådana förut men är sedan tidigare relativt bekväm med Node och Javascript. Inte heller hade jag tidigare använt skrapning speciellt mycket med Javascrip.
 
 ## Vad behöver CLI:t åtstakomma?
-Innan jag ens gjorde `git init`funderade jag över hur jag ville att mitt CLI skulle fungera, vad det skulle spotta ut för information och började fundera på vilka npm-paket som skulle kunna underlätta och göra CLI:t bättre. 
+Innan jag ens gjorde `git init` funderade jag över hur jag ville att mitt CLI skulle fungera, vad det skulle spotta ut för information och började fundera på vilka npm-paket som skulle kunna underlätta och göra CLI:t bättre. 
 
 Min tanke var att CLI:t först skulle fråga användaren efter en söksträng att söka efter, göra en request till IMDb:s hemsida och sökresultat, skrapa den information som behövdes och spotta ut det i terminalen på ett överskådligt sätt. Jag tänkte mig att det främst handla om att skrapa fram titlar, årtal och självfallet IMDb ID:n.
 
