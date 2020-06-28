@@ -37,12 +37,7 @@ export const CardProject: React.FC<CardProjectProps> = ({ title, summary, tags, 
           <ThemedParagraph>{summary}</ThemedParagraph>
           <Fill></Fill>
           <Row>
-            {tags &&
-              tags.map((tag, index) => (
-                <>
-                  <Tag key={tag + index}>{tag}</Tag>
-                </>
-              ))}
+            {tags && tags.map((tag, index) => <Tag key={tag + index}>{tag}</Tag>)}
             <Fill></Fill>
             {url && <a href={url}>Visa</a>}
           </Row>
