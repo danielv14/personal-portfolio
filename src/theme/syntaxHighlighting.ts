@@ -130,6 +130,7 @@ export const syntaxHighlighting = css`
   .remark-code-title {
     font-family: ${theme.fonts.fontFamily.main};
     margin-bottom: -0.8rem;
+    font-weight: bold;
     padding: 0.5em 1em;
     background: #81a1c1;
     color: #f8f8f2;

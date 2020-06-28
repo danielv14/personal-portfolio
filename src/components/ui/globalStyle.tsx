@@ -73,6 +73,7 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: bold;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    line-height: 1.2;
   }
 
   h1 {
