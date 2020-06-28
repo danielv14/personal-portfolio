@@ -96,6 +96,9 @@ const AboutContent = () => {
         Jag är för närvarande hos VK Media och knackar kod, både inom front- och backend. Jag har sedan tidigare arbetat
         mer fokuserat inom frontend och med webbdesign men trivs just nu att arbeta lite brett.
       </ThemedParagraph>
+      <ThemedParagraph>
+        I bagaged har jag en <strong>kandidatexamen i Informatik</strong> och har jobbat med utveckling sedan 2017.
+      </ThemedParagraph>
       <MarginMedium></MarginMedium>
     </>
   );
@@ -107,7 +110,7 @@ const ProjectsContent = () => {
       <h2>Projekt</h2>
       <MarginSmall></MarginSmall>
       <ResponsiveGrid itemWidth="250px" gutter="20px">
-        {projects.map(({ title, icon, ...rest }) => (
+        {projects.map(({ title, icon, tags, ...rest }) => (
           <CardProject key={title} title={`${icon} ${title}`} {...rest} />
         ))}
       </ResponsiveGrid>
