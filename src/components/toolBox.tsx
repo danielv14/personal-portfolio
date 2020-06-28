@@ -7,6 +7,14 @@ interface HeaderLineProps {
   width: string;
 }
 
+const ListItem = styled.li`
+  list-style: none;
+`;
+
+const List = styled(ThemedParagraph)`
+  padding-inline-start: 0;
+`;
+
 const Line = styled.div<HeaderLineProps>`
   background: var(--primary-color);
   width: ${(props) => props.width};
@@ -28,25 +36,25 @@ export const ToolBox = () => {
         <div>
           <h3>Nära till hands</h3>
           <Line width="115px" />
-          <ThemedParagraph as="ul">
-            <li>HTML5</li>
-            <li>CSS och Preprocessors</li>
-            <li>TypeScript</li>
-            <li>React och Next.js</li>
-            <li>Node</li>
-            <li>Git</li>
-            <li>Jest</li>
-          </ThemedParagraph>
+          <List as="ul">
+            <ListItem>HTML5</ListItem>
+            <ListItem>CSS och Preprocessors</ListItem>
+            <ListItem>TypeScript</ListItem>
+            <ListItem>React och Next.js</ListItem>
+            <ListItem>Node</ListItem>
+            <ListItem>Git</ListItem>
+            <ListItem>Jest</ListItem>
+          </List>
           <MarginSmall></MarginSmall>
         </div>
         <div>
           <h3>Använder gärna</h3>
           <Line width="115px" />
-          <ThemedParagraph as="ul">
-            <li>NoSQL med Firebase</li>
-            <li>PostgreSQL</li>
-            <li>Sketch of Figma</li>
-          </ThemedParagraph>
+          <List as="ul">
+            <ListItem>NoSQL med Firebase</ListItem>
+            <ListItem>PostgreSQL</ListItem>
+            <ListItem>Sketch of Figma</ListItem>
+          </List>
         </div>
       </ResponsiveGrid>
     </>

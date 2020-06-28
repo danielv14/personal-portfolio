@@ -14,7 +14,7 @@ export const ButtonPrimary = styled.div`
   display: inline-block;
   &:hover {
     transform: translateY(-1px);
-    background: var(--primary-darken-color);
+    background: var(--primary-color-darken);
     box-shadow: 0px 4px 10px rgba(102, 145, 255, 0.35);
   }
 `;

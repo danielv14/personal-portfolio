@@ -5,7 +5,7 @@ import reset from 'styled-reset';
 
 const setupThemeVariables = (theme: ColorTheme) => css`
   --bg-color: ${theme.backgroundColor};
-  --bg-color-card: ${theme.backgroundColorCard};
+  --bg-color-secondary: ${theme.backgroundColorSecondary};
   --text-color: ${theme.textColor};
   --text-muted-color: ${theme.textMutedColor};
 `;
@@ -29,7 +29,8 @@ export const GlobalStyle = createGlobalStyle`
 
     /* Setup colors */
     --primary-color: ${theme.colors.primary};
-    --primary-darken-color: ${theme.colors.primaryDarken};
+    --primary-color-darken: ${theme.colors.primaryDarken};
+    --primary-color-lighten: ${theme.colors.primaryLighten};
 
     /* Setup border radiuses */
     --border-radius-small: 4px;
@@ -55,7 +56,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   body {
@@ -122,9 +123,49 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0 0 1.2rem;
   }
 
+  p,li,ul {
+    @media (prefers-color-scheme: dark) {
+      color: var(--text-muted-color);
+    }
+  }
+
+  ul, ol {
+    list-style: disc;
+    margin-bottom: 10px;
+  }
+  ul {
+    padding-inline-start: 40px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  pre {
+    border-radius: var(--border-radius);
+    font-size: 0.8rem;
+  }
+
+  blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--bg-color-secondary);
+    border-radius: .3rem;
+    border-left: 1px solid var(--primary-color);
+    border-left-width: 8px;
+    @media (prefers-color-scheme: light) {
+      background: var(--primary-color-lighten);
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
+
   code {
-    color: var(--text-color);
-    background: var(--text-muted-color);
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 0.8rem;
+    color: #FFFFFF;
+    background: var(--primary-color-darken);
     border-radius: var(--border-radius-small);
     padding: 2px 4px;
   }

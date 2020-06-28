@@ -5,25 +5,26 @@ interface Colors {
   };
   primary: string;
   primaryDarken: string;
+  primaryLighten: string;
 }
 
 export interface ColorTheme {
   backgroundColor: string;
-  backgroundColorCard: string;
+  backgroundColorSecondary: string;
   textColor: string;
   textMutedColor: string;
 }
 
 const darkTheme: ColorTheme = {
   backgroundColor: '#171923',
-  backgroundColorCard: '#202438',
+  backgroundColorSecondary: '#202438',
   textColor: '#FFFFFF',
   textMutedColor: '#A0AEC0',
 };
 
 const lightTheme: ColorTheme = {
   backgroundColor: '#FFFFFF',
-  backgroundColorCard: '#FFFFFF',
+  backgroundColorSecondary: '#FFFFFF',
   textColor: '#414141',
   textMutedColor: '#BDBDBD',
 };
@@ -35,4 +36,5 @@ export const colors: Colors = {
   },
   primary: '#6691FF',
   primaryDarken: '#5477D3',
+  primaryLighten: '#e9efff',
 };
