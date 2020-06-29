@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { ResponsiveContainer } from '../ui/container/responsiveContainer';
 import Link from 'next/link';
 import { Fill } from '../ui/container/fill';
@@ -8,6 +7,7 @@ import { IconDarkMode } from '../ui/icons/iconDarkMode';
 import { IconLightMode } from '../ui/icons/iconLightMode';
 import { useDarkMode } from '../../hooks/useDarkMode';
 import { MarginMedium } from '../ui/margins/marginMedium';
+import { NavbarWrapper, NavbarContentWrapper, NavbarHeading, NavbarLink } from './stylesNav';
 
 export const Navbar = () => {
   const [isDarkMode, toggleDarkMode] = useDarkMode();
@@ -32,39 +32,5 @@ export const Navbar = () => {
     </NavbarWrapper>
   );
 };
-
-const NavbarWrapper = styled.div`
-  box-shadow: var(--box-shadow-main);
-`;
-
-NavbarWrapper.displayName = 'NavbarWrapper';
-
-const NavbarContentWrapper = styled(Row)`
-  width: 100%;
-  background: var(--bg-color);
-  height: 60px;
-  align-items: center;
-  font-family: var(--headings-font);
-  font-weight: bold;
-  font-size: var(--font-size-h5);
-`;
-
-NavbarContentWrapper.displayName = 'NavbarContentWrapper';
-
-const NavbarLink = styled.a`
-  color: var(--text-muted-color);
-  &:hover {
-    text-decoration: none;
-  }
-`;
-
-NavbarLink.displayName = 'NavbarLink';
-
-const NavbarHeading = styled.div`
-  color: var(--text-muted-color);
-  cursor: pointer;
-`;
-
-NavbarHeading.displayName = 'NavbarHeading';
 
 Navbar.displayName = 'Navbar';
