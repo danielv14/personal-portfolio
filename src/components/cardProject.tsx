@@ -9,6 +9,7 @@ import { MarginSmall } from './ui/margins/marginSmall';
 
 const CardLink = styled.a`
   color: inherit;
+  font-weight: inherit;
   &:hover {
     text-decoration: none;
   }
@@ -25,25 +26,25 @@ interface CardProjectProps {
 export const CardProject: React.FC<CardProjectProps> = ({ title, summary, tags, urlSource, url }) => {
   return (
     <Card>
-      <Row>
-        <MarginSmall />
-        <Column>
+      <CardLink href={urlSource}>
+        <Row>
           <MarginSmall />
-          <CardLink href={urlSource}>
+          <Column>
+            <MarginSmall />
             <h3>{title}</h3>
-          </CardLink>
-          <MarginSmall />
-          <p>{summary}</p>
-          <Fill></Fill>
-          <Row>
-            {tags && tags.map((tag, index) => <Tag key={tag + index}>{tag}</Tag>)}
+            <MarginSmall />
+            <p>{summary}</p>
             <Fill></Fill>
-            {url && <a href={url}>Visa</a>}
-          </Row>
+            <Row>
+              {tags && tags.map((tag, index) => <Tag key={tag + index}>{tag}</Tag>)}
+              <Fill></Fill>
+              {url && <a href={url}>Visa</a>}
+            </Row>
+            <MarginSmall />
+          </Column>
           <MarginSmall />
-        </Column>
-        <MarginSmall />
-      </Row>
+        </Row>
+      </CardLink>
     </Card>
   );
 };
