@@ -46,7 +46,7 @@ export const GlobalStyle = createGlobalStyle`
     --margin-medium: ${theme.margins.medium};
     --margin-large: ${theme.margins.large};
 
-    --site-max-width: 960px;
+    --site-max-width: ${theme.siteWidth};
 
     /* Setup themable variables depending on system color theme */
     ${setupThemeVariables(theme.colors.themed.light)}

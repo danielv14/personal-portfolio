@@ -8,4 +8,5 @@ export const theme = {
   fonts,
   breakpoints,
   margins,
+  siteWidth: '960px',
 };
