@@ -12,10 +12,9 @@ import { MarginSmall } from '../components/ui/margins/marginSmall';
 import { TextCenter } from '../components/ui/textCenter';
 import { projects } from '../data/projects';
 import { site } from '../data/site';
-import { PostFrontMatter } from '../types/FrontMatter';
+import { PostMetaData } from '../types/FrontMatter';
 import { PostListItem } from '../components/postListItem';
 import Link from 'next/link';
-import { toBlogURL } from '../utils/frontMatterToUrl';
 import { useRef, RefObject } from 'react';
 import { getLatestBlogPosts } from '../utils/getBlogPosts';
 
@@ -115,7 +114,7 @@ const ProjectsContent = () => {
   );
 };
 
-const ArticlesContent: React.FC<{ articles: PostFrontMatter[] }> = ({ articles }) => {
+const ArticlesContent: React.FC<{ articles: PostMetaData[] }> = ({ articles }) => {
   return (
     <>
       <TextCenter>
@@ -123,7 +122,7 @@ const ArticlesContent: React.FC<{ articles: PostFrontMatter[] }> = ({ articles }
       </TextCenter>
       <MarginMedium />
       {articles.map((post) => (
-        <Link key={post.title} href={toBlogURL(post)}>
+        <Link key={post.title} href={post.url}>
           <div>
             <PostListItem title={post.title} summary={post.summary} />
           </div>

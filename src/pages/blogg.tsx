@@ -4,7 +4,6 @@ import { ResponsiveContainer } from '../components/ui/container/responsiveContai
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
 import { TextCenter } from '../components/ui/textCenter';
-import { toBlogURL } from '../utils/frontMatterToUrl';
 import { getAllBlogPosts } from '../utils/getBlogPosts';
 import { Seo } from '../components/seo/seo';
 
@@ -20,7 +19,7 @@ const blogIndex = () => {
         </TextCenter>
         <MarginLarge />
         {blogPosts.map((blogPost) => (
-          <Link key={blogPost.title} href={toBlogURL(blogPost)}>
+          <Link key={blogPost.title} href={blogPost.url}>
             <div>
               <PostListItem {...blogPost}></PostListItem>
               <MarginMedium />
