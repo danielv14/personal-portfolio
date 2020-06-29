@@ -81,7 +81,7 @@ const HeroContent = () => {
     <>
       <Column>
         <h1>👋 Hallå där!</h1>
-        <h5>Daniel här. Webbutvecklare med förkärlek till JavaScript och tv-serier.</h5>
+        <h3>Daniel här. Webbutvecklare med förkärlek till JavaScript och tv-serier.</h3>
         <MarginMedium></MarginMedium>
       </Column>
     </>
