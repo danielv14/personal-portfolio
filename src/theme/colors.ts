@@ -22,7 +22,7 @@ const darkTheme: ColorTheme = {
   backgroundColor: '#171923',
   backgroundColorSecondary: '#202438',
   backgroundColorHighlight: '#202438',
-  textColor: '#c7d5e6',
+  textColor: '#d0d0d0',
   textMutedColor: '#87919e',
   headingColor: '#FFFFFF',
   boxShadowMain: 'none',
