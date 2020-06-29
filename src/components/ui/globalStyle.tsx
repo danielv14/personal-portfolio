@@ -53,14 +53,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    font-size: 18px;
+    font-size: var(--font-size-base);
   }
 
   body {
     background: var(--bg-color);
     color: var(--text-color);
     font-family: var(--content-font);
-    font-size: var(--font-size-base);
     &.dark-mode {
      ${setupThemeVariables(theme.colors.themed.dark)}
     }

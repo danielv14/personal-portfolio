@@ -22,7 +22,7 @@ export const fonts: Fonts = {
     mono: `'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
   },
   size: {
-    base: '1rem',
+    base: '18px',
     h1: '2rem',
     h2: '1.5rem',
     h3: '1.3rem',
