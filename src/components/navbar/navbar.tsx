@@ -26,10 +26,7 @@ export const Navbar = () => {
 };
 
 const NavbarWrapper = styled.div`
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
-  @media (prefers-color-scheme: dark) {
-    box-shadow: none;
-  }
+  box-shadow: var(--box-shadow-main);
 `;
 
 NavbarWrapper.displayName = 'NavbarWrapper';
