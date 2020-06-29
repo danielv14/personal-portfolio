@@ -8,7 +8,6 @@ export const typography = css`
   h5,
   h6 {
     font-family: var(--headings-font);
-    font-weight: bold;
     margin-top: 1rem;
     margin-bottom: 1rem;
     line-height: 1.2;
@@ -18,31 +17,37 @@ export const typography = css`
     font-size: var(--font-size-h1);
     margin-top: 1rem;
     margin-bottom: 1rem;
+    font-weight: bold;
   }
   h2 {
     font-size: var(--font-size-h2);
     margin-top: 1rem;
     margin-bottom: 1rem;
+    font-weight: bold;
   }
   h3 {
     font-size: var(--font-size-h3);
     margin-top: 1rem;
     margin-bottom: 0.3rem;
+    font-weight: normal;
   }
   h4 {
     font-size: var(--font-size-h4);
     margin-top: 1rem;
     margin-bottom: 0.3rem;
+    font-weight: normal;
   }
   h5 {
     font-size: var(--font-size-h5);
     margin-top: 1rem;
     margin-bottom: 0.3rem;
+    font-weight: normal;
   }
   h6 {
     font-size: var(--font-size-h6);
     margin-top: 1rem;
     margin-bottom: 0.3rem;
+    font-weight: normal;
   }
 
   a {
