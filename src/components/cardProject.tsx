@@ -26,25 +26,27 @@ interface CardProjectProps {
 export const CardProject: React.FC<CardProjectProps> = ({ title, summary, tags, urlSource, url }) => {
   return (
     <Card>
-      <CardLink href={urlSource}>
-        <Row>
-          <MarginSmall />
-          <Column>
+      <Row>
+        <MarginSmall />
+        <Column>
+          <CardLink href={urlSource}>
             <MarginSmall />
             <h3>{title}</h3>
-            <MarginSmall />
-            <p>{summary}</p>
-            <Fill></Fill>
-            <Row>
-              {tags && tags.map((tag, index) => <Tag key={tag + index}>{tag}</Tag>)}
-              <Fill></Fill>
-              {url && <a href={url}>Visa</a>}
-            </Row>
-            <MarginSmall />
-          </Column>
+          </CardLink>
           <MarginSmall />
-        </Row>
-      </CardLink>
+          <CardLink href={urlSource}>
+            <p>{summary}</p>
+          </CardLink>
+          <Fill></Fill>
+          <Row>
+            {tags && tags.map((tag, index) => <Tag key={tag + index}>{tag}</Tag>)}
+            <Fill></Fill>
+            {url && <a href={url}>Visa</a>}
+          </Row>
+          <MarginSmall />
+        </Column>
+        <MarginSmall />
+      </Row>
     </Card>
   );
 };
