@@ -36,6 +36,6 @@ export const projects: Project[] = [
     icon: '💼',
     summary: 'Nedskalat portfolio byggt med React, CSS-in-JS och Markdown',
     tags: ['React', 'Markdown', 'CSS-in-JS'],
-    urlSource: 'https://github.com/danielv14/danielv14.github.io', // TODO: Point to new git repo
+    urlSource: 'https://github.com/danielv14/personal-portfolio',
   },
 ];
