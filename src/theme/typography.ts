@@ -117,4 +117,7 @@ export const typography = css`
   strong {
     font-weight: bold;
   }
+  em {
+    font-style: italic;
+  }
 `;
