@@ -1,4 +1,3 @@
-import { ThemedParagraph } from './ui/content/themedContent';
 import styled from 'styled-components';
 import { MarginSmall } from './ui/margins/marginSmall';
 import { ResponsiveGrid } from './ui/container/responsiveGrid';
@@ -11,7 +10,7 @@ const ListItem = styled.li`
   list-style: none;
 `;
 
-const List = styled(ThemedParagraph)`
+const List = styled.ul`
   padding-inline-start: 0;
 `;
 
@@ -27,10 +26,10 @@ export const ToolBox = () => {
   return (
     <>
       <h2>Min verktygslåda</h2>
-      <ThemedParagraph>
+      <p>
         Jag har tidigare använt allt från PHP och Ruby on Rails för att bygga sajter. Nu för tiden är det mest
         TypeScript för front- och backend som ligger närmst till hands i form av React och Node.
-      </ThemedParagraph>
+      </p>
       <MarginSmall></MarginSmall>
       <ResponsiveGrid gutter="10px" itemWidth="250px">
         <div>

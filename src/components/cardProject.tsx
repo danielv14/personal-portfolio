@@ -1,12 +1,11 @@
 import React from 'react';
-import { Card } from './ui/container/card';
-import { Row } from './ui/container/row';
-import { MarginSmall } from './ui/margins/marginSmall';
-import { Column } from './ui/container/column';
-import { ThemedParagraph } from './ui/content/themedContent';
-import { Fill } from './ui/container/fill';
-import { Tag } from './ui/content/tag';
 import styled from 'styled-components';
+import { Card } from './ui/container/card';
+import { Column } from './ui/container/column';
+import { Fill } from './ui/container/fill';
+import { Row } from './ui/container/row';
+import { Tag } from './ui/content/tag';
+import { MarginSmall } from './ui/margins/marginSmall';
 
 const CardLink = styled.a`
   color: inherit;
@@ -34,7 +33,7 @@ export const CardProject: React.FC<CardProjectProps> = ({ title, summary, tags, 
             <h3>{title}</h3>
           </CardLink>
           <MarginSmall />
-          <ThemedParagraph>{summary}</ThemedParagraph>
+          <p>{summary}</p>
           <Fill></Fill>
           <Row>
             {tags && tags.map((tag, index) => <Tag key={tag + index}>{tag}</Tag>)}

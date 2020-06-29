@@ -4,11 +4,10 @@ import { MarginMedium } from '../ui/margins/marginMedium';
 import { Column } from '../ui/container/column';
 import { Fill } from '../ui/container/fill';
 import styled from 'styled-components';
-import { ThemedParagraph } from '../ui/content/themedContent';
 import { IconGitHub } from '../ui/icons/iconGitHub';
 import { site } from '../../data/site';
 
-const FooterText = styled(ThemedParagraph)`
+const FooterText = styled.p`
   margin: 0;
   color: var(--text-muted-color);
   font-weight: bold;

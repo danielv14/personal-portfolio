@@ -6,7 +6,6 @@ import { Fill } from '../components/ui/container/fill';
 import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
 import { ResponsiveGrid } from '../components/ui/container/responsiveGrid';
 import { Row } from '../components/ui/container/row';
-import { ThemedParagraph } from '../components/ui/content/themedContent';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
 import { MarginSmall } from '../components/ui/margins/marginSmall';
@@ -89,13 +88,13 @@ const AboutContent = () => {
   return (
     <>
       <h2>Kort om mig</h2>
-      <ThemedParagraph>
+      <p>
         Jag är för närvarande hos VK Media och knackar kod, både inom front- och backend. Jag har sedan tidigare arbetat
         mer fokuserat inom frontend och med webbdesign men trivs just nu att arbeta lite brett.
-      </ThemedParagraph>
-      <ThemedParagraph>
+      </p>
+      <p>
         I bagaged har jag en <strong>kandidatexamen i Informatik</strong> och har jobbat med utveckling sedan 2017.
-      </ThemedParagraph>
+      </p>
       <MarginMedium></MarginMedium>
     </>
   );
