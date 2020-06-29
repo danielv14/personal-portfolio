@@ -73,36 +73,36 @@ export default function Home() {
 
 const HeroContent = () => {
   return (
-    <>
+    <section>
       <Column>
         <h1>👋 Hallå där!</h1>
-        <h3>Daniel här. Webbutvecklare med förkärlek till JavaScript och tv-serier.</h3>
+        <h3>Daniel här. Webbutvecklare med förkärlek till JavaScript, schysst design och tv-serier.</h3>
         <MarginMedium></MarginMedium>
       </Column>
-    </>
+    </section>
   );
 };
 
 const AboutContent = () => {
   return (
-    <>
+    <section>
       <h2>Kort om mig</h2>
       <p>
         Jag är för närvarande hos VK Media och knackar kod, både inom front- och backend. Jag har sedan tidigare arbetat
-        mer fokuserat inom frontend och med webbdesign men trivs just nu att arbeta lite brett.
+        mer fokuserat inom frontend och med webbdesign, men trivs just nu att arbeta lite brett.
       </p>
       <p>
         I bagaget har jag en <strong>kandidatexamen i Informatik</strong> och har <strong>sedan 2017</strong> jobbat med
         utveckling.
       </p>
       <MarginMedium></MarginMedium>
-    </>
+    </section>
   );
 };
 
 const ProjectsContent = () => {
   return (
-    <>
+    <section>
       <h2>Projekt</h2>
       <MarginSmall></MarginSmall>
       <ResponsiveGrid itemWidth="250px" gutter="20px">
@@ -110,13 +110,13 @@ const ProjectsContent = () => {
           <CardProject key={title} title={`${icon} ${title}`} {...rest} />
         ))}
       </ResponsiveGrid>
-    </>
+    </section>
   );
 };
 
 const ArticlesContent: React.FC<{ articles: PostMetaData[] }> = ({ articles }) => {
   return (
-    <>
+    <section>
       <TextCenter>
         <h2>Ibland skriver jag om något förhoppningsvis intressant</h2>
       </TextCenter>
@@ -128,6 +128,6 @@ const ArticlesContent: React.FC<{ articles: PostMetaData[] }> = ({ articles }) =
           </div>
         </Link>
       ))}
-    </>
+    </section>
   );
 };
