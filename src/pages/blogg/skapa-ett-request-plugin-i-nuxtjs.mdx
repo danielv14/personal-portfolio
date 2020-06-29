@@ -62,10 +62,14 @@ Därefter är det bara att fylla på med de metoder som man anser behövs, konfi
 När väl pluginet är registrerat är det bara att börja använda `this.$api` i applikationen och exempelvis alla vue komponenter har tillgång till ett enkelt API utan att behöva göra alla HTTP anrop själva och behöva tänka på eventuell parsning av svar, token hantering med mera. 
 En async method i en vue komponent skulle till exempel kunna göra ett anrop med följande syntax:
 
-```javascript
-async getQuote() {
-	const { data } = await this.$api.getRandomQuote()
-	this.quote = data
+```javascript{4,5,6}:example-vue-component.vue
+// Example of a vue component with methods
+methods: {
+	async getQuote() {
+		const { data } = await this.$api.getRandomQuote()
+		// Set data from api to vue component data
+		this.quote = data
+	}
 }
 ```
 Metoden `getRandomQuote()` skulle kunna vara en metod i API klassen som gör ett anrop för att hämta ett slumpmässigt citat av något slag. 
