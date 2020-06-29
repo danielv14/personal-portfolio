@@ -19,7 +19,7 @@ const darkTheme: ColorTheme = {
   backgroundColor: '#171923',
   backgroundColorSecondary: '#202438',
   textColor: '#FFFFFF',
-  textMutedColor: '#A0AEC0',
+  textMutedColor: '#c7d5e6',
 };
 
 const lightTheme: ColorTheme = {
