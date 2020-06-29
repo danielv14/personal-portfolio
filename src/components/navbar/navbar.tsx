@@ -4,10 +4,10 @@ import { ResponsiveContainer } from '../ui/container/responsiveContainer';
 import Link from 'next/link';
 import { Fill } from '../ui/container/fill';
 import { Row } from '../ui/container/row';
-import { IconMoon } from '../ui/icons/iconMoon';
-import { MarginSmall } from '../ui/margins/marginSmall';
-import { IconSun } from '../ui/icons/iconSun';
+import { IconDarkMode } from '../ui/icons/iconDarkMode';
+import { IconLightMode } from '../ui/icons/iconLightMode';
 import { useDarkMode } from '../../hooks/useDarkMode';
+import { MarginMedium } from '../ui/margins/marginMedium';
 
 export const Navbar = () => {
   const [isDarkMode, toggleDarkMode] = useDarkMode();
@@ -24,8 +24,8 @@ export const Navbar = () => {
             <Link href="/blogg">
               <NavbarLink>Blogg</NavbarLink>
             </Link>
-            <MarginSmall />
-            {isDarkMode ? <IconSun onClick={toggleDarkMode} /> : <IconMoon onClick={toggleDarkMode} />}
+            <MarginMedium />
+            {isDarkMode ? <IconLightMode onClick={toggleDarkMode} /> : <IconDarkMode onClick={toggleDarkMode} />}
           </Row>
         </NavbarContentWrapper>
       </ResponsiveContainer>
