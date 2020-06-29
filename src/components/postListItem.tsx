@@ -12,6 +12,10 @@ interface PostListItemProps {
   date?: string;
 }
 
+const ItemHeader = styled.h4`
+  font-weight: bold;
+`;
+
 const Item = styled.div`
   cursor: pointer;
   border-radius: var(--border-radius-small);
@@ -28,7 +32,7 @@ export const PostListItem: React.FC<PostListItemProps> = ({ title, summary, date
   return (
     <Column>
       <Item>
-        <h4>{title}</h4>
+        <ItemHeader>{title}</ItemHeader>
         {date && <TextMuted>{formatDate(date)}</TextMuted>}
         <MarginSmall />
         <p>{summary}</p>
