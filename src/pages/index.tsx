@@ -93,7 +93,7 @@ const AboutContent = () => {
         mer fokuserat inom frontend och med webbdesign men trivs just nu att arbeta lite brett.
       </p>
       <p>
-        I bagaged har jag en <strong>kandidatexamen i Informatik</strong> och har jobbat med utveckling sedan 2017.
+        I bagaget har jag en <strong>kandidatexamen i Informatik</strong> och har jobbat med utveckling sedan 2017.
       </p>
       <MarginMedium></MarginMedium>
     </>
