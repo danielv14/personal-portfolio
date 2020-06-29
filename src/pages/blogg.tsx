@@ -6,25 +6,29 @@ import { MarginMedium } from '../components/ui/margins/marginMedium';
 import { TextCenter } from '../components/ui/textCenter';
 import { toBlogURL } from '../utils/frontMatterToUrl';
 import { getAllBlogPosts } from '../utils/getBlogPosts';
+import { Seo } from '../components/seo/seo';
 
 const blogIndex = () => {
   const blogPosts = getAllBlogPosts();
   return (
-    <ResponsiveContainer>
-      <MarginLarge />
-      <TextCenter>
-        <h1>Alla artiklar</h1>
-      </TextCenter>
-      <MarginLarge />
-      {blogPosts.map((blogPost) => (
-        <Link key={blogPost.title} href={toBlogURL(blogPost)}>
-          <div>
-            <PostListItem {...blogPost}></PostListItem>
-            <MarginMedium />
-          </div>
-        </Link>
-      ))}
-    </ResponsiveContainer>
+    <>
+      <Seo title="Blogg" />
+      <ResponsiveContainer>
+        <MarginLarge />
+        <TextCenter>
+          <h1>Alla artiklar</h1>
+        </TextCenter>
+        <MarginLarge />
+        {blogPosts.map((blogPost) => (
+          <Link key={blogPost.title} href={toBlogURL(blogPost)}>
+            <div>
+              <PostListItem {...blogPost}></PostListItem>
+              <MarginMedium />
+            </div>
+          </Link>
+        ))}
+      </ResponsiveContainer>
+    </>
   );
 };
 

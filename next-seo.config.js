@@ -1,0 +1,18 @@
+const title = 'Daniel Vernberg';
+const description = 'Webbutvecklare med lite extra kärlek för frontend, React, TypeScript och schysst design';
+const urlSite = 'www.danielvernberg.se';
+
+const SEO = {
+  title,
+  description,
+  canonical: urlSite,
+  openGraph: {
+    type: 'website',
+    locale: 'sv_SE',
+    url: urlSite,
+    title,
+    description,
+  },
+};
+
+export default SEO;
