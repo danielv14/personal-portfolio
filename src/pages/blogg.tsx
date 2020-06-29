@@ -13,7 +13,7 @@ const blogIndex = () => {
     <ResponsiveContainer>
       <MarginLarge />
       <TextCenter>
-        <h2>Alla artiklar</h2>
+        <h1>Alla artiklar</h1>
       </TextCenter>
       <MarginLarge />
       {blogPosts.map((blogPost) => (

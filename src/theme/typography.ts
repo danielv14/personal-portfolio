@@ -10,6 +10,7 @@ export const typography = css`
     font-family: var(--headings-font);
     margin-top: 1rem;
     margin-bottom: 1rem;
+    color: var(--heading-color);
     line-height: 1.2;
   }
 
@@ -70,14 +71,6 @@ export const typography = css`
     margin: 0 0 1.2rem;
   }
 
-  p,
-  li,
-  ul {
-    @media (prefers-color-scheme: dark) {
-      color: var(--text-muted-color);
-    }
-  }
-
   ul {
     list-style: disc;
   }
@@ -102,13 +95,10 @@ export const typography = css`
   blockquote {
     margin: 0 0 1rem 0;
     padding: 1rem;
-    background: var(--bg-color-secondary);
+    background: var(--bg-color-highlight);
     border-radius: 0.3rem;
     border-left: 1px solid var(--primary-color);
     border-left-width: 8px;
-    @media (prefers-color-scheme: light) {
-      background: var(--primary-color-lighten);
-    }
     p {
       margin-bottom: 0;
     }
@@ -118,14 +108,10 @@ export const typography = css`
     font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     font-size: 0.8rem;
     color: var(--text-color);
-    background: var(--primary-color-lighten);
+    background: var(--bg-color-highlight);
     border-radius: var(--border-radius-small);
     padding: 2px 4px;
     display: inline-block;
-    @media (prefers-color-scheme: dark) {
-      color: var(--bg-color);
-      background: var(--text-muted-color);
-    }
   }
 
   strong {

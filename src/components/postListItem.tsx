@@ -16,16 +16,11 @@ const Item = styled.div`
   cursor: pointer;
   border-radius: var(--border-radius-small);
   transition: all 0.2s ease;
+  &:hover {
+    background: var(--bg-color-highlight);
+  }
   @media (min-width: ${theme.breakpoints.medium}) {
     padding: var(--margin-small) var(--margin-large);
-    &:hover {
-      background: var(--primary-color-lighten);
-    }
-  }
-  @media (prefers-color-scheme: dark) {
-    &:hover {
-      background: var(--bg-color-secondary);
-    }
   }
 `;
 
