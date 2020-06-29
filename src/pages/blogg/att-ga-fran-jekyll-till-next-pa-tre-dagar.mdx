@@ -1,0 +1,79 @@
+---
+layout: blogPost
+title: Att gå från Jekyll till Next.js på tre dagar
+summary: 'Jag har länge funderat på att byta ut Jekyll för min personliga sajt. Efter en del research och funderingar var det görbart på tre dagar'
+date: 2020-06-29
+---
+
+## Varför byta ut något som "funkar"?
+För ett antal år sedan byggde jag min personliga webbplats/portfolio med hjälp av Jekyll. Med hjälp av Jekyll kunde jag skapa en enklare statiskt generad webbplats - där jag kunde skriva enklare artiklar i markdown.   
+Åren gick och jag uppdaterade sporadiskt denna webbplats med lite design-tweaks och nya artiklar. Nu, år 2020 ser landskapet annorlunda ut när det gäller verktyg för att generera statiska webbplatser och jag kände att det var dags för en förändring.
+
+**Men vad var det för fel på min setup med Jekyll?** Tja...det fanns väl en del anledningar till att jag ansåg att det var dags för en förändring och jag tänkte ta upp några av dom
+* Svårjobbad styling
+* Inget komponenttänk
+* Gammal utvecklingsmiljö
+
+### Svårjobbad styling
+
+När jag byggde sajten var jag väldigt inne på att väldigt lekfull design. Själva startsidan var uppdelad i olika sektioner som alla hade olika bakgrundsfärger och textfärger, i princip.   
+Då jag byggde sajten innan jag fick mitt första jobb inom branschen ville jag ha ett portfolio som stack ut i mängden och som var väldesignat. 
+
+CSS stod för hela **80%** (*JavaScript stod för 1.3%*) av repot på GitHub och detta gjorde det svårt att vidareutveckla och underhålla sajten, även om allt var skrivet med SCSS och inte ren CSS.
+
+Mycket av den styling som fanns var scopep till olika sektioner, med hjälp av typ `section.hero-content {...}`. Detta gjorde att varje sektion var lite väl enkapsulerad och för lite stilregler var generella.
+
+### Inget komponenttänk
+
+I dag när man bygger modernare frontends använder man kanske React, Angular eller Vue för att bygga återanvändbara komponenter.  
+Något sådant komponenttänk fanns inte i strukturen för mitt portfolio direkt. Eller jo... till viss del kunde man skapa "komponenter" med Jekyll i och med html templates och scopa css till dem.
+
+Men man kunde aldrig bli lika flexibel med html template komponenter såsom man kan vara med React och exempelvis Styled Components.
+
+### Gammal utvecklingsmiljö
+
+Oj oj oj. Utvecklingsmiljön började kännas alldeles för gammal. Detta upptäckte jag en dag när jag skulle göra lite JavaScriptändringar på sajten.   
+En ganska gammal version av `Gulp` användes för att slå ihop och minifera den lilla JavaScript som fanns. Denna version lirade inte alls med **node versioner > 10**.   
+
+Att uppdatera Gulp kändes inte som ett alternativ då syntaxen var helt förändrad i nyare versioner. Jag var alltså något låst i för gammal tooling och hela utvecklingsmiljön kändes bara begränsande. 
+
+## Att börja fundera på det modernare, gröna gräset på andra sidan
+
+Det var alltså dags att hitta alternativa lösningar till Jekyll. Jag hade följande checklista som utgångspunkt
+
+* React
+* TypeScript
+* Artiklar i form av markdown
+* Statiskt genererad
+
+Jag insåg rätt tidigt att jag ville bygga mitt nya portfolio med hjälp av **Next.js**. Detta för att det är Reactbaserat, har bra TypeScript support, stöd för statisk generering och innehåll i form av markdown.   
+Dessutom möjligör [vercel](https://vercel.com) zero-config deployments för Next.js webbapplikationer.
+
+## Skrida till verket
+
+Egentligen tog det ju inte bara tre dagar att byta ut mitt gamla portfolio, om man räknar med tid till research och design av mockups i Figma. Däremot tog det bara tre dagar från det att jag skrev första kodraden.
+
+Man skulle kunna dela upp hela processen i tre, rätt så vanliga delar, research, design och implementation.
+
+### Research
+Som tidigare nämnt så hade jag bestämt mig för **Next.js**. Däremot fanns det ju fortfarande en del frågetecken såsom: Hur ska jag generera innehåll utifrån markdown-filer och vilken väg ska jag gå för styling?
+
+Jag tänker inte rabbla upp alla `npm paket` som installerades, vill man ha all info i detalj är det bara att [kika i readmen](https://github.com/danielv14/personal-portfolio) för repot.
+
+### Design
+
+Jag visste från början att jag ville ha en mer avskalad design, med fokus på innehållet. Jag visste även att jag ville ha ett ljust och ett mörkt tema.
+
+Utifrån de två punkterna skissade jag på en mobile-first design för sajten i Figma, bestämde layout för startsidan, spikade färger och så vidare.
+
+### Implementation
+
+Nu kommer vi till "tre dagars" historien. I och med att jag i princip hade allting klart för mig, vilka npm paket jag behövde installera, hur designen skulle se ut och så vidare blev det inte speciellt mycket funderingar under själva utvecklingsfasen.
+
+Jag använde `create-next-app` för att generera en bra startpunkt och därefter var det bara börja koda.
+
+```bash
+npx create-next-app --example with-typescript-styled-components
+```
+
+En lördag-söndag-måndag senare och denna sajt var deployad via **Vercel** och alla DNS:er, ompekningar och så vidare var på plats och [www.danielvernberg.se](https://www.danielvernberg.se) fick sig ett ansiktslyft både utvändingt och invändingt.
