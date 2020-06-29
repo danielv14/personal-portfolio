@@ -30,25 +30,25 @@ export const typography = css`
     font-size: var(--font-size-h3);
     margin-top: 1rem;
     margin-bottom: 0.3rem;
-    font-weight: normal;
+    font-weight: 500;
   }
   h4 {
     font-size: var(--font-size-h4);
     margin-top: 1rem;
     margin-bottom: 0.3rem;
-    font-weight: normal;
+    font-weight: 500;
   }
   h5 {
     font-size: var(--font-size-h5);
     margin-top: 1rem;
     margin-bottom: 0.3rem;
-    font-weight: normal;
+    font-weight: 500;
   }
   h6 {
     font-size: var(--font-size-h6);
     margin-top: 1rem;
     margin-bottom: 0.3rem;
-    font-weight: normal;
+    font-weight: 500;
   }
 
   a {
