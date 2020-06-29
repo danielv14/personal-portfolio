@@ -7,5 +7,6 @@ This pull request does...
 - [ ] 🐛 Bug fixes
 - [ ] 💅 New features
 - [ ] 🚧 Code refactoring
+- [ ] 📜 Article
 - [ ] 🧹 Chores
 - [ ] 📝 Documentation
