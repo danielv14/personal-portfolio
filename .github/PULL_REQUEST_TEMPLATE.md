@@ -4,7 +4,7 @@ This pull request does...
 
 ### Types of changes
 
-- [ ] 🐛 Bugfixes
+- [ ] 🐛 Bug fixes
 - [ ] 💅 New features
 - [ ] 🚧 Code refactoring
 - [ ] 🧹 Chores
