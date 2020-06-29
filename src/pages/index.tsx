@@ -13,18 +13,15 @@ import { MarginSmall } from '../components/ui/margins/marginSmall';
 import { TextCenter } from '../components/ui/textCenter';
 import { projects } from '../data/projects';
 import { site } from '../data/site';
-import { frontMatter as aftonbladetCheckerData } from './blogg/att-vacka-liv-i-ett-3-ar-gammalt-projekt.mdx';
-import { frontMatter as colorPixUX } from './blogg/colorpix-ux-forandringar.mdx';
-import { frontMatter as imdbCLIVersion230 } from './blogg/imdb-cli-version-2-3-0.mdx';
 import { PostFrontMatter } from '../types/FrontMatter';
 import { PostListItem } from '../components/postListItem';
 import Link from 'next/link';
 import { toBlogURL } from '../utils/frontMatterToUrl';
 import { useRef, RefObject } from 'react';
-
-const examplePosts: PostFrontMatter[] = [aftonbladetCheckerData, colorPixUX, imdbCLIVersion230];
+import { getLatestBlogPosts } from '../utils/getBlogPosts';
 
 export default function Home() {
+  const latestPosts = getLatestBlogPosts(4);
   const ProjectRef: RefObject<any> = useRef(null);
   const ScrollToProjects = () => window.scrollTo({ top: ProjectRef.current.offsetTop, behavior: 'smooth' });
   return (
@@ -61,7 +58,7 @@ export default function Home() {
         <MarginLarge />
         <Column>
           <MarginLarge />
-          <ArticlesContent articles={examplePosts} />
+          <ArticlesContent articles={latestPosts} />
           <MarginMedium />
           <Row>
             <Fill />

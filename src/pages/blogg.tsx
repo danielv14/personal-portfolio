@@ -1,17 +1,14 @@
-import { frontMatter as blogPosts } from './blogg/*.mdx';
-import { PostFrontMatter } from '../types/FrontMatter';
-import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
 import Link from 'next/link';
-import { MarginLarge } from '../components/ui/margins/marginLarge';
-import { toBlogURL } from '../utils/frontMatterToUrl';
 import { PostListItem } from '../components/postListItem';
+import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
+import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
-import { sortBlogPostsAscByDate } from '../utils/sortBlogPostsByDate';
 import { TextCenter } from '../components/ui/textCenter';
+import { toBlogURL } from '../utils/frontMatterToUrl';
+import { getAllBlogPosts } from '../utils/getBlogPosts';
 
 const blogIndex = () => {
-  const blogPostData = (blogPosts as unknown) as PostFrontMatter[];
-  const sortedBlogPosts = blogPostData.sort(sortBlogPostsAscByDate);
+  const blogPosts = getAllBlogPosts();
   return (
     <ResponsiveContainer>
       <MarginLarge />
@@ -19,7 +16,7 @@ const blogIndex = () => {
         <h2>Alla artiklar</h2>
       </TextCenter>
       <MarginLarge />
-      {sortedBlogPosts.map((blogPost) => (
+      {blogPosts.map((blogPost) => (
         <Link key={blogPost.title} href={toBlogURL(blogPost)}>
           <div>
             <PostListItem {...blogPost}></PostListItem>
