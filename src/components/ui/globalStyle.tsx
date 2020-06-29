@@ -50,9 +50,6 @@ export const GlobalStyle = createGlobalStyle`
 
     /* Setup themable variables depending on system color theme */
     ${setupThemeVariables(theme.colors.themed.light)}
-    @media (prefers-color-scheme: dark) {
-     ${setupThemeVariables(theme.colors.themed.dark)}
-    }
   }
 
   html {
@@ -64,6 +61,9 @@ export const GlobalStyle = createGlobalStyle`
     color: var(--text-color);
     font-family: var(--content-font);
     font-size: var(--font-size-base);
+    &.dark-mode {
+     ${setupThemeVariables(theme.colors.themed.dark)}
+    }
   }
 
   /* Add typography styles */

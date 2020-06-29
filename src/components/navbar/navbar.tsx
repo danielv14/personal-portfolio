@@ -4,8 +4,14 @@ import { ResponsiveContainer } from '../ui/container/responsiveContainer';
 import Link from 'next/link';
 import { Fill } from '../ui/container/fill';
 import { Row } from '../ui/container/row';
+import { IconMoon } from '../ui/icons/iconMoon';
+import { MarginSmall } from '../ui/margins/marginSmall';
+import { IconSun } from '../ui/icons/iconSun';
+import { useDarkMode } from '../../hooks/useDarkMode';
 
 export const Navbar = () => {
+  const [isDarkMode, toggleDarkMode] = useDarkMode();
+
   return (
     <NavbarWrapper>
       <ResponsiveContainer>
@@ -14,10 +20,12 @@ export const Navbar = () => {
             <NavbarHeading>Daniel Vernberg</NavbarHeading>
           </Link>
           <Fill />
-          <Row>
+          <Row style={{ alignItems: 'center', cursor: 'pointer' }}>
             <Link href="/blogg">
               <NavbarLink>Blogg</NavbarLink>
             </Link>
+            <MarginSmall />
+            {isDarkMode ? <IconSun onClick={toggleDarkMode} /> : <IconMoon onClick={toggleDarkMode} />}
           </Row>
         </NavbarContentWrapper>
       </ResponsiveContainer>
@@ -45,6 +53,9 @@ NavbarContentWrapper.displayName = 'NavbarContentWrapper';
 
 const NavbarLink = styled.a`
   color: var(--text-muted-color);
+  &:hover {
+    text-decoration: none;
+  }
 `;
 
 NavbarLink.displayName = 'NavbarLink';
