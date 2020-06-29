@@ -1,4 +1,4 @@
-import { frontMatter } from './blogg/*.mdx';
+import { frontMatter as blogPosts } from './blogg/*.mdx';
 import { PostFrontMatter } from '../types/FrontMatter';
 import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
 import Link from 'next/link';
@@ -10,7 +10,7 @@ import { sortBlogPostsAscByDate } from '../utils/sortBlogPostsByDate';
 import { TextCenter } from '../components/ui/textCenter';
 
 const blogIndex = () => {
-  const blogPostData = (frontMatter as unknown) as PostFrontMatter[];
+  const blogPostData = (blogPosts as unknown) as PostFrontMatter[];
   const sortedBlogPosts = blogPostData.sort(sortBlogPostsAscByDate);
   return (
     <ResponsiveContainer>
