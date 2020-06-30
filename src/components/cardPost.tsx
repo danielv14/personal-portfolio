@@ -8,7 +8,7 @@ import { TextMuted } from './ui/content/textMuted';
 import styled from 'styled-components';
 
 const SubHeader = styled(TextMuted)`
-  font-size: 0.7rem;
+  font-size: var(--font-size-smaller);
 `;
 
 interface CardPostProps {

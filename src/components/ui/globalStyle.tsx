@@ -26,6 +26,8 @@ export const GlobalStyle = createGlobalStyle`
     --font-size-h4: ${theme.fonts.size.h4};
     --font-size-h5: ${theme.fonts.size.h5};
     --font-size-h6: ${theme.fonts.size.h6};
+    --font-size-small: ${theme.fonts.size.small};
+    --font-size-smaller: ${theme.fonts.size.smaller};
 
     /* Setup colors */
     --primary-color: ${theme.colors.primary};
