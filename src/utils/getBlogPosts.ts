@@ -2,11 +2,13 @@ import { frontMatter } from '../pages/blogg/*.mdx';
 import { PostFrontMatter, PostMetaData } from '../types/FrontMatter';
 import { sortBlogPostsAscByDate } from './sortBlogPostsByDate';
 import { toBlogURL } from './frontMatterToUrl';
+import { formatDate } from './formatDate';
 
 const blogPosts = (frontMatter as unknown) as PostFrontMatter[];
 
 const toPostMetaData = (frontMatter: PostFrontMatter): PostMetaData => ({
   ...frontMatter,
+  date: formatDate(frontMatter.date),
   url: toBlogURL(frontMatter.__resourcePath),
 });
 
