@@ -69,6 +69,7 @@ export const typography = css`
 
   p {
     margin: 0 0 1.2rem;
+    overflow-wrap: break-word;
   }
 
   ul {
@@ -115,7 +116,6 @@ export const typography = css`
     background: var(--bg-color-highlight);
     border-radius: var(--border-radius-small);
     padding: 2px 4px;
-    display: inline-block;
   }
 
   strong {
