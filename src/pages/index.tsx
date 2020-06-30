@@ -9,7 +9,7 @@ import { Row } from '../components/ui/container/row';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
 import { MarginSmall } from '../components/ui/margins/marginSmall';
-import { TextCenter } from '../components/ui/textCenter';
+import { TextCenter } from '../components/ui/content/textCenter';
 import { projects } from '../data/projects';
 import { site } from '../data/site';
 import { PostMetaData } from '../types/FrontMatter';

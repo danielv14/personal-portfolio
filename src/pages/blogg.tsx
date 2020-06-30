@@ -3,7 +3,7 @@ import { PostListItem } from '../components/postListItem';
 import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
-import { TextCenter } from '../components/ui/textCenter';
+import { TextCenter } from '../components/ui/content/textCenter';
 import { getAllBlogPosts } from '../utils/getBlogPosts';
 import { Seo } from '../components/seo/seo';
 

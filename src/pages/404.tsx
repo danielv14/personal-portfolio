@@ -1,7 +1,7 @@
 import { Seo } from '../components/seo/seo';
 import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
-import { TextCenter } from '../components/ui/textCenter';
+import { TextCenter } from '../components/ui/content/textCenter';
 import { ButtonPrimary } from '../components/ui/buttons/ButtonPrimary';
 import Link from 'next/link';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
