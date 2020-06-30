@@ -150,7 +150,7 @@ Med hjälp av marginaler och andra styled components som bara är ui-baserade ka
 
 ```typescript:src/components/cardPost.tsx
 export const CardPost: React.FC<CardPostProps> = ({ post }) => (
-  /* UI komponent som sätter skuggning */
+  /* UI komponent som sätter skuggning, temad bakgrundsfärg och hover effekt */
   <Card style={{ cursor: 'pointer' }}>
     /* Next.js komponent */
     <Link href={post.url}>
