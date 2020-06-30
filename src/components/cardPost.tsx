@@ -10,10 +10,6 @@ interface CardPostProps {
   post: PostMetaData;
 }
 
-const truncate = (text: string) => {
-  return text.length > 40 ? `${text.slice(0, 40)}...` : text;
-};
-
 export const CardPost: React.FC<CardPostProps> = ({ post }) => (
   <Card style={{ cursor: 'pointer' }}>
     <Link href={post.url}>
@@ -21,7 +17,7 @@ export const CardPost: React.FC<CardPostProps> = ({ post }) => (
         <MarginSmall />
         <Column style={{ alignItems: 'stretch' }}>
           <MarginSmall />
-          <h3 style={{ marginTop: '0' }}>{truncate(post.title)}</h3>
+          <h3 style={{ marginTop: '0' }}>{post.title}</h3>
           <TextMuted>{post.date}</TextMuted>
         </Column>
         <MarginSmall />
