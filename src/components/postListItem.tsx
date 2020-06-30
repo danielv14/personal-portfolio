@@ -4,7 +4,6 @@ import { MarginSmall } from './ui/margins/marginSmall';
 import styled from 'styled-components';
 import { theme } from '../theme/theme';
 import { TextMuted } from './ui/content/textMuted';
-import { formatDate } from '../utils/formatDate';
 
 interface PostListItemProps {
   title: string;
@@ -33,7 +32,7 @@ export const PostListItem: React.FC<PostListItemProps> = ({ title, summary, date
     <Column>
       <Item>
         <ItemHeader>{title}</ItemHeader>
-        {date && <TextMuted>{formatDate(date)}</TextMuted>}
+        {date && <TextMuted>{date}</TextMuted>}
         <MarginSmall />
         <p>{summary}</p>
       </Item>

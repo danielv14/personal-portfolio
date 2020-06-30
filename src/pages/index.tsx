@@ -9,7 +9,7 @@ import { Row } from '../components/ui/container/row';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
 import { MarginSmall } from '../components/ui/margins/marginSmall';
-import { TextCenter } from '../components/ui/textCenter';
+import { TextCenter } from '../components/ui/content/textCenter';
 import { projects } from '../data/projects';
 import { site } from '../data/site';
 import { PostMetaData } from '../types/FrontMatter';
@@ -17,6 +17,8 @@ import { PostListItem } from '../components/postListItem';
 import Link from 'next/link';
 import { useRef, RefObject } from 'react';
 import { getLatestBlogPosts } from '../utils/getBlogPosts';
+import { theme } from '../theme/theme';
+import { HeadingMuted } from '../components/ui/content/headingMuted';
 
 export default function Home() {
   const latestPosts = getLatestBlogPosts(4);
@@ -27,8 +29,8 @@ export default function Home() {
       <ResponsiveContainer>
         <Column>
           <MarginLarge />
+          <HeroContent />
           <TextCenter>
-            <HeroContent />
             <ButtonPrimary onClick={ScrollToProjects}>Portfolio</ButtonPrimary>
           </TextCenter>
         </Column>
@@ -75,8 +77,14 @@ const HeroContent = () => {
   return (
     <section>
       <Column>
-        <h1>👋 Hallå där!</h1>
-        <h3>Daniel här. Webbutvecklare med förkärlek till JavaScript, schysst design och tv-serier.</h3>
+        <TextCenter>
+          <h1>👋 Hallå där!</h1>
+          <HeadingMuted as="h5">
+            Daniel här. Webbutvecklare med förkärlek till JavaScript, schysst design och tv-serier.
+            <br />
+            På den här sajten delar jag med mig av diverse kodprojekt och skriver några rader ibland.
+          </HeadingMuted>
+        </TextCenter>
         <MarginMedium></MarginMedium>
       </Column>
     </section>
@@ -105,7 +113,7 @@ const ProjectsContent = () => {
     <section>
       <h2>Projekt</h2>
       <MarginSmall></MarginSmall>
-      <ResponsiveGrid itemWidth="250px" gutter="20px">
+      <ResponsiveGrid itemWidth="250px" gutter={theme.margins.large}>
         {projects.map(({ title, icon, tags, ...rest }) => (
           <CardProject key={title} title={`${icon} ${title}`} {...rest} />
         ))}

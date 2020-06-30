@@ -123,10 +123,12 @@ export const syntaxHighlighting = css`
   /* Line highlighting */
   .mdx-marker {
     margin-left: -1.5em;
-    padding-left: 1.1em;
-    border-left: 4px solid #88c0d0;
+    padding-left: 1em;
+    border-left: 6px solid #88c0d0;
   }
   .remark-code-title {
+    max-width: 100%;
+    overflow-y: hidden;
     font-family: ${theme.fonts.fontFamily.main};
     margin-bottom: -0.8rem;
     font-weight: bold;
