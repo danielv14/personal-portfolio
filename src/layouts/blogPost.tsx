@@ -38,8 +38,8 @@ export default (frontMatter: PostFrontMatter) => {
                 <MarginMedium />
                 <h2>Mer innehåll</h2>
                 <ResponsiveGrid itemWidth="250px" gutter={theme.margins.large}>
-                  {prevPost && <CardPost post={prevPost} />}
-                  {nextPost && <CardPost post={nextPost} />}
+                  {prevPost && <CardPost subHeader="Föregående" post={prevPost} />}
+                  {nextPost && <CardPost subHeader="Nästa" post={nextPost} />}
                 </ResponsiveGrid>
               </>
             )}
