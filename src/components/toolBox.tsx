@@ -34,12 +34,12 @@ export const ToolBox = () => {
       <MarginSmall></MarginSmall>
       <ResponsiveGrid gutter="10px" itemWidth="150px">
         {toolBox.map(({ title, items }) => (
-          <div>
+          <div key={title}>
             <h3>{title}</h3>
             <Line width="115px" />
             <List as="ul">
               {items.map((item) => (
-                <ListItem>{item}</ListItem>
+                <ListItem key={item}>{item}</ListItem>
               ))}
             </List>
             <MarginSmall></MarginSmall>
