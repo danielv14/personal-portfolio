@@ -17,6 +17,7 @@ import { PostListItem } from '../components/postListItem';
 import Link from 'next/link';
 import { useRef, RefObject } from 'react';
 import { getLatestBlogPosts } from '../utils/getBlogPosts';
+import { theme } from '../theme/theme';
 
 export default function Home() {
   const latestPosts = getLatestBlogPosts(4);
@@ -105,7 +106,7 @@ const ProjectsContent = () => {
     <section>
       <h2>Projekt</h2>
       <MarginSmall></MarginSmall>
-      <ResponsiveGrid itemWidth="250px" gutter="20px">
+      <ResponsiveGrid itemWidth="250px" gutter={theme.margins.large}>
         {projects.map(({ title, icon, tags, ...rest }) => (
           <CardProject key={title} title={`${icon} ${title}`} {...rest} />
         ))}
