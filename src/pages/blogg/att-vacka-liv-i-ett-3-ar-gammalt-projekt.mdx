@@ -22,10 +22,10 @@ Det här är alltså en liten historia om hur jag väckte liv i ett tre år gamm
 ## Steg 1: Hitta lämplig fullstack JavaScript-lösning
 Då jag inte ville spendera alldeles för mycket tid med att sätta upp en utvecklingsmiljö utan istället förlita mig på en lösning som är lite mer åt ”Convention over configuration” hade jag en lista med önskemål att uppfylla för en fullstack JavaScript-lösning:
 
-* Bra TypeScript support
-* Reactbaserad frontend
-* Snabb och enkel node-implementation då jag bara behöver göra ett fåtal API-anrop
-* Snabbt att komma igång utan överdrivet mycket tooling
+* **Bra** TypeScript support
+* **Reactbaserad** frontend
+* **Snabb och enkel** node-implementation då jag bara behöver göra ett fåtal API-anrop
+* **Snabbt** att komma igång utan överdrivet mycket tooling
 
 ### 1.1 Rätt verktyg för jobbet
 Utifrån denna lista tyckte jag att react-ramverket Next.js checkade av de mesta av mina önskemål då det är reactbaserat, har bra TypeScript stöd, Serverless functions för enkel backend och en rad andra schyssta features.
@@ -35,8 +35,8 @@ Utifrån denna lista tyckte jag att react-ramverket Next.js checkade av de mesta
 ## Steg 2: Exportera data och se över datamodellen
 Det tidigare projektet sparade alltså data i en Postgres-databas som snurrade på Heroku. Det var alltså inte speciellt svårt att exportera den databasen:
 
-* Logga in i Heroku-projektet med Heroku CLI
-* Kopiera ned all data till csv-fil.
+1. Logga in i Heroku-projektet med Heroku CLI
+2. Kopiera ned all data till csv-fil.
 
 ### 2.1 Exportera data
 Jag använde följande kommando när jag väl var inloggad i Heroku-projektets postgres från terminalen: 
