@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { MarginSmall } from './ui/margins/marginSmall';
 import { ResponsiveGrid } from './ui/container/responsiveGrid';
+import { toolBox } from '../data/toolbox';
 
 interface HeaderLineProps {
   width: string;
@@ -31,30 +32,19 @@ export const ToolBox = () => {
         TypeScript för front- och backend som ligger närmst till hands i form av React och Node.
       </p>
       <MarginSmall></MarginSmall>
-      <ResponsiveGrid gutter="10px" itemWidth="250px">
-        <div>
-          <h3>Nära till hands</h3>
-          <Line width="115px" />
-          <List as="ul">
-            <ListItem>HTML5</ListItem>
-            <ListItem>CSS och Preprocessors</ListItem>
-            <ListItem>TypeScript</ListItem>
-            <ListItem>React och Next.js</ListItem>
-            <ListItem>Node</ListItem>
-            <ListItem>Git</ListItem>
-            <ListItem>Jest</ListItem>
-          </List>
-          <MarginSmall></MarginSmall>
-        </div>
-        <div>
-          <h3>Använder gärna</h3>
-          <Line width="115px" />
-          <List as="ul">
-            <ListItem>NoSQL med Firebase</ListItem>
-            <ListItem>PostgreSQL</ListItem>
-            <ListItem>Sketch of Figma</ListItem>
-          </List>
-        </div>
+      <ResponsiveGrid gutter="10px" itemWidth="150px">
+        {toolBox.map(({ title, items }) => (
+          <div>
+            <h3>{title}</h3>
+            <Line width="115px" />
+            <List as="ul">
+              {items.map((item) => (
+                <ListItem>{item}</ListItem>
+              ))}
+            </List>
+            <MarginSmall></MarginSmall>
+          </div>
+        ))}
       </ResponsiveGrid>
     </>
   );
