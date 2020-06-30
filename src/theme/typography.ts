@@ -83,6 +83,10 @@ export const typography = css`
     padding-inline-start: 1rem;
   }
 
+  li {
+    margin: var(--margin-small);
+  }
+
   img {
     max-width: 100%;
   }
