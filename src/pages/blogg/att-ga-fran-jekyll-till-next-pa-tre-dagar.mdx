@@ -7,9 +7,10 @@ date: 2020-06-29
 
 ## Varför byta ut något som "funkar"?
 För ett antal år sedan byggde jag min personliga webbplats/portfolio med hjälp av Jekyll. Med hjälp av Jekyll kunde jag skapa en enklare statiskt generad webbplats - där jag kunde skriva enklare artiklar i markdown.   
+
 Åren gick och jag uppdaterade sporadiskt denna webbplats med lite design-tweaks och nya artiklar. Nu, år 2020 ser landskapet annorlunda ut när det gäller verktyg för att generera statiska webbplatser och jag kände att det var dags för en förändring.
 
-**Men vad var det för fel på min setup med Jekyll?** Tja...det fanns väl en del anledningar till att jag ansåg att det var dags för en förändring och jag tänkte ta upp några av dom
+**Men vad var det för fel på min setup med Jekyll?** Tja...det fanns väl en del anledningar till att jag ansåg att det var dags för en förändring och jag tänkte ta upp några av dom:
 * Svårjobbad styling
 * Inget komponenttänk
 * Gammal utvecklingsmiljö
@@ -21,12 +22,59 @@ Då jag byggde sajten innan jag fick mitt första jobb inom branschen ville jag 
 
 CSS stod för hela **80%** (*JavaScript stod för 1.3%*) av repot på GitHub och detta gjorde det svårt att vidareutveckla och underhålla sajten, även om allt var skrivet med SCSS och inte ren CSS.
 
-Mycket av den styling som fanns var scopep till olika sektioner, med hjälp av typ `section.hero-content {...}`. Detta gjorde att varje sektion var lite väl enkapsulerad och för lite stilregler var generella.
+Mycket av den styling som fanns var scoped till olika sektioner, med hjälp av typ `section.hero-content {...}`. Detta gjorde att varje sektion var lite väl enkapsulerad och för lite stilregler var generella då typsnitt och så vidare ibland levde sitt egna liv inom varje sektion.
 
 ### Inget komponenttänk
 
 I dag när man bygger modernare frontends använder man kanske React, Angular eller Vue för att bygga återanvändbara komponenter.  
 Något sådant komponenttänk fanns inte i strukturen för mitt portfolio direkt. Eller jo... till viss del kunde man skapa "komponenter" med Jekyll i och med html templates och scopa css till dem.
+
+```html{7}:_includes/sections/projects.html
+<!-- Assign sorted order for portfolio projects -->
+{% assign sorted_portfolio = site.projects | sort:"order" %}
+<!-- loop through sorted portfolio items -->
+{% for portfolio in sorted_portfolio %}
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div id="{{ portfolio.title | slugify }}" class="card">
+        <div class="row">
+          {% include _portfolioCard.html %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+```
+
+Sådär loopads portfolio projekt igenom och en **_portfolioCard.html** template agerade komponent.
+
+Lägg märke till rad 7, `<div id="{{ portfolio.title | slugify }}" class="card">`. Klassen *"card"* sattes på föräldern och utifrån förälderns css-klass sattes styling.   
+Detta innebar att skulle man inkludera templaten med `{% include _portfolioCard.html %}` **utanför** ett förälder-element med den klassen hade all styling gått förlorad. Komponenten var inte kopplad med sin behövda styling.
+
+**_portfolioCard.html** såg i sin tur ut såhär:
+
+```html:_includes/_portfolioCard.html
+<!-- Card template for portfolio items -->
+<!-- Different left or right layout depending on the front matter -->
+<div class="col-md-6 {% if portfolio.card-layout == 'right' %}col-md-push-6{% endif %}">
+  <a href="{{ portfolio.url | relative_url }}">
+    <img class="text-center" src="{{ portfolio.thumbnail }}" alt="Bild på {{ portfolio.title }}">
+  </a>
+</div>
+<div class="col-md-6 {% if portfolio.card-layout == 'right' %}col-md-pull-6{% endif %}">
+  <a class="title-link" href="{{ portfolio.url | relative_url }}">{{ portfolio.title | escape }}</a>
+  <p>{{ portfolio.desc }}</p>
+  {% for tag in portfolio.tags %}
+    <span class="tag">{{ tag }}</span>
+  {% endfor %}
+  <div class="links">
+    <a href="{{ portfolio.url | relative_url }}">Mer info</a>
+    {% if portfolio.website %}
+      <a target="_blank" href="{{ portfolio.website }}">Besök</a>
+    {% endif %}
+  </div>
+</div>
+```
 
 Men man kunde aldrig bli lika flexibel med html template komponenter såsom man kan vara med React och exempelvis Styled Components.
 
@@ -53,12 +101,12 @@ Dessutom möjligör [vercel](https://vercel.com) zero-config deployments för Ne
 
 Egentligen tog det ju inte bara tre dagar att byta ut mitt gamla portfolio, om man räknar med tid till research och design av mockups i Figma. Däremot tog det bara tre dagar från det att jag skrev första kodraden.
 
-Man skulle kunna dela upp hela processen i tre, rätt så vanliga delar, research, design och implementation.
+Man skulle kunna dela upp hela processen i tre, rätt så vanliga delar:  research, design och implementation.
 
 ### Research
 Som tidigare nämnt så hade jag bestämt mig för **Next.js**. Däremot fanns det ju fortfarande en del frågetecken såsom: Hur ska jag generera innehåll utifrån markdown-filer och vilken väg ska jag gå för styling?
 
-Jag tänker inte rabbla upp alla `npm paket` som installerades, vill man ha all info i detalj är det bara att [kika i readmen](https://github.com/danielv14/personal-portfolio) för repot.
+Jag tänker inte rabbla upp alla `npm paket` som installerades, vill man ha mer info om sådan är det bara att [kika i readmen](https://github.com/danielv14/personal-portfolio) eller tillhörande **package.json** för repot.
 
 ### Design
 
@@ -76,4 +124,4 @@ Jag använde `create-next-app` för att generera en bra startpunkt och därefter
 npx create-next-app --example with-typescript-styled-components
 ```
 
-En lördag-söndag-måndag senare och denna sajt var deployad via **Vercel** och alla DNS:er, ompekningar och så vidare var på plats och [www.danielvernberg.se](https://www.danielvernberg.se) fick sig ett ansiktslyft både utvändingt och invändingt.
+En lördag-söndag-måndag senare och denna sajt var deployad via **Vercel**. Alla ompekningar var gjorda och [www.danielvernberg.se](https://www.danielvernberg.se) fick sig ett ansiktslyft både utvändigt och invändigt.
