@@ -127,6 +127,8 @@ export const syntaxHighlighting = css`
     border-left: 6px solid #88c0d0;
   }
   .remark-code-title {
+    max-width: 100%;
+    overflow-y: hidden;
     font-family: ${theme.fonts.fontFamily.main};
     margin-bottom: -0.8rem;
     font-weight: bold;
