@@ -5,6 +5,9 @@ summary: "Summering av några punkter kring omdesignen av denna webbplats: enkla
 date: 2020-06-30
 ---
 
+import { Card } from '../../components/ui/container/card';
+import { ResponsiveGrid } from '../../components/ui/container/responsiveGrid'
+
 > Det här är en **kortare summering** kring hur jag skapade en mer nedskalad design av denna sajt. Vill man ha mer detaljer är det enklast att ta en titt i [källkoden](https://github.com/danielv14/personal-portfolio).
 
 Jag designade för några dagar sedan om den här sajten, delvis för att den var [svårjobbad rent designmässigt](/blogg/att-ga-fran-jekyll-till-next-pa-tre-dagar).   
@@ -204,6 +207,17 @@ Komponenten ovan kan användas för att skapa en responsiv layout - som dessutom
   </Card>
 </ResponsiveGrid>
 ```
+
+`<ResponsiveGrid />` tillsammans med `<Card />` skulle kunna skapa en layout som ser ut ungefär såhär:
+
+<ResponsiveGrid itemWidth="200px" gutter="10px" style={{marginBottom: '10px'}}>
+  <Card style={{height: '80px'}} />
+  <Card style={{height: '80px'}} />
+  <Card style={{height: '80px'}} />
+  <Card style={{height: '80px'}} />
+</ResponsiveGrid>
+
+Prova gärna **ändra bredden på webbläsarfönstret** för att se hur rutorna staplas allt eftersom.
 
 ## Sammanfattning
 
