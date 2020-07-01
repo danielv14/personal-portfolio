@@ -2,7 +2,7 @@ import { PostListItem } from '../components/postListItem';
 import { Seo } from '../components/seo/seo';
 import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
 import { TextCenter } from '../components/ui/content/textCenter';
-import { UnstyledNextLink } from '../components/ui/content/unstyledLink';
+import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
 import { getAllBlogPosts } from '../utils/getBlogPosts';
@@ -19,12 +19,12 @@ const blogIndex = () => {
         </TextCenter>
         <MarginLarge />
         {blogPosts.map((blogPost) => (
-          <UnstyledNextLink key={blogPost.title} href={blogPost.url}>
+          <UnstyledInternalLink key={blogPost.title} href={blogPost.url}>
             <div>
               <PostListItem {...blogPost}></PostListItem>
               <MarginMedium />
             </div>
-          </UnstyledNextLink>
+          </UnstyledInternalLink>
         ))}
       </ResponsiveContainer>
     </>

@@ -17,7 +17,7 @@ import { PostListItem } from '../components/postListItem';
 import { getLatestBlogPosts } from '../utils/getBlogPosts';
 import { theme } from '../theme/theme';
 import { HeadingMuted } from '../components/ui/content/headingMuted';
-import { UnstyledNextLink } from '../components/ui/content/unstyledLink';
+import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
 import { useScrollToElement } from '../hooks/useScrollToElement';
 
 export default function Home() {
@@ -61,9 +61,9 @@ export default function Home() {
           <MarginMedium />
           <Row>
             <Fill />
-            <UnstyledNextLink href="/blogg">
+            <UnstyledInternalLink href="/blogg">
               <ButtonPrimary>Alla artiklar</ButtonPrimary>
-            </UnstyledNextLink>
+            </UnstyledInternalLink>
             <Fill />
           </Row>
         </Column>
@@ -129,9 +129,9 @@ const ArticlesContent: React.FC<{ articles: PostMetaData[] }> = ({ articles }) =
       </TextCenter>
       <MarginMedium />
       {articles.map((post) => (
-        <UnstyledNextLink key={post.title} href={post.url}>
+        <UnstyledInternalLink key={post.title} href={post.url}>
           <PostListItem title={post.title} summary={post.summary} />
-        </UnstyledNextLink>
+        </UnstyledInternalLink>
       ))}
     </section>
   );

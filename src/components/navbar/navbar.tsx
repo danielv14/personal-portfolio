@@ -3,7 +3,7 @@ import { useDarkMode } from '../../hooks/useDarkMode';
 import { Fill } from '../ui/container/fill';
 import { ResponsiveContainer } from '../ui/container/responsiveContainer';
 import { Row } from '../ui/container/row';
-import { UnstyledNextLink } from '../ui/content/unstyledLink';
+import { UnstyledInternalLink } from '../ui/content/unstyledLink';
 import { IconDarkMode } from '../ui/icons/iconDarkMode';
 import { IconLightMode } from '../ui/icons/iconLightMode';
 import { MarginMedium } from '../ui/margins/marginMedium';
@@ -16,14 +16,14 @@ export const Navbar = () => {
     <NavbarWrapper>
       <ResponsiveContainer>
         <NavbarContentWrapper>
-          <UnstyledNextLink href="/">
+          <UnstyledInternalLink href="/">
             <NavbarItem>Daniel Vernberg</NavbarItem>
-          </UnstyledNextLink>
+          </UnstyledInternalLink>
           <Fill />
           <Row style={{ alignItems: 'center', cursor: 'pointer' }}>
-            <UnstyledNextLink href="/blogg">
+            <UnstyledInternalLink href="/blogg">
               <NavbarItem>Blogg</NavbarItem>
-            </UnstyledNextLink>
+            </UnstyledInternalLink>
             <MarginMedium />
             {isDarkMode ? <IconLightMode onClick={toggleDarkMode} /> : <IconDarkMode onClick={toggleDarkMode} />}
           </Row>
