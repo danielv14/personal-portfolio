@@ -1,13 +1,13 @@
 import React from 'react';
-import { ResponsiveContainer } from '../ui/container/responsiveContainer';
-import Link from 'next/link';
+import { useDarkMode } from '../../hooks/useDarkMode';
 import { Fill } from '../ui/container/fill';
+import { ResponsiveContainer } from '../ui/container/responsiveContainer';
 import { Row } from '../ui/container/row';
+import { UnstyledNextLink } from '../ui/content/unstyledLink';
 import { IconDarkMode } from '../ui/icons/iconDarkMode';
 import { IconLightMode } from '../ui/icons/iconLightMode';
-import { useDarkMode } from '../../hooks/useDarkMode';
 import { MarginMedium } from '../ui/margins/marginMedium';
-import { NavbarWrapper, NavbarContentWrapper, NavbarHeading, NavbarLink } from './stylesNav';
+import { NavbarContentWrapper, NavbarItem, NavbarWrapper } from './stylesNav';
 
 export const Navbar = () => {
   const [isDarkMode, toggleDarkMode] = useDarkMode();
@@ -16,14 +16,14 @@ export const Navbar = () => {
     <NavbarWrapper>
       <ResponsiveContainer>
         <NavbarContentWrapper>
-          <Link href="/">
-            <NavbarHeading>Daniel Vernberg</NavbarHeading>
-          </Link>
+          <UnstyledNextLink href="/">
+            <NavbarItem>Daniel Vernberg</NavbarItem>
+          </UnstyledNextLink>
           <Fill />
           <Row style={{ alignItems: 'center', cursor: 'pointer' }}>
-            <Link href="/blogg">
-              <NavbarLink>Blogg</NavbarLink>
-            </Link>
+            <UnstyledNextLink href="/blogg">
+              <NavbarItem>Blogg</NavbarItem>
+            </UnstyledNextLink>
             <MarginMedium />
             {isDarkMode ? <IconLightMode onClick={toggleDarkMode} /> : <IconDarkMode onClick={toggleDarkMode} />}
           </Row>

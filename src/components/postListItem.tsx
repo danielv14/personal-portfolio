@@ -1,6 +1,5 @@
 import React from 'react';
 import { Column } from './ui/container/column';
-import { MarginSmall } from './ui/margins/marginSmall';
 import styled from 'styled-components';
 import { theme } from '../theme/theme';
 import { TextMuted } from './ui/content/textMuted';
@@ -33,7 +32,6 @@ export const PostListItem: React.FC<PostListItemProps> = ({ title, summary, date
       <Item>
         <ItemHeader>{title}</ItemHeader>
         {date && <TextMuted>{date}</TextMuted>}
-        <MarginSmall />
         <p>{summary}</p>
       </Item>
     </Column>

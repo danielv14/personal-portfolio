@@ -25,7 +25,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Aftonbladet Checker',
-    icon: '📊',
+    icon: '📰',
     summary: 'Webbapp som skrapar Aftonbladet dagligen och visar statistik',
     tags: ['React', 'Node', 'Firebase'],
     urlSource: 'https://github.com/danielv14/aftonbladet-checkr-next',
