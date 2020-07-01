@@ -28,7 +28,7 @@ export const syntaxHighlighting = css`
     padding: 1em;
     margin: 0.5em 0;
     overflow: auto;
-    border-radius: 0.3em;
+    border-radius: var(--border-radius-small);
   }
 
   :not(pre) > code[class*='language-'],
@@ -39,7 +39,7 @@ export const syntaxHighlighting = css`
   /* Inline code */
   :not(pre) > code[class*='language-'] {
     padding: 0.1em;
-    border-radius: 0.3em;
+    border-radius: var(--border-radius-small);
     white-space: normal;
   }
 
@@ -137,7 +137,7 @@ export const syntaxHighlighting = css`
     color: #f8f8f2;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
-    font-size: 0.9rem;
+    font-size: var(--font-size-small);
     z-index: 1;
   }
 `;
