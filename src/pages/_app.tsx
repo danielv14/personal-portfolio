@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { GlobalStyle } from '../components/ui/globalStyle';
+import { GlobalStyle } from '../theme/globalStyle';
 import { Navbar } from '../components/navbar/navbar';
 import { Footer } from '../components/footer/footer';
 import { MarginLarge } from '../components/ui/margins/marginLarge';

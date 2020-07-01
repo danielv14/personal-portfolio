@@ -1,9 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
-import { theme } from '../../theme/theme';
+import { theme } from './theme';
 import reset from 'styled-reset';
-import { syntaxHighlighting } from '../../theme/syntaxHighlighting';
-import { typography } from '../../theme/typography';
-import { setupThemeVariables } from '../../theme/setupThemeVariables';
+import { syntaxHighlighting } from './syntaxHighlighting';
+import { typography } from './typography';
+import { setupThemeVariables } from './setupThemeVariables';
 
 export const GlobalStyle = createGlobalStyle`
   /* Reset CSS */
