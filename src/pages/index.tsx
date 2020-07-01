@@ -14,16 +14,15 @@ import { projects } from '../data/projects';
 import { site } from '../data/site';
 import { PostMetaData } from '../types/FrontMatter';
 import { PostListItem } from '../components/postListItem';
-import { useRef, RefObject } from 'react';
 import { getLatestBlogPosts } from '../utils/getBlogPosts';
 import { theme } from '../theme/theme';
 import { HeadingMuted } from '../components/ui/content/headingMuted';
 import { UnstyledNextLink } from '../components/ui/content/unstyledLink';
+import { useScrollToElement } from '../hooks/useScrollToElement';
 
 export default function Home() {
   const latestPosts = getLatestBlogPosts(4);
-  const ProjectRef: RefObject<any> = useRef(null);
-  const ScrollToProjects = () => window.scrollTo({ top: ProjectRef.current.offsetTop, behavior: 'smooth' });
+  const [ProjectRef, scrollToProjectElement] = useScrollToElement();
   return (
     <>
       <ResponsiveContainer>
@@ -31,7 +30,7 @@ export default function Home() {
           <MarginLarge />
           <HeroContent />
           <TextCenter>
-            <ButtonPrimary onClick={ScrollToProjects}>Portfolio</ButtonPrimary>
+            <ButtonPrimary onClick={scrollToProjectElement}>Portfolio</ButtonPrimary>
           </TextCenter>
         </Column>
         <MarginLarge />
