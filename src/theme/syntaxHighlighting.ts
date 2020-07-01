@@ -125,7 +125,6 @@ export const syntaxHighlighting = css`
     margin-left: -1.5em;
     padding-left: 1em;
     border-left: 6px solid #88c0d0;
-    min-width: fit-content;
     @media (min-width: ${theme.breakpoints.medium}) {
       margin-right: -1.5em;
       background: #3b414ccc;
