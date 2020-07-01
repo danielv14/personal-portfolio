@@ -19,18 +19,8 @@ export const NavbarContentWrapper = styled(Row)`
 
 NavbarContentWrapper.displayName = 'NavbarContentWrapper';
 
-export const NavbarLink = styled.a`
+export const NavbarItem = styled.span`
   color: var(--text-muted-color);
-  &:hover {
-    text-decoration: none;
-  }
 `;
 
-NavbarLink.displayName = 'NavbarLink';
-
-export const NavbarHeading = styled.div`
-  color: var(--text-muted-color);
-  cursor: pointer;
-`;
-
-NavbarHeading.displayName = 'NavbarHeading';
+NavbarItem.displayName = 'NavbarItem';

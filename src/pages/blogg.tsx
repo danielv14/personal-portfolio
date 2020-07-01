@@ -1,11 +1,11 @@
-import Link from 'next/link';
 import { PostListItem } from '../components/postListItem';
+import { Seo } from '../components/seo/seo';
 import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
+import { TextCenter } from '../components/ui/content/textCenter';
+import { UnstyledNextLink } from '../components/ui/content/unstyledLink';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
-import { TextCenter } from '../components/ui/content/textCenter';
 import { getAllBlogPosts } from '../utils/getBlogPosts';
-import { Seo } from '../components/seo/seo';
 
 const blogIndex = () => {
   const blogPosts = getAllBlogPosts();
@@ -19,12 +19,12 @@ const blogIndex = () => {
         </TextCenter>
         <MarginLarge />
         {blogPosts.map((blogPost) => (
-          <Link key={blogPost.title} href={blogPost.url}>
+          <UnstyledNextLink key={blogPost.title} href={blogPost.url}>
             <div>
               <PostListItem {...blogPost}></PostListItem>
               <MarginMedium />
             </div>
-          </Link>
+          </UnstyledNextLink>
         ))}
       </ResponsiveContainer>
     </>
