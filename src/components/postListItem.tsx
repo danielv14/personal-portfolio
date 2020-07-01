@@ -33,7 +33,6 @@ export const PostListItem: React.FC<PostListItemProps> = ({ title, summary, date
       <Item>
         <ItemHeader>{title}</ItemHeader>
         {date && <TextMuted>{date}</TextMuted>}
-        <MarginSmall />
         <p>{summary}</p>
       </Item>
     </Column>
