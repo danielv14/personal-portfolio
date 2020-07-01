@@ -13,7 +13,7 @@ export const UnstyledLink = styled.a`
 
 UnstyledLink.displayName = 'UnstyledLink';
 
-export const UnstyledNextLink: React.FC<LinkProps> = ({ children, passHref = true, ...props }) => {
+export const UnstyledInternalLink: React.FC<LinkProps> = ({ children, passHref = true, ...props }) => {
   return (
     <Link passHref={passHref} {...props}>
       <UnstyledLink>{children}</UnstyledLink>
@@ -21,4 +21,4 @@ export const UnstyledNextLink: React.FC<LinkProps> = ({ children, passHref = tru
   );
 };
 
-UnstyledNextLink.displayName = 'UnstyledNextLink';
+UnstyledInternalLink.displayName = 'UnstyledInternalLink';

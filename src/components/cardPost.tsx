@@ -5,7 +5,7 @@ import { MarginSmall } from './ui/margins/marginSmall';
 import { Column } from './ui/container/column';
 import { TextMuted } from './ui/content/textMuted';
 import styled from 'styled-components';
-import { UnstyledNextLink } from './ui/content/unstyledLink';
+import { UnstyledInternalLink } from './ui/content/unstyledLink';
 
 const SubHeader = styled(TextMuted)`
   font-size: var(--font-size-smaller);
@@ -18,7 +18,7 @@ interface CardPostProps {
 
 export const CardPost: React.FC<CardPostProps> = ({ post, subHeader }) => (
   <Card style={{ cursor: 'pointer' }}>
-    <UnstyledNextLink href={post.url}>
+    <UnstyledInternalLink href={post.url}>
       <Row style={{ height: '100%' }}>
         <MarginSmall />
         <Column style={{ alignItems: 'stretch' }}>
@@ -29,7 +29,7 @@ export const CardPost: React.FC<CardPostProps> = ({ post, subHeader }) => (
         </Column>
         <MarginSmall />
       </Row>
-    </UnstyledNextLink>
+    </UnstyledInternalLink>
   </Card>
 );
 

@@ -5,7 +5,7 @@ import { TextCenter } from '../components/ui/content/textCenter';
 import { ButtonPrimary } from '../components/ui/buttons/ButtonPrimary';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
 import { Column } from '../components/ui/container/column';
-import { UnstyledNextLink } from '../components/ui/content/unstyledLink';
+import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
 
 const page404 = () => {
   const title = '404! Sidan kunde inte hittas';
@@ -20,9 +20,9 @@ const page404 = () => {
             <MarginMedium />
             <p>Det verkar som att sidan du försöker besöka inte finns.</p>
             <MarginLarge />
-            <UnstyledNextLink href="/">
+            <UnstyledInternalLink href="/">
               <ButtonPrimary>Tillbaka till startsidan</ButtonPrimary>
-            </UnstyledNextLink>
+            </UnstyledInternalLink>
           </TextCenter>
           <MarginLarge />
         </Column>
