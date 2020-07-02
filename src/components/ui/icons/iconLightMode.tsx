@@ -1,10 +1,9 @@
 import { Sunrise } from '@styled-icons/feather';
 import styled from 'styled-components';
+import { BaseStyle, IconProps } from './iconBase';
 
-export const IconLightMode = styled(Sunrise)`
-  width: 24px;
-  height: 24px;
-  color: var(--text-muted-color);
+export const IconLightMode = styled(Sunrise)<IconProps>`
+  ${BaseStyle}
 `;
 
 IconLightMode.displayName = 'IconLightMode';
