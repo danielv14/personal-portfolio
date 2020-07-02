@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { MDXProvider } from '@mdx-js/react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { GlobalStyle } from '../theme/globalStyle';
@@ -7,6 +8,7 @@ import { Footer } from '../components/footer/footer';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../../next-seo.config';
+import { MDXComponents } from '../components/mdxComponents';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -19,11 +21,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <DefaultSeo {...SEO} />
-      <GlobalStyle />
-      <Navbar />
-      <Component {...pageProps} />
-      <MarginLarge />
-      <Footer />
+      <MDXProvider components={MDXComponents}>
+        <GlobalStyle />
+        <Navbar />
+        <Component {...pageProps} />
+        <MarginLarge />
+        <Footer />
+      </MDXProvider>
     </>
   );
 }
