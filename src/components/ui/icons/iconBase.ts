@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 export interface IconProps {
   hoverEffect?: boolean;
+  onClick?: () => void;
 }
 
 const HoverStyle = css`
