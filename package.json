@@ -7,6 +7,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@mdx-js/react": "^1.6.6",
     "@styled-icons/feather": "^10.5.0",
     "mdx-prism": "^0.3.1",
     "next": "latest",
@@ -19,6 +20,7 @@
     "styled-reset": "^4.1.6"
   },
   "devDependencies": {
+    "@types/mdx-js__react": "^1.5.2",
     "@types/node": "12.0.12",
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",

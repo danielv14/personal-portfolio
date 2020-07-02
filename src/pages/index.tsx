@@ -1,4 +1,4 @@
-import { CardProject } from '../components/cardProject';
+import { CardProject } from '../components/cards/cardProject';
 import { ToolBox } from '../components/toolBox';
 import { ButtonPrimary } from '../components/ui/buttons/ButtonPrimary';
 import { Column } from '../components/ui/container/column';

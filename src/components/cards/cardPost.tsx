@@ -1,11 +1,11 @@
-import { PostMetaData } from '../types/FrontMatter';
-import { Card } from './ui/container/card';
-import { Row } from './ui/container/row';
-import { MarginSmall } from './ui/margins/marginSmall';
-import { Column } from './ui/container/column';
-import { TextMuted } from './ui/content/textMuted';
+import { PostMetaData } from '../../types/FrontMatter';
+import { Card } from '../ui/container/card';
+import { Row } from '../ui/container/row';
+import { MarginSmall } from '../ui/margins/marginSmall';
+import { Column } from '../ui/container/column';
+import { TextMuted } from '../ui/content/textMuted';
 import styled from 'styled-components';
-import { UnstyledInternalLink } from './ui/content/unstyledLink';
+import { UnstyledInternalLink } from '../ui/content/unstyledLink';
 
 const SubHeader = styled(TextMuted)`
   font-size: var(--font-size-smaller);

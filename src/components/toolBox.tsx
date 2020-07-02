@@ -32,7 +32,7 @@ export const ToolBox = () => {
         TypeScript för front- och backend som ligger närmst till hands i form av React och Node.
       </p>
       <MarginSmall></MarginSmall>
-      <ResponsiveGrid gutter="10px" itemWidth="150px">
+      <ResponsiveGrid gutter="10px" itemWidth="175px">
         {toolBox.map(({ title, items }) => (
           <div key={title}>
             <h3>{title}</h3>

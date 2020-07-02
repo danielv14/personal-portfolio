@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Card } from './ui/container/card';
-import { Column } from './ui/container/column';
-import { Fill } from './ui/container/fill';
-import { Row } from './ui/container/row';
-import { Tag } from './ui/content/tag';
-import { MarginSmall } from './ui/margins/marginSmall';
+import { Card } from '../ui/container/card';
+import { Column } from '../ui/container/column';
+import { Fill } from '../ui/container/fill';
+import { Row } from '../ui/container/row';
+import { Tag } from '../ui/content/tag';
+import { MarginSmall } from '../ui/margins/marginSmall';
 
 const CardLink = styled.a`
   color: inherit;
