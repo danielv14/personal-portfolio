@@ -80,7 +80,8 @@ const HeroContent = () => {
           <h1>👋 Hallå där!</h1>
           <HeadingMuted as="h5">
             Daniel här. Webbutvecklare med förkärlek till JavaScript, schysst design och tv-serier.
-            <br />
+          </HeadingMuted>
+          <HeadingMuted style={{ marginTop: '0px' }} as="h5">
             På den här sajten delar jag med mig av diverse kodprojekt och skriver några rader ibland.
           </HeadingMuted>
         </TextCenter>
