@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
+import { StyledIconProps, StyledIcon } from '@styled-icons/styled-icon';
 
-export interface IconProps {
+export interface IconProps extends StyledIconProps {
   hoverEffect?: boolean;
 }
 
@@ -11,13 +12,17 @@ const HoverStyle = css`
   }
 `;
 
-export const BaseStyle = ({ hoverEffect = false }: IconProps) => css`
-  width: 24px;
+const defaultSize = css`
   height: 24px;
+  width: 24px;
+`;
+
+export const BaseStyle = ({ hoverEffect = false, size }: IconProps) => css`
   color: var(--text-muted-color);
+  ${size ? size : defaultSize};
   ${hoverEffect ? HoverStyle : ''}
 `;
 
-export const IconBase = styled.svg<IconProps>`
+export const IconBase = (icon: StyledIcon): StyledIcon => styled(icon)<IconProps>`
   ${BaseStyle}
 `;
