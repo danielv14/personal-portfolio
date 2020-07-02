@@ -1,7 +1,7 @@
 import { Github } from '@styled-icons/feather';
-import styled from 'styled-components';
-import { BaseStyle, IconProps } from './iconBase';
+import { IconBase, IconProps } from './iconBase';
 
-export const IconGitHub = styled(Github)<IconProps>`
-  ${BaseStyle}
-`;
+export const IconGitHub: React.FC<IconProps> = (props) => {
+  const Icon = IconBase(Github);
+  return <Icon {...props} />;
+};

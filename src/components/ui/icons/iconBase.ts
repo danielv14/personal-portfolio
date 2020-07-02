@@ -18,6 +18,6 @@ export const BaseStyle = ({ hoverEffect = false }: IconProps) => css`
   ${hoverEffect ? HoverStyle : ''}
 `;
 
-export const IconBase = styled.svg<IconProps>`
+export const IconBase = (icon: any) => styled(icon)<IconProps>`
   ${BaseStyle}
 `;
