@@ -12,10 +12,14 @@ const HoverStyle = css`
   }
 `;
 
-export const BaseStyle = ({ hoverEffect = false }: IconProps) => css`
-  width: 24px;
+const defaultSize = css`
   height: 24px;
+  width: 24px;
+`;
+
+export const BaseStyle = ({ hoverEffect = false, size }: IconProps) => css`
   color: var(--text-muted-color);
+  ${size ? size : defaultSize};
   ${hoverEffect ? HoverStyle : ''}
 `;
 
