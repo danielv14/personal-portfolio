@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
+import { StyledIconProps, StyledIcon } from '@styled-icons/styled-icon';
 
-export interface IconProps {
+export interface IconProps extends StyledIconProps {
   hoverEffect?: boolean;
-  onClick?: () => void;
 }
 
 const HoverStyle = css`
@@ -19,6 +19,6 @@ export const BaseStyle = ({ hoverEffect = false }: IconProps) => css`
   ${hoverEffect ? HoverStyle : ''}
 `;
 
-export const IconBase = (icon: any) => styled(icon)<IconProps>`
+export const IconBase = (icon: StyledIcon): StyledIcon => styled(icon)<IconProps>`
   ${BaseStyle}
 `;
