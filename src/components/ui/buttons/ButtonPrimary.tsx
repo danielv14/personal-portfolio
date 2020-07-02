@@ -7,7 +7,7 @@ export const ButtonPrimary = styled.div`
   text-align: center;
   font-weight: bold;
   border-radius: var(--border-radius);
-  box-shadow: 0px 4px 7px rgba(102, 145, 255, 0.35);
+  box-shadow: var(--box-shadow-button);
   transition: all 0.15s ease;
   cursor: pointer;
   width: auto;
@@ -15,7 +15,7 @@ export const ButtonPrimary = styled.div`
   &:hover {
     transform: translateY(-1px);
     background: var(--primary-color-darken);
-    box-shadow: 0px 4px 10px rgba(102, 145, 255, 0.35);
+    box-shadow: var(--box-shadow-button-hover);
   }
 `;
 

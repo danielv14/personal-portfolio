@@ -16,6 +16,8 @@ export interface ColorTheme {
   textMutedColor: string;
   headingColor: string;
   boxShadowMain: string;
+  boxShadowButton: string;
+  boxShadowButtonHover: string;
 }
 
 const darkTheme: ColorTheme = {
@@ -26,6 +28,8 @@ const darkTheme: ColorTheme = {
   textMutedColor: '#87919e',
   headingColor: '#FFFFFF',
   boxShadowMain: 'none',
+  boxShadowButton: 'none',
+  boxShadowButtonHover: 'none',
 };
 
 const lightTheme: ColorTheme = {
@@ -36,6 +40,8 @@ const lightTheme: ColorTheme = {
   textMutedColor: '#BDBDBD',
   headingColor: '#585858',
   boxShadowMain: '0px 4px 10px rgba(0, 0, 0, 0.09)',
+  boxShadowButton: '0px 4px 7px rgba(102, 145, 255, 0.35)',
+  boxShadowButtonHover: '0px 4px 10px rgba(102, 145, 255, 0.35)',
 };
 
 export const colors: Colors = {

@@ -9,4 +9,6 @@ export const setupThemeVariables = (theme: ColorTheme) => css`
   --heading-color: ${theme.headingColor};
   --text-muted-color: ${theme.textMutedColor};
   --box-shadow-main: ${theme.boxShadowMain};
+  --box-shadow-button: ${theme.boxShadowButton};
+  --box-shadow-button-hover: ${theme.boxShadowButtonHover};
 `;
