@@ -14,6 +14,11 @@ const customLinkComponent = (props: any) => {
   return <a {...props} />;
 };
 
+const customImageComponent = (props: any) => {
+  return <img loading="lazy" {...props} />;
+};
+
 export const MDXComponents = {
   a: customLinkComponent,
+  img: customImageComponent,
 };
