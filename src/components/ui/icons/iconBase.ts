@@ -19,8 +19,8 @@ const defaultSize = css`
 
 export const BaseStyle = ({ hoverEffect = false, size }: IconProps) => css`
   color: var(--text-muted-color);
-  ${size ? size : defaultSize};
-  ${hoverEffect ? HoverStyle : ''}
+  ${size && defaultSize};
+  ${hoverEffect && HoverStyle}
 `;
 
 export const IconBase = (icon: StyledIcon): StyledIcon => styled(icon)<IconProps>`
