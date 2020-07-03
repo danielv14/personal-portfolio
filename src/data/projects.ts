@@ -1,11 +1,4 @@
-interface Project {
-  title: string;
-  icon: string;
-  summary: string;
-  tags: string[];
-  urlSource: string;
-  url?: string;
-}
+import { Project } from '../types/Project';
 
 export const projects: Project[] = [
   {

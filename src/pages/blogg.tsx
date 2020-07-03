@@ -1,4 +1,4 @@
-import { PostListItem } from '../components/postListItem';
+import { PostListItem } from '../components/postListItem/postListItem';
 import { Seo } from '../components/seo/seo';
 import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
 import { TextCenter } from '../components/ui/content/textCenter';

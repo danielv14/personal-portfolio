@@ -1,24 +1,4 @@
-interface Colors {
-  themed: {
-    light: ColorTheme;
-    dark: ColorTheme;
-  };
-  primary: string;
-  primaryDarken: string;
-  primaryLighten: string;
-}
-
-export interface ColorTheme {
-  backgroundColor: string;
-  backgroundColorSecondary: string;
-  backgroundColorHighlight: string;
-  textColor: string;
-  textMutedColor: string;
-  headingColor: string;
-  boxShadowMain: string;
-  boxShadowButton: string;
-  boxShadowButtonHover: string;
-}
+import { Colors, ColorTheme } from '../../types/theme/Colors';
 
 const darkTheme: ColorTheme = {
   backgroundColor: '#171923',
@@ -49,7 +29,9 @@ export const colors: Colors = {
     light: lightTheme,
     dark: darkTheme,
   },
-  primary: '#6691FF',
-  primaryDarken: '#5477D3',
-  primaryLighten: '#e9efff',
+  brand: {
+    primary: '#6691FF',
+    primaryDarken: '#5477D3',
+    primaryLighten: '#e9efff',
+  },
 };

@@ -33,9 +33,9 @@ export const GlobalStyle = createGlobalStyle`
     --font-size-code: ${fonts.size.code};
 
     /* Setup colors */
-    --primary-color: ${colors.primary};
-    --primary-color-darken: ${colors.primaryDarken};
-    --primary-color-lighten: ${colors.primaryLighten};
+    --primary-color: ${colors.brand.primary};
+    --primary-color-darken: ${colors.brand.primaryDarken};
+    --primary-color-lighten: ${colors.brand.primaryLighten};
 
     /* Setup border radiuses */
     --border-radius-small: 4px;

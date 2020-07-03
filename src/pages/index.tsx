@@ -1,5 +1,5 @@
 import { CardProject } from '../components/cards/cardProject';
-import { ToolBox } from '../components/toolBox';
+import { ToolBox } from '../components/toolbox/toolBox';
 import { ButtonPrimary } from '../components/ui/buttons/ButtonPrimary';
 import { Column } from '../components/ui/container/column';
 import { Fill } from '../components/ui/container/fill';
@@ -12,13 +12,14 @@ import { TextCenter } from '../components/ui/content/textCenter';
 import { projects } from '../data/projects';
 import { site } from '../data/site';
 import { PostMetaData } from '../types/FrontMatter';
-import { PostListItem } from '../components/postListItem';
+import { PostListItem } from '../components/postListItem/postListItem';
 import { getLatestBlogPosts } from '../utils/getBlogPosts';
 import { theme } from '../theme/theme';
 import { HeadingMuted } from '../components/ui/content/headingMuted';
 import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
 import { useScrollToElement } from '../hooks/useScrollToElement';
 import { TextMuted } from '../components/ui/content/textMuted';
+import { toolboxCategories } from '../data/toolBoxCategories';
 
 export default function Home() {
   const latestPosts = getLatestBlogPosts(4);
@@ -40,7 +41,7 @@ export default function Home() {
         </Column>
         <MarginLarge />
         <Column>
-          <ToolBox />
+          <ToolBox categories={toolboxCategories} />
         </Column>
         <MarginLarge />
         <Column ref={ProjectRef}>
@@ -112,7 +113,7 @@ const ProjectsContent = () => {
   return (
     <section>
       <h2>Projekt</h2>
-      <TextMuted>Gratis hosting används för en del projekt, vilket kan leda till en längre initial laddtid</TextMuted>
+      <TextMuted>För en del projekt används gratis hosting, vilket kan leda till en längre initial laddtid</TextMuted>
       <ResponsiveGrid itemWidth="250px" gutter={theme.margins.large}>
         {projects.map(({ title, icon, tags, ...rest }) => (
           <CardProject key={title} title={`${icon} ${title}`} {...rest} />
