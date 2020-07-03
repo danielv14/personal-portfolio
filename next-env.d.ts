@@ -6,9 +6,9 @@ declare module '*.mdx' {
 
   export const frontMatter: {
     title: string;
-    layout: string;
+    layout?: string;
     summary: string;
-    date: string;
+    date?: string;
     __resourcePath: string;
   };
 
