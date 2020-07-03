@@ -1,5 +1,5 @@
-import { ColorTheme } from './colors';
 import { css } from 'styled-components';
+import { ColorTheme } from '../types/theme/Colors';
 
 export const setupThemeVariables = (theme: ColorTheme) => css`
   --bg-color: ${theme.backgroundColor};

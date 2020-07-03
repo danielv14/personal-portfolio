@@ -1,10 +1,10 @@
-interface FrontMatterBase {
+export interface FrontMatterBase {
   title: string;
+  layout?: string;
   __resourcePath: string;
 }
 
 export interface PostFrontMatter extends FrontMatterBase {
-  layout: string;
   date: string;
   summary: string;
 }

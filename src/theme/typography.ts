@@ -111,7 +111,7 @@ export const typography = css`
 
   code {
     font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    font-size: var(--font-size-small);
+    font-size: var(--font-size-code);
     color: var(--text-color);
     background: var(--bg-color-highlight);
     border-radius: var(--border-radius-small);

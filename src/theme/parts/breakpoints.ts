@@ -1,8 +1,4 @@
-interface Breakpoints {
-  small: string;
-  medium: string;
-  large: string;
-}
+import { Breakpoints } from '../../types/theme/Breakpoints';
 
 export const breakpoints: Breakpoints = {
   small: '640px',

@@ -7,7 +7,7 @@ import { UnstyledInternalLink } from '../ui/content/unstyledLink';
 import { IconDarkMode } from '../ui/icons/iconDarkMode';
 import { IconLightMode } from '../ui/icons/iconLightMode';
 import { MarginMedium } from '../ui/margins/marginMedium';
-import { NavbarContentWrapper, NavbarItem, NavbarWrapper } from './stylesNav';
+import { NavbarContentWrapper, NavbarItem, NavbarWrapper } from './nav.styles';
 
 export const Navbar = () => {
   const [isDarkMode, toggleDarkMode] = useDarkMode();

@@ -5,6 +5,8 @@ import { syntaxHighlighting } from './syntaxHighlighting';
 import { typography } from './typography';
 import { setupThemeVariables } from './setupThemeVariables';
 
+const { fonts, colors, margins, siteWidth } = theme;
+
 export const GlobalStyle = createGlobalStyle`
   /* Reset CSS */
   ${reset}
@@ -15,38 +17,39 @@ export const GlobalStyle = createGlobalStyle`
   :root {
 
     /* Setup fonts */
-    --content-font: ${theme.fonts.fontFamily.main};
-    --headings-font: ${theme.fonts.fontFamily.headings};
+    --content-font: ${fonts.fontFamily.main};
+    --headings-font: ${fonts.fontFamily.headings};
 
     /* Setup font sizes */
-    --font-size-base: ${theme.fonts.size.base};
-    --font-size-h1: ${theme.fonts.size.h1};
-    --font-size-h2: ${theme.fonts.size.h2};
-    --font-size-h3: ${theme.fonts.size.h3};
-    --font-size-h4: ${theme.fonts.size.h4};
-    --font-size-h5: ${theme.fonts.size.h5};
-    --font-size-h6: ${theme.fonts.size.h6};
-    --font-size-small: ${theme.fonts.size.small};
-    --font-size-smaller: ${theme.fonts.size.smaller};
+    --font-size-base: ${fonts.size.base};
+    --font-size-h1: ${fonts.size.h1};
+    --font-size-h2: ${fonts.size.h2};
+    --font-size-h3: ${fonts.size.h3};
+    --font-size-h4: ${fonts.size.h4};
+    --font-size-h5: ${fonts.size.h5};
+    --font-size-h6: ${fonts.size.h6};
+    --font-size-small: ${fonts.size.small};
+    --font-size-smaller: ${fonts.size.smaller};
+    --font-size-code: ${fonts.size.code};
 
     /* Setup colors */
-    --primary-color: ${theme.colors.primary};
-    --primary-color-darken: ${theme.colors.primaryDarken};
-    --primary-color-lighten: ${theme.colors.primaryLighten};
+    --primary-color: ${colors.brand.primary};
+    --primary-color-darken: ${colors.brand.primaryDarken};
+    --primary-color-lighten: ${colors.brand.primaryLighten};
 
     /* Setup border radiuses */
     --border-radius-small: 4px;
     --border-radius: 6px;
 
     /* Setup margins */
-    --margin-small: ${theme.margins.small};
-    --margin-medium: ${theme.margins.medium};
-    --margin-large: ${theme.margins.large};
+    --margin-small: ${margins.small};
+    --margin-medium: ${margins.medium};
+    --margin-large: ${margins.large};
 
-    --site-max-width: ${theme.siteWidth};
+    --site-max-width: ${siteWidth};
 
     /* Setup themable variables depending on system color theme */
-    ${setupThemeVariables(theme.colors.themed.light)}
+    ${setupThemeVariables(colors.themed.light)}
   }
 
   html {
@@ -58,7 +61,7 @@ export const GlobalStyle = createGlobalStyle`
     color: var(--text-color);
     font-family: var(--content-font);
     &.dark-mode {
-     ${setupThemeVariables(theme.colors.themed.dark)}
+     ${setupThemeVariables(colors.themed.dark)}
     }
   }
 

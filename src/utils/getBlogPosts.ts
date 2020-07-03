@@ -18,8 +18,8 @@ export const getAllBlogPosts = (): PostMetaData[] => {
   return sortedBlogPosts.map(toPostMetaData);
 };
 
-export const getLatestBlogPosts = (num: number): PostMetaData[] => {
-  return getAllBlogPosts().slice(0, num);
+export const getLatestBlogPosts = (numOfPosts: number): PostMetaData[] => {
+  return getAllBlogPosts().slice(0, numOfPosts);
 };
 
 export const getPrevAndNextPost = (frontMatter: PostFrontMatter): PostMetaData[] => {

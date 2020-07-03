@@ -1,7 +1,7 @@
-import { fonts } from './fonts';
-import { colors } from './colors';
-import { breakpoints } from './breakpoints';
-import { margins } from './margins';
+import { fonts } from './parts/fonts';
+import { colors } from './parts/colors';
+import { breakpoints } from './parts/breakpoints';
+import { margins } from './parts/margins';
 
 export const theme = {
   colors,

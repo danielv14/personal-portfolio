@@ -1,29 +1,13 @@
-import styled from 'styled-components';
-import { MarginSmall } from './ui/margins/marginSmall';
-import { ResponsiveGrid } from './ui/container/responsiveGrid';
-import { toolBox } from '../data/toolbox';
+import { MarginSmall } from '../ui/margins/marginSmall';
+import { ResponsiveGrid } from '../ui/container/responsiveGrid';
+import { ToolboxCategory } from '../../types/ToolboxCategory';
+import { Line, ListItem, List } from './toolBox.styles';
 
-interface HeaderLineProps {
-  width: string;
+interface ToolBoxProps {
+  categories: ToolboxCategory[];
 }
 
-const ListItem = styled.li`
-  list-style: none;
-`;
-
-const List = styled.ul`
-  padding-inline-start: 0;
-`;
-
-const Line = styled.div<HeaderLineProps>`
-  background: var(--primary-color);
-  width: ${(props) => props.width};
-  border-radius: var(--border-radius);
-  height: 6px;
-  margin-bottom: 6px;
-`;
-
-export const ToolBox = () => {
+export const ToolBox: React.FC<ToolBoxProps> = ({ categories }) => {
   return (
     <>
       <h2>Min verktygslåda</h2>
@@ -33,7 +17,7 @@ export const ToolBox = () => {
       </p>
       <MarginSmall></MarginSmall>
       <ResponsiveGrid gutter="10px" itemWidth="175px">
-        {toolBox.map(({ title, items }) => (
+        {categories.map(({ title, items }) => (
           <div key={title}>
             <h3>{title}</h3>
             <Line width="115px" />
@@ -49,3 +33,5 @@ export const ToolBox = () => {
     </>
   );
 };
+
+ToolBox.displayName = 'ToolBox';

@@ -1,21 +1,4 @@
-interface Fonts {
-  fontFamily: {
-    main: string;
-    headings: string;
-    mono: string;
-  };
-  size: {
-    base: string;
-    h1: string;
-    h2: string;
-    h3: string;
-    h4: string;
-    h5: string;
-    h6: string;
-    small: string;
-    smaller: string;
-  };
-}
+import { Fonts } from '../../types/theme/Fonts';
 
 export const fonts: Fonts = {
   fontFamily: {
@@ -31,7 +14,8 @@ export const fonts: Fonts = {
     h4: '1.2rem',
     h5: '1.1rem',
     h6: '1rem',
-    small: '0.8rem',
-    smaller: '0.7rem',
+    small: '0.9rem',
+    smaller: '0.8rem',
+    code: '0.8rem',
   },
 };
