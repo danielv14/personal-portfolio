@@ -1,14 +1,14 @@
 import React from 'react';
-import { PostFrontMatter } from '../types/FrontMatter';
+import { FrontMatterBase } from '../types/FrontMatter';
 import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 
-interface PostProps {
+interface DefaultProps {
   children: React.ReactChildren;
 }
 
-export default (_frontMatter: PostFrontMatter) => {
-  return ({ children }: PostProps) => {
+export default (_frontMatter: FrontMatterBase) => {
+  return ({ children }: DefaultProps) => {
     return (
       <ResponsiveContainer>
         <MarginLarge />
