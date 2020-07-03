@@ -1,8 +1,9 @@
 import { Sunset } from '@styled-icons/feather';
 import { IconBase, IconProps } from './iconBase';
 
+const Icon = IconBase(Sunset);
+
 export const IconDarkMode: React.FC<IconProps> = (props) => {
-  const Icon = IconBase(Sunset);
   return <Icon {...props} />;
 };
 
