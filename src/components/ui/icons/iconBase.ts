@@ -19,7 +19,7 @@ const defaultSize = css`
 
 export const BaseStyle = ({ hoverEffect = false, size }: IconProps) => css`
   color: var(--text-muted-color);
-  ${size && defaultSize};
+  ${!size && defaultSize};
   ${hoverEffect && HoverStyle}
 `;
 
