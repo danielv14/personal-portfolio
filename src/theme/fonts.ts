@@ -14,6 +14,7 @@ interface Fonts {
     h6: string;
     small: string;
     smaller: string;
+    code: string;
   };
 }
 
@@ -31,7 +32,8 @@ export const fonts: Fonts = {
     h4: '1.2rem',
     h5: '1.1rem',
     h6: '1rem',
-    small: '0.8rem',
-    smaller: '0.7rem',
+    small: '0.9rem',
+    smaller: '0.8rem',
+    code: '0.8rem',
   },
 };
