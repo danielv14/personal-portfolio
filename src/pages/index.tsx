@@ -8,7 +8,6 @@ import { ResponsiveGrid } from '../components/ui/container/responsiveGrid';
 import { Row } from '../components/ui/container/row';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
-import { MarginSmall } from '../components/ui/margins/marginSmall';
 import { TextCenter } from '../components/ui/content/textCenter';
 import { projects } from '../data/projects';
 import { site } from '../data/site';
@@ -19,6 +18,7 @@ import { theme } from '../theme/theme';
 import { HeadingMuted } from '../components/ui/content/headingMuted';
 import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
 import { useScrollToElement } from '../hooks/useScrollToElement';
+import { TextMuted } from '../components/ui/content/textMuted';
 
 export default function Home() {
   const latestPosts = getLatestBlogPosts(4);
@@ -112,7 +112,7 @@ const ProjectsContent = () => {
   return (
     <section>
       <h2>Projekt</h2>
-      <MarginSmall></MarginSmall>
+      <TextMuted>Gratis hosting används för en del projekt, vilket kan leda till en längre initial laddtid</TextMuted>
       <ResponsiveGrid itemWidth="250px" gutter={theme.margins.large}>
         {projects.map(({ title, icon, tags, ...rest }) => (
           <CardProject key={title} title={`${icon} ${title}`} {...rest} />
