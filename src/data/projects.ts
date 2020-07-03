@@ -34,8 +34,8 @@ export const projects: Project[] = [
   {
     title: 'Denna sajt',
     icon: '💼',
-    summary: 'Nedskalat portfolio byggt med React, CSS-in-JS och Markdown',
-    tags: ['React', 'Markdown', 'CSS-in-JS'],
+    summary: 'Nedskalat portfolio byggt med React, styled-components och MDX',
+    tags: ['React', 'MDX', 'styled-components'],
     urlSource: 'https://github.com/danielv14/personal-portfolio',
   },
 ];
