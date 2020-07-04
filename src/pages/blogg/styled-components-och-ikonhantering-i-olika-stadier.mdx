@@ -1,0 +1,188 @@
+---
+title: 'Styled Components och ikonhantering i olika stadier'
+summary: 'Hur många gånger kan man behöva refaktorera ikoner egentligen? Minst två gånger i alla fall - allt eftersom behovet på funktionalitet ändras.'
+layout: blogPost
+date: 2020-07-03
+---
+
+Denna sajt är byggt med hjälp av [Styled Components](https://styled-components.com/) och använder ikoner sparsamt, med hjälp av [styled-icons](https://styled-icons.js.org/) - ett paket som gör det väldigt enkelt kan skapa komponenter från svg-ikoner.
+
+Totalt sett används fyra ikoner på denna sajt i skrivande stund:
+* Två ikoner för mörkt/ljust tema
+* En ikon för Githublänk
+* En ikon för epostlänk
+
+Det här är en liten sammanfattning om hur ikonhanteringen ändrades i tre olika iterationer allt eftersom behovet av funktionalitet och fler ikoner växte. Jag behövde standardisera ikonhanteringen på ett bättre sätt.
+
+> Sammanfattningen går inte in i detalj hur styled-components och styled-icons fungerar. Sammanfattningen använder mer de två för att visa ett exempel på hur man kan strukturera ui-komponenter med React och några saker att tänka på.
+
+## Skapa komponenter bara - hur svårt ska det vara? 🤷‍♂️
+
+När jag skapde den första ikonen var jag inte speciellt brydd om varken återanvändbarhet eller potentiellt duplicerad kod. Jag behövde bara skapa några mindre ikonkomponenter för att visa upp ikoner i headern och footern.
+
+I ett första stadie såg skapade jag ikoner på följande sätt:
+
+```tsx:src/components/ui/icons/iconDarkMode.tsx
+import { Sunset } from '@styled-icons/feather';
+import styled from 'styled-components';
+
+export const IconDarkMode = styled(Sunset)`
+  width: 24px;
+  height: 24px;
+  color: var(--text-muted-color);
+`;
+
+IconDarkMode.displayName = 'IconDarkMode';
+```
+
+Bra - nu hade jag en ikon som representerar "Dark mode" och som har lite generell styling. Men om man har en ikon för "Dark mode" så behövs ju en ikon för "Light mode" också:
+
+```tsx:src/components/ui/icons/iconLightMode.tsx
+import { Sunrise } from '@styled-icons/feather';
+import styled from 'styled-components';
+
+export const IconLightMode = styled(Sunrise)`
+  width: 24px;
+  height: 24px;
+  color: var(--text-muted-color);
+`;
+
+IconLightMode.displayName = 'IconLightMode';
+```
+
+Perfekt - nu hade jag en ikon med samma styling men som representerar "Light mode".
+
+**Men vänta lite nu...** Bägge komponenterna `iconDarkMode.tsx` och `iconLightMode.tsx` ansvarar för en generell styling samt bestämmer vilken ikon från styled-icons som ska användas.
+Det är inte speciellt skalbart ifall jag behöver **ändra standard stylingen** eller **lägga till ännu fler ikoner** - mer kod skulle dupliceras. Nått måste man väl kunna göra åt det problemet?
+
+## Skapa en återanvändbar default styling 👨‍🎨
+
+Som med så mycket annat ville jag lägga till ny funktionalitet. Ikonerna skulle ha en liten effekt med `transform: translateY(2px)` när man skulle klicka på dom.
+Jag behövde råda bot på den duplicerade stylingen.
+
+Problemet med duplicerad styling går att lösa på en rad olika sätt men i iteration två av introducerade jag en separat källa för standardstyling:
+
+```tsx{9}:src/components/ui/icons/iconBase.ts
+import styled, { css } from 'styled-components';
+
+export interface IconProps {
+  hoverEffect?: boolean;
+}
+
+const HoverStyle = css`
+  transition: all 0.2s ease;
+  &:hover {
+    transform: translateY(-2px);
+  }
+`;
+
+export const BaseStyle = ({ hoverEffect = false }: IconProps) => css`
+  width: 24px;
+  height: 24px;
+  color: var(--text-muted-color);
+  `${hoverEffect ? HoverStyle : ''}`
+`;
+
+export const IconBase = styled.svg<IconProps>`
+  ${BaseStyle}
+`;
+```
+
+**iconBase.ts** innehåller i den här iterationen all grundläggande styling som alla ikoner använde sig av. Ett gemensamt interface för ikonprops skapades också i och med `IconProps`. En hover-effekt lades även till.
+
+Ikoner i sin tur byggdes ovanpå **iconBase.ts** på följande vis:
+
+```tsx:src/components/ui/icons/iconLightMode.tsx
+
+import { Sunrise } from '@styled-icons/feather';
+import styled from 'styled-components';
+import { BaseStyle, IconProps } from './iconBase';
+
+export const IconLightMode = styled(Sunrise)<IconProps>`
+  ${BaseStyle}
+`;
+
+IconLightMode.displayName = 'IconLightMode';
+```
+
+**Perfekt!** Nu var duplicerad kod borttagen och endast en källa till ikonstyling existerade. Nu måste väl allt vara frid och fröjd?
+
+## Skapa komponenter med (ett) tydligt ansvar 🙋‍♂️ 
+
+Det var ändå något som inte kändes helt rätt. Alla ikoner som bygger vidare på **iconBase.ts** ansvarar inte ***bara*** för vilken svg-ikon de importerar och använder sig av. De ansvarar ***även*** för att se till att ikonerna applicerar den grundläggande stylingen från **iconBase.ts**. 
+
+Vore det inte bättre om alla olika ikonkomponenter istället ***bara*** ansvarade för vilken ikon från styled-icons de importerade? Samt skickade vidare allt annat ansvar såsom *props* och *styling* till **iconBase.ts**?
+
+Så klart det vore! I iteration tre och nuvarande version (i skrivande stund) separerades det ansvaret genom en mindre refaktorering av **iconBase.ts**:
+
+```tsx{4,14,15,16}:src/components/ui/icons/iconBase.ts
+import styled, { css } from 'styled-components';
+import { StyledIconProps, StyledIcon } from '@styled-icons/styled-icon';
+
+export interface IconProps extends StyledIconProps {
+  hoverEffect?: boolean;
+}
+
+const HoverStyle = css`
+  transition: all 0.2s ease;
+  &:hover {
+    transform: translateY(-2px);
+  }
+`;
+
+const defaultSize = css`
+  height: 24px;
+  width: 24px;
+`;
+
+export const BaseStyle = ({ hoverEffect = false, size }: IconProps) => css`
+  color: var(--text-muted-color);
+  `${!size && defaultSize}`;
+  `${hoverEffect && HoverStyle}`;
+`;
+
+export const IconBase = (icon: StyledIcon): StyledIcon => styled(icon)<IconProps>`
+  ${BaseStyle}
+`;
+
+```
+
+> `${!size && defaultSize}` används för att styled-icons har en prop, size, som sätter en storlek på ikonerna. Om ingen storlek sätts så faller basikonen till en defaultstorlek.
+
+Några små ändringar (som är markerade i kodsnutten ovan) visar på skillnaderna:
+* Interfacet `IconProps` bygger nu vidare på interfacet `StyledIconProps` - som är det interface som alla styled-icons har. Det innebär att kopplingen mellan påbyggd funktionalitet i form av props tydligare kopplas ihop med betinflig funktionalitet och props från *styled-icons* ikoner.
+* `IconBase` var tidigare bara en `styled.svg` som hade lite grundläggande styling i och med `BaseStyle`. Nu är det en funktion som tar in en `icon` av typen `StyledIcon` och returnerar en styled-icon som har default styling och som har korrekt interface för props.
+
+Ikonkomponenter refaktorerades i iteration tre att se ut på följande vis:
+
+```tsx{4}:src/components/ui/icons/iconLightMode.tsx
+import { Sunrise } from '@styled-icons/feather';
+import { IconBase, IconProps } from './iconBase';
+
+const Icon = IconBase(Sunrise);
+
+export const IconLightMode: React.FC<IconProps> = (props) => {
+  return <Icon {...props} />;
+};
+
+IconLightMode.displayName = 'IconLightMode';
+
+```
+
+Den nya strukturen innebär att varje ikonkomponent nu egentligen bara har **ett enda ansvar** - att bestämma vilken ikon de ska importera och representera i och med `const Icon = IconBase(Sunrise);`.
+
+Ikonkomponenterna skickar glatt vidare alla props med `<Icon {...props} />;`. All styling och övrig logik hanteras i baskomponenten istället i och med att ikonkomponenterna bara skickar visare sina *props*.
+
+## Summering
+
+Så länge man försöker tänka på att separera ansvar och har återanvändbarhet i åtanke kan man skapa rätt så flexibla lösningar för ui-komponenter, med hjälp av styled components.
+
+Att låta en komponent på en ***lägre*** nivå ansvara för gemensam logik och generella stilregler gör att man kan skapa komponenter ***ovanpå*** - som inte behöver bry sig, eller ens veta om de gemensamma detaljerna.
+
+Det är inte hela världen om det inte blir 100% rätt första gången eller om koden man skriver i en första implementation är 100% fri från duplicering.
+Det kan dessutom vara svårt att på förhand se hela behovsbilden och det är lätt att börja optimera för fel saker om man försöker ta höjd och täcka in för mycket - för tidigt.
+
+Över tid när behoven ändras och man växer ur befintlig implementation är det bara att iterera och refaktorera i mindre steg tills man uppnår ett bättre läge och täcker in nyupptäckta behov.
+
+
+
