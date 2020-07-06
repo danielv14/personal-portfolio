@@ -1,6 +1,6 @@
 ## What this pull request does
 
-This pull request does...
+This pull request...
 
 ### Types of changes
 
