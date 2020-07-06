@@ -29,7 +29,7 @@
     "babel-plugin-import-glob-array": "^0.2.0",
     "babel-plugin-styled-components": "^1.10.0",
     "rehype": "^11.0.0",
-    "typescript": "3.5.2"
+    "typescript": "3.9.6"
   },
   "license": "ISC"
 }

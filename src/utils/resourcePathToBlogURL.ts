@@ -1,4 +1,7 @@
-export const resourcePathToBlogURL = (resourcePath: string) => {
-  const blogPath = resourcePath.split('/').pop();
-  return `/blogg/${blogPath ? blogPath.replace('.mdx', '') : ''}`;
+export const resourcePathToBlogURL = (resourcePath: string): string => {
+  const path = resourcePath.split('/').pop()?.replace('.mdx', '');
+  if (!path) {
+    return '';
+  }
+  return `/blogg/${path}`;
 };
