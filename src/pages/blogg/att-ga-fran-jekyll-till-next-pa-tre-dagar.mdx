@@ -17,12 +17,37 @@ För ett antal år sedan byggde jag min personliga webbplats/portfolio med hjäl
 
 ### Svårjobbad styling
 
-När jag byggde sajten var jag väldigt inne på att väldigt lekfull design. Själva startsidan var uppdelad i olika sektioner som alla hade olika bakgrundsfärger och textfärger, i princip.   
-Då jag byggde sajten innan jag fick mitt första jobb inom branschen ville jag ha ett portfolio som stack ut i mängden och som var väldesignat. 
+När jag byggde sajten var jag väldigt inne på *lekfull design*. Själva startsidan var uppdelad i olika sektioner som alla i stort sätt hade olika bakgrundsfärger och textfärger. Avsaknaden av konsekvens i design gjorde sajten svårjobbad, rent designmässigt.
 
 CSS stod för hela **80%** (*JavaScript stod för 1.3%*) av repot på GitHub och detta gjorde det svårt att vidareutveckla och underhålla sajten, även om allt var skrivet med SCSS och inte ren CSS.
 
-Mycket av den styling som fanns var scoped till olika sektioner, med hjälp av typ `section.hero-content {...}`. Detta gjorde att varje sektion var lite väl enkapsulerad och för lite stilregler var generella då typsnitt och så vidare ibland levde sitt egna liv inom varje sektion.
+Mycket av den styling som fanns var som sagt scoped till olika sektioner, via css selektorer på olika classer:
+
+```css
+section.hero-content {
+  background: pink;
+  color: red;
+  h2 {
+    color: blue;
+    font-size: 18px;
+  }
+}
+
+section.about-content {
+  background: yellow;
+  color: red;
+  h2 {
+    color: green;
+    font-size: 22px;
+  }
+}
+```
+
+Detta gjorde att **varje sektion var lite väl enkapsulerad och för lite stilregler var generella** då typsnitt och så vidare ibland levde sitt egna liv inom varje sektion.
+
+Då jag byggde sajten innan jag fick mitt första jobb inom branschen ville jag dessutom ha ett portfolio som stack ut i mängden och var väldesignat, för att på något sätt kompensera arbetslivserfarenhet inom yrket.   
+
+I och med den här flytten till Next.js är läget däremot annorlunda. Jag behöver inte denna sajt för att "ta mig in i branschen" och erfarenheten av att försöka underhålla tidigare design fick mig att istället [välja en mer avskalad approach](/blogg/portfolio-redesign), som är lättare att underhålla. 
 
 ### Inget komponenttänk
 
@@ -106,7 +131,7 @@ Man skulle kunna dela upp hela processen i tre, rätt så vanliga delar:  resear
 ### Research
 Som tidigare nämnt så hade jag bestämt mig för **Next.js**. Däremot fanns det ju fortfarande en del frågetecken såsom: Hur ska jag generera innehåll utifrån markdown-filer och vilken väg ska jag gå för styling?
 
-Jag tänker inte rabbla upp alla `npm paket` som installerades, vill man ha mer info om sådan är det bara att [kika i readmen](https://github.com/danielv14/personal-portfolio) eller tillhörande **package.json** för repot.
+Jag tänker inte rabbla upp alla npm paket som installerades, vill man ha mer info om sådan är det bara att [kika i readmen](https://github.com/danielv14/personal-portfolio) eller tillhörande **package.json** för repot.
 
 ### Design
 
