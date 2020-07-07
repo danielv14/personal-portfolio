@@ -21,7 +21,7 @@ const blogIndex = () => {
         {blogPosts.map((blogPost) => (
           <UnstyledInternalLink key={blogPost.title} href={blogPost.url}>
             <div>
-              <PostListItem {...blogPost}></PostListItem>
+              <PostListItem {...blogPost} />
               <MarginMedium />
             </div>
           </UnstyledInternalLink>
