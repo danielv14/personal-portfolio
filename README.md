@@ -19,7 +19,7 @@ Site is deployed through [Vercel](https://vercel.com)
 - `src/layout/*` - Layout templates for **MDX content**.
 - `src/pages/blogg/*` - Static blog posts written in [MDX](https://github.com/mdx-js/mdx).
 - `src/pages/*` - All other static pages.
-- `src/theme/*` - Contains all the JavaScript part of CSS-in-JS for global styles.
+- `src/theme/*` - Contains site-wide theming such as colors, typography, margins and declarations of css variables.
 - `src/types/*` - Contains sharable types.
 - `src/utils/*` - Contains various utility functionality.
 - `public/` - Contains public content for site.
