@@ -37,10 +37,10 @@ export const CardProject: React.FC<CardProjectProps> = ({ title, summary, tags, 
           <CardLink href={urlSource}>
             <p>{summary}</p>
           </CardLink>
-          <Fill></Fill>
+          <Fill />
           <Row>
             {tags && tags.map((tag, index) => <Tag key={tag + index}>{tag}</Tag>)}
-            <Fill></Fill>
+            <Fill />
             {url && <a href={url}>Visa</a>}
           </Row>
           <MarginSmall />

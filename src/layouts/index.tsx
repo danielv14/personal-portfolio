@@ -10,6 +10,7 @@ interface DefaultProps {
 }
 
 export default (_frontMatter: FrontMatterBase) => {
+  // eslint-disable-next-line react/display-name
   return ({ children }: DefaultProps) => {
     return (
       <>

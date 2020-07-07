@@ -18,6 +18,7 @@ interface PostProps {
 }
 
 export default (frontMatter: PostFrontMatter) => {
+  // eslint-disable-next-line react/display-name
   return ({ children }: PostProps) => {
     const [prevPost, nextPost] = getPrevAndNextPost(frontMatter);
 

@@ -5,7 +5,7 @@ import { storage } from '../utils/storage';
 const storage_key = `${site.author} - dark-mode`;
 
 export const useDarkMode = () => {
-  const [isDarkMode, toggle] = useState<Boolean>(false);
+  const [isDarkMode, toggle] = useState<boolean>(false);
 
   const toggleDarkMode = (): void => {
     storage.set(storage_key, isDarkMode ? 'false' : 'true');

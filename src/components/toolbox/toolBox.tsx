@@ -15,7 +15,7 @@ export const ToolBox: React.FC<ToolBoxProps> = ({ categories }) => {
         Jag har tidigare använt allt från PHP och Ruby on Rails för att bygga sajter. Nu för tiden är det mest
         TypeScript för front- och backend som ligger närmst till hands i form av React och Node.
       </p>
-      <MarginSmall></MarginSmall>
+      <MarginSmall />
       <ResponsiveGrid gutter="10px" itemWidth="175px">
         {categories.map(({ title, items }) => (
           <div key={title}>
@@ -26,7 +26,7 @@ export const ToolBox: React.FC<ToolBoxProps> = ({ categories }) => {
                 <ListItem key={item}>{item}</ListItem>
               ))}
             </List>
-            <MarginSmall></MarginSmall>
+            <MarginSmall />
           </div>
         ))}
       </ResponsiveGrid>

@@ -86,7 +86,7 @@ const HeroContent = () => {
             På den här sajten delar jag med mig av diverse kodprojekt och skriver några rader ibland.
           </HeadingMuted>
         </TextCenter>
-        <MarginMedium></MarginMedium>
+        <MarginMedium />
       </Column>
     </section>
   );
@@ -104,7 +104,7 @@ const AboutContent = () => {
         I bagaget har jag en <strong>kandidatexamen i Informatik</strong> och har <strong>sedan 2017</strong> jobbat med
         utveckling.
       </p>
-      <MarginMedium></MarginMedium>
+      <MarginMedium />
     </section>
   );
 };
@@ -115,7 +115,7 @@ const ProjectsContent = () => {
       <h2>Projekt</h2>
       <TextMuted>För en del projekt används gratis hosting, vilket kan leda till en längre initial laddtid</TextMuted>
       <ResponsiveGrid itemWidth="250px" gutter={theme.margins.large}>
-        {projects.map(({ title, icon, tags, ...rest }) => (
+        {projects.map(({ title, icon, tags: _tags, ...rest }) => (
           <CardProject key={title} title={`${icon} ${title}`} {...rest} />
         ))}
       </ResponsiveGrid>
