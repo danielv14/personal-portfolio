@@ -17,8 +17,8 @@ Site is deployed through [Vercel](https://vercel.com)
 - `src/data/*` - Various static data sources.
 - `src/hooks/*` - Custom react hooks.
 - `src/layout/*` - Layout templates for **MDX content**.
-- `src/pages/*` - All other static pages.
 - `src/pages/blogg/*` - Static blog posts written in [MDX](https://github.com/mdx-js/mdx).
+- `src/pages/*` - All other static pages.
 - `src/theme/*` - Contains all the JavaScript part of CSS-in-JS for global styles.
 - `src/types/*` - Contains sharable types.
 - `src/utils/*` - Contains various utility functionality.
@@ -49,4 +49,16 @@ Start application in production mode with:
 
 ```bash
 yarn start
+```
+
+Lint application with:
+
+```bash
+yarn lint
+```
+
+Attempt to fix lint errors with:
+
+```bash
+yarn lint:fix
 ```
