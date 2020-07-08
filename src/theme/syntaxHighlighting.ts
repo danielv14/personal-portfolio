@@ -26,7 +26,7 @@ export const syntaxHighlighting = css`
   /* Code blocks */
   pre[class*='language-'] {
     padding: 1em;
-    margin: 0.5em 0;
+    margin: 0.5em 0 1em;
     overflow: auto;
     border-radius: var(--border-radius-small);
   }
