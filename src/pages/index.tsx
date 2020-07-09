@@ -13,16 +13,18 @@ import { projects } from '../data/projects';
 import { site } from '../data/site';
 import { PostMetaData } from '../types/FrontMatter';
 import { PostListItem } from '../components/postListItem/postListItem';
-import { getLatestBlogPosts } from '../utils/getBlogPosts';
 import { theme } from '../theme/theme';
 import { HeadingMuted } from '../components/ui/content/headingMuted';
 import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
 import { useScrollToElement } from '../hooks/useScrollToElement';
 import { TextMuted } from '../components/ui/content/textMuted';
 import { toolboxCategories } from '../data/toolBoxCategories';
+import { useContext } from 'react';
+import { BlogPostContext } from '../blogPostContext';
 
 export default function Home() {
-  const latestPosts = getLatestBlogPosts(4);
+  const { allBlogPosts } = useContext(BlogPostContext);
+  const latestBlogPosts = allBlogPosts.slice(0, 4);
   const [ProjectRef, scrollToProjectElement] = useScrollToElement();
   return (
     <>
@@ -58,7 +60,7 @@ export default function Home() {
         <MarginLarge />
         <Column>
           <MarginLarge />
-          <ArticlesContent articles={latestPosts} />
+          <ArticlesContent articles={latestBlogPosts} />
           <MarginMedium />
           <Row>
             <Fill />

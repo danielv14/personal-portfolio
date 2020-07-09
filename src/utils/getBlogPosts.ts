@@ -18,10 +18,6 @@ export const getAllBlogPosts = (): PostMetaData[] => {
   return sortedBlogPosts.map(toPostMetaData);
 };
 
-export const getLatestBlogPosts = (numOfPosts: number): PostMetaData[] => {
-  return getAllBlogPosts().slice(0, numOfPosts);
-};
-
 export const getPrevAndNextPost = (frontMatter: PostFrontMatter): PostMetaData[] => {
   const allPosts = getAllBlogPosts();
   const currentBlogPostIndex = allPosts.findIndex(hasMatchingResourcePath(frontMatter.__resourcePath));
