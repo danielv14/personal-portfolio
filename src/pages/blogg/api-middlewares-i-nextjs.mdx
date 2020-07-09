@@ -1,13 +1,13 @@
 ---
 layout: blogPost
 title: Skapa API-middlewares i Next.js
-summary: Att implementera middlewares i Next.js behöver inte vara svårt. Så här kan man enkelt skapa återanvändbara middlewares för API-endpoints i sin applikation
+summary: Att implementera middlewares i Next.js behöver inte vara svårt. Så här kan man enkelt skapa återanvändbara middlewares för API-endpoints i sin applikation.
 date: 2020-07-09
 ---
 
 Routing i Next.js är baserat på [struktur i filsystemet](https://nextjs.org/docs/routing/introduction) och detsamma gäller [API routes](https://nextjs.org/docs/api-routes/introduction).
 
-Kortfattat innebär det att om man skapar en fil i sitt Next.js projekt under **pages/api/users.js** ungefär såhär:
+Kortfattat innebär det att om man skapar en fil i sitt Next.js projekt under **pages/api/** och exporterar en funktion så mappas det mot en endpoint. Ungefär såhär:
 
 
 ```js:pages/api/users.js
@@ -66,11 +66,13 @@ app.get('/api/scrape', requiresAuth, (req, res, next) => {
 
 `requiresAuth()` hade då kunnat vara en funktion som kollade om inkommande anrop hade en tillhörande API-nyckel. Om nyckeln hade varit valid hade `requiresAuth` anropat `next()`, såsom [express middlewares gör](https://expressjs.com/en/guide/using-middleware.html).
 
-**Men hur ska man då egentligen göra med Next.js och våran default exported funktion?**
+**Men hur ska man då egentligen göra med Next.js och våran default exported funktion i scrape.js?**
 
 Så här är ett sätt att göra det på: Eftersom att man bara exporterar en funktion i **pages/api/scrape.js** så kan man enkelt wrappa den funktionen i en annan funktion, som då agerar middleware.
 
-Man skapar först en fil, **withAuthorization.js** i katalogen `middlewares/`:
+Vart man skapar filen spelar inte så stor roll för Next.js, så länge man inte lägger den i `pages/*` - som är en ["reserverad katalog"](https://nextjs.org/docs/basic-features/pages).
+
+Men förslagsvis skapar man en katalog `middlewares/*` och lägger sina middlewares däri, som med **withAuthorization.js**
 
 ```js:middlewares/withAuthorization.js
 export const withAuthorization = (handler) => (req, res) => {
@@ -96,7 +98,7 @@ const requestHandler = async (req, res) => {
   // Insert data in database
   await insertDataInDb(scrapedContent);
   // Return response with status 200 - everything OK
-  res.status(200).json({message: 'Scraped content inserted into database'});
+  res.status(200).json({ message: 'Scraped content inserted into database' });
 };
 
 // Export requestHandler wrapped by our authorization middleware
