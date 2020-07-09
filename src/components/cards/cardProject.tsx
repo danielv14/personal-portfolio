@@ -26,8 +26,8 @@ export const CardProject: React.FC<CardProjectProps> = ({ title, summary, tags, 
             <h3>{title}</h3>
             <MarginSmall />
             <p>{summary}</p>
-            <Fill />
           </UnstyledLink>
+          <Fill />
           <Row>
             {tags && tags.map((tag, index) => <Tag key={tag + index}>{tag}</Tag>)}
             <Fill />
