@@ -1,19 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Card } from '../ui/container/card';
 import { Column } from '../ui/container/column';
 import { Fill } from '../ui/container/fill';
 import { Row } from '../ui/container/row';
 import { Tag } from '../ui/content/tag';
 import { MarginSmall } from '../ui/margins/marginSmall';
-
-const CardLink = styled.a`
-  color: inherit;
-  font-weight: inherit;
-  &:hover {
-    text-decoration: none;
-  }
-`;
+import { UnstyledLink } from '../ui/content/unstyledLink';
 
 interface CardProjectProps {
   title: string;
@@ -26,27 +18,25 @@ interface CardProjectProps {
 export const CardProject: React.FC<CardProjectProps> = ({ title, summary, tags, urlSource, url }) => {
   return (
     <Card>
-      <Row style={{ height: '100%' }}>
-        <MarginSmall />
-        <Column>
-          <CardLink href={urlSource}>
+      <UnstyledLink href={urlSource}>
+        <Row style={{ height: '100%' }}>
+          <MarginSmall />
+          <Column>
             <MarginSmall />
             <h3>{title}</h3>
-          </CardLink>
-          <MarginSmall />
-          <CardLink href={urlSource}>
+            <MarginSmall />
             <p>{summary}</p>
-          </CardLink>
-          <Fill />
-          <Row>
-            {tags && tags.map((tag, index) => <Tag key={tag + index}>{tag}</Tag>)}
             <Fill />
-            {url && <a href={url}>Visa</a>}
-          </Row>
+            <Row>
+              {tags && tags.map((tag, index) => <Tag key={tag + index}>{tag}</Tag>)}
+              <Fill />
+              {url && <a href={url}>Visa</a>}
+            </Row>
+            <MarginSmall />
+          </Column>
           <MarginSmall />
-        </Column>
-        <MarginSmall />
-      </Row>
+        </Row>
+      </UnstyledLink>
     </Card>
   );
 };

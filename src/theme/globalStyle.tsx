@@ -54,9 +54,6 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     font-size: var(--font-size-base);
-    -webkit-font-smoothing: antialiased;
-    text-size-adjust: 100%;
-    text-rendering: optimizelegibility;
   }
 
   body {
