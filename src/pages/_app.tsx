@@ -9,6 +9,9 @@ import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../../next-seo.config';
 import { MDXComponents } from '../components/mdxComponents';
+import { getAllBlogPosts } from '../utils/getBlogPosts';
+import { ContentContext } from '../context/ContentContext';
+import { projects } from '../data/projects';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -22,11 +25,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <DefaultSeo {...SEO} />
       <MDXProvider components={MDXComponents}>
-        <GlobalStyle />
-        <Navbar />
-        <Component {...pageProps} />
-        <MarginLarge />
-        <Footer />
+        <ContentContext.Provider value={{ blogPosts: getAllBlogPosts(), projects }}>
+          <GlobalStyle />
+          <Navbar />
+          <Component {...pageProps} />
+          <MarginLarge />
+          <Footer />
+        </ContentContext.Provider>
       </MDXProvider>
     </>
   );
