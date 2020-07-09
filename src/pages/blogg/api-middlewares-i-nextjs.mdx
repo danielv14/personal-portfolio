@@ -55,7 +55,7 @@ En sån route kan man ju tänkas vilja skydda på ett eller annat sätt - för m
 Hade ovanstående scrape-route varit skriven med express hade man ju lagt till ett middleware ungefär såhär:
 
 ```js
-app.get('/api/scrape', requiresAuth(), (req, res, next) => {
+app.get('/api/scrape', requiresAuth, (req, res, next) => {
   // get scraped content
   const scrapedContent = await scrapeForContent();
   // Insert data in database
