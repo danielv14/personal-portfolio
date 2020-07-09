@@ -8,7 +8,7 @@ import { MarginMedium } from '../components/ui/margins/marginMedium';
 import { useContent } from '../context/ContentContext';
 
 const blogIndex = () => {
-  const { allBlogPosts } = useContent();
+  const { blogPosts } = useContent();
   return (
     <>
       <Seo title="Blogg" />
@@ -18,7 +18,7 @@ const blogIndex = () => {
           <h1>Alla artiklar</h1>
         </TextCenter>
         <MarginLarge />
-        {allBlogPosts.map((blogPost) => (
+        {blogPosts.map((blogPost) => (
           <UnstyledInternalLink key={blogPost.title} href={blogPost.url}>
             <div>
               <PostListItem {...blogPost} />

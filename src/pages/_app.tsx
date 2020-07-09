@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <DefaultSeo {...SEO} />
       <MDXProvider components={MDXComponents}>
-        <ContentContext.Provider value={{ allBlogPosts: getAllBlogPosts(), projects }}>
+        <ContentContext.Provider value={{ blogPosts: getAllBlogPosts(), projects }}>
           <GlobalStyle />
           <Navbar />
           <Component {...pageProps} />

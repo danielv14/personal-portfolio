@@ -22,8 +22,8 @@ import { useContent } from '../context/ContentContext';
 import { Project } from '../types/Project';
 
 export default function Home() {
-  const { allBlogPosts, projects } = useContent();
-  const latestBlogPosts = allBlogPosts.slice(0, 4);
+  const { blogPosts, projects } = useContent();
+  const latestBlogPosts = blogPosts.slice(0, 4);
   const [ProjectRef, scrollToProjectElement] = useScrollToElement();
   return (
     <>
