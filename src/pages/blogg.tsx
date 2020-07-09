@@ -5,11 +5,10 @@ import { TextCenter } from '../components/ui/content/textCenter';
 import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
-import { useContext } from 'react';
-import { BlogPostContext } from '../blogPostContext';
+import { useContent } from '../context/ContentContext';
 
 const blogIndex = () => {
-  const { allBlogPosts } = useContext(BlogPostContext);
+  const { allBlogPosts } = useContent();
   return (
     <>
       <Seo title="Blogg" />

@@ -9,7 +9,6 @@ import { Row } from '../components/ui/container/row';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
 import { TextCenter } from '../components/ui/content/textCenter';
-import { projects } from '../data/projects';
 import { site } from '../data/site';
 import { PostMetaData } from '../types/FrontMatter';
 import { PostListItem } from '../components/postListItem/postListItem';
@@ -19,11 +18,11 @@ import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
 import { useScrollToElement } from '../hooks/useScrollToElement';
 import { TextMuted } from '../components/ui/content/textMuted';
 import { toolboxCategories } from '../data/toolBoxCategories';
-import { useContext } from 'react';
-import { BlogPostContext } from '../blogPostContext';
+import { useContent } from '../context/ContentContext';
+import { Project } from '../types/Project';
 
 export default function Home() {
-  const { allBlogPosts } = useContext(BlogPostContext);
+  const { allBlogPosts, projects } = useContent();
   const latestBlogPosts = allBlogPosts.slice(0, 4);
   const [ProjectRef, scrollToProjectElement] = useScrollToElement();
   return (
@@ -47,7 +46,7 @@ export default function Home() {
         </Column>
         <MarginLarge />
         <Column ref={ProjectRef}>
-          <ProjectsContent />
+          <ProjectsContent projects={projects} />
           <MarginLarge />
           <Row>
             <Fill />
@@ -111,7 +110,7 @@ const AboutContent = () => {
   );
 };
 
-const ProjectsContent = () => {
+const ProjectsContent: React.FC<{ projects: Project[] }> = ({ projects }) => {
   return (
     <section>
       <h2>Projekt</h2>

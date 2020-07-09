@@ -10,7 +10,8 @@ import { DefaultSeo } from 'next-seo';
 import SEO from '../../next-seo.config';
 import { MDXComponents } from '../components/mdxComponents';
 import { getAllBlogPosts } from '../utils/getBlogPosts';
-import { BlogPostContext } from '../blogPostContext';
+import { ContentContext } from '../context/ContentContext';
+import { projects } from '../data/projects';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -24,13 +25,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <DefaultSeo {...SEO} />
       <MDXProvider components={MDXComponents}>
-        <BlogPostContext.Provider value={{ allBlogPosts: getAllBlogPosts() }}>
+        <ContentContext.Provider value={{ allBlogPosts: getAllBlogPosts(), projects }}>
           <GlobalStyle />
           <Navbar />
           <Component {...pageProps} />
           <MarginLarge />
           <Footer />
-        </BlogPostContext.Provider>
+        </ContentContext.Provider>
       </MDXProvider>
     </>
   );
