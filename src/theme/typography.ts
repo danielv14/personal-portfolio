@@ -1,6 +1,9 @@
 import { css } from 'styled-components';
 
 export const typography = css`
+  html {
+    font-size: var(--font-size-base);
+  }
   h1,
   h2,
   h3,
@@ -8,8 +11,6 @@ export const typography = css`
   h5,
   h6 {
     font-family: var(--headings-font);
-    margin-top: 1rem;
-    margin-bottom: 1rem;
     color: var(--heading-color);
     line-height: 1.2;
   }
