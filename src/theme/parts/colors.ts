@@ -1,4 +1,10 @@
 import { Colors, ColorTheme } from '../../types/theme/Colors';
+import color from 'color';
+
+const colorPrimary = '#6691FF';
+const colorPrimaryDarken = color(colorPrimary).darken(0.05).hex();
+const colorPrimaryLighten = color(colorPrimary).lighten(0.38).hex();
+const btnShadowOpaqueRatio = 0.35;
 
 const darkTheme: ColorTheme = {
   backgroundColor: '#171923',
@@ -15,13 +21,13 @@ const darkTheme: ColorTheme = {
 const lightTheme: ColorTheme = {
   backgroundColor: '#FFFFFF',
   backgroundColorSecondary: '#FFFFFF',
-  backgroundColorHighlight: '#e9efff',
+  backgroundColorHighlight: colorPrimaryLighten,
   textColor: '#585858',
   textMutedColor: '#BDBDBD',
   headingColor: '#585858',
   boxShadowMain: '0px 4px 10px rgba(0, 0, 0, 0.09)',
-  boxShadowButton: '0px 4px 7px rgba(102, 145, 255, 0.35)',
-  boxShadowButtonHover: '0px 4px 10px rgba(102, 145, 255, 0.35)',
+  boxShadowButton: `0px 4px 7px ${color(colorPrimary).lighten(0.25).opaquer(btnShadowOpaqueRatio)}`,
+  boxShadowButtonHover: `0px 4px 10px ${color(colorPrimary).lighten(0.1).opaquer(btnShadowOpaqueRatio)}`,
 };
 
 export const colors: Colors = {
@@ -30,8 +36,8 @@ export const colors: Colors = {
     dark: darkTheme,
   },
   brand: {
-    primary: '#6691FF',
-    primaryDarken: '#5477D3',
-    primaryLighten: '#e9efff',
+    primary: colorPrimary,
+    primaryDarken: colorPrimaryDarken,
+    primaryLighten: colorPrimaryLighten,
   },
 };
