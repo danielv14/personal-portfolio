@@ -24,7 +24,7 @@ const lightTheme: ColorTheme = {
   backgroundColorHighlight: colorPrimaryLighten,
   textColor: '#585858',
   textMutedColor: '#BDBDBD',
-  headingColor: '#585858',
+  headingColor: '#444444',
   boxShadowMain: '0px 4px 10px rgba(0, 0, 0, 0.09)',
   boxShadowButton: `0px 4px 7px ${color(colorPrimary).lighten(0.25).opaquer(btnShadowOpaqueRatio)}`,
   boxShadowButtonHover: `0px 4px 10px ${color(colorPrimary).lighten(0.1).opaquer(btnShadowOpaqueRatio)}`,
