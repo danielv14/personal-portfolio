@@ -11,7 +11,7 @@ import SEO from '../../next-seo.config';
 import { MDXComponents } from '../components/mdxComponents';
 import { ContentProvider } from '../context/ContentContext';
 import { projects } from '../data/projects';
-import { getAllBlogPosts } from '../utils/getBlogPosts';
+import { getAllBlogPosts } from '../data/blogPosts';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
