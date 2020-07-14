@@ -11,7 +11,7 @@ import { MarginMedium } from '../components/ui/margins/marginMedium';
 import { theme } from '../theme/theme';
 import { PostFrontMatter } from '../types/FrontMatter';
 import { formatDate } from '../utils/formatDate';
-import { getPrevAndNextPost } from '../data/blogPosts';
+import { usePrevAndNextBlogPost } from '../hooks/usePrevAndNextBlogPost';
 
 interface PostProps {
   children: React.ReactChildren;
@@ -20,7 +20,7 @@ interface PostProps {
 export default (frontMatter: PostFrontMatter) => {
   // eslint-disable-next-line react/display-name
   return ({ children }: PostProps) => {
-    const [prevPost, nextPost] = getPrevAndNextPost(frontMatter);
+    const [prevPost, nextPost] = usePrevAndNextBlogPost(frontMatter);
 
     return (
       <>
