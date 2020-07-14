@@ -11,7 +11,7 @@ export const projects: Project[] = [
   },
   {
     title: 'IMDb CLI',
-    icon: '👨‍💻',
+    icon: '📺',
     summary: 'TypeScript-baserat CLI för att söka efter information om film och serier',
     tags: ['TypeScript', 'Node', 'CLI'],
     urlSource: 'https://github.com/danielv14/imdb-cli',
