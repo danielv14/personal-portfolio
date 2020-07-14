@@ -9,7 +9,6 @@ NavbarWrapper.displayName = 'NavbarWrapper';
 
 export const NavbarContentWrapper = styled(Row)`
   width: 100%;
-  background: var(--bg-color);
   height: 60px;
   align-items: center;
   font-family: var(--headings-font);
