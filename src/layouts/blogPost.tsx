@@ -11,7 +11,7 @@ import { MarginMedium } from '../components/ui/margins/marginMedium';
 import { theme } from '../theme/theme';
 import { PostFrontMatter } from '../types/FrontMatter';
 import { formatDate } from '../utils/formatDate';
-import { getPrevAndNextPost } from '../utils/getBlogPosts';
+import { getPrevAndNextPost } from '../data/blogPosts';
 
 interface PostProps {
   children: React.ReactChildren;

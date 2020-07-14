@@ -1,8 +1,8 @@
 import { frontMatter } from '../pages/blogg/*.mdx';
 import { PostFrontMatter, PostMetaData } from '../types/FrontMatter';
-import { sortBlogPostsAscByDate } from './sortBlogPostsByDate';
-import { resourcePathToBlogURL } from './resourcePathToBlogURL';
-import { formatDate } from './formatDate';
+import { sortBlogPostsAscByDate } from '../utils/sortBlogPostsByDate';
+import { resourcePathToBlogURL } from '../utils/resourcePathToBlogURL';
+import { formatDate } from '../utils/formatDate';
 
 const toPostMetaData = (frontMatter: PostFrontMatter): PostMetaData => ({
   ...frontMatter,
