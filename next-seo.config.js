@@ -1,5 +1,5 @@
 const title = 'Daniel Vernberg';
-const description = 'Webbutvecklare med lite extra kärlek för frontend, React, TypeScript och schysst design';
+const description = 'Webbutvecklare med lite extra kärlek för frontend, JavaScript och schysst design';
 const urlSite = 'danielvernberg.se';
 
 const SEO = {
