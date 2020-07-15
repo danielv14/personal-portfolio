@@ -10,7 +10,7 @@ const darkTheme: ColorTheme = {
   backgroundColor: '#171923',
   backgroundColorSecondary: '#202438',
   backgroundColorHighlight: '#202438',
-  textColor: '#d0d0d0',
+  textColor: '#bec0c9',
   textMutedColor: '#87919e',
   headingColor: '#e4e4e4',
   boxShadowMain: 'none',
