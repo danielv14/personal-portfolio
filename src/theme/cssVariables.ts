@@ -37,7 +37,7 @@ export const cssVariables = css`
 
     --site-max-width: ${siteWidth};
 
-    /* Setup themable variables depending on system color theme */
+    /* Setup variables depending on dark/light mode. Default to light mode */
     ${setupThemeVariables(colors.themed.light)}
   }
   body.dark-mode {
