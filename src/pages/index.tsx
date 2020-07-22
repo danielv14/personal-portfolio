@@ -64,7 +64,7 @@ export default function Home() {
           <Row>
             <Fill />
             <UnstyledInternalLink href="/blogg">
-              <ButtonPrimary>Alla artiklar</ButtonPrimary>
+              <ButtonPrimary>Alla inlägg</ButtonPrimary>
             </UnstyledInternalLink>
             <Fill />
           </Row>
