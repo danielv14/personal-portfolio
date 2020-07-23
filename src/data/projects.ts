@@ -31,4 +31,20 @@ export const projects: Project[] = [
     tags: ['React', 'MDX', 'styled-components'],
     urlSource: 'https://github.com/danielv14/personal-portfolio',
   },
+  {
+    title: 'Flexbox Grid',
+    icon: '🔮',
+    summary: 'Ett responsivt, flexbox-baserat och konfigurerbart grid-system byggt med SCSS',
+    tags: ['Responsiv design', 'SCSS'],
+    urlSource: 'https://github.com/danielv14/flexbox-grid',
+    url: 'https://danielv14.github.io/flexbox-grid/',
+  },
+  {
+    title: 'Palettr',
+    icon: '👩‍🎨',
+    summary: 'Sajt med Vue.js frontend och Laravel backend för att skapa och hitta intressanta färgpaletter',
+    tags: ['Vue', 'Laravel', 'Postgres'],
+    urlSource: 'https://github.com/danielv14/Palettr',
+    url: 'http://palettr.herokuapp.com/',
+  },
 ];
