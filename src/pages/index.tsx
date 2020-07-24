@@ -23,6 +23,12 @@ import { theme } from '../theme/theme';
 import { PostMetaData } from '../types/FrontMatter';
 import { Project } from '../types/Project';
 
+const HeroTitle = styled.h1`
+  display: inline-block;
+  transform: skewY(-4deg);
+  font-style: italic;
+`;
+
 export default function Home() {
   const { blogPosts, projects } = useContent();
   const latestBlogPosts = blogPosts.slice(0, 4);
@@ -77,11 +83,6 @@ export default function Home() {
 }
 
 const HeroContent = () => {
-  const HeroTitle = styled.h1`
-    display: inline-block;
-    transform: skewY(-4deg);
-    font-style: italic;
-  `;
   return (
     <section>
       <Column>
