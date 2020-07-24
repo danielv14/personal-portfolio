@@ -6,6 +6,7 @@ import { Row } from '../ui/container/row';
 import { Tag } from '../ui/content/tag';
 import { MarginSmall } from '../ui/margins/marginSmall';
 import { UnstyledLink } from '../ui/content/unstyledLink';
+import { animationSpring } from './animations';
 
 interface CardProjectProps {
   title: string;
@@ -17,7 +18,7 @@ interface CardProjectProps {
 
 export const CardProject: React.FC<CardProjectProps> = ({ title, summary, tags, urlSource, url }) => {
   return (
-    <Card>
+    <Card {...animationSpring}>
       <Row style={{ height: '100%' }}>
         <MarginSmall />
         <Column>
