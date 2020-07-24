@@ -2,6 +2,7 @@ import React from 'react';
 import { Column } from '../ui/container/column';
 import { TextMuted } from '../ui/content/textMuted';
 import { Item, ItemHeader } from './postListItem.styles';
+import { MotionProps } from 'framer-motion';
 
 interface PostListItemProps {
   title: string;
@@ -9,7 +10,7 @@ interface PostListItemProps {
   date?: string;
 }
 
-export const animation = {
+export const animation: MotionProps = {
   whileHover: { y: -2 },
   whileTap: {
     y: 0,

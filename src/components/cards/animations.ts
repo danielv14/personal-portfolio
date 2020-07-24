@@ -1,4 +1,6 @@
-export const animationSpring = {
+import { MotionProps } from 'framer-motion';
+
+export const animationSpring: MotionProps = {
   whileHover: { y: -3 },
   whileTap: {
     y: 0,
