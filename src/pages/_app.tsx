@@ -12,6 +12,7 @@ import { MDXComponents } from '../components/mdxComponents';
 import { ContentProvider } from '../context/ContentContext';
 import { projects } from '../data/projects';
 import { getAllBlogPosts } from '../data/blogPosts';
+import { NavAdjustedContent } from '../components/navbar/nav.styles';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -28,7 +29,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ContentProvider projects={projects} blogPosts={getAllBlogPosts()}>
           <GlobalStyle />
           <Navbar />
-          <Component {...pageProps} />
+          <NavAdjustedContent>
+            <Component {...pageProps} />
+          </NavAdjustedContent>
           <MarginLarge />
           <Footer />
         </ContentProvider>
