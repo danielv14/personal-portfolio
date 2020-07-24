@@ -13,6 +13,7 @@
     "@styled-icons/feather": "^10.5.0",
     "color": "^3.1.2",
     "date-fns": "^2.14.0",
+    "framer-motion": "^2.1.4",
     "mdx-prism": "^0.3.1",
     "next": "latest",
     "next-mdx-enhanced": "^3.0.0",
