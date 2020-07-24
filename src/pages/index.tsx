@@ -1,4 +1,6 @@
+import styled from 'styled-components';
 import { CardProject } from '../components/cards/cardProject';
+import { PostListItem } from '../components/postListItem/postListItem';
 import { ToolBox } from '../components/toolbox/toolBox';
 import { ButtonPrimary } from '../components/ui/buttons/ButtonPrimary';
 import { Column } from '../components/ui/container/column';
@@ -6,19 +8,19 @@ import { Fill } from '../components/ui/container/fill';
 import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
 import { ResponsiveGrid } from '../components/ui/container/responsiveGrid';
 import { Row } from '../components/ui/container/row';
+import { HeadingMuted } from '../components/ui/content/headingMuted';
+import { TextCenter } from '../components/ui/content/textCenter';
+import { TextMuted } from '../components/ui/content/textMuted';
+import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
-import { TextCenter } from '../components/ui/content/textCenter';
-import { site } from '../data/site';
-import { PostMetaData } from '../types/FrontMatter';
-import { PostListItem } from '../components/postListItem/postListItem';
-import { theme } from '../theme/theme';
-import { HeadingMuted } from '../components/ui/content/headingMuted';
-import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
-import { useScrollToElement } from '../hooks/useScrollToElement';
-import { TextMuted } from '../components/ui/content/textMuted';
-import { toolboxCategories } from '../data/toolBoxCategories';
+import { WavingHand } from '../components/ui/wavingHand';
 import { useContent } from '../context/ContentContext';
+import { site } from '../data/site';
+import { toolboxCategories } from '../data/toolBoxCategories';
+import { useScrollToElement } from '../hooks/useScrollToElement';
+import { theme } from '../theme/theme';
+import { PostMetaData } from '../types/FrontMatter';
 import { Project } from '../types/Project';
 
 export default function Home() {
