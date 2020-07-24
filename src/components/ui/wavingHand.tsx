@@ -12,7 +12,7 @@ const animation = keyframes`
 `;
 
 const AnimationWave = styled.span`
-  animation: ${animation} 2s linear 2;
+  animation: ${animation} 1.75s linear 2;
   animation-delay: 1s;
   transform-origin: 70% 70%;
   display: inline-block;
