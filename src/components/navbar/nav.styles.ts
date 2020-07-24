@@ -1,8 +1,22 @@
 import styled from 'styled-components';
 import { Row } from '../ui/container/row';
 
+export const NavAdjustedContent = styled.div`
+  padding-top: 60px;
+`;
+
+NavAdjustedContent.displayName = 'NavAdjustedContent';
+
 export const NavbarWrapper = styled.div`
   box-shadow: var(--box-shadow-main);
+  position: fixed;
+  width: 100%;
+  background: var(--bg-color);
+  z-index: 999;
+  @supports (backdrop-filter: blur(20px)) {
+    backdrop-filter: blur(20px);
+    background: transparent;
+  }
 `;
 
 NavbarWrapper.displayName = 'NavbarWrapper';
