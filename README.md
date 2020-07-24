@@ -8,6 +8,7 @@ This is the latest iteration of my personal portfolio. It was previously built w
 - [TypeScript](https://www.typescriptlang.org/)
 - [MDX](https://github.com/mdx-js/mdx)
 - [Styled Components](https://styled-components.com/)
+- [Framer Motion](https://www.framer.com/motion/)
 
 Site is deployed through [Vercel](https://vercel.com)
 
