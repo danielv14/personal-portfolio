@@ -8,7 +8,7 @@ export const ButtonPrimary = styled.div`
   font-weight: bold;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow-button);
-  transition: all 0.15s ease;
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
   cursor: pointer;
   width: auto;
   display: inline-block;
