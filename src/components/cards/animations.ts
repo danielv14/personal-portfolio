@@ -1,7 +1,7 @@
 import { MotionProps } from 'framer-motion';
 
 export const animationSpring: MotionProps = {
-  whileHover: { y: -3 },
+  whileHover: { y: -4 },
   whileTap: {
     y: 0,
   },
