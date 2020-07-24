@@ -32,7 +32,7 @@ const HeroTitle = styled.h1`
 export default function Home() {
   const { blogPosts, projects } = useContent();
   const latestBlogPosts = blogPosts.slice(0, 4);
-  const [ProjectRef, scrollToProjectElement] = useScrollToElement();
+  const [ProjectRef, scrollToProjectElement] = useScrollToElement({ offset: -60 });
   return (
     <>
       <ResponsiveContainer>
