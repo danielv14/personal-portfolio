@@ -9,10 +9,22 @@ interface PostListItemProps {
   date?: string;
 }
 
+export const animation = {
+  whileHover: { y: -2 },
+  whileTap: {
+    y: 0,
+  },
+  transition: {
+    type: 'spring',
+    stiffness: 200,
+    damping: 10,
+  },
+};
+
 export const PostListItem: React.FC<PostListItemProps> = ({ title, summary, date }) => {
   return (
     <Column>
-      <Item>
+      <Item {...animation}>
         <ItemHeader>{title}</ItemHeader>
         {date && <TextMuted>{date}</TextMuted>}
         <p>{summary}</p>
