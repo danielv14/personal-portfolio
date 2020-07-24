@@ -75,11 +75,20 @@ export default function Home() {
 }
 
 const HeroContent = () => {
+  const HeroTitle = styled.h1`
+    display: inline-block;
+    transform: skewY(-4deg);
+    font-style: italic;
+  `;
   return (
     <section>
       <Column>
         <TextCenter>
-          <h1>👋 Hallå där!</h1>
+          <div>
+            <HeroTitle>
+              <WavingHand /> Hallå där!
+            </HeroTitle>
+          </div>
           <HeadingMuted as="h5">
             Daniel här! Webbutvecklare med förkärlek till JavaScript, schysst design och tv-serier.
           </HeadingMuted>
