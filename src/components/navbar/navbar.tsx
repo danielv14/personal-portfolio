@@ -4,9 +4,8 @@ import { Fill } from '../ui/container/fill';
 import { ResponsiveContainer } from '../ui/container/responsiveContainer';
 import { Row } from '../ui/container/row';
 import { UnstyledInternalLink } from '../ui/content/unstyledLink';
-import { IconDarkMode } from '../ui/icons/iconDarkMode';
-import { IconLightMode } from '../ui/icons/iconLightMode';
 import { MarginMedium } from '../ui/margins/marginMedium';
+import { DarkModeToggleIcons } from './darkModeToggleIcons';
 import { NavbarContentWrapper, NavbarItem, NavbarWrapper } from './nav.styles';
 
 export const Navbar = () => {
@@ -25,7 +24,7 @@ export const Navbar = () => {
               <NavbarItem>Blogg</NavbarItem>
             </UnstyledInternalLink>
             <MarginMedium />
-            {isDarkMode ? <IconLightMode onClick={toggleDarkMode} /> : <IconDarkMode onClick={toggleDarkMode} />}
+            <DarkModeToggleIcons isDarkMode={isDarkMode} onToggle={toggleDarkMode} />
           </Row>
         </NavbarContentWrapper>
       </ResponsiveContainer>
