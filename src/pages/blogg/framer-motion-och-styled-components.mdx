@@ -1,0 +1,140 @@
+---
+layout: blogPost
+title: Kom igång med Framer Motion och styled-components
+summary: För ett litet tag sedan experimenterade jag med att implementera animationer med Framer Motion på denna sajt. Kombinationen Framer Motion och styled-components visade sig vara rätt trevligt och så här snabbt kan man komma igång.
+date: 2020-07-25
+---
+
+Häromkvällen experimenterade jag med [Framer Motion](https://www.framer.com/motion/) för att animera vissa komponenter här på denna sajt - animationer som tidigare gjordes med ren css.
+Det visade sig vara så himla enkelt att använda Framer Motion tillsammans med styled-components att experimentet resulterade i att jag helt enkelt [bytte ut](https://github.com/danielv14/personal-portfolio/pull/48) vissa animationer.
+
+Det är delvis till just sånt här jag har denna sajten - ett utrymme för att testa på nya grejer och eventuellt skriva några rader om upptäckter, lärdomar o.s.v.
+
+> Notera att jag i skrivande stund endast använt Framer Motion litegrann.
+> Det här är ingen djupdykande guide utan mer en liten _how-to_ för hur man snabbt kan komma igång med animationer via Framer Motion om man redan använder styled-components.
+
+Med Framer Motion kan man bland annat skapa komponent-baserade animationer - med hjälp av **motion components**.
+Så här beskrivs motion components enligt [api-dokumentationen](https://www.framer.com/api/motion/component): _"motion components are DOM primitives optimised for 60fps animation and gestures."_
+
+## Kombinera Framer Motion med styled-components för ✨
+
+Hur gör man då för att lägga till animationer med Framer Motion till en react-applikation som redan använder styled-components?
+
+Låt säga att man har en `Card` styled-components som ser ut ungefär så här:
+
+```ts:src/card.ts
+import styled from 'styled-components';
+
+export const Card = styled.div`
+  border-radius: var(--border-radius);
+  background: var(--bg-color-secondary);
+  padding: var(--margin-small);
+  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.09);
+  transition: box-shadow 0.2s ease;
+  &:hover {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
+  }
+`;
+```
+
+Komponenten `Card` sätter lite styling såsom borders och färger utifrån diverse css variabler. Inga konstigheter helt enkelt.
+
+Låt säga att man då har en annan komponent som använder sig av `Card`, kanske en `CardProject` komponent:
+
+```tsx:src/cardProject.tsx
+import React from 'react';
+import { Card } from './card';
+
+interface CardProjectProps {
+  title: string;
+  summary: string;
+}
+
+export const CardProject: React.FC<CardProjectProps> = ({ title, summary }) => {
+  return (
+    <Card>
+      <h2>{title}</h2>
+      <p>{summary}</p>
+    </Card>
+  );
+};
+```
+
+CardProject tar in lite props och har ett tillhörande interface för sina props och komponenten använder i sin tur `Card` komponenten.
+
+**Hur blandar man då in Framer Motion i denna goda kaksmet?** Jo, det är egentligen bara två små grejer som behöver justeras:
+
+- Ändra `Card` till att vara en `styled(motion.div)` istället för en `styled.div`.
+- Ändra `cardProject` till att ge `Card` lite animations-props.
+
+Det handlar alltså om små justeringar för att ändra implementationen av en komponent och små justeringar för att ändra hur denne komponent i sin tur används.
+
+## Ändra implementationen av en styled-component
+
+Som tidigare nämnt så använder sig ju Framer Motion av **motion components** och vi behöver alltså ändra `Card` till att bli en sådan:
+
+```ts{2,4}:src/card.ts
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+
+export const Card = styled(motion.div)`
+  /* Here be same styling as before */
+`;
+```
+
+Märk hur `motion` importeras och `Card` numera är en `styled(motion.div)` istället för en `styled.div`.
+
+Så enkelt kan det vara att refaktorera en befinlig styled-component av bli en ✨**_styled motion component_** ✨.
+
+## Ändra användning av en styled-component
+
+Nu när `Card` är en **styled motion component** behöver den lite `props` för att animeras som man vill:
+
+```tsx{2,10,11,12,13,14,15,16,17,18,19,20,24}:src/cardProject.tsx
+import React from 'react';
+import { MotionProps } from 'framer-motion';
+import { Card } from './card';
+
+interface CardProjectProps {
+  title: string;
+  summary: string;
+}
+
+const animationSpring: MotionProps = {
+  whileHover: { y: -4 },
+  whileTap: {
+    y: 0,
+  },
+  transition: {
+    type: 'spring',
+    stiffness: 250,
+    damping: 14,
+  },
+};
+
+export const CardProject: React.FC<CardProjectProps> = ({ title, summary }) => {
+  return (
+    <Card {...animationSpring}>
+      <h2>{title}</h2>
+      <p>{summary}</p>
+    </Card>
+  );
+};
+```
+
+I Refaktoreringen av `cardProject` är det lite mer grejer som händer - dels för att det är ett exempel som är baserat på TypeScript.
+
+`MotionProps` importeras, vilket är ungefär som det låter. Ett **interface** för props man kan ge till motion components för att skapa animationer.
+
+Därefter skapas ett animationsobjekt upp, `animationSpring`, som typas som `MotionProps`. Detta gör att man får auto-complete på objektet och lite schyssta förklaringar på konfiguration såsom `whileTap`. Det kan se ut ungefär så här:
+
+![Framer Motion interface auto complete](/img/posts/framer-motion-interface.png)
+
+När man sen har skapat upp sitt animationsobject är det bara **spreada** objektet som props till `Card` komponenten.
+
+Jag tänkte inte gå in i detalj för animationsobjektet mer än att nämna att det skapas en animation med en **transition** som aktiveras på hover - samt en liten animation när man trycker (med datormusen exempelvis) på komponenten.
+
+## Framer Motion + styled-components = ✨✨
+
+**Det var i stort sätt allt!** Så enkelt kan man komma igång med Framer Motion om man redan använder sig av styled-components.
+Det här var ju som sagt bara en kortare how-to. Det finns ju så klart mycket mer inom Framer Motion att upptäcka, det var bara roligt att det gick så smidigt att komma igång med enklare Framer Motion animationer i samband med styled-components.
