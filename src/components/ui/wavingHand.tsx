@@ -1,23 +1,18 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+import { motion, MotionProps } from 'framer-motion';
 
-const animation = keyframes`
-    0% { transform: rotate( 0.0deg) }
-   10% { transform: rotate(14.0deg) }
-   20% { transform: rotate(-8.0deg) }
-   30% { transform: rotate(14.0deg) }
-   40% { transform: rotate(-4.0deg) }
-   50% { transform: rotate(10.0deg) }
-   60% { transform: rotate( 0.0deg) }
-  100% { transform: rotate( 0.0deg) }
-`;
+const wavingSequence = [0.0, 18.0, -8.0, 18.0, -4.0, 10.0, 0, 0];
 
-const AnimationWave = styled.span`
-  animation: ${animation} 1.75s linear 2;
-  animation-delay: 1s;
-  transform-origin: 70% 70%;
+const animation: MotionProps = {
+  transition: { delay: 0.6, duration: 0.8, loop: 1, type: 'tween' },
+  animate: { rotate: wavingSequence },
+};
+
+const AnimationWave = styled(motion.div)`
   display: inline-block;
+  transform-origin: 70% 70%;
 `;
 
-export const WavingHand: React.FC = () => <AnimationWave>👋</AnimationWave>;
+export const WavingHand: React.FC = () => <AnimationWave {...animation}>👋</AnimationWave>;
 
 WavingHand.displayName = 'WavingHand';
