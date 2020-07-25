@@ -1,7 +1,7 @@
-import { Sunrise } from '@styled-icons/feather';
+import { Sun } from '@styled-icons/feather';
 import { IconBase, IconProps } from './iconBase';
 
-const Icon = IconBase(Sunrise);
+const Icon = IconBase(Sun);
 
 export const IconLightMode: React.FC<IconProps> = (props) => {
   return <Icon {...props} />;
