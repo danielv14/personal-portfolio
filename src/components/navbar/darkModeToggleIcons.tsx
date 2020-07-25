@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion, MotionProps } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, MotionProps, Variants, Transition } from 'framer-motion';
 import { IconLightMode } from '../ui/icons/iconLightMode';
 import { IconDarkMode } from '../ui/icons/iconDarkMode';
 
@@ -8,26 +8,43 @@ interface DarkModeToggleIconsProps {
   onToggle: () => void;
 }
 
+const transitionType: Transition = {
+  type: 'tween',
+  duration: 0.2,
+  ease: 'easeInOut',
+};
+
 const animation: MotionProps = {
   whileHover: { y: -2 },
   whileTap: { y: 0 },
-  transition: {
-    type: 'tween',
-    duration: 0.3,
-    ease: 'easeInOut',
-  },
+  transition: transitionType,
   initial: false,
 };
 
-const variants = {
-  dark: { rotate: -360 },
-  light: { rotate: 360 },
+const variants: Variants = {
+  dark: { rotate: -360, ...transitionType },
+  light: { rotate: 360, ...transitionType },
 };
 
 export const DarkModeToggleIcons: React.FC<DarkModeToggleIconsProps> = ({ isDarkMode, onToggle }) => {
+  const [hasUserToggled, userToggle] = useState(false);
+  const toggleDarkMode = () => {
+    if (!hasUserToggled) {
+      userToggle(true);
+    }
+    onToggle();
+  };
+
+  const shouldRenderDarkVariant = isDarkMode && hasUserToggled;
+  const shouldrenderLightVariant = !isDarkMode && hasUserToggled;
+
   return (
-    <motion.div {...animation} animate={isDarkMode ? 'dark' : 'light'} variants={variants}>
-      {isDarkMode ? <IconLightMode onClick={onToggle} /> : <IconDarkMode onClick={onToggle} />}
+    <motion.div
+      {...animation}
+      animate={shouldRenderDarkVariant ? 'dark' : shouldrenderLightVariant ? 'light' : ''}
+      variants={variants}
+    >
+      {isDarkMode ? <IconLightMode onClick={toggleDarkMode} /> : <IconDarkMode onClick={toggleDarkMode} />}
     </motion.div>
   );
 };
