@@ -122,7 +122,7 @@ export const syntaxHighlighting = css`
   }
   /* Line highlighting */
   .mdx-marker {
-    margin-left: -1.5em;
+    margin-left: -1.55em;
     padding-left: 1em;
     border-left: 6px solid #88c0d0;
     @media (min-width: ${theme.breakpoints.medium}) {
