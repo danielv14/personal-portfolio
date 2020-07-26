@@ -37,6 +37,7 @@
     "babel-plugin-styled-components": "^1.10.0",
     "eslint": "^7.4.0",
     "eslint-plugin-react": "^7.20.3",
+    "hygen": "^6.0.4",
     "rehype": "^11.0.0",
     "typescript": "3.9.6"
   },
