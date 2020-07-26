@@ -2,6 +2,7 @@ export interface ColorTheme {
   backgroundColor: string;
   backgroundColorSecondary: string;
   backgroundColorHighlight: string;
+  backgroundColorNavBar: string;
   textColor: string;
   textMutedColor: string;
   headingColor: string;
