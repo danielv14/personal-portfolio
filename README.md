@@ -1,6 +1,6 @@
 # Personal Portfolio
 
-This is the latest iteration of my personal portfolio. It was previously built with static site generator Jekyll - but is now built using Next.js
+This is the latest iteration of my personal portfolio. It was previously built with static site generator Jekyll - but is now built using Next.js and other tools and libraries listed below.
 
 ## 🛠 This site is built using
 
@@ -9,11 +9,10 @@ This is the latest iteration of my personal portfolio. It was previously built w
 - [MDX](https://github.com/mdx-js/mdx)
 - [Styled Components](https://styled-components.com/)
 - [Framer Motion](https://www.framer.com/motion/)
-- [Hygen.io](http://www.hygen.io/) - For generating blog post boilerplate
 
 Site is deployed through [Vercel](https://vercel.com)
 
-## 👩‍🏫 Folder overview
+## 📚 Folder overview
 
 - `src/components/*` - All react components.
 - `src/context/*` - All react context providers and hooks.
@@ -31,9 +30,9 @@ Site is deployed through [Vercel](https://vercel.com)
 
 ## ✍️ Generate blog post boilerplate
 
-Blog posts require certain **frontmatter** such as a layout template and date. These values can be cumbersome to fill it in by hand all the time.
+Blog posts require certain **frontmatter** such as the name of a layout template and a date. These values can be cumbersome to fill it in by hand all the time.
 
-Because of this blog posts can be generated with **Hygen** and the following `npm script`:
+Because of this blog posts can be generated with [Hygen](http://www.hygen.io/) through the following `npm script`:
 
 ```bash
 $ yarn article
@@ -41,7 +40,7 @@ $ yarn article
 
 The ☝️ command will prompt you for a _title_ and _summary_ of the article. The summary is optional for the sake of generating boilerplate.
 
-A `MDX` file will be generated in `src/pages/blogg/` where the title will be used as filename - also as url since its a nextjs page based on filename.
+A `{title}.mdx` file will be generated in `src/pages/blogg/` where the title will be used as filename - also as url since it's a file in a Next.js `pages` directory. The prompted for blog post title will be **slugified and lowercased** before used as filename
 
 ## 👨‍💻Running Locally
 
