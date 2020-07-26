@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --ext ts --ext tsx",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "article": "hygen article new"
   },
   "dependencies": {
     "@mdx-js/react": "^1.6.6",
