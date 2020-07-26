@@ -15,7 +15,7 @@ export const NavbarWrapper = styled.div`
   z-index: 999;
   @supports (backdrop-filter: blur(20px)) {
     backdrop-filter: blur(20px);
-    background: transparent;
+    background: var(--bg-color-navbar);
   }
 `;
 

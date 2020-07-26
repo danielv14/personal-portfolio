@@ -5,6 +5,7 @@ export const setupThemeVariables = (theme: ColorTheme) => css`
   --bg-color: ${theme.backgroundColor};
   --bg-color-secondary: ${theme.backgroundColorSecondary};
   --bg-color-highlight: ${theme.backgroundColorHighlight};
+  --bg-color-navbar: ${theme.backgroundColorNavBar};
   --text-color: ${theme.textColor};
   --heading-color: ${theme.headingColor};
   --text-muted-color: ${theme.textMutedColor};
