@@ -1,6 +1,6 @@
 module.exports = {
   prompt: ({ prompter }) => {
-    return new Promise((resolve, _reject) => {
+    return new Promise((resolve, reject) => {
       prompter
         .prompt([
           {
@@ -16,6 +16,10 @@ module.exports = {
         ])
         .then(({ name, summary }) => {
           const date = new Date().toISOString().split('T')[0];
+          if (!name) {
+            reject('You have to provide a article name');
+            return;
+          }
           resolve({
             name,
             date,
