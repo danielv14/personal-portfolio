@@ -9,7 +9,7 @@ This is the latest iteration of my personal portfolio. It was previously built w
 - [MDX](https://github.com/mdx-js/mdx)
 - [Styled Components](https://styled-components.com/)
 - [Framer Motion](https://www.framer.com/motion/)
-- [Hygen.io](http://www.hygen.io/) - For generating article boilerplate
+- [Hygen.io](http://www.hygen.io/) - For generating blog post boilerplate
 
 Site is deployed through [Vercel](https://vercel.com)
 
