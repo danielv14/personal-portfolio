@@ -26,7 +26,6 @@ import { Project } from '../types/Project';
 const HeroTitle = styled.h1`
   display: inline-block;
   transform: skewY(-4deg);
-  font-style: italic;
 `;
 
 export default function Home() {
