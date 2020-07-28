@@ -13,6 +13,7 @@ export const typography = css`
     font-family: var(--headings-font);
     color: var(--heading-color);
     line-height: 1.2;
+    letter-spacing: -0.5px;
   }
 
   h1 {
