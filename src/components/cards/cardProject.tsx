@@ -7,6 +7,7 @@ import { Tag } from '../ui/content/tag';
 import { MarginSmall } from '../ui/margins/marginSmall';
 import { UnstyledLink } from '../ui/content/unstyledLink';
 import { animationSpring } from './animations';
+import { CardHeader } from './shared.styles';
 
 interface CardProjectProps {
   title: string;
@@ -24,7 +25,7 @@ export const CardProject: React.FC<CardProjectProps> = ({ title, summary, tags, 
         <Column>
           <UnstyledLink href={urlSource}>
             <MarginSmall />
-            <h3>{title}</h3>
+            <CardHeader>{title}</CardHeader>
             <MarginSmall />
             <p>{summary}</p>
           </UnstyledLink>
