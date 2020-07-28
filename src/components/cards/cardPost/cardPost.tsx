@@ -1,17 +1,13 @@
-import { PostMetaData } from '../../types/FrontMatter';
-import { Card } from '../ui/container/card';
-import { Row } from '../ui/container/row';
-import { MarginSmall } from '../ui/margins/marginSmall';
-import { Column } from '../ui/container/column';
-import { TextMuted } from '../ui/content/textMuted';
-import styled from 'styled-components';
-import { UnstyledInternalLink } from '../ui/content/unstyledLink';
-import { animationSpring } from './animations';
-import { CardHeader } from './shared.styles';
-
-const SubHeader = styled(TextMuted)`
-  font-size: var(--font-size-smaller);
-`;
+import { PostMetaData } from '../../../types/FrontMatter';
+import { Card } from '../../ui/container/card';
+import { Row } from '../../ui/container/row';
+import { MarginSmall } from '../../ui/margins/marginSmall';
+import { Column } from '../../ui/container/column';
+import { TextMuted } from '../../ui/content/textMuted';
+import { UnstyledInternalLink } from '../../ui/content/unstyledLink';
+import { animationSpring } from '../animations';
+import { CardHeader } from '../shared.styles';
+import { SubHeader } from './cardPost.styles';
 
 interface CardPostProps {
   post: PostMetaData;

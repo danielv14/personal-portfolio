@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CardProject } from '../components/cards/cardProject';
+import { CardProject } from '../components/cards/cardProject/cardProject';
 import { PostListItem } from '../components/postListItem/postListItem';
 import { ToolBox } from '../components/toolbox/toolBox';
 import { ButtonPrimary } from '../components/ui/buttons/ButtonPrimary';
