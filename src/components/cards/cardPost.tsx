@@ -7,6 +7,7 @@ import { TextMuted } from '../ui/content/textMuted';
 import styled from 'styled-components';
 import { UnstyledInternalLink } from '../ui/content/unstyledLink';
 import { animationSpring } from './animations';
+import { CardHeader } from './shared.styles';
 
 const SubHeader = styled(TextMuted)`
   font-size: var(--font-size-smaller);
@@ -25,7 +26,7 @@ export const CardPost: React.FC<CardPostProps> = ({ post, subHeader }) => (
         <Column style={{ alignItems: 'stretch' }}>
           <MarginSmall />
           {subHeader && <SubHeader>{subHeader}</SubHeader>}
-          <h3 style={{ marginTop: '0' }}>{post.title}</h3>
+          <CardHeader style={{ marginTop: '0' }}>{post.title}</CardHeader>
           <TextMuted>{post.date}</TextMuted>
         </Column>
         <MarginSmall />

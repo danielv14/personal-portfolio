@@ -19,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     background: var(--bg-color);
     color: var(--text-color);
     font-family: var(--content-font);
+    font-weight: 500;
   }
 
   /* Add typography styles */
