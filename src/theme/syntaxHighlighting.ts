@@ -9,6 +9,7 @@ export const syntaxHighlighting = css`
     display: block;
     font-family: ${theme.fonts.fontFamily.mono};
     text-align: left;
+    font-weight: 400;
     white-space: pre;
     word-spacing: normal;
     word-break: normal;
@@ -135,7 +136,7 @@ export const syntaxHighlighting = css`
     overflow-y: hidden;
     font-family: ${theme.fonts.fontFamily.main};
     margin-bottom: -0.8rem;
-    font-weight: bold;
+    font-weight: 500;
     padding: 0.5em 1em;
     background: #81a1c1;
     color: #f8f8f2;

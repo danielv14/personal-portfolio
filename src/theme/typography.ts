@@ -19,13 +19,13 @@ export const typography = css`
     font-size: var(--font-size-h1);
     margin-top: 1rem;
     margin-bottom: 1rem;
-    font-weight: bold;
+    font-weight: 700;
   }
   h2 {
     font-size: var(--font-size-h2);
     margin-top: 1rem;
     margin-bottom: 1rem;
-    font-weight: bold;
+    font-weight: 700;
   }
   h3 {
     font-size: var(--font-size-h3);
@@ -116,6 +116,7 @@ export const typography = css`
     color: var(--text-color);
     background: var(--bg-color-highlight);
     border-radius: var(--border-radius-small);
+    font-weight: 400;
     padding: 4px;
   }
 
