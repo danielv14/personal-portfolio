@@ -9,7 +9,7 @@ interface DefaultProps {
   children: React.ReactChildren;
 }
 
-export default (_frontMatter: FrontMatterBase) => {
+const layoutDefault = (_frontMatter: FrontMatterBase) => {
   // eslint-disable-next-line react/display-name
   return ({ children }: DefaultProps) => {
     return (
@@ -23,3 +23,5 @@ export default (_frontMatter: FrontMatterBase) => {
     );
   };
 };
+
+export default layoutDefault;

@@ -17,7 +17,7 @@ interface PostProps {
   children: React.ReactChildren;
 }
 
-export default (frontMatter: PostFrontMatter) => {
+const layoutBlogPost = (frontMatter: PostFrontMatter) => {
   // eslint-disable-next-line react/display-name
   return ({ children }: PostProps) => {
     const [prevPost, nextPost] = usePrevAndNextBlogPost(frontMatter);
@@ -50,3 +50,5 @@ export default (frontMatter: PostFrontMatter) => {
     );
   };
 };
+
+export default layoutBlogPost;
