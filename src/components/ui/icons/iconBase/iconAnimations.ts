@@ -1,7 +1,7 @@
 import { MotionProps } from "framer-motion";
 import { IconAnimation } from "../../../../types/icon/iconAnimation";
 
-const hoverAnimation: MotionProps = {
+const animationHover: MotionProps = {
   whileHover: { y: -2 },
   whileTap: {
     y: 0,
@@ -13,7 +13,7 @@ const hoverAnimation: MotionProps = {
   },
 };
 
-const rotateLeftAnimation: MotionProps = {
+const animationRotateLeft: MotionProps = {
   transition: {
     type: 'spring',
     stiffness: 100,
@@ -24,8 +24,8 @@ const rotateLeftAnimation: MotionProps = {
   }
 }
 
-const rotateRightAnimation: MotionProps = {
-  ...rotateLeftAnimation,
+const animationRotateRight: MotionProps = {
+  ...animationRotateLeft,
   animate: {
     rotate: 360
   }
@@ -33,7 +33,7 @@ const rotateRightAnimation: MotionProps = {
 
 export const iconAnimations: { [key in IconAnimation]: MotionProps } = {
   [IconAnimation.None]: {},
-  [IconAnimation.Hover]: hoverAnimation,
-  [IconAnimation.RotateLeft]: rotateLeftAnimation,
-  [IconAnimation.RotateRight]: rotateRightAnimation
+  [IconAnimation.Hover]: animationHover,
+  [IconAnimation.RotateLeft]: animationRotateLeft,
+  [IconAnimation.RotateRight]: animationRotateRight
 }
