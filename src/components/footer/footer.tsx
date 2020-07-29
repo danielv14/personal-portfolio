@@ -8,6 +8,7 @@ import { IconGitHub } from '../ui/icons/iconGitHub';
 import { site } from '../../data/site';
 import { IconMail } from '../ui/icons/iconMail';
 import { MarginSmall } from '../ui/margins/marginSmall';
+import { IconAnimation } from '../../types/icon/iconAnimation';
 
 const FooterText = styled.p`
   margin: 0;
@@ -24,11 +25,11 @@ export const Footer: React.FC = () => {
           <FooterText>© Daniel Vernberg {new Date().getFullYear()}</FooterText>
           <Fill />
           <a href={site.urlGithub}>
-            <IconGitHub hoverEffect />
+            <IconGitHub animation={IconAnimation.Hover} />
           </a>
           <MarginSmall />
           <a href={`mailto:${site.email}`}>
-            <IconMail hoverEffect />
+            <IconMail animation={IconAnimation.Hover} />
           </a>
         </Row>
         <MarginMedium />

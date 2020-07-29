@@ -4,7 +4,7 @@ import { motion, MotionProps } from 'framer-motion';
 const wavingSequence = [0.0, 18.0, -8.0, 18.0, -4.0, 10.0, 0, 0];
 
 const animation: MotionProps = {
-  transition: { delay: 0.6, duration: 0.8, loop: 1, type: 'tween' },
+  transition: { delay: 0.8, duration: 0.8, loop: 1, type: 'tween' },
   animate: { rotate: wavingSequence },
 };
 
