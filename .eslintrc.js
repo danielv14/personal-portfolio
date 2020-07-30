@@ -17,6 +17,8 @@ module.exports = {
   ],
   rules: {
     'react/prop-types': 'off',
+    'semi': 'error',
+    'quotes': [2, 'single', 'avoid-escape'],
     'no-undef': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'react/react-in-jsx-scope': 'off',
