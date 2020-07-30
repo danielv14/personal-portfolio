@@ -8,7 +8,6 @@ interface DarkModeToggleIconsProps {
   onToggle: () => void;
 }
 
-
 export const DarkModeToggleIcons: React.FC<DarkModeToggleIconsProps> = ({ isDarkMode, onToggle }) => {
   const [hasUserToggled, userToggle] = useState(false);
   const toggleDarkMode = () => {
@@ -20,10 +19,15 @@ export const DarkModeToggleIcons: React.FC<DarkModeToggleIconsProps> = ({ isDark
 
   const shouldRenderDarkVariant = isDarkMode && hasUserToggled;
   const shouldrenderLightVariant = !isDarkMode && hasUserToggled;
-  const animation = shouldRenderDarkVariant ? IconAnimation.RotateLeft : shouldrenderLightVariant ? IconAnimation.RotateRight : IconAnimation.None;
-  return (
-      isDarkMode ? <IconLightMode onClick={toggleDarkMode} animation={animation} /> : <IconDarkMode onClick={toggleDarkMode} animation={animation} />
- 
+  const animation = shouldRenderDarkVariant
+    ? IconAnimation.RotateLeft
+    : shouldrenderLightVariant
+    ? IconAnimation.RotateRight
+    : IconAnimation.None;
+  return isDarkMode ? (
+    <IconLightMode onClick={toggleDarkMode} animation={animation} />
+  ) : (
+    <IconDarkMode onClick={toggleDarkMode} animation={animation} />
   );
 };
 
