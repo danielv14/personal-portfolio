@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { IconAnimation } from '../../types/icon/iconAnimation';
 import { IconDarkMode } from '../ui/icons/iconDarkMode';
 import { IconLightMode } from '../ui/icons/iconLightMode';
-import { IconAnimation } from '../../types/icon/iconAnimation';
 
 interface DarkModeToggleIconsProps {
   isDarkMode: boolean;
@@ -16,19 +16,9 @@ export const DarkModeToggleIcons: React.FC<DarkModeToggleIconsProps> = ({ isDark
     }
     onToggle();
   };
-
-  const shouldRenderDarkVariant = isDarkMode && hasUserToggled;
-  const shouldrenderLightVariant = !isDarkMode && hasUserToggled;
-  const animation = shouldRenderDarkVariant
-    ? IconAnimation.RotateLeft
-    : shouldrenderLightVariant
-    ? IconAnimation.RotateRight
-    : IconAnimation.None;
-  return isDarkMode ? (
-    <IconLightMode onClick={toggleDarkMode} animation={animation} />
-  ) : (
-    <IconDarkMode onClick={toggleDarkMode} animation={animation} />
-  );
+  const animation = hasUserToggled ? IconAnimation.RotateRight : IconAnimation.None;
+  const Icon = isDarkMode ? IconLightMode : IconDarkMode;
+  return <Icon onClick={toggleDarkMode} animation={animation} />;
 };
 
 DarkModeToggleIcons.displayName = 'DarkModeToggleIcons';
