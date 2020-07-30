@@ -16,15 +16,12 @@ const BaseStyle = ({ size }: IconProps) => css`
 `;
 
 export const renderIcon = (Icon: StyledIcon, props: IconComponentProps): JSX.Element => {
-  const { animation, ...rest } = props;
-  if (animation) {
-    return (
-      <IconAnimationWrapper animation={animation}>
-        <Icon {...rest} />
-      </IconAnimationWrapper>
-    )
-  }
-  return <Icon {...rest} />
+  const { animation, customAnimation, ...rest } = props;
+  return (
+    <IconAnimationWrapper animation={animation} customAnimation={customAnimation}>
+      <Icon {...rest} />
+    </IconAnimationWrapper>
+  )
 }
 
 export const IconBase = (icon: StyledIcon): StyledIcon => styled(icon)<IconProps>`
