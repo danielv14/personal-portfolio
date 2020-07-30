@@ -1,6 +1,6 @@
-import { motion, MotionProps } from "framer-motion";
-import { iconAnimations } from "./iconAnimations";
-import { IconAnimation } from "../../../../types/icon/iconAnimation";
+import { motion, MotionProps } from 'framer-motion';
+import { iconAnimations } from './iconAnimations';
+import { IconAnimation } from '../../../../types/icon/iconAnimation';
 
 export interface IconAnimationWrapperProps {
   animation?: IconAnimation;
@@ -14,5 +14,5 @@ export const IconAnimationWrapper: React.FC<IconAnimationWrapperProps> = ({ anim
       {children}
     </motion.div>
   );
-}
+};
 IconAnimationWrapper.displayName = 'IconAnimationWrapper';

@@ -21,8 +21,8 @@ export const renderIcon = (Icon: StyledIcon, props: IconComponentProps): JSX.Ele
     <IconAnimationWrapper animation={animation} customAnimation={customAnimation}>
       <Icon {...rest} />
     </IconAnimationWrapper>
-  )
-}
+  );
+};
 
 export const IconBase = (icon: StyledIcon): StyledIcon => styled(icon)<IconProps>`
   ${BaseStyle}
