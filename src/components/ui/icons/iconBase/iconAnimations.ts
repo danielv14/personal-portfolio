@@ -8,7 +8,7 @@ const animationHover: MotionProps = {
   },
   transition: {
     type: 'spring',
-    stiffness: 350,
+    stiffness: 250,
     damping: 10,
   },
 };
