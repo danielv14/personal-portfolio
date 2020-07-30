@@ -6,7 +6,8 @@ import { Theme } from '../types/theme/Colors';
 
 const storage_key = `${site.author} - theme`;
 const darkModeClass = 'dark-mode';
-const usePrefersDarkMode = () => useMedia('(prefers-color-scheme: dark)');
+
+const usePrefersDarkMode = (): boolean => useMedia('(prefers-color-scheme: dark)');
 
 export const useDarkMode = () => {
   const [isDarkMode, toggle] = useState<boolean>(false);
@@ -18,7 +19,7 @@ export const useDarkMode = () => {
   };
 
   useEffect(() => {
-    // If user prefers dark mode and no user stored preference is set
+    // If user prefers dark mode and no user-stored preference is set
     // then toggle dark mode to true and add the dark mode class to DOM body
     // without setting storage pref - only user action through this hook's toggleDarkMode should set to storage
     if (prefersDarkMode && !storage.has(storage_key)) {
