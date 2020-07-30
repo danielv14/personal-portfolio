@@ -8,7 +8,7 @@ export interface IconAnimationWrapperProps {
 }
 
 export const IconAnimationWrapper: React.FC<IconAnimationWrapperProps> = ({ animation = IconAnimation.None, customAnimation, children }) => {
-  const iconAnimation = customAnimation ? customAnimation : iconAnimations[animation];
+  const iconAnimation = customAnimation ?? iconAnimations[animation];
   return (
     <motion.div {...iconAnimation}>
       {children}
