@@ -1,14 +1,13 @@
 import { PostFrontMatter } from '../../types/FrontMatter';
-import { site } from '../../data/site';
-import { NextSeo } from 'next-seo';
+import { Seo } from './seo';
 
 interface SeoBlogPostProps {
   blogPostData: PostFrontMatter;
 }
 
 export const SeoBlogPost: React.FC<SeoBlogPostProps> = ({ blogPostData: { title, summary, date } }) => (
-  <NextSeo
-    title={`${title} – ${site.author}`}
+  <Seo
+    title={title}
     description={summary}
     openGraph={{
       type: 'article',
