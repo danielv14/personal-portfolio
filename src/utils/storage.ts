@@ -1,5 +1,11 @@
-export const storage = {
-  set: (key: string, value: string) => window.localStorage.setItem(key, value),
-  get: (key: string) => window.localStorage.getItem(key),
-  has: (key: string) => !!window.localStorage.getItem(key),
+interface Storage {
+  set: (key: string, value: string) => void;
+  get: (key: string) => string;
+  has: (key: string) => boolean;
+}
+
+export const storage: Storage = {
+  set: (key, value) => window.localStorage.setItem(key, value),
+  get: (key) => window.localStorage.getItem(key) ?? '',
+  has: (key) => !!window.localStorage.getItem(key),
 };
