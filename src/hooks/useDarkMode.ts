@@ -19,9 +19,8 @@ export const useDarkMode = () => {
   };
 
   useEffect(() => {
-    // If user prefers dark mode and no user-stored preference is set
-    // then toggle dark mode to true and add the dark mode class to DOM body
-    // without setting storage pref - only user action through this hook's toggleDarkMode should set to storage
+    // If user prefers dark mode and no user-stored preference is set then change theme to dark
+    // without persisting theme to storage since only user action should persist to storage
     if (prefersDarkMode && !storage.has(themeStorageKey)) {
       toggle(true);
       document.body.classList.add(darkModeClass);
