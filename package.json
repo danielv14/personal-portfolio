@@ -23,7 +23,8 @@
     "react-dom": "^16.13.0",
     "remark-code-titles": "^0.1.1",
     "styled-components": "^5.0.0",
-    "styled-reset": "^4.1.6"
+    "styled-reset": "^4.1.6",
+    "use-media": "^1.4.0"
   },
   "devDependencies": {
     "@types/color": "^3.0.1",

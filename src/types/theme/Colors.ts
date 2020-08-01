@@ -1,3 +1,7 @@
+export enum Theme {
+  Dark = 'dark',
+  Light = 'light',
+}
 export interface ColorTheme {
   backgroundColor: string;
   backgroundColorSecondary: string;

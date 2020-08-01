@@ -1,20 +1,34 @@
 import { useState, useEffect } from 'react';
+import { useMedia } from 'use-media';
 import { site } from '../data/site';
 import { storage } from '../utils/storage';
+import { Theme } from '../types/theme/Colors';
 
-const storage_key = `${site.author} - dark-mode`;
+const themeStorageKey = `${site.author} - theme`;
+const darkModeClass = 'dark-mode';
+
+const usePrefersDarkMode = (): boolean => useMedia('(prefers-color-scheme: dark)');
 
 export const useDarkMode = () => {
   const [isDarkMode, toggle] = useState<boolean>(false);
-
+  const prefersDarkMode = usePrefersDarkMode();
   const toggleDarkMode = (): void => {
-    storage.set(storage_key, isDarkMode ? 'false' : 'true');
-    document.body.classList.toggle('dark-mode');
     toggle(!isDarkMode);
+    storage.set(themeStorageKey, isDarkMode ? Theme.Light : Theme.Dark);
+    document.body.classList.toggle(darkModeClass);
   };
 
   useEffect(() => {
-    if (storage.get(storage_key) === 'true') {
+    // If user prefers dark mode and no user-stored preference is set then change theme to dark
+    // without persisting theme to storage since only user action should persist to storage
+    if (prefersDarkMode && !storage.has(themeStorageKey)) {
+      toggle(true);
+      document.body.classList.add(darkModeClass);
+    }
+  }, [prefersDarkMode]);
+
+  useEffect(() => {
+    if (storage.get(themeStorageKey) === Theme.Dark) {
       toggleDarkMode();
     }
   }, []);
