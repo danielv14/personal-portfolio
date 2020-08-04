@@ -1,24 +1,24 @@
 ---
 layout: blogPost
-title: "Portfolio Redesign: Keep it simple"
-summary: "Summering av några punkter kring omdesignen av denna webbplats: enklare mobile-first design, stöd för ljust och mörkt tema, css variabler och styling som reactkomponenter." 
+title: 'Portfolio Redesign: Keep it simple'
+summary: 'Summering av några punkter kring omdesignen av denna webbplats: enklare mobile-first design, stöd för ljust och mörkt tema, css variabler och styling som reactkomponenter.'
 date: 2020-06-30
 ---
 
 import { Card } from '../../components/ui/container/card';
-import { ResponsiveGrid } from '../../components/ui/container/responsiveGrid'
+import { ResponsiveGrid } from '../../components/ui/container/responsiveGrid';
 
 > Det här är en **kortare summering** kring hur jag skapade en mer nedskalad design av denna sajt. Vill man ha mer detaljer är det enklast att ta en titt i [källkoden](https://github.com/danielv14/personal-portfolio).
 
-Jag designade för några dagar sedan om den här sajten, delvis för att den var [svårjobbad rent designmässigt](/blogg/att-ga-fran-jekyll-till-next-pa-tre-dagar).   
+Jag designade för några dagar sedan om den här sajten, delvis för att den var [svårjobbad rent designmässigt](/blogg/att-ga-fran-jekyll-till-next-pa-tre-dagar).
 
 Efter omdesignen landade jag bland annat i några punkter som jag tänkte gå in på lite närmare:
 
-* **Mobile-first** - Designen för sajten är gjord utifrån mindre enheter och skalad uppåt.
-* **Enkel, innehållsfokuserad design** - Flashig design har fått lämna rampljuset för att ge plats åt innehåll.
-* **CSS variabler** - Gör snabbt ändringar som slår äver hela sajten genom att ändra några variabler.
-* **Ljust och mörkt tema** - Innehållsfokuserad design blir bättre med ljust och mörkt tema.
-* **Design som komponenter** - Ett smidigt sätt att hantera CSS i JavaScript skalbart med hjälp av [Styled Components](https://styled-components.com/). 
+- **Mobile-first** - Designen för sajten är gjord utifrån mindre enheter och skalad uppåt.
+- **Enkel, innehållsfokuserad design** - Flashig design har fått lämna rampljuset för att ge plats åt innehåll.
+- **CSS variabler** - Gör snabbt ändringar som slår äver hela sajten genom att ändra några variabler.
+- **Ljust och mörkt tema** - Innehållsfokuserad design blir bättre med ljust och mörkt tema.
+- **Design som komponenter** - Ett smidigt sätt att hantera CSS i JavaScript skalbart med hjälp av [Styled Components](https://styled-components.com/).
 
 ## Mobile-first
 
@@ -26,7 +26,7 @@ Tidigare byggde designen på Bootstrap och jag behövde då alltså inte bry mig
 
 **Den här gången däremot** ville jag inte hålla på med att dra in ett ramverk/bibliotek för att sköta den responsiva biten. Det kändes onödig overhead då man i dag ändå kan uppnå enklare responsivitet med [flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox) och [css grid](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids).
 
-När jag designade så hade jag webbläsarfönstret i första hand i responsivt läge, inställt på mobila enheter. Med hjälp av flexbox och css grid samt en mer nedskalad design i åtanke behövde jag över huvud taget inte lägga mycket fokus på att få till en bra responsiv layout.   
+När jag designade så hade jag webbläsarfönstret i första hand i responsivt läge, inställt på mobila enheter. Med hjälp av flexbox och css grid samt en mer nedskalad design i åtanke behövde jag över huvud taget inte lägga mycket fokus på att få till en bra responsiv layout.
 
 I skrivande stund har dessutom denna sajt inte **en enda media-query** för webbläsarbredd i syfte att "layouta element responsivt".
 
@@ -39,21 +39,22 @@ I princip har all typografi globala stilregler. Så var inte fallet med föregå
 Marginaler är också använda på ett konsekvent sätt och marginaler har en skala från `20px`, `10px` och `5px`.
 
 Färger används sporadiskt och även i en skala av tre:
-* **Primärfärg** - med en ljus och en mörk variant.
-* **Textfärg** - möjlighet för separat färg för rubriker och brödtext samt en färg för dämpad text.
-* **Bakgrundsfärg** - Primär, sekundär och "highlight".
+
+- **Primärfärg** - med en ljus och en mörk variant.
+- **Textfärg** - möjlighet för separat färg för rubriker och brödtext samt en färg för dämpad text.
+- **Bakgrundsfärg** - Primär, sekundär och "highlight".
 
 Typografi, visuell hierarki med marginaler och färgsättning sätts alla utifrån **css variabler**, som möjliggör konsekvent design som är lätt att tweaka.
 
 ## CSS variabler
 
-[Stödet för css variabler](https://caniuse.com/#feat=css-variables) är i dag rätt så bra och jag kände att det vore lämpligt att använda i den nya designen, istället för SCSS som jag använt mycket tidigare.   
+[Stödet för css variabler](https://caniuse.com/#feat=css-variables) är i dag rätt så bra och jag kände att det vore lämpligt att använda i den nya designen, istället för SCSS som jag använt mycket tidigare.
 
-Att använda css variabler innebar mindre overhead då jag inte behöver använda en css preprocessor samt att  css variabler passar väldigt väl med den **CSS-in-JS** approach som denna webbplats använder.
+Att använda css variabler innebar mindre overhead då jag inte behöver använda en css preprocessor samt att css variabler passar väldigt väl med den **CSS-in-JS** approach som denna webbplats använder.
 
 Eftersom att designen har stöd för ett ljust och mörkt tema var det viktigt att alla css variabler var namngivna korrekt. `--background-color-light` och `--background-color-dark` är ett **stort ajabaja**. Variablerna blir då tajt kopplade till de olika temakontexterna, vilket man inte vill. Variablerna ska inte veta om vilken kontext de tillhör.
 
-Istället vill man bara ha en enda `--background-color`, som i sin tur sätts till antingen en ljus eller mörk variant beroende på vilket tema som är aktivt.   
+Istället vill man bara ha en enda `--background-color`, som i sin tur sätts till antingen en ljus eller mörk variant beroende på vilket tema som är aktivt.  
 På så sätt behöver man inte bry sig och hålla koll på att switcha mellan flera variabler när man sätter färg på ett element.
 
 ## Ljust och mörkt tema
@@ -122,13 +123,14 @@ export const GlobalStyle = createGlobalStyle`
     /* Implement dark mode when body has .dark-mode class */
     setupThemeVariables(theme.colors.themed.dark);
   }
-`
+`;
 ```
 
-**GlobalStyle.tsx** importeras sedan i **src/pages/_app.tsx** och används precis som en reactkomponent: `<GlobalStyle />`. I och med det har all global styling implementerats, css variabler är uppsatta och webbplatsen är temad.
+**GlobalStyle.tsx** importeras sedan i **src/pages/\_app.tsx** och används precis som en reactkomponent: `<GlobalStyle />`. I och med det har all global styling implementerats, css variabler är uppsatta och webbplatsen är temad.
 
-> Under utveckling använde jag `@media (prefers-color-mode: dark) { ... }` istället för att styra ljust/mörkt tema. Men i slutändan valde jag att låta användaren styra själv över det valet.   
-Att byta implementation (till en React hook fipplar med css class på body-elementet) var väldigt enkelt då jag bara behövde ändra hur `setupThemeVariables()` anropades.
+Under utveckling använde jag `@media (prefers-color-mode: dark) { ... }` istället för att styra ljust/mörkt tema. Detta genom att anropa `setupThemeVariables(theme.colors.themed.dark)` i en sådan **prefers-color-mode: dark** media query. Men i slutändan valde jag att låta användaren styra själv över det valet.
+
+Att refaktorera hur mörkt tema slås på, till en React hook som fipplar med css-klass på body-elementet, var väldigt enkelt. Det enda som behövdes göras i "css-väg" var att ändra hur `setupThemeVariables()` anropades i `GlobalStyle.tsx`
 
 ## Design och layout som komponenter
 
@@ -146,7 +148,6 @@ export const MarginLarge = styled.div`
 `;
 
 MarginLarge.displayName = 'MarginLarge';
-
 ```
 
 Med hjälp av marginaler och andra styled components som bara är ui-baserade kan man skapa andra komponenter väldigt snabbt, så som den här komponenten som hjälper besökaren på denna sajt navigera mellan artiklar:
@@ -175,7 +176,8 @@ export const CardPost: React.FC<CardPostProps> = ({ post }) => (
 );
 ```
 
-**Responsiv layout** uppnås även med hjälp av en sån här UI komponent och css grid: 
+**Responsiv layout** uppnås även med hjälp av en sån här UI komponent och css grid:
+
 ```typescript:src/components/ui/container/responsiveGrid.tsx
 interface GridProps {
   itemWidth: string;
@@ -210,11 +212,11 @@ Komponenten ovan kan användas för att skapa en responsiv layout - som dessutom
 
 `<ResponsiveGrid />` tillsammans med `<Card />` skulle kunna skapa en layout som ser ut ungefär såhär:
 
-<ResponsiveGrid itemWidth="200px" gutter="10px" style={{marginBottom: '10px'}}>
-  <Card style={{height: '80px'}} />
-  <Card style={{height: '80px'}} />
-  <Card style={{height: '80px'}} />
-  <Card style={{height: '80px'}} />
+<ResponsiveGrid itemWidth="200px" gutter="10px" style={{ marginBottom: '10px' }}>
+  <Card style={{ height: '80px' }} />
+  <Card style={{ height: '80px' }} />
+  <Card style={{ height: '80px' }} />
+  <Card style={{ height: '80px' }} />
 </ResponsiveGrid>
 
 Prova gärna **ändra bredden på webbläsarfönstret** för att se hur rutorna staplas allt eftersom.
@@ -224,4 +226,3 @@ Prova gärna **ändra bredden på webbläsarfönstret** för att se hur rutorna 
 Med hjälp av css variabler, styled components och en noggranhet för vad som är globala och lokala stilregler kunde jag skapa en ny **responsiv mobile-first design** för denna webbplats. En design som dessutom har stöd för **mörkt tema** och som är **enklare att underhålla** än tidigare designiteration.
 
 Rena UI komponenter finns på plats, som gör det **snabbt att vidareutveckla** denna sajt och hålla **designen konsekvent**. Konsekvent både när det gäller färgsättning och typsnitt, men också visuella hierarkier och whitespace.
-
