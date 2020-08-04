@@ -25,7 +25,7 @@ const layoutBlogPost = (frontMatter: PostFrontMatter) => {
 
     return (
       <>
-        <SeoBlogPost blogPostData={postMetaData} />
+        <SeoBlogPost blogPost={postMetaData} />
         <ResponsiveContainer>
           <Column>
             <MarginLarge />
