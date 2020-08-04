@@ -8,10 +8,10 @@ import { Divider } from '../components/ui/content/divider';
 import { TextMuted } from '../components/ui/content/textMuted';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
+import { usePrevAndNextBlogPost } from '../hooks/usePrevAndNextBlogPost';
 import { theme } from '../theme/theme';
 import { PostFrontMatter } from '../types/FrontMatter';
-import { formatDate } from '../utils/formatDate';
-import { usePrevAndNextBlogPost } from '../hooks/usePrevAndNextBlogPost';
+import { toPostMetaData } from '../utils/postMappings';
 
 interface PostProps {
   children: React.ReactChildren;
@@ -20,16 +20,17 @@ interface PostProps {
 const layoutBlogPost = (frontMatter: PostFrontMatter) => {
   // eslint-disable-next-line react/display-name
   return ({ children }: PostProps) => {
-    const [prevPost, nextPost] = usePrevAndNextBlogPost(frontMatter);
+    const postMetaData = toPostMetaData(frontMatter);
+    const [prevPost, nextPost] = usePrevAndNextBlogPost(postMetaData);
 
     return (
       <>
-        <SeoBlogPost blogPostData={frontMatter} />
+        <SeoBlogPost blogPostData={postMetaData} />
         <ResponsiveContainer>
           <Column>
             <MarginLarge />
-            <h2>{frontMatter.title}</h2>
-            <TextMuted>{formatDate(frontMatter.date)}</TextMuted>
+            <h2>{postMetaData.title}</h2>
+            <TextMuted>{postMetaData.date}</TextMuted>
             <MarginMedium />
             {children}
             <MarginLarge />

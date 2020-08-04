@@ -1,8 +1,8 @@
-import { PostFrontMatter } from '../../types/FrontMatter';
+import { PostMetaData } from '../../types/FrontMatter';
 import { Seo } from './seo';
 
 interface SeoBlogPostProps {
-  blogPostData: PostFrontMatter;
+  blogPostData: PostMetaData;
 }
 
 export const SeoBlogPost: React.FC<SeoBlogPostProps> = ({ blogPostData: { title, summary, date } }) => (
