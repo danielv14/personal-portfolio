@@ -28,7 +28,7 @@ const HeroTitle = styled.h1`
   transform: skewY(-4deg);
 `;
 
-export default function Home() {
+const indexPage = () => {
   const { blogPosts, projects } = useContent();
   const latestBlogPosts = blogPosts.slice(0, 4);
   const [ProjectRef, scrollToProjectElement] = useScrollToElement({ offset: -60 });
@@ -79,7 +79,9 @@ export default function Home() {
       </ResponsiveContainer>
     </>
   );
-}
+};
+
+export default indexPage;
 
 const HeroContent = () => {
   return (

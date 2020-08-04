@@ -14,7 +14,7 @@ import { projects } from '../data/projects';
 import { getAllBlogPosts } from '../data/blogPosts';
 import { NavAdjustedContent } from '../components/navbar/nav.styles';
 
-function MyApp({ Component, pageProps }: AppProps) {
+const myApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
@@ -39,6 +39,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       </MDXProvider>
     </>
   );
-}
+};
 
-export default MyApp;
+export default myApp;
