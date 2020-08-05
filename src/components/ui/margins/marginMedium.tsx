@@ -1,7 +1,6 @@
-import styled from 'styled-components';
+import { Margin } from './margin';
+import { Spacing } from '../../../types/theme/Spacing';
 
-export const MarginMedium = styled.div`
-  margin: var(--margin-medium);
-`;
+export const MarginMedium: React.FC = () => <Margin size={Spacing.Medium} />;
 
 MarginMedium.displayName = 'MarginMedium';
