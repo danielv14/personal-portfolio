@@ -1,10 +1,4 @@
-import styled from 'styled-components';
+import { Margin } from './margin';
+import { Spacing } from '../../../types/theme/Spacing';
 
-export const MarginLarge = styled.div`
-  max-width: var(--margin-large);
-  min-width: var(--margin-large);
-  display: flex;
-  margin: var(--margin-large);
-`;
-
-MarginLarge.displayName = 'MarginLarge';
+export const MarginLarge = () => <Margin size={Spacing.Large} />;

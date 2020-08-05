@@ -1,7 +1,7 @@
-import { Margins } from '../../types/theme/Margins';
+import { Spacing } from '../../types/theme/Spacing';
 
-export const margins: Margins = {
-  small: '5px',
-  medium: '10px',
-  large: '20px',
+export const margins: { [key in Spacing]: string } = {
+  [Spacing.Small]: '5px',
+  [Spacing.Medium]: '10px',
+  [Spacing.Large]: '20px',
 };
