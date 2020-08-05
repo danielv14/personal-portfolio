@@ -4,10 +4,10 @@ import { ResponsiveContainer } from '../components/ui/container/responsiveContai
 import { TextCenter } from '../components/ui/content/textCenter';
 import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
-import { MarginMedium } from '../components/ui/margins/marginMedium';
 import { useContent } from '../context/ContentContext';
 import { HeadingMuted } from '../components/ui/content/headingMuted';
 import { Column } from '../components/ui/container/column';
+import { MarginSmall } from '../components/ui/margins/marginSmall';
 
 const blogIndex = () => {
   const { blogPosts } = useContent();
@@ -28,7 +28,7 @@ const blogIndex = () => {
             <UnstyledInternalLink key={blogPost.title} href={blogPost.url}>
               <div>
                 <PostListItem {...blogPost} />
-                <MarginMedium />
+                <MarginSmall />
               </div>
             </UnstyledInternalLink>
           ))}
