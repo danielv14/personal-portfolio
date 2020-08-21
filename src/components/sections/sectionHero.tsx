@@ -1,14 +1,9 @@
-import styled from 'styled-components';
 import { Column } from '../ui/container/column';
 import { HeadingMuted } from '../ui/content/headingMuted';
 import { TextCenter } from '../ui/content/textCenter';
 import { MarginMedium } from '../ui/margins/marginMedium';
-import { WavingHand } from '../ui/wavingHand';
-
-const HeroTitle = styled.h1`
-  display: inline-block;
-  transform: skewY(-4deg);
-`;
+import { WavingHand } from '../wavingHand';
+import { Title } from './sectionHero.styles';
 
 export const SectionHero: React.FC = () => {
   return (
@@ -16,9 +11,9 @@ export const SectionHero: React.FC = () => {
       <Column>
         <TextCenter>
           <div>
-            <HeroTitle>
+            <Title>
               <WavingHand /> Hallå där!
-            </HeroTitle>
+            </Title>
           </div>
           <HeadingMuted as="h5">
             Daniel här! Webbutvecklare med förkärlek till JavaScript, schysst design och tv-serier.
