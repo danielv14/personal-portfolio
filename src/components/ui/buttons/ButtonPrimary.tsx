@@ -3,7 +3,7 @@ import { motion, MotionProps } from 'framer-motion';
 
 const animation: MotionProps = {
   whileHover: { y: -1 },
-  whileTap: { y: 2 },
+  whileTap: { y: 1 },
   transition: {
     type: 'spring',
     stiffness: 300,
