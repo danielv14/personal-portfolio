@@ -1,6 +1,6 @@
 # Personal Portfolio
 
-This is the latest iteration of my personal portfolio. It was previously built with static site generator Jekyll - but is now built using Next.js and other tools and libraries listed below.
+This is the latest iteration of my personal portfolio. It is statically generated with the Next.js framework, and uses other tools and libraries listed below.
 
 ## 🛠 This site is built using
 
@@ -18,7 +18,7 @@ Site is deployed through [Vercel](https://vercel.com)
 - `src/context/*` - All react context providers and hooks.
 - `src/data/*` - Various static data sources.
 - `src/hooks/*` - Custom react hooks.
-- `src/layout/*` - Layout templates for **MDX content**.
+- `src/layout/*` - Layout templates for MDX content.
 - `src/pages/blogg/*` - Static blog posts written in [MDX](https://github.com/mdx-js/mdx).
 - `src/pages/*` - All static pages built of react components and static content.
 - `src/theme/*` - Contains site-wide theming such as colors, typography, margins and declarations of css variables.
@@ -40,9 +40,9 @@ $ yarn article
 
 The ☝️ command will prompt you for a _title_ and _summary_ of the article. The summary is optional for the sake of generating boilerplate.
 
-A `{title}.mdx` file will be generated in `src/pages/blogg/` where the title will be used as filename - also as url since it's a file in a Next.js `pages` directory. The prompted for blog post title will be **slugified and lowercased** before used as filename
+A `{title}.mdx` file will be generated in `src/pages/blogg/` where the title will be used as filename - also as url since it's a file in a Next.js `pages` directory. The `title` will be **slugified and lowercased** before used as filename.
 
-## 👨‍💻Running Locally
+## 👨‍💻 Running Locally
 
 Install dependencies with Yarn:
 
@@ -78,4 +78,10 @@ Attempt to fix lint errors with:
 
 ```bash
 yarn lint:fix
+```
+
+Generate new article:
+
+```bash
+$ yarn article
 ```
