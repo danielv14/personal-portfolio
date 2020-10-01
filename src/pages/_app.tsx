@@ -8,7 +8,7 @@ import { Footer } from '../components/footer/footer';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../../next-seo.config';
-import { MDXComponents } from '../components/mdxComponents';
+import { mdxComponents } from '../components/mdx/mdxComponents';
 import { ContentProvider } from '../context/ContentContext';
 import { projects } from '../data/projects';
 import { getAllBlogPosts } from '../data/blogPosts';
@@ -26,7 +26,7 @@ const myApp = ({ Component, pageProps }: AppProps) => {
         />
       </Head>
       <DefaultSeo {...SEO} />
-      <MDXProvider components={MDXComponents}>
+      <MDXProvider components={mdxComponents}>
         <ContentProvider projects={projects} blogPosts={getAllBlogPosts()}>
           <GlobalStyle />
           <Navbar />
