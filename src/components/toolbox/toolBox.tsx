@@ -12,7 +12,7 @@ export const ToolBox: React.FC<ToolBoxProps> = ({ categories }) => {
     <>
       <h2>Min verktygslåda</h2>
       <p>
-        Jag har tidigare använt allt från PHP och Ruby on Rails för att bygga sajter. Nu för tiden är det mest
+        Jag har tidigare använt allt från PHP och Ruby on Rails för att bygga sajter. Nu för tiden är det dock mest
         TypeScript för front- och backend som ligger närmst till hands i form av React och Node.
       </p>
       <MarginSmall />
