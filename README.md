@@ -80,8 +80,14 @@ Attempt to fix lint errors with:
 yarn lint:fix
 ```
 
-Generate new article:
+Generate new article with:
 
 ```bash
 $ yarn article
+```
+
+Run hygen code generator with:
+
+```bash
+$ yarn generate
 ```
