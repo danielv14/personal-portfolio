@@ -42,6 +42,10 @@ The ☝️ command will prompt you for a _title_ and _summary_ of the article. T
 
 A `{title}.mdx` file will be generated in `src/pages/blogg/` where the title will be used as filename - also as url since it's a file in a Next.js `pages` directory. The `title` will be **slugified and lowercased** before used as filename.
 
+### 🗑 Clearing article cache
+
+When generating new articles it is sometimes necessary to clear some local caches, to get the new article to appear when running the application locally. In those cases you simply run `yarn cache:clear` after generating a new article - before serving the application with `yarn dev`. Your newly generated article should now be available locally.
+
 ## 👨‍💻 Running Locally
 
 Install dependencies with Yarn:
@@ -90,4 +94,10 @@ Run hygen code generator with:
 
 ```bash
 $ yarn generate
+```
+
+Clear `.next` and `.mdx-data` folder caches with:
+
+```bash
+yarn cache:clear
 ```

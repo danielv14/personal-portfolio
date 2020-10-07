@@ -1,0 +1,83 @@
+---
+title: Varför det är bra att enas om dataformat i ett tidigt skede
+summary: Dataformat kan många gånger hjälpa till att förhindra blockers och lösa upp beroenden. Att enas om dataformat kan innebära att man kan jobba mot samma sprintmål, från flera olika håll samtidigt.
+layout: blogPost
+date: 2020-10-07
+---
+
+## Sprintar med blockers och beroenden
+
+Att arbeta effektivt inom projekt och sprintar kan ibland vara svårt. Framförallt om ett projektet innehåller olika moment eller jira-tickets som egentligen beror på tidigare moment eller andra jira-tickets, under en och samma sprint.
+
+Det gäller att jobba smart för att förhindra blockers och lösa upp beroenden under sprinten.
+
+## Ett tydligt dataformat kan hjälpa
+
+**Hur jobbar man då egentligen smart för att förhindra blockers och löser upp beroenden?**
+
+Det finns så klart en uppsjö olika smarta knep och arbetssätt att ta till sig. Men jag tänkte lyfta fram en grej som hjälpt mig mycket i två projektsprintar under denna höst och det är vikten av att **enas om ett dataformat** tidigt i sprinten.
+
+Det här är så klart inte applicerbart i _alla_ sprintar eller något som löser upp _alla_ beroenden. Men det är något som många gånger kan tillåta samtidigt arbete mot ett gemensamt sprintmål från flera utvecklare - från olika håll.
+
+Men på vilket sätt hjälper detta en sprint och hur för det med sig effektivare arbete genom att man enas om ett dataformat? Jo... jag tänkte ge två stycken exempel, baserade på de två projektsprintarna jag nämnde tidigare.
+
+> De exempel jag tänkte ta upp är bara löst baserade på de uppgifter och mål som de faktiska sprintarna innebar. Jag beskriver bara uppgifterna löst då det är inte uppgifterna i sig som driver poängen.
+
+## Exempel från en sprint 🏃‍♂️
+
+I första sprinten, som för övrigt varade två veckor, hade jag och en till kollega i uppgift att bland annat (förenklat):
+
+- Parsa xml-data som kommer från en RabbitMQ exchange till ett nytt json-format.
+- Ta emot ovanstående json payload i en Node-server och utför en uppgift.
+
+Snabbt märker man ju att den sista punkten har ett beroende på den första punkten, eftersom parsningen av xml-datan till json skulle ske med hjälp av ett npm-paket som servern skulle använda.
+
+### Spika dataformat tidigt
+
+För att vi skulle kunna arbeta effektivt spikade vi _hur_ json-datan skulle se ut. I och med detta så kunde vi jobba från två olika håll.
+En av oss kunde jobba med npm-paketet för att se till att paketet kunde parsa xml-data till det förväntade json-objektet och den andra (jag) jobbade i servern.
+
+### Bygga funktionalitet kring mockat data
+
+Att vi hade bestämt oss för ett dataformat på json-objektet innebar att jag kunde mocka förväntad data tillsvidare och bygga funktionaliteten som behövdes runt det.
+
+### Skriva tester
+
+Jag kunde skriva enhetstester som gick igenom med mock-data på plats och jag kunde även skriva enhetstester som _inte_ gick igenom förrän då jag kunde byta ut mock-datat. Då gick slutligen alla tester igenom och jag var, i och med testerna, mer trygg med att bytet till riktig data inte drog med sig buggar eller icke-förväntat beteende i servern.
+
+### Kringgå blockers och genomföra i princip en hel uppgift
+
+Istället för att vara helt blockad med min ticket kunde jag jag genomföra 90% av ticketen parallellt med arbetet med parsningen, på grund av att vi hade spikat ett gemensamt dataformat.
+
+> **Andra fördelar:** Ytterligare en fördel med att arbeta utifrån samma dataformat från olika håll tidigt i sprinten är att man mer ordentligt testar dataformatet och kan ”känna sig för” på ett bättre sätt. Är dataformatet rimligt? Går det att använda på det sätt vi tänkt oss? Sådana frågor får man snabbare svar på.
+
+## Exempel från en andra sprint 🏃‍♂️
+
+I andra sprinten, som också varade i två veckor, hade jag och en till kollega i uppgift att bland annat (förenklat):
+
+- Skapa en REST-endpoint som hämta en lista med objekt.
+- Anropa endpointen från en React frontend och rita ut listan med objekten med React komponenter.
+
+Även i det här fallet märker man snabbt att den andra punkten har ett beroende på den första och även här inser man att ett spikat gemensamt dataformat innebär att man kan arbeta mot samma sprintmål från olika håll.
+
+### Mocka data för utritning i frontend
+
+Utifrån dataformatet som REST-endpointen skulle leverera kunde vi arbeta i mot sprintmålet från olika håll parallellt. I mitt fall handlade det om att mocka datat i React frontend:en och rita ut mock-datat med React komponenter.
+
+### Att enkelt gå från mock data till riktig datakälla
+
+När endpointen sen var på plats handlade det bara för min del om att byta ut datakällan i en container-komponent i frontend:en från hårdkodad mock-data till att anropa endpointen.
+
+> 👆 Precis som med allt annat så vill man separera ansvar för React komponenter. Ett vanligt mönster är att man har _container-komponenter_ som ansvarar för att hämta data från datakällor och så har man _presentation-komponenter_ som sköter själva utritningen.
+>
+> Tanken är då att containern hämtar datan och ger datan som `props` till presentationskomponenten för utritning.
+
+### Kringgå blockers
+
+Återigen gjorde det gemensamma dataformatet att jag kunde jobba på en annars blockad ticket till 90% färdig innan de sista 10% gjordes, genom att anropa den faktiska endpointen.
+
+## Get to the poäng
+
+Vad är det jag vill få sagt egentligen? 🤔 Jo... nämligen att man många gånger kan kringgå blockers i projekt/sprintar genom att enas om det dataformat som då och då genomsyrar ett helt projekt eller en hel sprint.
+
+Ett dataformat kan ses som ett kontrakt mellan exempelvis en front- och backend. Att i ett tidigt stadie bestämma hur detta dataformat, eller kontrakt, ska se ut innebär att man kan jobba mer effektivt, hålla antalet blockers nere och mjuka upp beroenden och helt enkelt jobba med asynkront.
