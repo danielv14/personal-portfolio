@@ -20,8 +20,8 @@ const darkTheme: ColorTheme = {
 };
 
 const lightTheme: ColorTheme = {
-  backgroundColor: '#FFFFFF',
-  backgroundColorSecondary: '#FFFFFF',
+  backgroundColor: '#FFF',
+  backgroundColorSecondary: '#FFF',
   backgroundColorHighlight: colorPrimaryLighten,
   backgroundColorNavBar: 'hsl(0deg 0% 100% / 75%)',
   textColor: '#585858',
