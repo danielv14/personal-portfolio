@@ -13,7 +13,7 @@ export const SectionProjects: React.FC<SectionProjectsProps> = ({ projects }) =>
     <section>
       <h2>Projekt</h2>
       <TextMuted>För en del projekt används gratis hosting, vilket kan leda till en längre initial laddtid</TextMuted>
-      <ResponsiveGrid itemWidth="250px" gutter={theme.margins.large}>
+      <ResponsiveGrid itemWidth="250px" gutter={theme.layout.margin.large}>
         {projects.map(({ title, icon, tags: _tags, ...rest }) => (
           <CardProject key={title} title={`${icon} ${title}`} {...rest} />
         ))}
