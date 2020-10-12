@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import { theme } from './theme';
 import { setupThemeVariables } from './setupThemeVariables';
-const { fonts, colors, margins, siteWidth } = theme;
+const { fonts, colors, margins, layout } = theme;
 
 export const cssVariables = css`
   :root {
@@ -35,7 +35,7 @@ export const cssVariables = css`
     --margin-medium: ${margins.medium};
     --margin-large: ${margins.large};
 
-    --site-max-width: ${siteWidth};
+    --site-max-width: ${layout.siteWidth};
 
     /* Setup variables depending on dark/light mode. Default to light mode */
     ${setupThemeVariables(colors.themed.light)}

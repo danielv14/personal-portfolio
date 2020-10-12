@@ -46,6 +46,28 @@ A `{title}.mdx` file will be generated in `src/pages/blogg/` where the title wil
 
 When generating new articles it is sometimes necessary to clear some local caches, to get the new article to appear when running the application locally. In those cases you simply run `yarn cache:clear` after generating a new article - before serving the application with `yarn dev`. Your newly generated article should now be available locally.
 
+## 👨‍🎨 Site theming
+
+Many of this sites stylings that are of a more general character comes from a `theme` object defined in `src/theme/theme.ts`. The `theme` object is built up by different `theme parts` defined inside `src/theme/parts/*.ts`.
+
+The idea is to provide customization of the site's general styling though these theme object parts - and to have a single point of customization that will effect the entire site.
+
+The `theme` object consists of the following parts:
+
+- **breakpoints**: contains string values representing pixel widths for media query breakpoints. Media queries using the mobile-first approach by `min-width` is prefered - to maintain a mobile-first design.
+- **colors**: contains brand colors and a special `themed.light` and `themed.dark` object which represents different themable colors of texts, headings, box shadows that are different depending on light and dark mode.
+- **fonts**: contains font families and sizes. The sizing system is `rem` based by the `size.base` pixel value. This means that the entire font size scale can easily be adjusted by simply altering `size.base` value.
+- **layout**: contains global layout styles such as site width.
+- **margins**: contains margins defined for each `/src/types/Spacing` enum values. These margins are used for building the margin ui-components.
+
+### CSS variables and dark/light mode
+
+CSS variables are created from the `theme` object in `src/theme/cssVariables.ts`.
+
+CSS variables that are dependant on light or dark mode are processed through a function in `src/theme/setupThemeVariables.ts`. Either the `theme.colors.themed.light` or `theme.colors.themed.dark` object are provided to the function in `src/theme/cssVariables.ts`.
+
+If a `.dark-mode` css class exist on the body element the css variables that are light/dark mode aware will be overridden with values from `theme.colors.themed.dark`
+
 ## 👨‍💻 Running Locally
 
 Install dependencies with Yarn:
