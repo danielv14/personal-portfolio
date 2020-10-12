@@ -57,8 +57,7 @@ The `theme` object consists of the following parts:
 - **breakpoints**: contains string values representing pixel widths for media query breakpoints. Media queries using the mobile-first approach by `min-width` is prefered - to maintain a mobile-first design.
 - **colors**: contains brand colors and a special `themed.light` and `themed.dark` object which represents different themable colors of texts, headings, box shadows that are different depending on light and dark mode.
 - **fonts**: contains font families and sizes. The sizing system is `rem` based by the `size.base` pixel value. This means that the entire font size scale can easily be adjusted by simply altering `size.base` value.
-- **layout**: contains global layout styles such as site width.
-- **margins**: contains margins defined for each `/src/types/Spacing` enum values. These margins are used for building the margin ui-components.
+- **layout**: contains global layout styles such as site width and pre-defined margin scale.
 
 ### CSS variables and dark/light mode
 
