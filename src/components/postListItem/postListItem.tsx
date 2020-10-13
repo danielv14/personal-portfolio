@@ -1,8 +1,8 @@
+import { MotionProps } from 'framer-motion';
 import React from 'react';
 import { Column } from '../ui/container/column';
 import { TextMuted } from '../ui/content/textMuted';
 import { Item, ItemHeader } from './postListItem.styles';
-import { MotionProps } from 'framer-motion';
 
 interface PostListItemProps {
   title: string;
@@ -11,14 +11,14 @@ interface PostListItemProps {
 }
 
 export const animation: MotionProps = {
-  whileHover: { y: -2 },
+  whileHover: { y: -4, x: 1 },
   whileTap: {
     y: 0,
   },
   transition: {
     type: 'spring',
-    stiffness: 200,
-    damping: 10,
+    stiffness: 350,
+    damping: 15,
   },
 };
 

@@ -1,6 +1,6 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { theme } from '../../theme/theme';
-import { motion } from 'framer-motion';
 
 export const ItemHeader = styled.h4`
   font-weight: bold;
