@@ -11,7 +11,7 @@ interface PostListItemProps {
 }
 
 export const animation: MotionProps = {
-  whileHover: { y: -4, x: 1 },
+  whileHover: { y: -2, x: 1 },
   whileTap: {
     y: 0,
   },
