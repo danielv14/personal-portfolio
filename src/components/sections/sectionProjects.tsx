@@ -1,14 +1,15 @@
 import { Project } from '../../types/Project';
 import { TextMuted } from '../ui/content/textMuted';
 import { ResponsiveGrid } from '../ui/container/responsiveGrid';
-import { theme } from '../../theme/theme';
 import { CardProject } from '../cards/cardProject/cardProject';
+import { useTheme } from '../../context/ThemeContext';
 
 interface SectionProjectsProps {
   projects: Project[];
 }
 
 export const SectionProjects: React.FC<SectionProjectsProps> = ({ projects }) => {
+  const theme = useTheme();
   return (
     <section>
       <h2>Projekt</h2>

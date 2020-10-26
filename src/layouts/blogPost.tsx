@@ -8,15 +8,15 @@ import { Divider } from '../components/ui/content/divider';
 import { TextMuted } from '../components/ui/content/textMuted';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
+import { useTheme } from '../context/ThemeContext';
 import { usePrevAndNextBlogPost } from '../hooks/usePrevAndNextBlogPost';
-import { theme } from '../theme/theme';
 import { PostLayoutProps } from '../types/Layout';
 import { toPostMetaData } from '../utils/postMappings';
 
 const layoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
   const postMetaData = toPostMetaData(frontMatter);
   const [prevPost, nextPost] = usePrevAndNextBlogPost(postMetaData);
-
+  const theme = useTheme();
   return (
     <>
       <SeoBlogPost blogPost={postMetaData} />
