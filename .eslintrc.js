@@ -32,5 +32,11 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-unused-vars': [2, { args: 'after-used', argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-empty-interface': [
+      'error',
+      {
+        'allowSingleExtends': true
+      }
+    ],
   },
 };
