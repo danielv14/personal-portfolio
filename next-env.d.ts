@@ -1,8 +1,5 @@
 /// <reference types="next" />
 /// <reference types="next/types/global" />
-// import original module declarations
-import 'styled-components';
-import { ThemeSettings } from './src/types/theme/ThemeSettings';
 
 declare module '*.mdx' {
   import { ReactNode } from 'react';
@@ -17,8 +14,4 @@ declare module '*.mdx' {
 
   const component: ReactNode;
   export default ReactNode;
-}
-
-declare module 'styled-components' {
-  export interface DefaultTheme extends ThemeSettings { }
 }
