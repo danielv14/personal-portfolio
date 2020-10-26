@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import { theme } from '../../theme/theme';
+import { media } from '../ui/utils/media';
 
 export const ItemHeader = styled.h4`
   font-weight: bold;
@@ -14,7 +14,7 @@ export const Item = styled(motion.div)`
   &:hover {
     background: var(--bg-color-highlight);
   }
-  @media (min-width: ${theme.breakpoints.medium}) {
+  ${media.medium`
     padding: var(--margin-small) var(--margin-large);
-  }
+  `}
 `;
