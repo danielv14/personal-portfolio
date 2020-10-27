@@ -13,6 +13,8 @@ import { ContentProvider } from '../context/ContentContext';
 import { projects } from '../data/projects';
 import { getAllBlogPosts } from '../data/blogPosts';
 import { NavAdjustedContent } from '../components/navbar/nav.styles';
+import { ThemeProvider } from '../context/ThemeContext';
+import { theme } from '../theme/theme';
 
 const myApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -27,15 +29,17 @@ const myApp = ({ Component, pageProps }: AppProps) => {
       </Head>
       <DefaultSeo {...SEO} />
       <MDXProvider components={mdxComponents}>
-        <ContentProvider projects={projects} blogPosts={getAllBlogPosts()}>
-          <GlobalStyle />
-          <Navbar />
-          <NavAdjustedContent>
-            <Component {...pageProps} />
-          </NavAdjustedContent>
-          <MarginLarge />
-          <Footer />
-        </ContentProvider>
+        <ThemeProvider theme={theme}>
+          <ContentProvider projects={projects} blogPosts={getAllBlogPosts()}>
+            <GlobalStyle />
+            <Navbar />
+            <NavAdjustedContent>
+              <Component {...pageProps} />
+            </NavAdjustedContent>
+            <MarginLarge />
+            <Footer />
+          </ContentProvider>
+        </ThemeProvider>
       </MDXProvider>
     </>
   );

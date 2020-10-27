@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useMedia } from 'use-media';
 import { site } from '../data/site';
 import { storage } from '../utils/storage';
-import { Theme } from '../types/theme/Colors';
+import { ColorThemeVariant } from '../types/theme/Colors';
 
 const themeStorageKey = `${site.author} - theme`;
 const darkModeClass = 'dark-mode';
@@ -14,7 +14,7 @@ export const useDarkMode = () => {
   const prefersDarkMode = usePrefersDarkMode();
   const toggleDarkMode = (): void => {
     toggle(!isDarkMode);
-    storage.set(themeStorageKey, isDarkMode ? Theme.Light : Theme.Dark);
+    storage.set(themeStorageKey, isDarkMode ? ColorThemeVariant.Light : ColorThemeVariant.Dark);
     document.body.classList.toggle(darkModeClass);
   };
 
@@ -28,7 +28,7 @@ export const useDarkMode = () => {
   }, [prefersDarkMode]);
 
   useEffect(() => {
-    if (storage.get(themeStorageKey) === Theme.Dark) {
+    if (storage.get(themeStorageKey) === ColorThemeVariant.Dark) {
       toggleDarkMode();
     }
   }, []);

@@ -1,8 +1,7 @@
 import { css } from 'styled-components';
 import { theme } from './theme';
 import { setupThemeVariables } from './setupThemeVariables';
-const { fonts, colors, layout } = theme;
-const { margin } = layout;
+const { fonts, colors, layout, spacings } = theme;
 
 export const cssVariables = css`
   :root {
@@ -32,9 +31,9 @@ export const cssVariables = css`
     --border-radius: 6px;
 
     /* Setup margins */
-    --margin-small: ${margin.small};
-    --margin-medium: ${margin.medium};
-    --margin-large: ${margin.large};
+    --margin-small: ${spacings.small};
+    --margin-medium: ${spacings.medium};
+    --margin-large: ${spacings.large};
 
     --site-max-width: ${layout.siteWidth};
 
