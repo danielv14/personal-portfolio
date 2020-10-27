@@ -15,7 +15,7 @@ export interface ColorTheme {
   boxShadowButtonHover: string;
 }
 
-interface ColorBrand {
+interface ColorBranding {
   primary: string;
   primaryDarken: string;
   primaryLighten: string;
@@ -26,5 +26,5 @@ export interface Colors {
     light: ColorTheme;
     dark: ColorTheme;
   };
-  brand: ColorBrand;
+  brand: ColorBranding;
 }

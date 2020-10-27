@@ -9,7 +9,7 @@ export interface ThemeSettings {
   breakpoints: Breakpoints;
   layout: {
     siteWidth: string;
-    margin: {
+    spacings: {
       [key in Spacing]: string
   }
   }
