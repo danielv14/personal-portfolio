@@ -7,7 +7,7 @@ export interface ThemeSettings {
   colors: Colors;
   fonts: Fonts;
   breakpoints: Breakpoints;
-  spacing: SpacingScale;
+  spacings: SpacingScale;
   layout: {
     siteWidth: string;
   }

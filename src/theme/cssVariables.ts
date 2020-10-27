@@ -2,7 +2,7 @@ import { css } from 'styled-components';
 import { theme } from './theme';
 import { setupColorThemeVariantVariables } from './helpers/setupThemeVariables';
 import { scaleToRem, scaleToPx } from './helpers/scaleHelpers';
-const { fonts, colors, layout, spacing } = theme;
+const { fonts, colors, layout, spacings } = theme;
 
 export const cssVariables = css`
   :root {
@@ -32,9 +32,9 @@ export const cssVariables = css`
     --border-radius: 6px;
 
     /* Setup margins */
-    --margin-small: ${scaleToPx(spacing[0])};
-    --margin-medium: ${scaleToPx(spacing[1])};
-    --margin-large: ${scaleToPx(spacing[2])};
+    --margin-small: ${scaleToPx(spacings[0])};
+    --margin-medium: ${scaleToPx(spacings[1])};
+    --margin-large: ${scaleToPx(spacings[2])};
 
     --site-max-width: ${layout.siteWidth};
 

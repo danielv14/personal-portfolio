@@ -15,8 +15,8 @@ const Grid = styled.div<GridProps>`
 `;
 
 export const ResponsiveGrid: React.FC<GridProps> = ({ children, gutter, ...props }) => {
-  const { spacing } = useTheme();
-  return <Grid gutter={spacing[gutter]} {...props}>{children}</Grid>;
+  const { spacings } = useTheme();
+  return <Grid gutter={spacings[gutter]} {...props}>{children}</Grid>;
 };
 
 ResponsiveGrid.displayName = 'ResponsiveGrid';

@@ -8,7 +8,7 @@ interface MarginProps {
 export const Margin: React.FC<MarginProps> = ({ size }) => {
   const theme = useTheme();
   return (
-    <MarginComponent size={theme.spacing[size]} />
+    <MarginComponent size={theme.spacings[size]} />
   );
 };
 
