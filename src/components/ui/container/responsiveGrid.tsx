@@ -1,20 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTheme } from '../../../context/ThemeContext';
 
 interface GridProps {
   itemWidth: string;
-  gutter: string;
+  gutter: number;
 }
 
 const Grid = styled.div<GridProps>`
   display: grid;
   grid-template-columns: ${(props) => `repeat(auto-fit, minmax(${props.itemWidth}, 1fr))`};
-  grid-column-gap: ${(props) => props.gutter};
-  grid-row-gap: ${(props) => props.gutter};
+  grid-column-gap: ${(props) => `${props.gutter}px`};
+  grid-row-gap: ${(props) => `${props.gutter}px`};
 `;
 
-export const ResponsiveGrid: React.FC<GridProps> = ({ children, ...props }) => {
-  return <Grid {...props}>{children}</Grid>;
+export const ResponsiveGrid: React.FC<GridProps> = ({ children, gutter, ...props }) => {
+  const { spacing } = useTheme();
+  return <Grid gutter={spacing[gutter]} {...props}>{children}</Grid>;
 };
 
 ResponsiveGrid.displayName = 'ResponsiveGrid';

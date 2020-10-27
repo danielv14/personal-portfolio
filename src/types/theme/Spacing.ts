@@ -3,3 +3,5 @@ export enum Spacing {
   Medium = 'medium',
   Large = 'large',
 }
+
+export type SpacingScale = number[];

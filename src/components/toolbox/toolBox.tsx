@@ -16,7 +16,7 @@ export const ToolBox: React.FC<ToolBoxProps> = ({ categories }) => {
         TypeScript för front- och backend som ligger närmst till hands i form av React och Node.
       </p>
       <MarginSmall />
-      <ResponsiveGrid gutter="10px" itemWidth="175px">
+      <ResponsiveGrid gutter={1} itemWidth="175px">
         {categories.map(({ title, items }) => (
           <div key={title}>
             <h3>{title}</h3>
