@@ -33,7 +33,7 @@ const layoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
               <Divider />
               <MarginMedium />
               <h2>Mer innehåll</h2>
-              <ResponsiveGrid itemWidth="250px" gutter={theme.layout.margin.large}>
+              <ResponsiveGrid itemWidth="250px" gutter={theme.spacings.large}>
                 {prevPost && <CardPost subHeader="&larr; Föregående" post={prevPost} />}
                 {nextPost && <CardPost subHeader="Nästa &rarr;" post={nextPost} />}
               </ResponsiveGrid>
