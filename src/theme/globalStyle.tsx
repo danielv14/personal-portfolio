@@ -8,13 +8,12 @@ export const GlobalStyle = createGlobalStyle`
   /* Reset CSS */
   ${reset}
   
-  /* Add syntax highlighting styles */
-  ${syntaxHighlighting}
-  
   /* Add css variables */
   ${cssVariables}
 
-
+  /* Add syntax highlighting styles */
+  ${syntaxHighlighting}
+  
   body {
     background: var(--bg-color);
     color: var(--text-color);

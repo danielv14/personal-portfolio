@@ -1,6 +1,5 @@
 import { css } from 'styled-components';
 import { media } from './helpers/mediaQueries';
-import { theme } from './theme';
 
 export const syntaxHighlighting = css`
   code[class*='language-'],
@@ -8,7 +7,7 @@ export const syntaxHighlighting = css`
     color: #f8f8f2;
     background: none;
     display: block;
-    font-family: ${theme.fonts.fontFamily.mono};
+    font-family: var(--mono-font);
     text-align: left;
     font-weight: 400;
     white-space: pre;
@@ -135,7 +134,7 @@ export const syntaxHighlighting = css`
   .remark-code-title {
     max-width: 100%;
     overflow-y: hidden;
-    font-family: ${theme.fonts.fontFamily.main};
+    font-family: var(--content-font);
     margin-bottom: -0.8rem;
     font-weight: 500;
     padding: 0.5em 1em;

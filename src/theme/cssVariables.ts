@@ -9,6 +9,7 @@ export const cssVariables = css`
     /* Setup fonts */
     --content-font: ${fonts.fontFamily.main};
     --headings-font: ${fonts.fontFamily.headings};
+    --mono-font: ${fonts.fontFamily.mono};
 
     /* Setup font sizes */
     --font-size-base: ${fonts.sizeBase};
