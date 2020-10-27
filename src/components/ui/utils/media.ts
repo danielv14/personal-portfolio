@@ -9,6 +9,6 @@ export const mediaQuery = (breakpoint: string) => (templateStrings: TemplateStri
 
 export const media = {
   small: mediaQuery(theme.breakpoints.small),
-  medium: mediaQuery(theme.breakpoints.small),  
+  medium: mediaQuery(theme.breakpoints.medium),  
   large: mediaQuery(theme.breakpoints.large)
 };
