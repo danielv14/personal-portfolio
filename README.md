@@ -54,9 +54,9 @@ The idea is to provide customization of the site's general styling though these 
 
 The `theme` object consists of the following parts:
 
-- **breakpoints**: contains string values representing pixel widths for media query breakpoints. Media queries using the mobile-first approach by `min-width` is prefered - to maintain a mobile-first design.
+- **breakpoints**: contains scale of string values representing pixel widths for media query breakpoints. Media queries using the mobile-first approach by `min-width` is used in this project - to maintain a mobile-first design.
 - **colors**: contains brand colors and a special `themed.light` and `themed.dark` object which represents different themable colors of texts, headings, box shadows that are different depending on light and dark mode.
-- **fonts**: contains font families and sizes. The sizing system is `rem` based by the `size.base` pixel value. This means that the entire font size scale can easily be adjusted by simply altering `size.base` value.
+- **fonts**: contains font families and sizes. The sizing system is `rem` based by the `fonts.sizeBase` pixel value. This means that the entire font size scale can easily be adjusted by simply altering `fonts.sizeBase` value.
 - **layout**: contains global layout styles such as site width.
 - **spacings**: contains a pre-defined spacing scale.
 
