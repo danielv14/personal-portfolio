@@ -1,14 +1,7 @@
-import { css } from 'styled-components';
-import { theme } from '../theme';
-
-export const mediaQuery = (breakpoint: string) => (templateStrings: TemplateStringsArray) => css`
-  @media (min-width: ${breakpoint}) {
-    ${css(templateStrings)}
-  }
-`;
+import { scaleToMediaQuery } from './scaleHelpers';
 
 export const media = {
-  small: mediaQuery(theme.breakpoints[0]),
-  medium: mediaQuery(theme.breakpoints[1]),  
-  large: mediaQuery(theme.breakpoints[2])
+  small: scaleToMediaQuery(0),
+  medium: scaleToMediaQuery(1),  
+  large: scaleToMediaQuery(2)
 };
