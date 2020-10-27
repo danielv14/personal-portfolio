@@ -1,6 +1,7 @@
 import { css } from 'styled-components';
 import { theme } from './theme';
-import { setupThemeVariables } from './setupThemeVariables';
+import { setupColorThemeVariantVariables } from './helpers/setupThemeVariables';
+import { scaleToRem, scaleToPx } from './helpers/scaleHelpers';
 const { fonts, colors, layout, spacings } = theme;
 
 export const cssVariables = css`
@@ -10,16 +11,16 @@ export const cssVariables = css`
     --headings-font: ${fonts.fontFamily.headings};
 
     /* Setup font sizes */
-    --font-size-base: ${fonts.size.base};
-    --font-size-h1: ${fonts.size.h1};
-    --font-size-h2: ${fonts.size.h2};
-    --font-size-h3: ${fonts.size.h3};
-    --font-size-h4: ${fonts.size.h4};
-    --font-size-h5: ${fonts.size.h5};
-    --font-size-h6: ${fonts.size.h6};
-    --font-size-small: ${fonts.size.small};
-    --font-size-smaller: ${fonts.size.smaller};
-    --font-size-code: ${fonts.size.code};
+    --font-size-base: ${fonts.sizeBase};
+    --font-size-h1: ${scaleToRem(fonts.sizeScale[7])};
+    --font-size-h2: ${scaleToRem(fonts.sizeScale[6])};
+    --font-size-h3: ${scaleToRem(fonts.sizeScale[5])};
+    --font-size-h4: ${scaleToRem(fonts.sizeScale[4])};
+    --font-size-h5: ${scaleToRem(fonts.sizeScale[3])};
+    --font-size-h6: ${scaleToRem(fonts.sizeScale[2])};
+    --font-size-small: ${scaleToRem(fonts.sizeScale[1])};
+    --font-size-smaller: ${scaleToRem(fonts.sizeScale[0])};
+    --font-size-code: ${scaleToRem(fonts.sizeScale[0])};
 
     /* Setup colors */
     --primary-color: ${colors.brand.primary};
@@ -31,16 +32,16 @@ export const cssVariables = css`
     --border-radius: 6px;
 
     /* Setup margins */
-    --margin-small: ${spacings.small};
-    --margin-medium: ${spacings.medium};
-    --margin-large: ${spacings.large};
+    --margin-small: ${scaleToPx(spacings[0])};
+    --margin-medium: ${scaleToPx(spacings[1])};
+    --margin-large: ${scaleToPx(spacings[2])};
 
     --site-max-width: ${layout.siteWidth};
 
     /* Setup variables depending on dark/light mode. Default to light mode */
-    ${setupThemeVariables(colors.themed.light)}
+    ${setupColorThemeVariantVariables(colors.themed.light)}
   }
   body.dark-mode {
-    ${setupThemeVariables(colors.themed.dark)};
+    ${setupColorThemeVariantVariables(colors.themed.dark)};
   }
 `;

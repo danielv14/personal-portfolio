@@ -1,9 +1,8 @@
 import { useTheme } from '../../../../context/ThemeContext';
-import { Spacing } from '../../../../types/theme/Spacing';
 import { MarginComponent } from './margin.styles';
 
 interface MarginProps {
-  size: Spacing;
+  size: number;
 }
 
 export const Margin: React.FC<MarginProps> = ({ size }) => {

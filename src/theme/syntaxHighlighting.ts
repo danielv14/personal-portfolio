@@ -1,4 +1,5 @@
 import { css } from 'styled-components';
+import { media } from './helpers/mediaQueries';
 import { theme } from './theme';
 
 export const syntaxHighlighting = css`
@@ -126,10 +127,10 @@ export const syntaxHighlighting = css`
     margin-left: -1.55em;
     padding-left: 1em;
     border-left: 6px solid #88c0d0;
-    @media (min-width: ${theme.breakpoints.medium}) {
+    ${media.medium`
       margin-right: -1.5em;
       background: #3b414ccc;
-    }
+    `}
   }
   .remark-code-title {
     max-width: 100%;

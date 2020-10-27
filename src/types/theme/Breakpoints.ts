@@ -1,5 +1,1 @@
-export interface Breakpoints {
-  small: string;
-  medium: string;
-  large: string;
-}
+export type Breakpoints = string[]

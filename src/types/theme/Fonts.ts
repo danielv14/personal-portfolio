@@ -4,20 +4,10 @@ export interface FontFamiliy {
   mono: string;
 }
 
-interface FontSize {
-  base: string;
-  h1: string;
-  h2: string;
-  h3: string;
-  h4: string;
-  h5: string;
-  h6: string;
-  small: string;
-  smaller: string;
-  code: string;
-}
+export type FontScale = number[]
 
 export interface Fonts {
   fontFamily: FontFamiliy;
-  size: FontSize;
+  sizeScale: FontScale;
+  sizeBase: string;
 }

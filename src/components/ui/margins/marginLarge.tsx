@@ -1,6 +1,5 @@
 import { Margin } from './marginBase';
-import { Spacing } from '../../../types/theme/Spacing';
 
-export const MarginLarge: React.FC = () => <Margin size={Spacing.Large} />;
+export const MarginLarge: React.FC = () => <Margin size={2} />;
 
 MarginLarge.displayName = 'MarginLarge';

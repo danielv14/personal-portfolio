@@ -1,7 +1,5 @@
-import { Spacing } from '../../types/theme/Spacing';
+import { SpacingScale } from '../../types/theme/Spacing';
 
-export const spacings: { [key in Spacing]: string } = {
-  [Spacing.Small]: '5px',
-  [Spacing.Medium]: '10px',
-  [Spacing.Large]: '20px',
-};
+const spacingScale: SpacingScale = [5, 10, 20];
+
+export const spacings = spacingScale;
