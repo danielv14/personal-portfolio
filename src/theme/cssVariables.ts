@@ -1,8 +1,7 @@
 import { css } from 'styled-components';
 import { theme } from './theme';
 import { setupThemeVariables } from './setupThemeVariables';
-const { fonts, colors, layout } = theme;
-const { spacings } = layout;
+const { fonts, colors, layout, spacings } = theme;
 
 export const cssVariables = css`
   :root {

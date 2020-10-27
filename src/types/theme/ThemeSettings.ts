@@ -7,10 +7,10 @@ export interface ThemeSettings {
   colors: Colors;
   fonts: Fonts;
   breakpoints: Breakpoints;
+  spacings: {
+    [key in Spacing]: string
+}
   layout: {
     siteWidth: string;
-    spacings: {
-      [key in Spacing]: string
-  }
   }
 }
