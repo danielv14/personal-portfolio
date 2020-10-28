@@ -1,17 +1,8 @@
-import styled from 'styled-components';
-import { motion, MotionProps } from 'framer-motion';
+import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
+import { buttonAnimation } from './buttonAnimation';
 
-const animation: MotionProps = {
-  whileHover: { y: -1 },
-  whileTap: { y: 1 },
-  transition: {
-    type: 'spring',
-    stiffness: 300,
-    damping: 10,
-  },
-};
-
-export const ButtonPrimary = styled(motion.div).attrs({ ...animation })`
+const styles = () => css`
   background: var(--primary-color);
   color: white;
   padding: 16px 20px;
@@ -28,5 +19,7 @@ export const ButtonPrimary = styled(motion.div).attrs({ ...animation })`
     box-shadow: var(--box-shadow-button-hover);
   }
 `;
+
+export const ButtonPrimary = styled(motion.div).attrs({ ...buttonAnimation })(styles);
 
 ButtonPrimary.displayName = 'ButtonPrimary';
