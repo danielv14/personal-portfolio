@@ -12,3 +12,7 @@ export interface ThemeSettings {
     siteWidth: string;
   }
 }
+
+export interface WithThemeContext {
+  theme: ThemeSettings;
+}

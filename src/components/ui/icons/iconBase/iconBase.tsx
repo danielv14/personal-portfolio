@@ -10,7 +10,7 @@ const defaultSize = css`
   width: 24px;
 `;
 
-const BaseStyle = ({ size }: IconProps) => css`
+const iconBaseStyles = ({ size }: IconProps) => css`
   color: var(--text-muted-color);
   ${!size && defaultSize};
 `;
@@ -24,6 +24,4 @@ export const renderIcon = (Icon: StyledIcon, props: IconComponentProps): JSX.Ele
   );
 };
 
-export const IconBase = (icon: StyledIcon): StyledIcon => styled(icon)<IconProps>`
-  ${BaseStyle}
-`;
+export const IconBase = (icon: StyledIcon): StyledIcon => styled(icon)<IconProps>(iconBaseStyles);

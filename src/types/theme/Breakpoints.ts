@@ -1,1 +1,1 @@
-export type Breakpoints = string[]
+export type Breakpoints = number[]
