@@ -1,9 +1,8 @@
 import { css } from 'styled-components';
 import { setupColorThemeVariantVariables } from './helpers/setupThemeVariables';
 import { scaleFontSizeToRem, scaleSpacingToPx } from './helpers/scaleHelpers';
-import { ThemeSettings, WithThemeContext } from '../types/theme/ThemeSettings';
+import {  WithThemeContext } from '../types/theme/ThemeSettings';
 
-export const getTheme = (props: any): ThemeSettings => props.theme;
 
 export const cssVariables = css(({ theme: { fonts, colors, layout } }: WithThemeContext) => css`
   :root {
