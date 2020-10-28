@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
-import { ThemeSettings } from '../types/theme/ThemeSettings';
+import { ThemeSettings } from '../types/theme/Theme';
 import { ThemeContext } from 'styled-components';
 
 export const ThemeProvider: React.FC<{ theme: ThemeSettings }> = ({ children, theme }) => 

@@ -1,3 +1,4 @@
+import { ThemeProps as StyledThemeProps } from 'styled-components';
 import { Breakpoints } from './Breakpoints';
 import { Colors } from './Colors';
 import { Fonts } from './Fonts';
@@ -13,6 +14,6 @@ export interface ThemeSettings {
   }
 }
 
-export interface WithThemeContext {
-  theme: ThemeSettings;
-}
+export type ThemeProps = StyledThemeProps<ThemeSettings>;
+
+export type PropsWithTheme<P> = P & ThemeProps;

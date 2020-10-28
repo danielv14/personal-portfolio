@@ -3,7 +3,7 @@ import { colors } from './parts/colors';
 import { breakpoints } from './parts/breakpoints';
 import { layout } from './parts/layout';
 import { spacings } from './parts/spacings';
-import { ThemeSettings } from '../types/theme/ThemeSettings';
+import { ThemeSettings } from '../types/theme/Theme';
 
 export const theme = {
   colors,

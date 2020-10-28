@@ -1,10 +1,9 @@
 import { css } from 'styled-components';
 import { setupColorThemeVariantVariables } from './helpers/setupThemeVariables';
 import { scaleFontSizeToRem, scaleSpacingToPx } from './helpers/scaleHelpers';
-import {  WithThemeContext } from '../types/theme/ThemeSettings';
+import { ThemeProps } from '../types/theme/Theme';
 
-
-export const cssVariables = css(({ theme: { fonts, colors, layout } }: WithThemeContext) => css`
+export const cssVariables = css(({ theme: { fonts, colors, layout } }: ThemeProps) => css`
   :root {
     /* Setup fonts */
     --content-font: ${fonts.fontFamily.main};
