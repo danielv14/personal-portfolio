@@ -13,6 +13,10 @@ const scaleMediaQueryToPx = (scale: number) => css(
   ({ theme }: WithThemeContext) => scaleToPx(theme.breakpoints[scale])
 );
 
+export const scaleFontSizeToRem = (scale: number) => css(
+  ({ theme }: WithThemeContext) => scaleToRem(theme.fonts.sizeScale[scale])
+);
+
 export const scaleToMediaQuery = (scale: number) => (templateStrings: TemplateStringsArray) => css`
   @media (min-width: ${scaleMediaQueryToPx(scale)}) {
     ${css(templateStrings)}

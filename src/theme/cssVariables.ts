@@ -1,11 +1,11 @@
 import { css } from 'styled-components';
 import { setupColorThemeVariantVariables } from './helpers/setupThemeVariables';
-import { scaleToRem, scaleToPx } from './helpers/scaleHelpers';
+import { scaleFontSizeToRem, scaleSpacingToPx } from './helpers/scaleHelpers';
 import { ThemeSettings, WithThemeContext } from '../types/theme/ThemeSettings';
 
 export const getTheme = (props: any): ThemeSettings => props.theme;
 
-export const cssVariables = css(({ theme: { fonts, colors, spacings, layout } }: WithThemeContext) => css`
+export const cssVariables = css(({ theme: { fonts, colors, layout } }: WithThemeContext) => css`
   :root {
     /* Setup fonts */
     --content-font: ${fonts.fontFamily.main};
@@ -14,15 +14,15 @@ export const cssVariables = css(({ theme: { fonts, colors, spacings, layout } }:
 
     /* Setup font sizes */
     --font-size-base: ${fonts.sizeBase};
-    --font-size-h1: ${scaleToRem(fonts.sizeScale[7])};
-    --font-size-h2: ${scaleToRem(fonts.sizeScale[6])};
-    --font-size-h3: ${scaleToRem(fonts.sizeScale[5])};
-    --font-size-h4: ${scaleToRem(fonts.sizeScale[4])};
-    --font-size-h5: ${scaleToRem(fonts.sizeScale[3])};
-    --font-size-h6: ${scaleToRem(fonts.sizeScale[2])};
-    --font-size-small: ${scaleToRem(fonts.sizeScale[1])};
-    --font-size-smaller: ${scaleToRem(fonts.sizeScale[0])};
-    --font-size-code: ${scaleToRem(fonts.sizeScale[0])};
+    --font-size-h1: ${scaleFontSizeToRem(7)};
+    --font-size-h2: ${scaleFontSizeToRem(6)};
+    --font-size-h3: ${scaleFontSizeToRem(5)};
+    --font-size-h4: ${scaleFontSizeToRem(4)};
+    --font-size-h5: ${scaleFontSizeToRem(3)};
+    --font-size-h6: ${scaleFontSizeToRem(2)};
+    --font-size-small: ${scaleFontSizeToRem(1)};
+    --font-size-smaller: ${scaleFontSizeToRem(0)};
+    --font-size-code: ${scaleFontSizeToRem(0)};
 
     /* Setup colors */
     --primary-color: ${colors.brand.primary};
@@ -34,9 +34,9 @@ export const cssVariables = css(({ theme: { fonts, colors, spacings, layout } }:
     --border-radius: 6px;
 
     /* Setup margins */
-    --margin-small: ${scaleToPx(spacings[0])};
-    --margin-medium: ${scaleToPx(spacings[1])};
-    --margin-large: ${scaleToPx(spacings[2])};
+    --margin-small: ${scaleSpacingToPx(0)};
+    --margin-medium: ${scaleSpacingToPx(1)};
+    --margin-large: ${scaleSpacingToPx(2)};
 
     --site-max-width: ${layout.siteWidth};
 
