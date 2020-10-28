@@ -9,8 +9,12 @@ export const scaleSpacingToPx = (scale: number) => css(
   ({ theme }: WithThemeContext) => scaleToPx(theme.spacings[scale])
 );
 
+const scaleMediaQueryToPx = (scale: number) => css(
+  ({ theme }: WithThemeContext) => scaleToPx(theme.breakpoints[scale])
+);
+
 export const scaleToMediaQuery = (scale: number) => (templateStrings: TemplateStringsArray) => css`
-  @media (min-width: ${({theme}) => (theme.breakpoints[scale])}) {
+  @media (min-width: ${scaleMediaQueryToPx(scale)}) {
     ${css(templateStrings)}
   }
 `;
