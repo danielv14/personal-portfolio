@@ -1,23 +1,22 @@
 import React from 'react';
-import styled from 'styled-components';
-import { useTheme } from '../../../context/ThemeContext';
-import { scaleToPx } from '../../../theme/helpers/scaleHelpers';
-
+import styled, { css } from 'styled-components';
+import { scaleSpacingToPx } from '../../../theme/helpers/scaleHelpers';
 interface GridProps {
   itemWidth: string;
   gutter: number;
 }
 
-const Grid = styled.div<GridProps>`
+const gridStyles = ({ gutter, itemWidth }: GridProps) => css`
   display: grid;
-  grid-template-columns: ${(props) => `repeat(auto-fit, minmax(${props.itemWidth}, 1fr))`};
-  grid-column-gap: ${(props) => scaleToPx(props.gutter)};
-  grid-row-gap: ${(props) => scaleToPx(props.gutter)};
+  grid-template-columns: ${`repeat(auto-fit, minmax(${itemWidth}, 1fr))`};
+  grid-column-gap: ${scaleSpacingToPx(gutter)};
+  grid-row-gap: ${scaleSpacingToPx(gutter)};
 `;
 
-export const ResponsiveGrid: React.FC<GridProps> = ({ children, gutter, ...props }) => {
-  const { spacings } = useTheme();
-  return <Grid gutter={spacings[gutter]} {...props}>{children}</Grid>;
+const Grid = styled.div<GridProps>(gridStyles);
+
+export const ResponsiveGrid: React.FC<GridProps> = ({ children, ...props }) => {
+  return <Grid {...props}>{children}</Grid>;
 };
 
 ResponsiveGrid.displayName = 'ResponsiveGrid';

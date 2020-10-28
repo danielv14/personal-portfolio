@@ -1,14 +1,9 @@
-import { useTheme } from '../../../../context/ThemeContext';
-import { MarginComponent } from './margin.styles';
+import { MarginComponent, MarginComponentProps } from './margin.styles';
 
-interface MarginProps {
-  size: number;
-}
 
-export const Margin: React.FC<MarginProps> = ({ size }) => {
-  const theme = useTheme();
+export const Margin: React.FC<MarginComponentProps> = (props) => {
   return (
-    <MarginComponent size={theme.spacings[size]} />
+    <MarginComponent {...props} />
   );
 };
 

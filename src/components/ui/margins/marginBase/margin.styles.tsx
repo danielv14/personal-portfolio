@@ -1,19 +1,17 @@
-import styled from 'styled-components';
-import { scaleToPx } from '../../../../theme/helpers/scaleHelpers';
+import styled, { css } from 'styled-components';
+import { scaleSpacingToPx } from '../../../../theme/helpers/scaleHelpers';
 
-interface MarginComponentProps {
+export interface MarginComponentProps {
   size: number;
 }
 
-const setSize = ({ size }: MarginComponentProps) => ({
-  maxWidth: scaleToPx(size),
-  minWidth: scaleToPx(size),
-  margin: scaleToPx(size),
-});
-
-export const MarginComponent = styled.div<MarginComponentProps>`
-  ${setSize}
+const styles = ({ size }: MarginComponentProps ) => css`
   display: flex;
+  max-width: ${scaleSpacingToPx(size)};
+  min-width: ${scaleSpacingToPx(size)};
+  margin: ${scaleSpacingToPx(size)};
 `;
+
+export const MarginComponent = styled.div<MarginComponentProps>(styles);
 
 MarginComponent.displayName = 'MarginComponent';
