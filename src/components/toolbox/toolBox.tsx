@@ -2,6 +2,7 @@ import { MarginSmall } from '../ui/margins/marginSmall';
 import { ResponsiveGrid } from '../ui/container/responsiveGrid';
 import { ToolboxCategory } from '../../types/ToolboxCategory';
 import { Line, ListItem, List } from './toolBox.styles';
+import { Heading } from '../ui/content/heading';
 
 interface ToolBoxProps {
   categories: ToolboxCategory[];
@@ -19,7 +20,7 @@ export const ToolBox: React.FC<ToolBoxProps> = ({ categories }) => {
       <ResponsiveGrid gutter={1} itemWidth="175px">
         {categories.map(({ title, items }) => (
           <div key={title}>
-            <h3>{title}</h3>
+            <Heading bold as="h3">{title}</Heading>
             <Line width="115px" />
             <List as="ul">
               {items.map((item) => (
