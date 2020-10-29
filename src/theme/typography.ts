@@ -14,43 +14,41 @@ export const typography = css`
     color: var(--heading-color);
     line-height: 1.2;
     letter-spacing: -0.5px;
+    margin-top: 1rem;
+  }
+
+  h1,
+  h2 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 0.7rem;
   }
 
   h1 {
     font-size: var(--font-size-h1);
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
   }
   h2 {
     font-size: var(--font-size-h2);
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
   }
   h3 {
     font-size: var(--font-size-h3);
-    margin-top: 1rem;
-    margin-bottom: 0.7rem;
-    font-weight: 500;
   }
   h4 {
     font-size: var(--font-size-h4);
-    margin-top: 1rem;
-    margin-bottom: 0.7rem;
-    font-weight: 500;
   }
   h5 {
     font-size: var(--font-size-h5);
-    margin-top: 1rem;
-    margin-bottom: 0.7rem;
-    font-weight: 500;
   }
   h6 {
     font-size: var(--font-size-h6);
-    margin-top: 1rem;
-    margin-bottom: 0.7rem;
-    font-weight: 500;
   }
 
   a {
