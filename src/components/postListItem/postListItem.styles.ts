@@ -2,9 +2,6 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { media } from '../../theme/helpers/mediaQueries';
 
-export const ItemHeader = styled.h4`
-  font-weight: bold;
-`;
 
 export const Item = styled(motion.div)`
   cursor: pointer;
