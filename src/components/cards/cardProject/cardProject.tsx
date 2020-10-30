@@ -3,7 +3,7 @@ import { Card } from '../../ui/container/card';
 import { Column } from '../../ui/container/column';
 import { Fill } from '../../ui/container/fill';
 import { Row } from '../../ui/container/row';
-import { Heading } from '../../ui/content/heading';
+import { Header } from '../../ui/content/header';
 import { Tag } from '../../ui/content/tag';
 import { UnstyledLink } from '../../ui/content/unstyledLink';
 import { MarginSmall } from '../../ui/margins/marginSmall';
@@ -25,9 +25,9 @@ export const CardProject: React.FC<CardProjectProps> = ({ title, summary, tags, 
         <Column>
           <UnstyledLink href={urlSource}>
             <MarginSmall />
-            <Heading as="h3" bold>
+            <Header as="h3" bold>
               {title}
-            </Heading>
+            </Header>
             <MarginSmall />
             <p>{summary}</p>
           </UnstyledLink>

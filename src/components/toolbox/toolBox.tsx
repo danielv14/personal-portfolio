@@ -1,8 +1,8 @@
-import { MarginSmall } from '../ui/margins/marginSmall';
-import { ResponsiveGrid } from '../ui/container/responsiveGrid';
 import { ToolboxCategory } from '../../types/ToolboxCategory';
-import { Line, ListItem, List } from './toolBox.styles';
-import { Heading } from '../ui/content/heading';
+import { ResponsiveGrid } from '../ui/container/responsiveGrid';
+import { Header } from '../ui/content/header';
+import { MarginSmall } from '../ui/margins/marginSmall';
+import { Line, List, ListItem } from './toolBox.styles';
 
 interface ToolBoxProps {
   categories: ToolboxCategory[];
@@ -20,7 +20,9 @@ export const ToolBox: React.FC<ToolBoxProps> = ({ categories }) => {
       <ResponsiveGrid gutter={1} itemWidth="175px">
         {categories.map(({ title, items }) => (
           <div key={title}>
-            <Heading bold as="h3">{title}</Heading>
+            <Header bold as="h3">
+              {title}
+            </Header>
             <Line width="115px" />
             <List as="ul">
               {items.map((item) => (

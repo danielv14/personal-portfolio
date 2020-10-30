@@ -1,7 +1,7 @@
 import { MotionProps } from 'framer-motion';
 import React from 'react';
 import { Column } from '../ui/container/column';
-import { Heading } from '../ui/content/heading';
+import { Header } from '../ui/content/header';
 import { TextMuted } from '../ui/content/textMuted';
 import { Item } from './postListItem.styles';
 
@@ -27,7 +27,9 @@ export const PostListItem: React.FC<PostListItemProps> = ({ title, summary, date
   return (
     <Column>
       <Item {...animation}>
-        <Heading bold as="h4">{title}</Heading>
+        <Header bold as="h4">
+          {title}
+        </Header>
         {date && <TextMuted>{date}</TextMuted>}
         <p>{summary}</p>
       </Item>

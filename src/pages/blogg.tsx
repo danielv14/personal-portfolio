@@ -1,13 +1,13 @@
 import { PostListItem } from '../components/postListItem/postListItem';
 import { Seo } from '../components/seo/seo';
+import { Column } from '../components/ui/container/column';
 import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
+import { Header } from '../components/ui/content/header';
 import { TextCenter } from '../components/ui/content/textCenter';
 import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
-import { useContent } from '../context/ContentContext';
-import { Column } from '../components/ui/container/column';
 import { MarginSmall } from '../components/ui/margins/marginSmall';
-import { Heading } from '../components/ui/content/heading';
+import { useContent } from '../context/ContentContext';
 
 const blogIndex = () => {
   const { blogPosts } = useContent();
@@ -19,9 +19,9 @@ const blogIndex = () => {
           <MarginLarge />
           <TextCenter>
             <h1>Alla inlägg</h1>
-            <Heading muted as="h5">
+            <Header muted as="h5">
               Då och då skriver jag ned några tankar, dokumenterar upptäckter eller skriver enklare guider.
-            </Heading>
+            </Header>
           </TextCenter>
           <MarginLarge />
           {blogPosts.map((blogPost) => (
