@@ -1,12 +1,12 @@
 import { PostMetaData } from '../../../types/FrontMatter';
 import { Card } from '../../ui/container/card';
-import { Row } from '../../ui/container/row';
-import { MarginSmall } from '../../ui/margins/marginSmall';
 import { Column } from '../../ui/container/column';
+import { Row } from '../../ui/container/row';
+import { Heading } from '../../ui/content/heading';
 import { TextMuted } from '../../ui/content/textMuted';
 import { UnstyledInternalLink } from '../../ui/content/unstyledLink';
+import { MarginSmall } from '../../ui/margins/marginSmall';
 import { animationSpring } from '../animations';
-import { CardHeader } from '../shared.styles';
 import { SubHeader } from './cardPost.styles';
 
 interface CardPostProps {
@@ -22,7 +22,9 @@ export const CardPost: React.FC<CardPostProps> = ({ post, subHeader }) => (
         <Column style={{ alignItems: 'stretch' }}>
           <MarginSmall />
           {subHeader && <SubHeader>{subHeader}</SubHeader>}
-          <CardHeader style={{ marginTop: '0' }}>{post.title}</CardHeader>
+          <Heading as="h3" style={{ marginTop: '0' }}>
+            {post.title}
+          </Heading>
           <TextMuted>{post.date}</TextMuted>
         </Column>
         <MarginSmall />

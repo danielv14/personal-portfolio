@@ -3,11 +3,11 @@ import { Card } from '../../ui/container/card';
 import { Column } from '../../ui/container/column';
 import { Fill } from '../../ui/container/fill';
 import { Row } from '../../ui/container/row';
+import { Heading } from '../../ui/content/heading';
 import { Tag } from '../../ui/content/tag';
-import { MarginSmall } from '../../ui/margins/marginSmall';
 import { UnstyledLink } from '../../ui/content/unstyledLink';
+import { MarginSmall } from '../../ui/margins/marginSmall';
 import { animationSpring } from '../animations';
-import { CardHeader } from '../shared.styles';
 
 interface CardProjectProps {
   title: string;
@@ -25,7 +25,9 @@ export const CardProject: React.FC<CardProjectProps> = ({ title, summary, tags, 
         <Column>
           <UnstyledLink href={urlSource}>
             <MarginSmall />
-            <CardHeader>{title}</CardHeader>
+            <Heading as="h3" bold>
+              {title}
+            </Heading>
             <MarginSmall />
             <p>{summary}</p>
           </UnstyledLink>
