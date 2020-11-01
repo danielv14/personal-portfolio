@@ -191,12 +191,10 @@ Det här tredje exemplet må vara lite mer komplicerat men kommer, enligt mig, m
 - Komponenter är **inte hårt kopplade till den konfiguration** som säger vilka exakta skärmbredder som utgör en viss breakpoint. Den konfigurationen är inte intressant för komponenterna egentligen.
 - Breakpoint-skalan har till **stor del abstraherats bort från komponenterna** i och med Context av avläsning av Context i hjälpfunktionerna.
 
-Personligen gillar jag det här sista sättet att jobba med media queries. För denna sajt så landade jag i en lösning väldigt lik det tredje exemplet, i alla fall i skrivande stund.
-
-Detta för att jag redan nyttjar ett tema-objekt som läses in i Context och tillgängliggörs i mina styled-components.
+Personligen gillar jag det här sista sättet att jobba med media queries. För denna sajt så landade jag i en lösning väldigt lik det tredje exemplet, i alla fall i skrivande stund. Detta för att jag redan nyttjar ett tema-objekt som läses in i Context och tillgängliggörs i mina styled-components.
 
 När jag då skriver mina komponenter behöver jag inte bry mig om implementationsdetaljer kring hur media queries struktureras i det specifika projektet.
 
 Jag importerar bara media-objektet och slipper fokusera på _hur_ jag ska skriva mina media queries varje gång en komponent ska ha responsivitet. Istället fokuserar jag helt på _vad_ som ska hända vid varje breakpoint istället.
 
-Ganska smidigt ändå.
+Ganska smidigt ändå!
