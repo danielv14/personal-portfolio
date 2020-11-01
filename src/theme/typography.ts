@@ -27,7 +27,6 @@ export const typography = css`
   h4,
   h5,
   h6 {
-    color: var(--text-color);
     font-weight: 600;
     margin-bottom: 0.7rem;
   }
@@ -121,6 +120,7 @@ export const typography = css`
 
   strong {
     font-weight: bold;
+    color: var(--text-emphasis-color);
   }
   em {
     font-style: italic;

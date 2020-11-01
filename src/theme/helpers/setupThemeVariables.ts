@@ -9,6 +9,7 @@ export const setupColorThemeVariantVariables = (theme: ColorTheme) => css`
   --text-color: ${theme.textColor};
   --heading-color: ${theme.headingColor};
   --text-muted-color: ${theme.textMutedColor};
+  --text-emphasis-color: ${theme.headingColor};
   --box-shadow-main: ${theme.boxShadowMain};
   --box-shadow-button: ${theme.boxShadowButton};
   --box-shadow-button-hover: ${theme.boxShadowButtonHover};
