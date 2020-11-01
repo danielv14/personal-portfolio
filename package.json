@@ -10,8 +10,7 @@
     "article": "yarn generate article new",
     "generate": "hygen",
     "cache:next:clear": "rimraf .next",
-    "cache:mdx:clear": "rimraf .mdx-data",
-    "cache:clear": "yarn cache:next:clear && yarn cache:mdx:clear"
+    "cache:clear": "yarn cache:next:clear"
   },
   "dependencies": {
     "@mdx-js/react": "^1.6.6",
