@@ -121,7 +121,8 @@ Vad menar jag då egentligen med ett tema-medvetet hjälpmedel för media querie
 Det är nog kanske enklast att först kika på ett kodexempel av det och sen igenom exemplet övergripande:
 
 ```js:Media.js
-const getBreakpointScaleFromTheme  = (breakpoint) => css(({ theme }) => theme.breakpoints[breakpoint])
+const getBreakpointScaleFromTheme = (breakpoint) =>
+  css(({ theme }) => theme.breakpoints[breakpoint])
 
 const breakpointToMediaQuery = (breakpoint) => (templateStrings) => css'
 	@media (min-width: ${getBreakpointScaleFromTheme(breakpoint)} {
