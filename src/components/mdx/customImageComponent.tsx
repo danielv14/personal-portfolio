@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export const customImageComponent = (props: any) => {
-  return <img loading="lazy" {...props} />;
+  return <Image unsized {...props} />;
 };
