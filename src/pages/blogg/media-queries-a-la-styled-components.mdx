@@ -17,7 +17,7 @@ Med det sagt så tänkte jag gå igenom lite olika sätt man kan implementera me
 
 Låt säga att man har en `<Paragraph />` styled-component som ser ut ungefär så här:
 
-```js
+```js:Paragraph.js
 const Paragraph = styled.p`
   color: pink;
 `;
@@ -25,7 +25,7 @@ const Paragraph = styled.p`
 
 Vill man då göra den här komponenten responsiv och exempelvis få en annan färg på större skärmar skulle den kunna se ut så här istället:
 
-```js
+```js:Paragraph.js
 const Paragraph = styled.p`
   color: pink;
   @media (min-width: 700px) {
@@ -44,7 +44,7 @@ Nackdelen blir dock att den här komponenten själv måste hålla reda på vilke
 
 Den här lösningen innebär att varje komponent måste hålla reda på att det är en mobile-first approach som används i och med **min-width**.
 
-Har man flera komponenter med likande media queries med just **700px** hårdkokad i varje komponent måste varje komponent hållas i synk om man ändrar sin breakpoint-skala. Om man vill ändra 700px till 675px exempelvis.
+Har man flera komponenter med likande media queries med just 700px hårdkodade i varje komponent måste varje komponent hållas i synk om man ändrar sin breakpoint-skala. Om man vill ändra 700px till 675px exempelvis.
 
 Dessutom säger inte 700px _ingenting_ egentligen. Det beskriver inte vad 700px faktiskt _representerar_ - vilket kanske skulle kunna vara ”Alla medium-skärmar såsom tablets och uppåt”.
 
@@ -54,7 +54,7 @@ Hur gör man föregående lösning lite mer dynamisk på så sätt att varje kom
 
 Jo man skulle kunna göra någonting ungefär så här:
 
-```ts
+```js:Paragraph.js
 // Låtsas att det här breakpoints objektet är en annan fil
 export const breakpoints = {
   small: '550px',
@@ -83,7 +83,9 @@ Men det kanske mest intressant med det här exemplet är hur den här lösningen
 
 I just det här exemplet visade det sig dessutom att 700px ligger i mitten på breakpoint-skalan av **small**, **medium** och **large**.
 
-### Dock finns det ju såklart i alla fall en nackdel värd att ta upp med den här lösningen
+### Några nackdelar?
+
+Självklart finns det några nackdelar med den här lösningen.
 
 Varje komponent som ska vara responsiv måste importera breakpoint-skalan som man med fördel har skapat upp i ett slags theme-objekt.
 
@@ -106,7 +108,7 @@ En stor fördel med styled-components och många andra CSS-in-JS lösningar för
 
 Styled-components kommer med en färdig lösning för hur man hanterar temning via Context och tillhandahåller även färdiga hooks för att få tag i ThemeContext.
 
-> Vill man läsa mer om temning, Context och styled-components så går det att göra här: https://styled-components.com/docs/advanced#theming
+> Vill man läsa mer om temning, Context och styled-components så går det att göra [här](https://styled-components.com/docs/advanced#theming).
 
 Det handlar alltså om att man tar sitt färdiga tema-objekt, som innehåller det breakpoints-objekt med **small**, **medium** och **large** och ser till att det temat tillgängliggörs via en `<ThemeProvider>` komponent - högt upp i ens React-träd av komponenter.
 
@@ -118,7 +120,7 @@ Vad menar jag då egentligen med ett tema-medvetet hjälpmedel för media querie
 
 Det är nog kanske enklast att först kika på ett kodexempel av det och sen igenom exemplet övergripande:
 
-```js
+```js:Media.js
 const getBreakpointScaleFromTheme  = (breakpoint) => css(({ theme }) => theme.breakpoints[breakpoint])
 
 const breakpointToMediaQuery = (breakpoint) => (templateStrings) => css'
@@ -154,7 +156,7 @@ I det här läget kan det vara svårt att föreställa sig hur det här media-ob
 
 Vi återbesöker Paragraf-komponenten en sista gång och nu kan den istället se ut så här:
 
-```js
+```js:Paragraph.js
 import { media } from 'where/you/put/media/helper';
 
 const Paragraph = styled.p'

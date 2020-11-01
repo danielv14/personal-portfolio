@@ -118,7 +118,7 @@ Run hygen code generator with:
 $ yarn generate
 ```
 
-Clear `.next` and `.mdx-data` folder caches with:
+Clear `.next` folder caches with:
 
 ```bash
 yarn cache:clear
