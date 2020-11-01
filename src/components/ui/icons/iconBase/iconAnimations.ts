@@ -17,7 +17,7 @@ const animationRotateLeft: MotionProps = {
   transition: {
     type: 'spring',
     stiffness: 100,
-    damping: 200,
+    damping: 15,
   },
   animate: {
     rotate: -360,
