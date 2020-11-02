@@ -24,11 +24,11 @@ Efter omdesignen landade jag bland annat i några punkter som jag tänkte gå in
 
 Tidigare byggde designen på Bootstrap och jag behövde då alltså inte bry mig speciellt mycket om responsiv design själv - utan behövde bara smacka på rätt `col-{viewport}-{size}` klasser på html element.
 
-**Den här gången däremot** ville jag inte hålla på med att dra in ett ramverk/bibliotek för att sköta den responsiva biten. Det kändes onödig overhead då man i dag ändå kan uppnå enklare responsivitet med [flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox) och [css grid](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids).
+Den här gången däremot ville jag inte hålla på med att dra in ett ramverk/bibliotek för att sköta den responsiva biten. Det kändes onödig overhead då man i dag ändå kan uppnå enklare responsivitet med [flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox) och [css grid](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids).
 
 När jag designade så hade jag webbläsarfönstret i första hand i responsivt läge, inställt på mobila enheter. Med hjälp av flexbox och css grid samt en mer nedskalad design i åtanke behövde jag över huvud taget inte lägga mycket fokus på att få till en bra responsiv layout.
 
-I skrivande stund har dessutom denna sajt inte **en enda media-query** för webbläsarbredd i syfte att "layouta element responsivt".
+I skrivande stund har dessutom denna sajt **inte en enda media-query för webbläsarbredd** i syfte att "layouta element responsivt".
 
 ## Enkel, innehållsfokuserad design
 
@@ -212,7 +212,7 @@ Komponenten ovan kan användas för att skapa en responsiv layout - som dessutom
 
 `<ResponsiveGrid />` tillsammans med `<Card />` skulle kunna skapa en layout som ser ut ungefär såhär:
 
-<ResponsiveGrid itemWidth="200px" gutter="10px" style={{ marginBottom: '10px' }}>
+<ResponsiveGrid itemWidth="200px" gutter={1} style={{ marginBottom: '10px' }}>
   <Card style={{ height: '80px' }} />
   <Card style={{ height: '80px' }} />
   <Card style={{ height: '80px' }} />

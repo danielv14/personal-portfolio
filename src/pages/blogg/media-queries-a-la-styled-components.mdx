@@ -42,9 +42,9 @@ Jo... den är väldigt enkel och straight-forward.
 
 Nackdelen blir dock att den här komponenten själv måste hålla reda på vilken bredd som gäller för att applicera responsiva ändringar.
 
-Den här lösningen innebär att varje komponent måste hålla reda på att det är en mobile-first approach som används i och med **min-width**.
+Den här lösningen innebär att varje komponent måste hålla reda på att det är en mobile-first approach som används i och med `min-width`.
 
-Har man flera komponenter med likande media queries med just 700px hårdkodade i varje komponent måste varje komponent hållas i synk om man ändrar sin breakpoint-skala. Om man vill ändra 700px till 675px exempelvis.
+Har man flera komponenter med likande media queries med just `min-width: 700px` hårdkodade i varje komponent måste varje komponent hållas i synk om man ändrar sin breakpoint-skala. Om man vill ändra 700px till 675px exempelvis.
 
 Dessutom säger inte 700px _ingenting_ egentligen. Det beskriver inte vad 700px faktiskt _representerar_ - vilket kanske skulle kunna vara ”Alla medium-skärmar såsom tablets och uppåt”.
 
@@ -89,7 +89,7 @@ Självklart finns det några nackdelar med den här lösningen.
 
 Varje komponent som ska vara responsiv måste importera breakpoint-skalan som man med fördel har skapat upp i ett slags theme-objekt.
 
-Dessutom måste varje komponent fortfarande hålla koll på att det är **min-width** som gäller och inte **max-width** exempelvis.
+Dessutom måste varje komponent fortfarande hålla koll på att det är `min-width` som gäller och inte `max-width` exempelvis.
 
 Komponenterna måste alltså fortfarande veta vissa implementationsdetaljer kring hur media queries ska användas.
 
@@ -147,7 +147,7 @@ Den funktionen använder i sina tur `css()`. Vad är då det för något? Det ä
 `breakpointToMediaQuery` är den funktion som bygger upp själva media queryn. Även denna funktion tar en breakpoint som parameter.
 Den här funktionen returnerar i sin tur _en funktion_ som tar in templateStrings som parameter och skickar den parametern till ett `css(templateStrings)` funktionsanrop - inuti själva media queryn.
 
-Slutligen så exporteras ett objekt som innehåller olika variationer av den **templateStrings-funktion** som `breakpointToMediaQuery` returnerar.
+Slutligen så exporteras ett objekt som innehåller olika variationer av den templateStrings-funktion som `breakpointToMediaQuery` returnerar.
 
 > Vill man läsa mer om temlate strings (eller template literals) så har Wes Bos [skrivit](https://wesbos.com/tagged-template-literals) en bra genomgång av hur det hela funkar.
 
@@ -194,7 +194,7 @@ Det här tredje exemplet må vara lite mer komplicerat men kommer, enligt mig, m
 - Komponenter är **inte hårt kopplade till den konfiguration** som säger vilka exakta skärmbredder som utgör en viss breakpoint. Den konfigurationen är inte intressant för komponenterna egentligen.
 - Breakpoint-skalan har till **stor del abstraherats bort från komponenterna** i och med Context av avläsning av Context i hjälpfunktionerna.
 
-Personligen gillar jag det här sista sättet att jobba med media queries. För denna sajt så landade jag i en lösning väldigt lik det tredje exemplet, i alla fall i skrivande stund. Detta för att jag redan nyttjar ett tema-objekt som läses in i Context och tillgängliggörs i mina styled-components.
+🙋🏼‍♂️ Personligen gillar jag det här sista sättet att jobba med media queries. För denna sajt så landade jag i en lösning väldigt lik det tredje exemplet, i alla fall i skrivande stund. Detta för att jag redan nyttjar ett tema-objekt som läses in i Context och tillgängliggörs i mina styled-components.
 
 När jag då skriver mina komponenter behöver jag inte bry mig om implementationsdetaljer kring hur media queries struktureras i det specifika projektet.
 

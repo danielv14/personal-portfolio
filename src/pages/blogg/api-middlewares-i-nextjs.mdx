@@ -9,14 +9,13 @@ Routing i Next.js är baserat på [struktur i filsystemet](https://nextjs.org/do
 
 Kortfattat innebär det att om man skapar en fil i sitt Next.js projekt under **pages/api/** och exporterar en funktion så mappas det mot en endpoint. Ungefär såhär:
 
-
 ```js:pages/api/users.js
 // Fake users data
-const users = [{ id: 1 }, { id: 2 }, { id: 3 }]
+const users = [{ id: 1 }, { id: 2 }, { id: 3 }];
 
 export default function handler(req, res) {
   // Get data from your database
-  res.status(200).json(users)
+  res.status(200).json(users);
 }
 ```
 
@@ -29,7 +28,7 @@ curl http://localhost:3000/api/users
 Det här sättet att bygga API:er kan man ju så klart tycka vad man vill om.
 Det går även skapa endpoints på [andra sätt](https://nextjs.org/docs/advanced-features/custom-server) i Next.js men det här är det enklaste sättet om man bara lite snabbt vill fixa en endpoint för att exempelvis hämta och massera lite data innan man presenterar det i frontend-delen av sin Next.js applikation.
 
-**Men hur gör man då med middlewares om man har API routes som är strukterade på det här sättet?**   
+**Men hur gör man då med middlewares om man har API routes som är strukterade på det här sättet?**  
 En del routes i Next.js applikationer kanske man vill skydda bakom nån slags authenticering med en API nyckel exempelvis. **Hur gör man då?**
 
 ## Skapa återanvändbara middlewares
@@ -43,14 +42,16 @@ export default async function handler(req, res) {
   // Insert data in database
   await insertDataInDb(scrapedContent);
   // Return response with status 200 - everything OK
-  res.status(200).json({message: 'Scraped content inserted into database'});
+  res.status(200).json({ message: 'Scraped content inserted into database' });
 }
 ```
 
 > Att via ett GET-anrop både hämta/skrapa och lägga in data i en databas kanske inte är 100% optimalt - men får duga i det här enklare exemplet.
-I en större applikation kanske själva hämtningen av skrapad data och databas-inmatningen borde vara två anrop - en GET och en POST.
+> I en större applikation kanske själva hämtningen av skrapad data och databas-inmatningen borde vara två anrop - en GET och en POST.
 
 En sån route kan man ju tänkas vilja skydda på ett eller annat sätt - för man vill ju inte att vem som helt ska kunna göra ett anrop mot `/api/scrape` för mata in data i databasen.
+
+## Använda middlewares i Next.js
 
 Hade ovanstående scrape-route varit skriven med express hade man ju lagt till ett middleware ungefär såhär:
 
