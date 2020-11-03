@@ -1260,10 +1260,10 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@styled-icons/feather@^10.5.0":
+"@styled-icons/evaicons-outline@^10.18.0":
   version "10.18.0"
-  resolved "https://registry.yarnpkg.com/@styled-icons/feather/-/feather-10.18.0.tgz#eaec56120c4113930edd2551aaf8d8b9da565219"
-  integrity sha512-W8ESG+KLaiCekydTV6LaP3FW5enwvGMSM2T/wvS8HPmnR6tFb4hn8VQrtXG8Bwdc5RmTJ+2eyN6N3KySMfMC4Q==
+  resolved "https://registry.yarnpkg.com/@styled-icons/evaicons-outline/-/evaicons-outline-10.18.0.tgz#3a7a00a97244fcefcad70e94d81eb151d5fdf9b9"
+  integrity sha512-6D352LtvtzfHlhxgUeair6NPfyJ0y6V+1r710w1qoEVO/mnc9F+ED6MaOCDv8GeDOM3eCPd8y2Fs6EA8zKuv/A==
   dependencies:
     "@babel/runtime" "^7.10.5"
     "@styled-icons/styled-icon" "^10.6.0"
