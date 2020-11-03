@@ -62,7 +62,7 @@ app.get('/api/scrape', requiresAuth, (req, res, next) => {
   // Insert data in database
   await insertDataInDb(scrapedContent);
   // Return response with status 200 - everything OK
-  res.status(200).json({message: 'Scraped content inserted into database'});
+  res.status(200).json({ message: 'Scraped content inserted into database' });
 ```
 
 `requiresAuth()` hade då kunnat vara en funktion som kollade om inkommande anrop hade en tillhörande API-nyckel. Om nyckeln hade varit valid hade `requiresAuth` anropat `next()`, såsom [express middlewares gör](https://expressjs.com/en/guide/using-middleware.html).
@@ -79,7 +79,7 @@ Men förslagsvis skapar man en katalog `middlewares/*` och lägger sina middlewa
 export const withAuthorization = (handler) => (req, res) => {
   // Check if API key in query param is valid
   if (invalidAPIKey(req.query.apiKey)) {
-    return res.status(403).json({ message: 'This route requiers authorization' });
+    return res.status(403).json({ message: 'This route requires authorization' });
   }
   // If API key is valid just return the passed handler function
   return handler(req, res);
@@ -112,7 +112,7 @@ På den sista raden så exporteras `withAuthorization(requestHandler)` som inneb
 curl http://localhost:3000/api/scrape?apiKey=VALID_API_KEY
 ```
 
-Om nyckeln saknas eller inte är valid så kommer curl-anropet returnera en **403** med `{ message: 'This route requiers authorization' }`.
+Om nyckeln saknas eller inte är valid så kommer curl-anropet returnera en **403** med `{ message: 'This route requires authorization' }`.
 
 På så vis har man nu skapat en middleware-funktion som går att återanvända på andra tänkbara routes i sin Next.js applikation som behöver skyddas bakom en api-nyckel.
 
