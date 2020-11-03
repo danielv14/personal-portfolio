@@ -1,7 +1,7 @@
-import { Mail } from '@styled-icons/feather';
 import { IconBase, IconComponentProps, renderIcon } from './iconBase/iconBase';
+import { Icons } from './icons';
 
-const Icon = IconBase(Mail);
+const Icon = IconBase(Icons.Email);
 
 export const IconMail: React.FC<IconComponentProps> = (props) => renderIcon(Icon, props);
 
