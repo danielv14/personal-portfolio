@@ -28,6 +28,7 @@ export const syntaxHighlighting = css`
   pre[class*='language-'] {
     padding: 1em;
     margin: 0.5em 0 1em;
+    margin-top: 0;
     overflow: auto;
     border-radius: var(--border-radius-small);
   }
@@ -136,10 +137,12 @@ export const syntaxHighlighting = css`
     overflow-y: hidden;
     font-family: var(--content-font);
     margin-bottom: -0.8rem;
-    font-weight: 500;
-    padding: 0.5em 1em;
-    background: #81a1c1;
-    color: #f8f8f2;
+    padding: 0.7em 1em 0.5em 1em;
+    background: #2e3440;
+    text-align: left;
+    font-style: italic;
+    font-weight: 700;
+    color: #636f88;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
     font-size: var(--font-size-small);
