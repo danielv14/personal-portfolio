@@ -20,7 +20,7 @@ const blogIndex = () => {
           <TextCenter>
             <h1>Alla inlägg</h1>
             <Header muted as="h5">
-              Då och då skriver jag ned några tankar, dokumenterar upptäckter eller skriver enklare guider.
+              Då och då skriver jag ned några tankar, dokumenterar upptäckter eller skriver om lite allt möjligt.
             </Header>
           </TextCenter>
           <MarginLarge />
