@@ -1,3 +1,3 @@
 export const layout = {
-  siteWidth: '825px',
+  siteWidth: '800px',
 };
