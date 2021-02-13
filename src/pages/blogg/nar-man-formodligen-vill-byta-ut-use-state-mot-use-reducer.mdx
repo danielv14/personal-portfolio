@@ -151,17 +151,19 @@ const onStepChange = (step) => {
 }
 ```
 
-Vår formulär-reducer såg då till att själv antingen bara back ett steg eller rensa hela formuläret.
+Vår formulär-reducer såg då till att själv antingen bara backa ett steg eller rensa hela formuläret i sin helhet, då användaren backade till första steget.
 
 En annan fördel vi såg var att formuläret inte längre behövde bry sig om att i vissa lägen rensa den validerings-feedback array som fanns i state. Sådana detaljer var upp till reducern att sköta, beroende på vilken action som formuläret dispatchade.
 
 En tredje fördel var att formuläret nu inte längre behövde bry sig alls om eventuella beroenden mellan sub-värden i state:t. Formuläret dispatchade bara sina actions med tillhörande data och reducern såg till att sätta eventuella boolean-flaggor osv själv.
 
-Visserligen innebar useReducern lite mer ”boilerplate-kod”, framför allt då vi jobbar med TypeScript och typade upp alla action-typen och payloads som man kunde skicka in i reducern. Men detta innebar ju också att vi fick ett tydligare kontrakt mellan formuläret och reducern och hur kommunikationen där emellan såg ut.
+### Mer boilerplate-kod men kontrollerade state-förändringar
 
-Då vi lyfte ut useReducern till en custom hook blev dessutom formulär-komponenten 100% mer överskådlig. Detta då den i princip bara hämtade data från API:er i vissa funktioner och dispatchade actions, samt dispatchade vissa actions direkt i ”onInputChange-funktioner”.
+Visserligen innebar useReducern lite mer ”boilerplate-kod”, framför allt då vi jobbar med TypeScript och typade upp alla action-typen och payloads som man kunde skicka in i reducern. Men detta innebar ju också att vi fick ett tydligare kontrakt mellan formuläret och reducern, och hur formuläret kunde påverka state:t på ett väligt kontrollerat sätt.
 
-All faktiskt state-hantering lyftes ut till en separat fil och behövde vi se hur state:t i detalj skulle förändras över tid gav reducern oss en tydligare överblick, istället för att behöva skrolla runt i formulär-komponenten och jaga `setState` anrop.
+All boilerplate gjorde det tydligt att vi kunde lyfta ut useReducern till en custom hook. Då vi gjorde detta blev dessutom formulär-komponenten 100% mer överskådlig. Nu ansvarade formulär-komponenten i princip bara för att hämta data från API:er i vissa funktioner och dispatcha actions, samt dispatcha vissa actions direkt i ”onInputChange-funktioner”.
+
+All faktiskt state-hantering lyftes ut till en separat fil. Behövde vi se hur state:t såg ut eller hur det skule förändras över tid gav reducern oss en tydligare överblick, istället för att behöva skrolla runt i formulär-komponenten och jaga `setState` anrop.
 
 ## Summering
 
@@ -173,6 +175,6 @@ Men å andra sidan tror jag inte man ska vara rädd för att byta ut useState mo
 
 Har man lite mer avancerat state och synkar inte bara input-fält till data eller tänder och släcker grejer rent visuellt med boolean-flaggor är useReducer ett väldigt bra alternativ för att få bättre kontroll över state och state-förändringar.
 
-> Värt att påpeka är ju att det här är tankar och funderingar efter att ha använt useReducer en gång 😆 Men jag kände ändå för att få nedskrivet några reflektioner.
+> Värt att påpeka är ju att det här är tankar och funderingar efter att ha använt useReducer _en_ gång. Men jag kände ändå för att få nedskrivet några reflektioner.
 
 Nästa gång jag står inför lite mer avancerad state kommer jag i alla fall inte tveka att överväga useReducer som lösning istället för useState, då man har mycket att vinna på det!
