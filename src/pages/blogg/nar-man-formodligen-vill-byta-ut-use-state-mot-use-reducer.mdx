@@ -1,0 +1,180 @@
+---
+title: När man förmodligen vill byta ut useState mot useReducer
+summary: Hook:en useState är bra till mycket. Men ibland räcker inte den inte hela vägen. Det här är lite reflektioner över första gången jag använde useReducer för att lösa lite mer avancerad state.
+layout: blogPost
+date: 2021-02-13
+---
+
+Det här är en genomgång och reflektioner av hur det gick till när jag för första gången använde useReducer som ett rimligare alternativ till useState, på grund av ett multi-steg-formulärs komplexitet.
+
+## Kort om useState
+
+React-hook:en `useState` är väldigt smidig att använda när man vill göra en funktionskomponent stateful. Det är relativt lätt att hämta lite data asynkront från ett API och sätta det i state, eller koppla ihop inputfältvärden med state.
+
+En uppenbar skillnad mellan useState och hur man ofta skriver och sätter state i klasskomponenter är att man via useState kan ha flera ”state-variabler”, medan man i en klass-komponent jobbar med state som ett objekt.
+
+Säg att man har ett formulär och vill använda useState för state-hantering med 3-4 inputfält. Det enklaste är nog att ha separata state-variabler för varje inputfält, ungefär så här:
+
+```js
+const [inputOne, setInputOne] = useState(’’);
+const [inputTwo, setInputTwo] = useState(’’);
+const [inputThree, setInputThree] = useState(’’);
+const [inputFour, setInputFour] = useState(’’);
+```
+
+Att separera state för ett formulär på det här sättet kanske är det mest uppenbara tillvägagångssättet. Ett alternativ för när ett formulär, eller vilken sorts komponent som helst egentligen som behöver state, inte är speciellt komplext och när det inte finns så många ”nyanser” i hur state:t kan se ut.
+
+När man då istället behöver lite komplexare state-hantering kan det kanske ses naturligt att gruppera state i ett objekt istället, likt state för en klass-komponent. Detta kan framför allt vara bra för att man får en bättre överblick över hur en komponents state ser ut, istället för att man har väldigt många individuella `const [state, setState] = useState()` att hålla reda på.
+
+Överskådligheten blir om ännu bättre om man använder TypeScript och kan typa upp sitt useState objekt.
+
+### När useState inte räcker till
+
+Räcker det då att fortsätta använda useState tillsammans med ett objekt istället och låta formuläret/funktionskomponent sköta lite komplexare state-logik? Inte riktigt. Den officiella dokumentationen för React [rekommenderar](https://reactjs.org/docs/hooks-reference.html) att man istället ska använda hook:en `useReducer`, med motiveringen:
+
+> **useReducer** is usually preferable to **useState** when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one
+
+Flera individuella useState-variabler, ett enda state-objekt och sen useReducer. Det är i stora drag de tre olika stadier som jag och en kollega gick igenom när vi för ett tag sedan i ett projekt skulle bygga ett multi-stegs formulär. Ett formulär som involverade datahämtning via ett API och där de olika formulär-stegen hade beroenden av state mellan sig.
+
+## Fas 1: useState-variabler everywhere!
+
+Jag och en kollega skulle som sagt bygga ett formulär som hade flera olika steg. Kortfattad och simplifierat skulle formuläret bete sig så här:
+
+- **I steg 1:** Inputfält för att söka efter data via ett API och låt användaren välja ett alternativ från API:et. Beroende på vad användaren väljer går ett till API-anrop iväg och beroende på om man får en eller fler träffar tillbaka låt användaren välja ett av de alternativen. Får man bara en träff från det andra API-anropet ska den infon sättas direkt i state istället för att användaren behöver välja något.
+- **I steg 2**: Beroende på state som sätts i steg 1 så hämtas annan data från ett API och användaren får välja några alternativ i dropdown-inputs.
+- **I steg 3**: Användaren granskar den data som hen angett i steg 1 och 2.
+
+Användaren har även möjlighet att backa ett steg i taget i formuläret och eftersom att steg 2 beror på data som valts i steg 1 så skulle all state rensas i steg 1.
+
+När vi började bygga formuläret hade vi inte riktigt rett ut exakt alla stadier och nyanser i state:et för formuläret.
+
+Vi började helt enkelt med en `const [inputOne, setInputTwo] = useState(’’)` för varje liten del av formulär-state:t vi kom på och byggde successivt upp mer och mer state-variabler och kopplade ihop dessa med `onChange()` callbacks på input-fält och satte data från API-anrop till state-variablerna.
+
+I takt med att vi utforskade all state-logik och komplexitet som faktiskt fanns i det formulär vi höll på att bygga insåg vi att det vart rätt ohållbart att hålla reda på all state-logik. Detta för att små bitar av formulär-state sattes här och där i callbacks och asynkront efter API-anrop.
+
+Vi började även få state-variabler som berodde på andra state-variabler och hade svårt att se helheten för formuläret, all dess logik och nyanser av state.
+
+## Fas 2: Gruppera state i ett objekt
+
+I ett försök att ta lite mer kontroll över formulärets state och få bättre överblick så flyttade vi in alla individuella bitar av state till ett enda objekt istället.
+
+Att gruppera allt i ett objekt hjälpte till avsevärt med överblicken av formulär-datat. Mycket för att vi skrev TypeScript-kod och typade upp ett interface för hela formulärets state.
+
+Vi slapp även flera individuella `setState()` anrop för flera sub-värden i state:t. Vi gick från sånt här:
+
+```js
+const onInputChange = async (value) => {
+  setInputOne(value);
+  const data = await fetchFromAPI(value);
+  setDataOne(data);
+};
+```
+
+Till att istället skriva sånt här:
+
+```js
+const onInputChange = async (value) => {
+  const data = await fetchFromAPI(value);
+  setState({ ...state, inputOne: value, dataOne: data });
+};
+```
+
+Perfekt. Vi hade nu alltså bättre koll på hur formulärets state såg ut för att allt var grupperat.
+
+Något vi fortfarande hade problem med var att vi i **formulär-komponenten behövde ha stenkoll på beroenden mellan sub-värden i state-objektet**.
+
+Ett konkret exempel på detta är att vi allt eftersom upptäckte att vi behövde lite custom input-valideringsfeedback i formulärets olika steg innan man kunde gå vidare till nästa steg. Sån feedback ritades ut i alerts direkt i formuläret och feedback-texterna sattes i state-objektet som en array med strängar.
+
+Om användaren då försökte gå vidare till nästa steg i formuläret fick denne feedback om att viss input-data saknades. När användaren då började fylla i den datan skulle feedbacken försvinna. Vi började få sådana här exempel lite här och var i koden:
+
+```js
+const onInputChange = (value) => {
+  setState({ ...state, inputOne: value, feedback: [] });
+};
+```
+
+Ett annat exempel på beroenden mellan sub-värden är att det kunde uppstå scenarion då användaren inte ens skulle kunna gå vidare från steg 1 till steg 2, beroende på den data man fick tillbaka från API:et i steg 1. Detta styrde vi med boolean-flaggor i state-objektet som sattes till true eller false beroende på svarsdatat från API:et.
+
+Ett tredje exempel är att all state skulle rensas när användarn gick tillbaka till steg 1 i formuläret. Vi hade en generell funktion som tog in ett givet steg som en parameter och satte den parametern i state-objektet. När inparametern dock var `0`, vilket representerade steg 1, så skulle hela state:t tömmas.
+
+Komplexiteten och alla nyanser i state:t behövde dels vi som utvecklare av formuläret, men även formuläret i sig ha stenkoll på. I en del lägen skulle man sätta men också rensa sub-värden i state:t och i andra lägen skulle man tolka data som skulle sättas i två sub-state värden på två olika sätt.
+
+**Det är i det här läget som vi började snegla på att använda useReducer istället.**
+
+## Fas 3: Kasta ut useState och välkomna useReducer
+
+Den korta beskrivningen en bit upp i denna text som beskriver de lägen som useReducer är att rekommendera över useState angående komplex state-logik och sub-värden är väldigt talande för de fördelar vi snabbt såg efter att vi hade refaktorerat formulärets state till en useReducer istället.
+
+Att vi började snegla mot useReducer började väl med att vi i princip hade all state-logik på plats och formuläret i sin helhet fungerade enligt kravspec, med vårat state-objekt.
+
+Men när vi kikade igenom koden kändes det fortfarande som att det var väldigt många olika callbacks osv där state sattes och vi hade fortfarande kvar alla beroenden mellan sub-värden.
+
+Formulär-komponenten var helt enkelt svår att hänga med i då det sattes state lite här och där och vi behövde ha stenkoll på i vilka callbacks som validerings-feedback skulle rensas osv.
+
+Formuläret i sig behövde även ha koll på att när användaren klickar sig bakåt mellan stegen så ska hela state-objektet rensas om användaren klickade sig tillbaka till första steget.
+
+### Vad gör useReducer?
+
+Vad är det då som skiljer useState från useReducer? useReducer fungerar lite mer som Redux i det sätt att useReducer-hooken ger tillbaka `state` och en `dispatch` funktion. Via dispatch skickar man olika ”actions” med eller utan data för att uppdatera state, via en reducer-funktion:
+
+```js
+const [state, dispatch] = useReducer(reducer, initialState);
+```
+
+Reducer-funktionen i sin tur tar state:ta nuvarande version och en action som parametrar och vanligtvis (precis som med Redux) så brukar reducern bestå av en switch/case på `action.type` där olika action-types uppdaterar state på lite olika sätt.
+
+> Vill man veta mer om useReducer så är den [officiella dokumentationen](https://reactjs.org/docs/hooks-reference.html) en bra startpunkt.
+
+För den komponent som ska uppdatera state handlar det förenklat om att man går från `setState({ ...state, inputOne: value})` till `dispatch({ type: ’INPUT_ONE’, value })`.
+
+### Vilka fördelar såg vi?
+
+Vilka fördelar kunde vi då se när vi refaktorerade från lösningen med useState och vårat state-objekt till att använda useReducer istället?
+
+Den allra största fördelen vi såg var att formulär-komponenten nu bara behövde fokusera på **vad** som skulle hända och inte exakt **hur** något skulle hända. Om man ska ta exemplet med att låta användaren backa i formuläret så gick vi från (ungefär):
+
+```js
+const onStepChange = (step) => {
+  if (step === 0) {
+    setState(emptyFormData);
+    return;
+  }
+  setState({ ...state, step: step });
+};
+```
+
+Till en lösning där formuläret inte behövde bry sig om sådana detaljer:
+
+```js
+const onStepChange = (step) => {
+	dispatch({ type: ’FORM_STEP’, step: step });
+}
+```
+
+Vår formulär-reducer såg då till att själv antingen bara backa ett steg eller rensa hela formuläret i sin helhet, då användaren backade till första steget.
+
+En annan fördel vi såg var att formuläret inte längre behövde bry sig om att i vissa lägen rensa den validerings-feedback array som fanns i state. Sådana detaljer var upp till reducern att sköta, beroende på vilken action som formuläret dispatchade.
+
+En tredje fördel var att formuläret nu inte längre behövde bry sig alls om eventuella beroenden mellan sub-värden i state:t. Formuläret dispatchade bara sina actions med tillhörande data och reducern såg till att sätta eventuella boolean-flaggor osv själv.
+
+### Mer boilerplate-kod men kontrollerade state-förändringar
+
+Visserligen innebar useReducern lite mer ”boilerplate-kod”, framför allt då vi jobbar med TypeScript och typade upp alla action-typen och payloads som man kunde skicka in i reducern. Men detta innebar ju också att vi fick ett tydligare kontrakt mellan formuläret och reducern, och hur formuläret kunde påverka state:t på ett väligt kontrollerat sätt.
+
+All boilerplate gjorde det tydligt att vi kunde lyfta ut useReducern till en custom hook. Då vi gjorde detta blev dessutom formulär-komponenten 100% mer överskådlig. Nu ansvarade formulär-komponenten i princip bara för att hämta data från API:er i vissa funktioner och dispatcha actions, samt dispatcha vissa actions direkt i ”onInputChange-funktioner”.
+
+All faktiskt state-hantering lyftes ut till en separat fil. Behövde vi se hur state:t såg ut eller hur det skule förändras över tid gav reducern oss en tydligare överblick, istället för att behöva skrolla runt i formulär-komponenten och jaga `setState` anrop.
+
+## Summering
+
+Phew! Där var vi i mål!
+
+Vad kan man då dra för summerande slutsatser av det hela? Ska man strunta i useState helt och istället använda useReducer? Absolut inte! Hook:en useState är väldigt bra om man har ett state som inte är speciellt komplext. Att alltid använda useReducer skulle förmodligen innebära onödigt komplex lösning för en icke-komplex utmaning.
+
+Men å andra sidan tror jag inte man ska vara rädd för att byta ut useState mot useReducer i de lägen en komponents state växer. Personligen tyckte jag att useReducer såg ut som onödigt avancerat sätt att hantera state i funktions-komponenter innan jag testade på den, men såg genast fördelar med den när jag väl började använda den.
+
+Har man lite mer avancerat state och synkar inte bara input-fält till data eller tänder och släcker grejer rent visuellt med boolean-flaggor är useReducer ett väldigt bra alternativ för att få bättre kontroll över state och state-förändringar.
+
+> Värt att påpeka är ju att det här är tankar och funderingar efter att ha använt useReducer _en_ gång. Men jag kände ändå för att få nedskrivet några reflektioner.
+
+Nästa gång jag står inför lite mer avancerad state kommer jag i alla fall inte tveka att överväga useReducer som lösning istället för useState, då man har mycket att vinna på det!
