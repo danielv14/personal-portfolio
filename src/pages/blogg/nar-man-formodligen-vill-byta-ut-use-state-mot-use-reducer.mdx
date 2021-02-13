@@ -60,7 +60,7 @@ I ett försök att ta lite mer kontroll över formulärets state och få bättre
 
 Att gruppera allt i ett objekt hjälpte till avsevärt med överblicken av formulär-datat. Mycket för att vi skrev TypeScript-kod och typade upp ett interface för hela formulärets state.
 
-Vi slapp även flera individuella `setState()` anrop för flera sub-värden i statet. Vi gick från sånt här:
+Vi slapp även flera individuella `setState()` anrop för flera sub-värden i state:t. Vi gick från sånt här:
 
 ```js
 const onInputChange = async (value) => {
@@ -81,7 +81,9 @@ const onInputChange = async (value) => {
 
 Perfekt. Vi hade nu alltså bättre koll på hur formulärets state såg ut för att allt var grupperat.
 
-Något vi fortfarande hade problem med var att vi i formulär-komponenten behövde ha stenkoll på beroenden mellan sub-värden i state-objektet. Ett konkret exempel på detta är att vi allt eftersom upptäckte att vi behövde lite custom input-valideringsfeedback i formulärets olika steg innan man kunde gå vidare till nästa steg. Sån feedback ritades ut i alerts direkt i formuläret och feedback-texterna sattes i state-objektet som en array med strängar.
+Något vi fortfarande hade problem med var att vi i **formulär-komponenten behövde ha stenkoll på beroenden mellan sub-värden i state-objektet**.
+
+Ett konkret exempel på detta är att vi allt eftersom upptäckte att vi behövde lite custom input-valideringsfeedback i formulärets olika steg innan man kunde gå vidare till nästa steg. Sån feedback ritades ut i alerts direkt i formuläret och feedback-texterna sattes i state-objektet som en array med strängar.
 
 Om användaren då försökte gå vidare till nästa steg i formuläret fick denne feedback om att viss input-data saknades. När användaren då började fylla i den datan skulle feedbacken försvinna. Vi började få sådana här exempel lite här och var i koden:
 
@@ -93,9 +95,9 @@ const onInputChange = (value) => {
 
 Ett annat exempel på beroenden mellan sub-värden är att det kunde uppstå scenarion då användaren inte ens skulle kunna gå vidare från steg 1 till steg 2, beroende på den data man fick tillbaka från API:et i steg 1. Detta styrde vi med boolean-flaggor i state-objektet som sattes till true eller false beroende på svarsdatat från API:et.
 
-Ett tredje exempel är att all state skulle rensas när användarn gick tillbaka till steg 1 i formuläret. Vi hade en generell funktion som tog in ett givet steg som en parameter och satte den parametern i state-objektet. När inparametern dock var `0`, vilket representerade steg 1, så skulle hela statet tömmas.
+Ett tredje exempel är att all state skulle rensas när användarn gick tillbaka till steg 1 i formuläret. Vi hade en generell funktion som tog in ett givet steg som en parameter och satte den parametern i state-objektet. När inparametern dock var `0`, vilket representerade steg 1, så skulle hela state:t tömmas.
 
-Komplexiteten och alla nyanser i statet behövde dels vi som utvecklade formuläret, men även formuläret i sig ha stenkoll på. I en del lägen skulle man sätta men också rensa sub-värden i statet och i andra lägen skulle man tolka data som skulle sättas i två sub-state värden på två olika sätt.
+Komplexiteten och alla nyanser i state:t behövde dels vi som utvecklare av formuläret, men även formuläret i sig ha stenkoll på. I en del lägen skulle man sätta men också rensa sub-värden i state:t och i andra lägen skulle man tolka data som skulle sättas i två sub-state värden på två olika sätt.
 
 **Det är i det här läget som vi började snegla på att använda useReducer istället.**
 
@@ -153,7 +155,7 @@ Vår formulär-reducer såg då till att själv antingen bara back ett steg elle
 
 En annan fördel vi såg var att formuläret inte längre behövde bry sig om att i vissa lägen rensa den validerings-feedback array som fanns i state. Sådana detaljer var upp till reducern att sköta, beroende på vilken action som formuläret dispatchade.
 
-En tredje fördel var att formuläret nu inte längre behövde bry sig alls om eventuella beroenden mellan sub-värden i statet. Formuläret dispatchade bara sina actions med tillhörande data och reducern såg till att sätta eventuella boolean-flaggor osv själv.
+En tredje fördel var att formuläret nu inte längre behövde bry sig alls om eventuella beroenden mellan sub-värden i state:t. Formuläret dispatchade bara sina actions med tillhörande data och reducern såg till att sätta eventuella boolean-flaggor osv själv.
 
 Visserligen innebar useReducern lite mer ”boilerplate-kod”, framför allt då vi jobbar med TypeScript och typade upp alla action-typen och payloads som man kunde skicka in i reducern. Men detta innebar ju också att vi fick ett tydligare kontrakt mellan formuläret och reducern och hur kommunikationen där emellan såg ut.
 
