@@ -10,6 +10,6 @@ export const fonts: Fonts = {
       "'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;",
     mono: "'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
   },
-  sizeBase: '18px',
+  sizeBase: '16px',
   sizeScale: fontScale,
 };
