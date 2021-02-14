@@ -163,7 +163,7 @@ Visserligen innebar useReducern lite mer ”boilerplate-kod”, framför allt d�
 
 All boilerplate gjorde det tydligt att vi kunde lyfta ut useReducern till en custom hook. Då vi gjorde detta blev dessutom formulär-komponenten 100% mer överskådlig. Nu ansvarade formulär-komponenten i princip bara för att hämta data från API:er i vissa funktioner och dispatcha actions, samt dispatcha vissa actions direkt i ”onInputChange-funktioner”.
 
-All faktiskt state-hantering lyftes ut till en separat fil. Behövde vi se hur state:t såg ut eller hur det skule förändras över tid gav reducern oss en tydligare överblick, istället för att behöva skrolla runt i formulär-komponenten och jaga `setState` anrop.
+All faktiskt state-hantering lyftes ut till en separat fil. Behövde vi se hur state:t såg ut eller hur det skulle förändras över tid gav reducern oss en tydligare överblick, istället för att behöva skrolla runt i formulär-komponenten och jaga `setState` anrop.
 
 ## Summering
 
