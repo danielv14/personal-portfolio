@@ -1,6 +1,7 @@
 import { css } from 'styled-components';
 import { ThemeProps } from '../types/theme/Theme';
 import { scaleFontSizeToRem, scaleSpacingToPx } from './helpers/scaleHelpers';
+import { setupResponsiveVariables } from './helpers/setupResponsiveVariables';
 import { setupColorThemeVariantVariables } from './helpers/setupThemeVariables';
 
 export const cssVariables = css(({ theme: { fonts, colors, layout } }: ThemeProps) => css`
@@ -11,7 +12,7 @@ export const cssVariables = css(({ theme: { fonts, colors, layout } }: ThemeProp
     --mono-font: ${fonts.fontFamily.mono};
 
     /* Setup font sizes */
-    --font-size-base: ${fonts.sizeBaseDesktop};
+    --font-size-base: ${fonts.sizeBase};
     --font-size-h1: ${scaleFontSizeToRem(7)};
     --font-size-h2: ${scaleFontSizeToRem(6)};
     --font-size-h3: ${scaleFontSizeToRem(5)};
@@ -40,6 +41,9 @@ export const cssVariables = css(({ theme: { fonts, colors, layout } }: ThemeProp
 
     /* Setup variables depending on dark/light mode. Default to light mode */
     ${setupColorThemeVariantVariables(colors.themed.light)}
+
+    /* Setup variables depending on responsive breakpoints */
+    ${setupResponsiveVariables(fonts)}
   }
   body.dark-mode {
     ${setupColorThemeVariantVariables(colors.themed.dark)};
