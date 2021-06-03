@@ -11,5 +11,6 @@ export const fonts: Fonts = {
     mono: "'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
   },
   sizeBase: '16px',
+  sizeBaseDesktop: '18px',
   sizeScale: fontScale,
 };

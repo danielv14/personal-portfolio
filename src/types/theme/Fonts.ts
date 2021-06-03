@@ -10,4 +10,5 @@ export interface Fonts {
   fontFamily: FontFamiliy;
   sizeScale: FontScale;
   sizeBase: string;
+  sizeBaseDesktop: string;
 }
