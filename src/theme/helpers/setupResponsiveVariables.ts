@@ -1,12 +1,10 @@
 import { css } from 'styled-components';
+import { Breakpoints } from '../../types/theme/Breakpoints';
 import { Fonts } from '../../types/theme/Fonts';
-import { theme } from '../theme';
 import { scaleToPx } from './scaleHelpers';
 
-export const setupResponsiveVariables = (fonts: Fonts) => css`
-  @media (min-width: ${scaleToPx(theme.breakpoints[2])}) {
-    :root {
+export const setupResponsiveVariables = (fonts: Fonts, breakpoints: Breakpoints) => css`
+  @media (min-width: ${scaleToPx(breakpoints[2])}) {
       --font-size-base: ${fonts.sizeBaseDesktop};
-    }
   }
 `;

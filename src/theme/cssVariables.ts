@@ -4,7 +4,7 @@ import { scaleFontSizeToRem, scaleSpacingToPx } from './helpers/scaleHelpers';
 import { setupResponsiveVariables } from './helpers/setupResponsiveVariables';
 import { setupColorThemeVariantVariables } from './helpers/setupThemeVariables';
 
-export const cssVariables = css(({ theme: { fonts, colors, layout } }: ThemeProps) => css`
+export const cssVariables = css(({ theme: { fonts, colors, layout, breakpoints } }: ThemeProps) => css`
   :root {
     /* Setup fonts */
     --content-font: ${fonts.fontFamily.main};
@@ -42,8 +42,8 @@ export const cssVariables = css(({ theme: { fonts, colors, layout } }: ThemeProp
     /* Setup variables depending on dark/light mode. Default to light mode */
     ${setupColorThemeVariantVariables(colors.themed.light)}
 
-    /* Setup variables depending on responsive breakpoints */
-    ${setupResponsiveVariables(fonts)}
+    /* Setup or alter variable values depending on passed responsive breakpoints */
+    ${setupResponsiveVariables(fonts, breakpoints)}
   }
   body.dark-mode {
     ${setupColorThemeVariantVariables(colors.themed.dark)};
