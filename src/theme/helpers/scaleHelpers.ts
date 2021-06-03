@@ -1,5 +1,6 @@
 import { css } from 'styled-components';
 import { ThemeProps } from '../../types/theme/Theme';
+import { BreakpointScaleIndex } from '../parts/breakpoints';
 
 export const scaleToRem = (scale: number) => `${scale}rem`;
 
@@ -17,7 +18,7 @@ export const scaleFontSizeToRem = (scale: number) => css(
   ({ theme }: ThemeProps) => scaleToRem(theme.fonts.sizeScale[scale])
 );
 
-export const scaleToMediaQuery = (scale: number) => (templateStrings: TemplateStringsArray) => css`
+export const scaleToMediaQuery = (scale: BreakpointScaleIndex) => (templateStrings: TemplateStringsArray) => css`
   @media (min-width: ${scaleMediaQueryToPx(scale)}) {
     ${css(templateStrings)}
   }
