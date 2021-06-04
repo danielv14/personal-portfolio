@@ -1,4 +1,3 @@
-import { MarginMedium } from '../ui/margins/marginMedium';
 
 export const SectionAbout: React.FC = () => {
   return (
@@ -13,7 +12,6 @@ export const SectionAbout: React.FC = () => {
         I bagaget har jag en egenkomponerad <strong>kandidatexamen i Informatik</strong> och har{' '}
         <strong>sedan 2017</strong> jobbat med utveckling.
       </p>
-      <MarginMedium />
     </section>
   );
 };

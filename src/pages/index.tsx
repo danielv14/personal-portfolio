@@ -33,12 +33,7 @@ const indexPage = () => {
         </Column>
         <MarginLarge />
         <Column>
-          <MarginLarge />
           <SectionAbout />
-        </Column>
-        <MarginLarge />
-        <Column>
-          <ToolBox categories={toolboxCategories} />
         </Column>
         <MarginLarge />
         <Column ref={ProjectRef}>
@@ -64,6 +59,10 @@ const indexPage = () => {
             </UnstyledInternalLink>
             <Fill />
           </Row>
+        </Column>
+        <MarginLarge />
+        <Column>
+          <ToolBox categories={toolboxCategories} />
         </Column>
       </ResponsiveContainer>
     </>
