@@ -8,4 +8,7 @@ module.exports = withMdxEnhanced({
   fileExtensions: ['mdx'],
   remarkPlugins: [require('remark-code-titles')],
   rehypePlugins: [mdxPrism],
-})(/* your normal nextjs config */);
+})({
+  // Keep webpack 4 for now due to crashes. Fix it seperately.
+  webpack5: false,
+});
