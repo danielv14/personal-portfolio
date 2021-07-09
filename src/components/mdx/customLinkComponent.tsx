@@ -8,7 +8,6 @@ interface CustomLinkComponentProps {
 }
 
 export const customLinkComponent = (props: CustomLinkComponentProps) => {
-  console.log(props);
   const href = props.href;
   if (isInternalLink(href)) {
     return (
