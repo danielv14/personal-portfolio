@@ -1,6 +1,1 @@
-export enum IconAnimation {
-  Hover = 'hover',
-  None = 'none',
-  RotateLeft = 'rotate-left',
-  RotateRight = 'rotate-right',
-}
+export type IconAnimation = 'hover' | 'none' | 'rotate-left' | 'rotate-right';

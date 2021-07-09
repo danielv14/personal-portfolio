@@ -16,7 +16,7 @@ export const DarkModeToggleIcons: React.FC<DarkModeToggleIconsProps> = ({ isDark
     }
     onToggle();
   };
-  const animation = hasUserToggled ? IconAnimation.RotateRight : IconAnimation.None;
+  const animation: IconAnimation = hasUserToggled ? 'rotate-right' : 'none';
   const Icon = isDarkMode ? IconLightMode : IconDarkMode;
   return <Icon onClick={toggleDarkMode} animation={animation} />;
 };

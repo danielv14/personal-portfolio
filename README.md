@@ -100,12 +100,6 @@ Lint application with:
 yarn lint
 ```
 
-Attempt to fix lint errors with:
-
-```bash
-yarn lint:fix
-```
-
 Generate new article with:
 
 ```bash

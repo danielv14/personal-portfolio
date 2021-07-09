@@ -1,7 +1,13 @@
 import Link from 'next/link';
+import { ReactNode } from 'react';
 import { isInternalLink } from '../../utils/isInternalLink';
 
-export const customLinkComponent = (props: any) => {
+interface CustomLinkComponentProps {
+  href: string;
+  children: ReactNode | string;
+}
+
+export const customLinkComponent = (props: CustomLinkComponentProps) => {
   const href = props.href;
   if (isInternalLink(href)) {
     return (

@@ -31,9 +31,9 @@ const animationRotateRight: MotionProps = {
   },
 };
 
-export const iconAnimations: { [key in IconAnimation]: MotionProps } = {
-  [IconAnimation.None]: {},
-  [IconAnimation.Hover]: animationHover,
-  [IconAnimation.RotateLeft]: animationRotateLeft,
-  [IconAnimation.RotateRight]: animationRotateRight,
+export const iconAnimations: Record<IconAnimation, MotionProps> = {
+  none: {},
+  hover: animationHover,
+  'rotate-left': animationRotateLeft,
+  'rotate-right': animationRotateRight,
 };

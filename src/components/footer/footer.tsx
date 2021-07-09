@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { site } from '../../data/site';
-import { IconAnimation } from '../../types/icon/iconAnimation';
 import { Column } from '../ui/container/column';
 import { Fill } from '../ui/container/fill';
 import { ResponsiveContainer } from '../ui/container/responsiveContainer';
@@ -25,11 +24,11 @@ export const Footer: React.FC = () => {
           <FooterText>Daniel Vernberg {new Date().getFullYear()}</FooterText>
           <Fill />
           <a href={site.urlGithub}>
-            <IconGitHub animation={IconAnimation.Hover} />
+            <IconGitHub animation="hover" />
           </a>
           <MarginSmall />
           <a href={`mailto:${site.email}`}>
-            <IconMail animation={IconAnimation.Hover} />
+            <IconMail animation="none" />
           </a>
         </Row>
         <MarginMedium />

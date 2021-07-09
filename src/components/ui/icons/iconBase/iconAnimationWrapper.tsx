@@ -1,6 +1,6 @@
 import { motion, MotionProps } from 'framer-motion';
-import { iconAnimations } from './iconAnimations';
 import { IconAnimation } from '../../../../types/icon/iconAnimation';
+import { iconAnimations } from './iconAnimations';
 
 export interface IconAnimationWrapperProps {
   animation?: IconAnimation;
@@ -8,7 +8,7 @@ export interface IconAnimationWrapperProps {
 }
 
 export const IconAnimationWrapper: React.FC<IconAnimationWrapperProps> = ({
-  animation = IconAnimation.None,
+  animation = 'none',
   customAnimation,
   children,
 }) => {
