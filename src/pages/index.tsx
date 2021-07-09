@@ -17,7 +17,7 @@ import { site } from '../data/site';
 import { toolboxCategories } from '../data/toolBoxCategories';
 import { useScrollToElement } from '../hooks/useScrollToElement';
 
-const indexPage = () => {
+const IndexPage = (): JSX.Element => {
   const { blogPosts, projects } = useContent();
   const latestBlogPosts = blogPosts.slice(0, 4);
   const [ProjectRef, scrollToProjectElement] = useScrollToElement({ offset: -60 });
@@ -69,4 +69,4 @@ const indexPage = () => {
   );
 };
 
-export default indexPage;
+export default IndexPage;

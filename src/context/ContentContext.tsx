@@ -1,5 +1,5 @@
-import { PostMetaData } from '../types/FrontMatter';
 import * as React from 'react';
+import { PostMetaData } from '../types/FrontMatter';
 import { Project } from '../types/Project';
 
 interface ContentContextValue {
@@ -10,7 +10,7 @@ interface ContentContextValue {
 const ContentContext = React.createContext<ContentContextValue>({ blogPosts: [], projects: [] });
 ContentContext.displayName = 'ContentContext';
 
-export const useContent = () => React.useContext(ContentContext);
+export const useContent = (): ContentContextValue => React.useContext(ContentContext);
 
 export const ContentProvider: React.FC<ContentContextValue> = ({ children, ...rest }) => {
   const values = { ...rest };

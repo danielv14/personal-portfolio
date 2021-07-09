@@ -9,7 +9,7 @@ import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginSmall } from '../components/ui/margins/marginSmall';
 import { useContent } from '../context/ContentContext';
 
-const blogIndex = () => {
+const BlogIndex = () => {
   const { blogPosts } = useContent();
   return (
     <>
@@ -38,4 +38,4 @@ const blogIndex = () => {
   );
 };
 
-export default blogIndex;
+export default BlogIndex;
