@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../../ui/container/Card';
+import { Card } from '../../ui/card/Card';
 import { Column } from '../../ui/container/Column';
 import { Fill } from '../../ui/container/Fill';
 import { Row } from '../../ui/container/Row';

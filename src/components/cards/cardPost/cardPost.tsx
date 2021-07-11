@@ -1,5 +1,5 @@
 import { PostMetaData } from '../../../types/FrontMatter';
-import { Card } from '../../ui/container/Card';
+import { Card } from '../../ui/card/Card';
 import { Column } from '../../ui/container/Column';
 import { Row } from '../../ui/container/Row';
 import { UnstyledInternalLink } from '../../ui/content/UnstyledLink';
