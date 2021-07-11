@@ -12,7 +12,7 @@ import { usePrevAndNextBlogPost } from '../hooks/usePrevAndNextBlogPost';
 import { PostLayoutProps } from '../types/Layout';
 import { toPostMetaData } from '../utils/postMappings';
 
-const layoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
+const LayoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
   const postMetaData = toPostMetaData(frontMatter);
   const [prevPost, nextPost] = usePrevAndNextBlogPost(postMetaData);
   return (
@@ -43,4 +43,4 @@ const layoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
   );
 };
 
-export default layoutBlogPost;
+export default LayoutBlogPost;

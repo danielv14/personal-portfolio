@@ -15,7 +15,7 @@ const styleBold = ({ bold }: HeadingProps) =>
 const styleMuted = ({ muted }: HeadingProps) =>
   muted &&
   css`
-    font-weight: 500;
+    font-weight: 400;
     color: var(--text-muted-color);
   `;
 

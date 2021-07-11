@@ -1,4 +1,3 @@
-
 export const SectionAbout: React.FC = () => {
   return (
     <section>
@@ -9,8 +8,8 @@ export const SectionAbout: React.FC = () => {
         lite bredare.
       </p>
       <p>
-        I bagaget har jag en utbildning i <strong>systemvetenskap</strong> och har{' '}
-        <strong>sedan 2017</strong> jobbat med utveckling.
+        I bagaget har jag en utbildning i <strong>systemvetenskap</strong> och har <strong>sedan 2017</strong> jobbat
+        med utveckling.
       </p>
     </section>
   );

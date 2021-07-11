@@ -62,6 +62,7 @@ const IndexPage = (): JSX.Element => {
         </Column>
         <MarginLarge />
         <Column>
+          <MarginMedium />
           <ToolBox categories={toolboxCategories} />
         </Column>
       </ResponsiveContainer>

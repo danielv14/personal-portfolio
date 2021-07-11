@@ -1,9 +1,10 @@
-import { Colors, ColorTheme } from '../../types/theme/Colors';
 import color from 'color';
+import { Colors, ColorTheme } from '../../types/theme/Colors';
 
 const colorPrimary = '#6691FF';
 const colorPrimaryDarken = color(colorPrimary).darken(0.05).hex();
 const colorPrimaryLighten = color(colorPrimary).lighten(0.38).hex();
+const colorSecondary = '#3fc155';
 const btnShadowOpaqueRatio = 0.35;
 
 const darkTheme: ColorTheme = {
@@ -41,5 +42,6 @@ export const colors: Colors = {
     primary: colorPrimary,
     primaryDarken: colorPrimaryDarken,
     primaryLighten: colorPrimaryLighten,
+    secondary: colorSecondary,
   },
 };
