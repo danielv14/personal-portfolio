@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { media } from '../../theme/helpers/mediaQueries';
 import { PostMetaData } from '../../types/FrontMatter';
 import { PostListItem } from '../postListItem/PostListItem';
-import { UnstyledInternalLink } from '../ui/content/UnstyledLink';
-import { MarginMedium } from '../ui/margins/MarginMedium';
-import { Header } from '../ui/typography/Header';
+import { UnstyledInternalLink } from '../ui-system/content/UnstyledLink';
+import { MarginMedium } from '../ui-system/margins/MarginMedium';
+import { Header } from '../ui-system/typography/Header';
 
 interface SectionArticlesProps {
   articles: PostMetaData[];

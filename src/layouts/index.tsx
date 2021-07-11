@@ -1,7 +1,7 @@
 import React from 'react';
 import { Seo } from '../components/seo/Seo';
-import { ResponsiveContainer } from '../components/ui/container/ResponsiveContainer';
-import { MarginLarge } from '../components/ui/margins/MarginLarge';
+import { ResponsiveContainer } from '../components/ui-system/container/ResponsiveContainer';
+import { MarginLarge } from '../components/ui-system/margins/MarginLarge';
 import { DefaultLayoutProps } from '../types/Layout';
 
 const layoutDefault = ({ frontMatter, children }: DefaultLayoutProps) => {

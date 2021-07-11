@@ -1,11 +1,11 @@
 import { Seo } from '../components/seo/Seo';
-import { ButtonPrimary } from '../components/ui/buttons/ButtonPrimary';
-import { Column } from '../components/ui/container/Column';
-import { ResponsiveContainer } from '../components/ui/container/ResponsiveContainer';
-import { UnstyledInternalLink } from '../components/ui/content/UnstyledLink';
-import { MarginLarge } from '../components/ui/margins/MarginLarge';
-import { MarginMedium } from '../components/ui/margins/MarginMedium';
-import { TextCenter } from '../components/ui/typography/TextCenter';
+import { ButtonPrimary } from '../components/ui-system/buttons/ButtonPrimary';
+import { Column } from '../components/ui-system/container/Column';
+import { ResponsiveContainer } from '../components/ui-system/container/ResponsiveContainer';
+import { UnstyledInternalLink } from '../components/ui-system/content/UnstyledLink';
+import { MarginLarge } from '../components/ui-system/margins/MarginLarge';
+import { MarginMedium } from '../components/ui-system/margins/MarginMedium';
+import { TextCenter } from '../components/ui-system/typography/TextCenter';
 
 const page404 = () => {
   const title = '404! Sidan kunde inte hittas';

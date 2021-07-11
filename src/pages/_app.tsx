@@ -8,7 +8,7 @@ import { Footer } from '../components/footer/Footer';
 import { mdxComponents } from '../components/mdx/MdxComponents';
 import { NavAdjustedContent } from '../components/navbar/nav.styles';
 import { Navbar } from '../components/navbar/Navbar';
-import { MarginLarge } from '../components/ui/margins/MarginLarge';
+import { MarginLarge } from '../components/ui-system/margins/MarginLarge';
 import { ContentProvider } from '../context/ContentContext';
 import { ThemeProvider } from '../context/ThemeContext';
 import { getAllBlogPosts } from '../data/blogPosts';

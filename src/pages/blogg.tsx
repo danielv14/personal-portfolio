@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { PostListItem } from '../components/postListItem/PostListItem';
 import { Seo } from '../components/seo/Seo';
-import { Column } from '../components/ui/container/Column';
-import { ResponsiveContainer } from '../components/ui/container/ResponsiveContainer';
-import { UnstyledInternalLink } from '../components/ui/content/UnstyledLink';
-import { MarginLarge } from '../components/ui/margins/MarginLarge';
-import { MarginSmall } from '../components/ui/margins/MarginSmall';
-import { Header } from '../components/ui/typography/Header';
+import { Column } from '../components/ui-system/container/Column';
+import { ResponsiveContainer } from '../components/ui-system/container/ResponsiveContainer';
+import { UnstyledInternalLink } from '../components/ui-system/content/UnstyledLink';
+import { MarginLarge } from '../components/ui-system/margins/MarginLarge';
+import { MarginSmall } from '../components/ui-system/margins/MarginSmall';
+import { Header } from '../components/ui-system/typography/Header';
 import { useContent } from '../context/ContentContext';
 import { media } from '../theme/helpers/mediaQueries';
 

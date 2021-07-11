@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDarkMode } from '../../hooks/useDarkMode';
-import { Fill } from '../ui/container/Fill';
-import { ResponsiveContainer } from '../ui/container/ResponsiveContainer';
-import { Row } from '../ui/container/Row';
-import { UnstyledInternalLink } from '../ui/content/UnstyledLink';
-import { MarginSmall } from '../ui/margins/MarginSmall';
+import { Fill } from '../ui-system/container/Fill';
+import { ResponsiveContainer } from '../ui-system/container/ResponsiveContainer';
+import { Row } from '../ui-system/container/Row';
+import { UnstyledInternalLink } from '../ui-system/content/UnstyledLink';
+import { MarginSmall } from '../ui-system/margins/MarginSmall';
 import { DarkModeToggleIcons } from './DarkModeToggleIcons';
 import { NavbarContentWrapper, NavbarItem, NavbarWrapper } from './nav.styles';
 

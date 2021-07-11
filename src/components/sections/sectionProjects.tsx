@@ -1,7 +1,7 @@
 import { Project } from '../../types/Project';
 import { CardProject } from '../cards/cardProject/CardProject';
-import { ResponsiveGrid } from '../ui/container/ResponsiveGrid';
-import { Header } from '../ui/typography/Header';
+import { ResponsiveGrid } from '../ui-system/container/ResponsiveGrid';
+import { Header } from '../ui-system/typography/Header';
 
 interface SectionProjectsProps {
   projects: Project[];
