@@ -1,17 +1,17 @@
-import { SectionAbout } from '../components/sections/sectionAbout';
-import { SectionArticles } from '../components/sections/sectionArticles';
-import { SectionHero } from '../components/sections/sectionHero';
-import { SectionProjects } from '../components/sections/sectionProjects';
-import { ToolBox } from '../components/toolbox/toolBox';
-import { ButtonPrimary } from '../components/ui/buttons/ButtonPrimary';
-import { Column } from '../components/ui/container/column';
-import { Fill } from '../components/ui/container/fill';
-import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
-import { Row } from '../components/ui/container/row';
-import { TextCenter } from '../components/ui/content/textCenter';
-import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
-import { MarginLarge } from '../components/ui/margins/marginLarge';
-import { MarginMedium } from '../components/ui/margins/marginMedium';
+import { SectionAbout } from '../components/sections/SectionAbout';
+import { SectionArticles } from '../components/sections/SectionArticles';
+import { SectionHero } from '../components/sections/SectionHero';
+import { SectionProjects } from '../components/sections/SectionProjects';
+import { ToolBox } from '../components/toolbox/ToolBox';
+import { ButtonPrimary } from '../components/ui-system/buttons/ButtonPrimary';
+import { Column } from '../components/ui-system/container/Column';
+import { Fill } from '../components/ui-system/container/Fill';
+import { ResponsiveContainer } from '../components/ui-system/container/ResponsiveContainer';
+import { Row } from '../components/ui-system/container/Row';
+import { UnstyledInternalLink } from '../components/ui-system/content/UnstyledLink';
+import { MarginLarge } from '../components/ui-system/margins/MarginLarge';
+import { MarginMedium } from '../components/ui-system/margins/MarginMedium';
+import { TextCenter } from '../components/ui-system/typography/TextCenter';
 import { useContent } from '../context/ContentContext';
 import { site } from '../data/site';
 import { toolboxCategories } from '../data/toolBoxCategories';
@@ -62,6 +62,7 @@ const IndexPage = (): JSX.Element => {
         </Column>
         <MarginLarge />
         <Column>
+          <MarginMedium />
           <ToolBox categories={toolboxCategories} />
         </Column>
       </ResponsiveContainer>

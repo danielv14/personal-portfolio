@@ -1,8 +1,8 @@
 import { MotionProps } from 'framer-motion';
 import React from 'react';
-import { Column } from '../ui/container/column';
-import { Header } from '../ui/content/header';
-import { TextMuted } from '../ui/content/textMuted';
+import { Column } from '../ui-system/container/Column';
+import { Header } from '../ui-system/typography/Header';
+import { TextMuted } from '../ui-system/typography/TextMuted';
 import { Item } from './postListItem.styles';
 
 interface PostListItemProps {

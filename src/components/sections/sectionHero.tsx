@@ -1,26 +1,29 @@
-import { Column } from '../ui/container/column';
-import { Header } from '../ui/content/header';
-import { TextCenter } from '../ui/content/textCenter';
-import { MarginMedium } from '../ui/margins/marginMedium';
-import { WavingHand } from '../wavingHand';
-import { Title } from './sectionHero.styles';
-
+import { Column } from '../ui-system/container/Column';
+import { MarginMedium } from '../ui-system/margins/MarginMedium';
+import { GradientText } from '../ui-system/typography/GradientHeader';
+import { Header } from '../ui-system/typography/Header';
+import { TextCenter } from '../ui-system/typography/TextCenter';
+import { WavingHand } from '../WavingHand';
+import { SubTitleWrapper, TitleWrapper } from './sectionHero.styles';
 export const SectionHero: React.FC = () => {
   return (
     <section>
       <Column>
         <TextCenter>
           <div>
-            <Title>
-              <WavingHand /> Hallå där!
-            </Title>
+            <TitleWrapper>
+              <WavingHand />
+              <GradientText as="h1">Hallå där!</GradientText>
+            </TitleWrapper>
           </div>
-          <Header muted as="h5">
-            Daniel här! Webbutvecklare med förkärlek till JavaScript, schysst design och tv-serier.
-          </Header>
-          <Header muted style={{ marginTop: '0px' }} as="h5">
-            På den här sajten delar jag med mig av diverse kodprojekt och skriver några rader ibland.
-          </Header>
+          <SubTitleWrapper>
+            <Header muted as="h4">
+              Daniel här! Webbutvecklare med förkärlek till JavaScript, schysst design och tv-serier.
+            </Header>
+            <Header muted style={{ marginTop: '0px' }} as="h4">
+              På den här sajten delar jag med mig av diverse kodprojekt och skriver några rader ibland.
+            </Header>
+          </SubTitleWrapper>
         </TextCenter>
         <MarginMedium />
       </Column>

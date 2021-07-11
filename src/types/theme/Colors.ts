@@ -19,6 +19,7 @@ interface ColorBranding {
   primary: string;
   primaryDarken: string;
   primaryLighten: string;
+  secondary: string;
 }
 
 export interface Colors {

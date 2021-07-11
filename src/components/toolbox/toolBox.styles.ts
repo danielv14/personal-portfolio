@@ -13,7 +13,7 @@ export const List = styled.ul`
 `;
 
 export const Line = styled.div<HeaderLineProps>`
-  background: var(--primary-color);
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
   width: ${(props) => props.width};
   border-radius: var(--border-radius);
   height: 6px;

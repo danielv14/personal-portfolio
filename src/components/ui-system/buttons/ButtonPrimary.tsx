@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
+import styled, { css } from 'styled-components';
 import { buttonAnimation } from './buttonAnimation';
 
 const styles = () => css`

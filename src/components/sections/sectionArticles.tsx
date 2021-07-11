@@ -1,25 +1,36 @@
+import styled from 'styled-components';
+import { media } from '../../theme/helpers/mediaQueries';
 import { PostMetaData } from '../../types/FrontMatter';
-import { PostListItem } from '../postListItem/postListItem';
-import { TextCenter } from '../ui/content/textCenter';
-import { UnstyledInternalLink } from '../ui/content/unstyledLink';
-import { MarginMedium } from '../ui/margins/marginMedium';
+import { PostListItem } from '../postListItem/PostListItem';
+import { UnstyledInternalLink } from '../ui-system/content/UnstyledLink';
+import { MarginMedium } from '../ui-system/margins/MarginMedium';
+import { Header } from '../ui-system/typography/Header';
 
 interface SectionArticlesProps {
   articles: PostMetaData[];
 }
 
+const ArticlesWrapper = styled.div`
+  ${media.medium`
+    margin: 0 -15px;
+  `}
+`;
+
 export const SectionArticles: React.FC<SectionArticlesProps> = ({ articles }) => {
   return (
     <section>
-      <TextCenter>
-        <h2>Ibland skriver jag om något förhoppningsvis intressant</h2>
-      </TextCenter>
+      <h2>Inlägg</h2>
+      <Header muted as="h4">
+        Ibland skriver jag om något förhoppningsvis intressant!
+      </Header>
       <MarginMedium />
-      {articles.map((post) => (
-        <UnstyledInternalLink key={post.title} href={post.url}>
-          <PostListItem title={post.title} summary={post.summary} />
-        </UnstyledInternalLink>
-      ))}
+      <ArticlesWrapper>
+        {articles.map((post) => (
+          <UnstyledInternalLink key={post.title} href={post.url}>
+            <PostListItem title={post.title} summary={post.summary} />
+          </UnstyledInternalLink>
+        ))}
+      </ArticlesWrapper>
     </section>
   );
 };

@@ -1,18 +1,18 @@
 import React from 'react';
-import { CardPost } from '../components/cards/cardPost/cardPost';
-import { SeoBlogPost } from '../components/seo/seoBlogPost';
-import { Column } from '../components/ui/container/column';
-import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
-import { ResponsiveGrid } from '../components/ui/container/responsiveGrid';
-import { Divider } from '../components/ui/content/divider';
-import { TextMuted } from '../components/ui/content/textMuted';
-import { MarginLarge } from '../components/ui/margins/marginLarge';
-import { MarginMedium } from '../components/ui/margins/marginMedium';
+import { CardPost } from '../components/cards/cardPost/CardPost';
+import { SeoBlogPost } from '../components/seo/SeoBlogPost';
+import { Column } from '../components/ui-system/container/Column';
+import { ResponsiveContainer } from '../components/ui-system/container/ResponsiveContainer';
+import { ResponsiveGrid } from '../components/ui-system/container/ResponsiveGrid';
+import { Divider } from '../components/ui-system/content/Divider';
+import { MarginLarge } from '../components/ui-system/margins/MarginLarge';
+import { MarginMedium } from '../components/ui-system/margins/MarginMedium';
+import { TextMuted } from '../components/ui-system/typography/TextMuted';
 import { usePrevAndNextBlogPost } from '../hooks/usePrevAndNextBlogPost';
 import { PostLayoutProps } from '../types/Layout';
 import { toPostMetaData } from '../utils/postMappings';
 
-const layoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
+const LayoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
   const postMetaData = toPostMetaData(frontMatter);
   const [prevPost, nextPost] = usePrevAndNextBlogPost(postMetaData);
   return (
@@ -43,4 +43,4 @@ const layoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
   );
 };
 
-export default layoutBlogPost;
+export default LayoutBlogPost;

@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
 import { StyledIcon, StyledIconProps } from '@styled-icons/styled-icon';
-import { IconAnimationWrapperProps, IconAnimationWrapper } from './iconAnimationWrapper';
+import styled, { css } from 'styled-components';
+import { IconAnimationWrapper, IconAnimationWrapperProps } from './IconAnimationWrapper';
 
 type IconProps = StyledIconProps;
 export type IconComponentProps = IconAnimationWrapperProps & IconProps;

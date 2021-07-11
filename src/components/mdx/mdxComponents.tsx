@@ -1,5 +1,5 @@
-import { customImageComponent } from './customImageComponent';
-import { customLinkComponent } from './customLinkComponent';
+import { customImageComponent } from './CustomImageComponent';
+import { customLinkComponent } from './CustomLinkComponent';
 
 export const mdxComponents = {
   a: customLinkComponent,
