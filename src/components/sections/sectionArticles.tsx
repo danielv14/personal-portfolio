@@ -21,7 +21,7 @@ export const SectionArticles: React.FC<SectionArticlesProps> = ({ articles }) =>
     <section>
       <h2>Inlägg</h2>
       <Header muted as="h4">
-        Ibland skriver jag om något förhoppningsvis intressant
+        Ibland skriver jag om något förhoppningsvis intressant!
       </Header>
       <MarginMedium />
       <ArticlesWrapper>
