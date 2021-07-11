@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { media } from '../../theme/helpers/mediaQueries';
 import { PostMetaData } from '../../types/FrontMatter';
-import { PostListItem } from '../postListItem/postListItem';
-import { Header } from '../ui/content/header';
-import { UnstyledInternalLink } from '../ui/content/unstyledLink';
-import { MarginMedium } from '../ui/margins/marginMedium';
+import { PostListItem } from '../postListItem/PostListItem';
+import { UnstyledInternalLink } from '../ui/content/UnstyledLink';
+import { MarginMedium } from '../ui/margins/MarginMedium';
+import { Header } from '../ui/typography/Header';
 
 interface SectionArticlesProps {
   articles: PostMetaData[];

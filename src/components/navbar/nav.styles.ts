@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Row } from '../ui/container/row';
+import { Row } from '../ui/container/Row';
 
 export const NavAdjustedContent = styled.div`
   padding-top: 60px;

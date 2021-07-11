@@ -1,5 +1,5 @@
 import { PostMetaData } from '../../types/FrontMatter';
-import { Seo } from './seo';
+import { Seo } from './Seo';
 
 interface SeoBlogPostProps {
   blogPost: PostMetaData;

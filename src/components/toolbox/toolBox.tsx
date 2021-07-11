@@ -1,7 +1,7 @@
 import { ToolboxCategory } from '../../types/ToolboxCategory';
-import { ResponsiveGrid } from '../ui/container/responsiveGrid';
-import { Header } from '../ui/content/header';
-import { MarginSmall } from '../ui/margins/marginSmall';
+import { ResponsiveGrid } from '../ui/container/ResponsiveGrid';
+import { MarginSmall } from '../ui/margins/MarginSmall';
+import { Header } from '../ui/typography/Header';
 import { Line, List, ListItem } from './toolBox.styles';
 
 interface ToolBoxProps {

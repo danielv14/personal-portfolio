@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { site } from '../../data/site';
-import { Column } from '../ui/container/column';
-import { Fill } from '../ui/container/fill';
-import { ResponsiveContainer } from '../ui/container/responsiveContainer';
-import { Row } from '../ui/container/row';
-import { IconGitHub } from '../ui/icons/iconGitHub';
-import { IconMail } from '../ui/icons/iconMail';
-import { MarginMedium } from '../ui/margins/marginMedium';
-import { MarginSmall } from '../ui/margins/marginSmall';
+import { Column } from '../ui/container/Column';
+import { Fill } from '../ui/container/Fill';
+import { ResponsiveContainer } from '../ui/container/ResponsiveContainer';
+import { Row } from '../ui/container/Row';
+import { IconGitHub } from '../ui/icons/IconGitHub';
+import { IconMail } from '../ui/icons/IconMail';
+import { MarginMedium } from '../ui/margins/MarginMedium';
+import { MarginSmall } from '../ui/margins/MarginSmall';
 
 const FooterText = styled.p`
   margin: 0;

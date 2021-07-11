@@ -1,11 +1,10 @@
-import { Column } from '../ui/container/column';
-import { GradientText } from '../ui/content/gradientHeader';
-import { Header } from '../ui/content/header';
-import { TextCenter } from '../ui/content/textCenter';
-import { MarginMedium } from '../ui/margins/marginMedium';
-import { WavingHand } from '../wavingHand';
+import { Column } from '../ui/container/Column';
+import { MarginMedium } from '../ui/margins/MarginMedium';
+import { GradientText } from '../ui/typography/GradientHeader';
+import { Header } from '../ui/typography/Header';
+import { TextCenter } from '../ui/typography/TextCenter';
+import { WavingHand } from '../WavingHand';
 import { SubTitleWrapper, TitleWrapper } from './sectionHero.styles';
-
 export const SectionHero: React.FC = () => {
   return (
     <section>

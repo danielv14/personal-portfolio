@@ -1,5 +1,5 @@
-import { IconBase, IconComponentProps, renderIcon } from './iconBase/iconBase';
-import { Icons } from './icons';
+import { IconBase, IconComponentProps, renderIcon } from './iconBase/IconBase';
+import { Icons } from './Icons';
 
 const Icon = IconBase(Icons.Moon);
 

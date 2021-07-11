@@ -1,11 +1,11 @@
 import { PostMetaData } from '../../../types/FrontMatter';
-import { Card } from '../../ui/container/card';
-import { Column } from '../../ui/container/column';
-import { Row } from '../../ui/container/row';
-import { Header } from '../../ui/content/header';
-import { TextMuted } from '../../ui/content/textMuted';
-import { UnstyledInternalLink } from '../../ui/content/unstyledLink';
-import { MarginSmall } from '../../ui/margins/marginSmall';
+import { Card } from '../../ui/container/Card';
+import { Column } from '../../ui/container/Column';
+import { Row } from '../../ui/container/Row';
+import { UnstyledInternalLink } from '../../ui/content/UnstyledLink';
+import { MarginSmall } from '../../ui/margins/MarginSmall';
+import { Header } from '../../ui/typography/Header';
+import { TextMuted } from '../../ui/typography/TextMuted';
 import { animationSpring } from '../animations';
 import { SubHeader } from './cardPost.styles';
 

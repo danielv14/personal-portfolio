@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TextMuted } from '../../ui/content/textMuted';
+import { TextMuted } from '../../ui/typography/TextMuted';
 
 export const SubHeader = styled(TextMuted)`
   font-size: var(--font-size-smaller);
