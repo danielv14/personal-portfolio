@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { IconAnimation } from '../../types/icon/iconAnimation';
-import { IconDarkMode } from '../ui-system/icons/IconDarkMode';
-import { IconLightMode } from '../ui-system/icons/IconLightMode';
+import { IconAnimation } from '../../../types/icon/iconAnimation';
+import { IconDarkMode } from './IconDarkMode';
+import { IconLightMode } from './IconLightMode';
 
-interface DarkModeToggleIconsProps {
+interface ThemeToggleIconProps {
   isDarkMode: boolean;
   onToggle: () => void;
 }
 
-export const DarkModeToggleIcons: React.FC<DarkModeToggleIconsProps> = ({ isDarkMode, onToggle }) => {
+export const ThemeToggleIcon: React.FC<ThemeToggleIconProps> = ({ isDarkMode, onToggle }) => {
   const [hasUserToggled, userToggle] = useState(false);
   const toggleDarkMode = () => {
     if (!hasUserToggled) {
@@ -21,4 +21,4 @@ export const DarkModeToggleIcons: React.FC<DarkModeToggleIconsProps> = ({ isDark
   return <Icon onClick={toggleDarkMode} animation={animation} />;
 };
 
-DarkModeToggleIcons.displayName = 'DarkModeToggleIcons';
+ThemeToggleIcon.displayName = 'ThemeToggleIcon';
