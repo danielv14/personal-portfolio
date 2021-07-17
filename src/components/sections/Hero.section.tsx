@@ -4,7 +4,7 @@ import { MarginMedium } from '../ui-system/margins/MarginMedium';
 import { GradientText } from '../ui-system/typography/GradientHeader';
 import { Header } from '../ui-system/typography/Header';
 import { TextCenter } from '../ui-system/typography/TextCenter';
-import { SubTitleWrapper, TitleWrapper } from './sectionHero.styles';
+import { SubTitleWrapper, TitleWrapper } from './Hero.section.styles';
 export const SectionHero: React.FC = () => {
   return (
     <section>
