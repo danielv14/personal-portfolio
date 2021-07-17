@@ -4,7 +4,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import * as React from 'react';
 import SEO from '../../next-seo.config';
-import { mdxComponents } from '../components/mdx/MdxComponents';
+import { mdxComponents } from '../components/mdx/Components.mdx';
 import { Footer } from '../components/site/footer/Footer';
 import { NavAdjustedContent } from '../components/site/navbar/nav.styles';
 import { Navbar } from '../components/site/navbar/Navbar';
