@@ -1,5 +1,5 @@
 import React from 'react';
-import { Seo } from '../components/seo/Seo';
+import { Seo } from '../components/seo/Seo.general';
 import { ResponsiveContainer } from '../components/ui-system/container/ResponsiveContainer';
 import { MarginLarge } from '../components/ui-system/margins/MarginLarge';
 import { DefaultLayoutProps } from '../types/Layout';

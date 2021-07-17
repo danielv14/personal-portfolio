@@ -1,6 +1,6 @@
 import React from 'react';
 import { CardPost } from '../components/cards/CardPost';
-import { SeoBlogPost } from '../components/seo/SeoBlogPost';
+import { SeoBlogPost } from '../components/seo/Seo.blogPost';
 import { Column } from '../components/ui-system/container/Column';
 import { ResponsiveContainer } from '../components/ui-system/container/ResponsiveContainer';
 import { ResponsiveGrid } from '../components/ui-system/container/ResponsiveGrid';

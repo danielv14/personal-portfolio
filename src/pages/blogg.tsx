@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { PostItem } from '../components/postItem/PostItem';
-import { Seo } from '../components/seo/Seo';
+import { Seo } from '../components/seo/Seo.general';
 import { Column } from '../components/ui-system/container/Column';
 import { ResponsiveContainer } from '../components/ui-system/container/ResponsiveContainer';
 import { UnstyledInternalLink } from '../components/ui-system/content/UnstyledLink';

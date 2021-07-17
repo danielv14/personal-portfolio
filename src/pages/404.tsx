@@ -1,4 +1,4 @@
-import { Seo } from '../components/seo/Seo';
+import { Seo } from '../components/seo/Seo.general';
 import { ButtonPrimary } from '../components/ui-system/buttons/ButtonPrimary';
 import { Column } from '../components/ui-system/container/Column';
 import { ResponsiveContainer } from '../components/ui-system/container/ResponsiveContainer';
