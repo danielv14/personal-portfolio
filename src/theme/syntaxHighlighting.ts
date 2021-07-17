@@ -135,13 +135,12 @@ export const syntaxHighlighting = css`
   .remark-code-title {
     max-width: 100%;
     overflow-y: hidden;
-    font-family: var(--content-font);
+    font-family: var(--mono-font);
     margin-bottom: -0.8rem;
     padding: 0.7em 1em 0.5em 1em;
     background: #2e3440;
     text-align: left;
-    font-style: italic;
-    font-weight: 700;
+    font-weight: 400;
     color: #636f88;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
