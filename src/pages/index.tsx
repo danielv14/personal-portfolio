@@ -2,7 +2,7 @@ import { SectionAbout } from '../components/sections/About.section';
 import { SectionArticles } from '../components/sections/Articles.section';
 import { SectionHero } from '../components/sections/Hero.section';
 import { SectionProjects } from '../components/sections/Projects.section';
-import { ToolBox } from '../components/toolbox/ToolBox';
+import { ToolBox } from '../components/sections/ToolBox.section';
 import { ButtonPrimary } from '../components/ui-system/buttons/ButtonPrimary';
 import { Column } from '../components/ui-system/container/Column';
 import { Fill } from '../components/ui-system/container/Fill';

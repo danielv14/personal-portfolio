@@ -2,7 +2,7 @@ import { ToolboxCategory } from '../../types/ToolboxCategory';
 import { ResponsiveGrid } from '../ui-system/container/ResponsiveGrid';
 import { MarginSmall } from '../ui-system/margins/MarginSmall';
 import { Header } from '../ui-system/typography/Header';
-import { Line, List, ListItem } from './toolBox.styles';
+import { Line, List, ListItem } from './ToolBox.section.styles';
 
 interface ToolBoxProps {
   categories: ToolboxCategory[];
