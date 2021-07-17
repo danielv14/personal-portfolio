@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PostListItem } from '../components/postListItem/PostListItem';
+import { PostItem } from '../components/postItem/PostItem';
 import { Seo } from '../components/seo/Seo';
 import { Column } from '../components/ui-system/container/Column';
 import { ResponsiveContainer } from '../components/ui-system/container/ResponsiveContainer';
@@ -33,7 +33,7 @@ const BlogIndex = () => {
             {blogPosts.map((blogPost) => (
               <UnstyledInternalLink key={blogPost.title} href={blogPost.url}>
                 <div>
-                  <PostListItem {...blogPost} />
+                  <PostItem {...blogPost} />
                   <MarginSmall />
                 </div>
               </UnstyledInternalLink>

@@ -3,9 +3,9 @@ import React from 'react';
 import { Column } from '../ui-system/container/Column';
 import { Header } from '../ui-system/typography/Header';
 import { TextMuted } from '../ui-system/typography/TextMuted';
-import { Item } from './postListItem.styles';
+import { Item } from './PostItem.styles';
 
-interface PostListItemProps {
+interface PostItem {
   title: string;
   summary: string;
   date?: string;
@@ -23,7 +23,7 @@ export const animation: MotionProps = {
   },
 };
 
-export const PostListItem: React.FC<PostListItemProps> = ({ title, summary, date }) => {
+export const PostItem: React.FC<PostItem> = ({ title, summary, date }) => {
   return (
     <Column>
       <Item {...animation}>
@@ -37,4 +37,4 @@ export const PostListItem: React.FC<PostListItemProps> = ({ title, summary, date
   );
 };
 
-PostListItem.displayName = 'PostListItem';
+PostItem.displayName = 'PostItem';

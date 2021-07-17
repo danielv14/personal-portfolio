@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { media } from '../../theme/helpers/mediaQueries';
 import { PostMetaData } from '../../types/FrontMatter';
-import { PostListItem } from '../postListItem/PostListItem';
+import { PostItem } from '../postItem/PostItem';
 import { UnstyledInternalLink } from '../ui-system/content/UnstyledLink';
 import { MarginMedium } from '../ui-system/margins/MarginMedium';
 import { Header } from '../ui-system/typography/Header';
@@ -27,7 +27,7 @@ export const SectionArticles: React.FC<SectionArticlesProps> = ({ articles }) =>
       <ArticlesWrapper>
         {articles.map((post) => (
           <UnstyledInternalLink key={post.title} href={post.url}>
-            <PostListItem title={post.title} summary={post.summary} />
+            <PostItem title={post.title} summary={post.summary} />
           </UnstyledInternalLink>
         ))}
       </ArticlesWrapper>
