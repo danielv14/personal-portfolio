@@ -4,7 +4,7 @@ import { Colors, ColorTheme } from '../../types/theme/Colors';
 const colorPrimary = '#6691FF';
 const colorPrimaryDarken = color(colorPrimary).darken(0.05).hex();
 const colorPrimaryLighten = color(colorPrimary).lighten(0.38).hex();
-const colorSecondary = '#3fc155';
+const colorSecondary = '#3fc179';
 const btnShadowOpaqueRatio = 0.35;
 
 const darkTheme: ColorTheme = {
