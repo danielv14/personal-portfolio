@@ -1,5 +1,5 @@
 import { Project } from '../../types/Project';
-import { CardProject } from '../cards/cardProject/CardProject';
+import { CardProject } from '../cards/CardProject';
 import { ResponsiveGrid } from '../ui-system/container/ResponsiveGrid';
 import { Header } from '../ui-system/typography/Header';
 

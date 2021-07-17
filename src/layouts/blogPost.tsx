@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardPost } from '../components/cards/cardPost/CardPost';
+import { CardPost } from '../components/cards/CardPost';
 import { SeoBlogPost } from '../components/seo/SeoBlogPost';
 import { Column } from '../components/ui-system/container/Column';
 import { ResponsiveContainer } from '../components/ui-system/container/ResponsiveContainer';
