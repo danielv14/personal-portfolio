@@ -1,6 +1,6 @@
 import { Project } from '../../types/Project';
 import { CardProject } from '../cards/CardProject';
-import { ResponsiveGrid } from '../ui-system/container/ResponsiveGrid';
+import { ResponsiveGridContainer } from '../ui-system/container/ResponsiveGridContainer';
 import { Header } from '../ui-system/typography/Header';
 
 interface SectionProjectsProps {
@@ -14,11 +14,11 @@ export const SectionProjects: React.FC<SectionProjectsProps> = ({ projects }) =>
       <Header muted as="h4">
         För en del projekt används gratis hosting, vilket kan leda till en längre initial laddtid
       </Header>
-      <ResponsiveGrid itemWidth="250px" gutter={2}>
+      <ResponsiveGridContainer itemWidth="250px" gutter={2}>
         {projects.map(({ title, icon, tags: _tags, ...rest }) => (
           <CardProject key={title} title={`${icon} ${title}`} {...rest} />
         ))}
-      </ResponsiveGrid>
+      </ResponsiveGridContainer>
     </section>
   );
 };

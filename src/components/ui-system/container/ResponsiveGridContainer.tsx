@@ -15,8 +15,8 @@ const gridStyles = ({ gutter, itemWidth }: GridProps) => css`
 
 const Grid = styled.div<GridProps>(gridStyles);
 
-export const ResponsiveGrid: React.FC<GridProps> = ({ children, ...props }) => {
+export const ResponsiveGridContainer: React.FC<GridProps> = ({ children, ...props }) => {
   return <Grid {...props}>{children}</Grid>;
 };
 
-ResponsiveGrid.displayName = 'ResponsiveGrid';
+ResponsiveGridContainer.displayName = 'ResponsiveGridContainer';

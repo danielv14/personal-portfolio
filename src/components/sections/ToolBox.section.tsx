@@ -1,5 +1,5 @@
 import { ToolboxCategory } from '../../types/ToolboxCategory';
-import { ResponsiveGrid } from '../ui-system/container/ResponsiveGrid';
+import { ResponsiveGridContainer } from '../ui-system/container/ResponsiveGridContainer';
 import { MarginSmall } from '../ui-system/margins/MarginSmall';
 import { Header } from '../ui-system/typography/Header';
 import { Line, List, ListItem } from './ToolBox.section.styles';
@@ -17,7 +17,7 @@ export const ToolBox: React.FC<ToolBoxProps> = ({ categories }) => {
         TypeScript för front- och backend som ligger närmst till hands i form av React och Node.
       </p>
       <MarginSmall />
-      <ResponsiveGrid gutter={1} itemWidth="175px">
+      <ResponsiveGridContainer gutter={1} itemWidth="175px">
         {categories.map(({ title, items }) => (
           <div key={title}>
             <Header bold as="h3">
@@ -32,7 +32,7 @@ export const ToolBox: React.FC<ToolBoxProps> = ({ categories }) => {
             <MarginSmall />
           </div>
         ))}
-      </ResponsiveGrid>
+      </ResponsiveGridContainer>
     </>
   );
 };

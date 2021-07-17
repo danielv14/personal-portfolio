@@ -3,7 +3,7 @@ import { CardPost } from '../components/cards/CardPost';
 import { SeoBlogPost } from '../components/seo/Seo.blogPost';
 import { Column } from '../components/ui-system/container/Column';
 import { ResponsiveContainer } from '../components/ui-system/container/ResponsiveContainer';
-import { ResponsiveGrid } from '../components/ui-system/container/ResponsiveGrid';
+import { ResponsiveGridContainer } from '../components/ui-system/container/ResponsiveGridContainer';
 import { Divider } from '../components/ui-system/content/Divider';
 import { MarginLarge } from '../components/ui-system/margins/MarginLarge';
 import { MarginMedium } from '../components/ui-system/margins/MarginMedium';
@@ -31,10 +31,10 @@ const LayoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
               <Divider />
               <MarginMedium />
               <h2>Mer innehåll</h2>
-              <ResponsiveGrid itemWidth="250px" gutter={2}>
+              <ResponsiveGridContainer itemWidth="250px" gutter={2}>
                 {prevPost && <CardPost subHeader="&larr; Föregående" post={prevPost} />}
                 {nextPost && <CardPost subHeader="Nästa &rarr;" post={nextPost} />}
-              </ResponsiveGrid>
+              </ResponsiveGridContainer>
             </>
           )}
         </Column>
