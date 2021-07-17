@@ -1,9 +1,9 @@
 import { Column } from '../ui-system/container/Column';
+import { WavingHand } from '../ui-system/content/WavingHand';
 import { MarginMedium } from '../ui-system/margins/MarginMedium';
 import { GradientText } from '../ui-system/typography/GradientHeader';
 import { Header } from '../ui-system/typography/Header';
 import { TextCenter } from '../ui-system/typography/TextCenter';
-import { WavingHand } from '../WavingHand';
 import { SubTitleWrapper, TitleWrapper } from './sectionHero.styles';
 export const SectionHero: React.FC = () => {
   return (
