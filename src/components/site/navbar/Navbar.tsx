@@ -1,11 +1,11 @@
 import React from 'react';
-import { useDarkMode } from '../../hooks/useDarkMode';
-import { Fill } from '../ui-system/container/Fill';
-import { ResponsiveContainer } from '../ui-system/container/ResponsiveContainer';
-import { Row } from '../ui-system/container/Row';
-import { UnstyledInternalLink } from '../ui-system/content/UnstyledLink';
-import { ThemeToggleIcon } from '../ui-system/icons/IconThemeToggle';
-import { MarginSmall } from '../ui-system/margins/MarginSmall';
+import { useDarkMode } from '../../../hooks/useDarkMode';
+import { Fill } from '../../ui-system/container/Fill';
+import { ResponsiveContainer } from '../../ui-system/container/ResponsiveContainer';
+import { Row } from '../../ui-system/container/Row';
+import { UnstyledInternalLink } from '../../ui-system/content/UnstyledLink';
+import { ThemeToggleIcon } from '../../ui-system/icons/IconThemeToggle';
+import { MarginSmall } from '../../ui-system/margins/MarginSmall';
 import { NavbarContentWrapper, NavbarItem, NavbarWrapper } from './nav.styles';
 
 export const Navbar = () => {
