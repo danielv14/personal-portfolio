@@ -12,6 +12,8 @@ import { TextCenter } from '../components/ui/content/textCenter';
 import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
+import { MarginMega } from '../components/ui/margins/marginMega';
+import { MarginSmall } from '../components/ui/margins/marginSmall';
 import { useContent } from '../context/ContentContext';
 import { site } from '../data/site';
 import { toolboxCategories } from '../data/toolBoxCategories';
@@ -31,11 +33,11 @@ const IndexPage = (): JSX.Element => {
             <ButtonPrimary onClick={scrollToProjectElement}>Portfolio</ButtonPrimary>
           </TextCenter>
         </Column>
-        <MarginLarge />
+        <MarginMega />
         <Column>
           <SectionAbout />
         </Column>
-        <MarginLarge />
+        <MarginMega />
         <Column ref={ProjectRef}>
           <SectionProjects projects={projects} />
           <MarginLarge />
@@ -47,11 +49,11 @@ const IndexPage = (): JSX.Element => {
             <Fill />
           </Row>
         </Column>
-        <MarginLarge />
+        <MarginMega />
         <Column>
           <MarginLarge />
           <SectionArticles articles={latestBlogPosts} />
-          <MarginMedium />
+          <MarginSmall />
           <Row>
             <Fill />
             <UnstyledInternalLink href="/blogg">
@@ -60,11 +62,12 @@ const IndexPage = (): JSX.Element => {
             <Fill />
           </Row>
         </Column>
-        <MarginLarge />
+        <MarginMega />
         <Column>
           <MarginMedium />
           <ToolBox categories={toolboxCategories} />
         </Column>
+        <MarginMega />
       </ResponsiveContainer>
     </>
   );
