@@ -1,5 +1,6 @@
 import Document, { DocumentContext } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { AppFonts } from '../components/AppFonts';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -18,10 +19,7 @@ export default class MyDocument extends Document {
         ...initialProps,
         styles: (
           <>
-            <link
-              href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=optional"
-              rel="stylesheet"
-            />
+            <AppFonts />
             {initialProps.styles}
             {sheet.getStyleElement()}
           </>
