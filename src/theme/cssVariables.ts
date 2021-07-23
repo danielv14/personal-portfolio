@@ -45,7 +45,7 @@ export const cssVariables = css(
       ${setupColorThemeVariantVariables(colors.themed.light)}
 
       /* Setup or alter variable values depending on passed responsive breakpoints */
-    ${setupResponsiveVariables(fonts, breakpoints)}
+      ${setupResponsiveVariables(fonts, breakpoints)}
     }
     body.dark-mode {
       ${setupColorThemeVariantVariables(colors.themed.dark)};
