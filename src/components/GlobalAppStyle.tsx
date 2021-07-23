@@ -1,10 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import { syntaxHighlighting } from './syntaxHighlighting';
-import { typography } from './typography';
-import { cssVariables } from './cssVariables';
+import { cssVariables } from '../theme/cssVariables';
+import { syntaxHighlighting } from '../theme/syntaxHighlighting';
+import { typography } from '../theme/typography';
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalAppStyle = createGlobalStyle`
   /* Reset CSS */
   ${reset}
   
