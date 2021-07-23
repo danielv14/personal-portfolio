@@ -5,6 +5,7 @@ import Head from 'next/head';
 import * as React from 'react';
 import SEO from '../../next-seo.config';
 import { Footer } from '../components/footer/footer';
+import { GlobalAppStyle } from '../components/GlobalAppStyle';
 import { mdxComponents } from '../components/mdx/mdxComponents';
 import { NavAdjustedContent } from '../components/navbar/nav.styles';
 import { Navbar } from '../components/navbar/navbar';
@@ -13,7 +14,6 @@ import { ContentProvider } from '../context/ContentContext';
 import { ThemeProvider } from '../context/ThemeContext';
 import { getAllBlogPosts } from '../data/blogPosts';
 import { projects } from '../data/projects';
-import { GlobalStyle } from '../theme/globalStyle';
 import { theme } from '../theme/theme';
 
 const myApp = ({ Component, pageProps }: AppProps) => {
@@ -30,7 +30,7 @@ const myApp = ({ Component, pageProps }: AppProps) => {
       <MDXProvider components={mdxComponents}>
         <ThemeProvider theme={theme}>
           <ContentProvider projects={projects} blogPosts={getAllBlogPosts()}>
-            <GlobalStyle />
+            <GlobalAppStyle />
             <Navbar />
             <NavAdjustedContent>
               <Component {...pageProps} />

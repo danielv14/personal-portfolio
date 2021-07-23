@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
+import { BreakpointScaleIndex } from '../../types/theme/Breakpoints';
 import { ThemeProps } from '../../types/theme/Theme';
-import { BreakpointScaleIndex } from '../parts/breakpoints';
 
 export const scaleToRem = (scale: number) => `${scale}rem`;
 
