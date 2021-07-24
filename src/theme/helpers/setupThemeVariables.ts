@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
-import { ColorTheme } from '../../types/theme/Colors';
+import { TheamableColors } from '../../types/theme/Colors';
 
-export const setupColorThemeVariantVariables = (theme: ColorTheme) => css`
+export const setupColorThemeVariantVariables = (theme: TheamableColors) => css`
   --bg-color: ${theme.backgroundColor};
   --bg-color-secondary: ${theme.backgroundColorSecondary};
   --bg-color-highlight: ${theme.backgroundColorHighlight};

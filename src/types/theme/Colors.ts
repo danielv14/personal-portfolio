@@ -2,7 +2,7 @@ export enum ColorThemeVariant {
   Dark = 'dark',
   Light = 'light',
 }
-export interface ColorTheme {
+export interface TheamableColors {
   backgroundColor: string;
   backgroundColorSecondary: string;
   backgroundColorHighlight: string;
@@ -24,8 +24,8 @@ interface ColorBranding {
 
 export interface Colors {
   themed: {
-    light: ColorTheme;
-    dark: ColorTheme;
+    light: TheamableColors;
+    dark: TheamableColors;
   };
   brand: ColorBranding;
 }
