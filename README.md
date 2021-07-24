@@ -48,7 +48,7 @@ When generating new articles it is sometimes necessary to clear some local cache
 
 ## 👨‍🎨 Site theming
 
-Many of this sites styling, that are of a more general character, comes from a `theme` object defined in `src/theme/theme.ts`.
+Many of this sites styling choices, that are of a more general character, comes from a configurable `theme` object defined in `src/theme/theme.ts`.
 
 The idea is to provide customization of the site's general styling though the theme object - and to have a single point of customization that will effect the entire site.
 
