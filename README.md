@@ -21,7 +21,7 @@ Site is deployed through [Vercel](https://vercel.com)
 - `src/layout/*` - Layout templates for MDX content.
 - `src/pages/blogg/*` - Static blog posts written in [MDX](https://github.com/mdx-js/mdx).
 - `src/pages/*` - All static pages built of react components and static content.
-- `src/theme/*` - Contains site-wide theming such as colors, typography, margins and declarations of css variables.
+- `src/theme/*` - Contains site-wide theming such as colors, typography, margins and config for css variables.
 - `src/types/*` - Contains shareable types and interfaces used across site.
 - `src/utils/*` - Contains various utility functionality.
 - `public/` - Contains public content for site.
@@ -48,15 +48,15 @@ When generating new articles it is sometimes necessary to clear some local cache
 
 ## 👨‍🎨 Site theming
 
-Many of this sites stylings that are of a more general character comes from a `theme` object defined in `src/theme/theme.ts`. The `theme` object is built up by different `theme parts` defined inside `src/theme/parts/*.ts`.
+Many of this sites styling, that are of a more general character, comes from a `theme` object defined in `src/theme/theme.ts`.
 
-The idea is to provide customization of the site's general styling though these theme object parts - and to have a single point of customization that will effect the entire site.
+The idea is to provide customization of the site's general styling though the theme object - and to have a single point of customization that will effect the entire site.
 
-The `theme` object consists of the following parts:
+The `theme` object consists of the following customizable "areas":
 
-- **breakpoints**: contains scale of string values representing pixel widths for media query breakpoints. Media queries using the mobile-first approach by `min-width` is used in this project - to maintain a mobile-first design.
-- **colors**: contains brand colors and a special `themed.light` and `themed.dark` object which represents different themable colors of texts, headings, box shadows that are different depending on light and dark mode.
-- **fonts**: contains font families and sizes. The sizing system is `rem` based by the `fonts.sizeBase` pixel value. This means that the entire font size scale can easily be adjusted by simply altering `fonts.sizeBase` value.
+- **breakpoints**: contains scale of string values representing pixel widths for media query breakpoints. Media queries using the mobile-first approach - `min-width` is used to maintain a mobile-first design.
+- **colors**: contains brand colors and a special `themed.light` and `themed.dark` sub-object which represents different themable colors of texts, headings and box shadows that can/should be different whether ligth or dark theme is set.
+- **fonts**: contains font families and sizes. The sizing system is `rem` based by the `fonts.sizeBase` pixel value. This means that the entire font size scale can easily be adjusted by simply altering `fonts.sizeBase` value. Base values are available both for mobile and destop screen sizes, which means that the entire typography-scale can be different for smaller or larger screens.
 - **layout**: contains global layout styles such as site width.
 - **spacings**: contains a pre-defined spacing scale.
 
