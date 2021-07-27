@@ -25,7 +25,7 @@ const BlogIndex = () => {
         <Column>
           <MarginLarge />
           <h1>Alla inlägg</h1>
-          <Header muted as="h5">
+          <Header muted as="h3">
             Då och då skriver jag ned några tankar, dokumenterar upptäckter eller skriver om lite allt möjligt.
           </Header>
           <MarginLarge />

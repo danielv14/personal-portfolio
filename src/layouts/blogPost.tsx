@@ -1,16 +1,22 @@
 import React from 'react';
+import styled from 'styled-components';
 import { CardPost } from '../components/cards/cardPost/cardPost';
 import { SeoBlogPost } from '../components/seo/seoBlogPost';
 import { Column } from '../components/ui/container/column';
 import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
 import { ResponsiveGrid } from '../components/ui/container/responsiveGrid';
 import { Divider } from '../components/ui/content/divider';
+import { Header } from '../components/ui/content/header';
 import { TextMuted } from '../components/ui/content/textMuted';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
 import { usePrevAndNextBlogPost } from '../hooks/usePrevAndNextBlogPost';
 import { PostLayoutProps } from '../types/Layout';
 import { toPostMetaData } from '../utils/postMappings';
+
+const DateText = styled(TextMuted)`
+  margin-bottom: 0px;
+`;
 
 const LayoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
   const postMetaData = toPostMetaData(frontMatter);
@@ -21,8 +27,13 @@ const LayoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
       <ResponsiveContainer>
         <Column>
           <MarginLarge />
-          <h2>{postMetaData.title}</h2>
-          <TextMuted>{postMetaData.date}</TextMuted>
+          <h1>{postMetaData.title}</h1>
+          <DateText>{postMetaData.date}</DateText>
+          {postMetaData.description && (
+            <Header as="h2" muted>
+              {postMetaData.description}
+            </Header>
+          )}
           <MarginMedium />
           {children}
           <MarginLarge />
