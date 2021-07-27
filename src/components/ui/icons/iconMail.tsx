@@ -1,8 +1,6 @@
-import { IconBase, IconComponentProps, renderIcon } from './iconBase/iconBase';
-import { Icons } from './icons';
+import { Icon } from './Icon';
+import { IconComponentProps } from './iconBase/iconBase';
 
-const Icon = IconBase(Icons.Email);
-
-export const IconMail: React.FC<IconComponentProps> = (props) => renderIcon(Icon, props);
+export const IconMail: React.FC<IconComponentProps> = (props) => <Icon variant="Email" {...props} />;
 
 IconMail.displayName = 'IconMail';
