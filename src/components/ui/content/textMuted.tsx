@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import { styled } from '../../../theme';
 
-export const TextMuted = styled.p`
-  color: var(--text-muted-color);
-  font-size: var(--font-size-small);
-  font-weight: 400;
-`;
+export const TextMuted = styled('p', {
+  color: '$textMutedColor',
+  fontSize: '$small',
+  fontWeight: '400'
+});
 
 TextMuted.displayName = 'TextMuted';

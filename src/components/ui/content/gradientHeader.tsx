@@ -1,11 +1,12 @@
-import styled from 'styled-components';
+import { styled } from '../../../theme';
 
-export const GradientText = styled.h2`
-  display: inline-block;
-  background-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-  background-size: 100%;
-  background-repeat: repeat;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-`;
+export const GradientText = styled('h2', {
+  display: 'inline-block',
+  backgroundImage: 'linear-gradient(45deg, $primary, $secondary)',
+  backgroundSize: '100%',
+  backgroundRepeat: 'repeat',
+  backgroundClip: 'text',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent'
+});
+

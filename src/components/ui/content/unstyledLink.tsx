@@ -1,15 +1,15 @@
-import styled from 'styled-components';
 import Link, { LinkProps } from 'next/link';
+import { styled } from '../../../theme';
 
-export const UnstyledLink = styled.a`
-  font-weight: inherit;
-  color: inherit;
-  margin: 0;
-  padding: 0;
-  &:hover {
-    text-decoration: none;
+export const UnstyledLink = styled('a', {
+  fontWeight: 'inherit',
+  color: 'inherit',
+  margin: '0',
+  padding: '0',
+  '&:hover': {
+    textDecoration: 'none'
   }
-`;
+});
 
 UnstyledLink.displayName = 'UnstyledLink';
 

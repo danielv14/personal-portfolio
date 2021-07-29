@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import { styled } from '../../../theme';
 
-export const Divider = styled.div`
-  background: var(--bg-color-highlight);
-  width: 100%;
-  height: 2px;
-`;
+export const Divider = styled('div', {
+  background: '$backgroundColorHighlight',
+  width: '100%',
+  height: '2px'
+});
 
 Divider.displayName = 'Divider';

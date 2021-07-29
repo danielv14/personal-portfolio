@@ -1,21 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
+import { styled } from '../../../theme';
 
-const Container = styled.div`
-  width: 100%;
-  max-width: var(--site-max-width);
-  margin: 0 auto;
-`;
+const SiteWidthContainer = styled('div', {
+  width: '100%',
+  maxWidth: '$siteWidth',
+  margin: '0 auto'
+});
 
-const Margin = styled.div`
-  margin: 0 var(--margin-large);
-`;
+const Margin = styled('div', {
+  margin: '0 $large',
+});
 
 export const ResponsiveContainer: React.FC = ({ children }) => {
   return (
-    <Container>
+    <SiteWidthContainer>
       <Margin>{children}</Margin>
-    </Container>
+    </SiteWidthContainer>
   );
 };
 
