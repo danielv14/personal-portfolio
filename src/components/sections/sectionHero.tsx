@@ -19,10 +19,8 @@ export const SectionHero: React.FC = () => {
           </div>
           <SubTitleWrapper>
             <Header muted as="h4">
-              Daniel här! Webbutvecklare med förkärlek till JavaScript, schysst design och tv-serier.
-            </Header>
-            <Header muted style={{ marginTop: '0px' }} as="h4">
-              På den här sajten delar jag med mig av diverse kodprojekt och skriver några rader ibland.
+              Daniel här! Webbutvecklare med förkärlek till JavaScript, schysst design och tv-serier. På den här sajten
+              delar jag med mig av diverse kodprojekt och skriver några rader ibland.
             </Header>
           </SubTitleWrapper>
         </TextCenter>

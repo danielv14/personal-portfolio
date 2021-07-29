@@ -7,6 +7,7 @@ export interface FrontMatterBase {
 export interface PostFrontMatter extends FrontMatterBase {
   date: string;
   summary: string;
+  description?: string;
 }
 
 export interface PostMetaData extends PostFrontMatter {

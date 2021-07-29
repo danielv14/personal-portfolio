@@ -2,7 +2,8 @@ import color from 'color';
 import { ThemeSettings } from '../types/theme/Theme';
 
 // Reusable theme tokens
-const MAIN_FONT = "'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;"
+const MAIN_FONT =
+  "'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;";
 const COLOR_PRIMARY = '#6691FF';
 const COLOR_PRIMARY_DARKEN = color(COLOR_PRIMARY).darken(0.05).hex();
 const COLOR_PRIMARY_LIGHTEN = color(COLOR_PRIMARY).lighten(0.38).hex();
@@ -18,7 +19,7 @@ export const theme: ThemeSettings = {
         backgroundColorHighlight: COLOR_PRIMARY_LIGHTEN,
         backgroundColorNavBar: 'hsl(0deg 0% 100% / 75%)',
         textColor: '#585858',
-        textMutedColor: '#BDBDBD',
+        textMutedColor: '#a2a2a2',
         headingColor: '#444444',
         boxShadowMain: '0px 4px 10px rgba(0, 0, 0, 0.09)',
         boxShadowButton: `0px 4px 7px ${color(COLOR_PRIMARY).lighten(0.25).opaquer(0.35)}`,
@@ -34,7 +35,7 @@ export const theme: ThemeSettings = {
         headingColor: '#e4e4e4',
         boxShadowMain: 'none',
         boxShadowButton: 'none',
-        boxShadowButtonHover: 'none'
+        boxShadowButtonHover: 'none',
       },
     },
     brand: {
@@ -57,6 +58,6 @@ export const theme: ThemeSettings = {
   breakpoints: [640, 768, 1024],
   spacings: [5, 10, 20, 40],
   layout: {
-    siteWidth: '800px'
+    siteWidth: '800px',
   },
 };
