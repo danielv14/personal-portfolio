@@ -12,7 +12,7 @@ import { MarginSmall } from '../ui/margins/marginSmall';
 const FooterText = styled('p', {
   margin: '0',
   color: '$textMutedColor',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
 });
 
 export const Footer: React.FC = () => {
@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
           </a>
           <MarginSmall />
           <a href={`mailto:${site.email}`}>
-            <IconMail animation="none" />
+            <IconMail animation="hover" />
           </a>
         </Row>
         <MarginMedium />

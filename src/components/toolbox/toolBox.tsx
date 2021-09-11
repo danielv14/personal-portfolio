@@ -23,8 +23,8 @@ export const ToolBox: React.FC<ToolBoxProps> = ({ categories }) => {
             <Header bold as="h3">
               {title}
             </Header>
-            <Line css={{width: '115px'}} />
-            <List as="ul">
+            <Line css={{ width: '115px' }} />
+            <List>
               {items.map((item) => (
                 <ListItem key={item}>{item}</ListItem>
               ))}

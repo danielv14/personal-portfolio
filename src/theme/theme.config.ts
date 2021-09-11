@@ -2,13 +2,14 @@ import { createCss } from '@stitches/react';
 import color from 'color';
 
 // Reusable theme tokens
-const MAIN_FONT = "'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;";
+const MAIN_FONT =
+  "'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;";
 const COLOR_PRIMARY = '#6691FF';
 const COLOR_PRIMARY_DARKEN = color(COLOR_PRIMARY).darken(0.05).hex();
 const COLOR_PRIMARY_LIGHTEN = color(COLOR_PRIMARY).lighten(0.38).hex();
 const COLOR_SECONDARY = '#3fc179';
 
-export const { theme, styled, getCssString, css } = createCss({
+export const { theme, styled, getCssString, css, global } = createCss({
   media: {
     small: '(min-width: 640px)',
     medium: '(min-width: 768px)',
@@ -17,7 +18,7 @@ export const { theme, styled, getCssString, css } = createCss({
   theme: {
     radii: {
       small: '4px',
-      default: '6px'
+      default: '6px',
     },
     shadows: {
       main: '0px 4px 10px rgba(0, 0, 0, 0.09)',
@@ -30,8 +31,6 @@ export const { theme, styled, getCssString, css } = createCss({
       primaryDarken: COLOR_PRIMARY_DARKEN,
       primaryLighten: COLOR_PRIMARY_LIGHTEN,
       secondary: COLOR_SECONDARY,
-      
-      // Themeable colors
       backgroundColor: '#FFF',
       backgroundColorSecondary: '#FFF',
       backgroundColorHighlight: COLOR_PRIMARY_LIGHTEN,
@@ -58,36 +57,45 @@ export const { theme, styled, getCssString, css } = createCss({
       7: '2rem',
       small: '$1',
       smaller: '$0',
-      code: '$0'
+      code: '$0',
+      h1: '$fontSizes$7',
+      h2: '$fontSizes$6',
+      h3: '$fontSizes$5',
+      h4: '$fontSizes$4',
+      h5: '$fontSizes$3',
+      h6: '$fontSizes$2',
     },
     space: {
       small: '5px',
       medium: '10px',
       large: '20px',
-      mega: '40px'
+      mega: '40px',
     },
     sizes: {
       small: '5px',
       medium: '10px',
       large: '20px',
       mega: '40px',
-      siteWidth: '800px'
+      siteWidth: '800px',
     },
   },
   utils: {
-    hoverHighlight: () => (shouldHighlight: boolean) => shouldHighlight ? {
-      '&:hover': {
-        backgroundColor: '$backgroundColorHighlight'
-      }
-    } : {}
-  }
+    hoverHighlight: () => (shouldHighlight: boolean) =>
+      shouldHighlight
+        ? {
+            '&:hover': {
+              backgroundColor: '$backgroundColorHighlight',
+            },
+          }
+        : {},
+  },
 });
 
 export const darkTheme = theme({
   shadows: {
     main: 'none',
     button: 'none',
-    buttonHover: 'none'
+    buttonHover: 'none',
   },
   colors: {
     backgroundColor: '#171923',
@@ -97,5 +105,5 @@ export const darkTheme = theme({
     textColor: '#bec0c9',
     textMutedColor: '#87919e',
     headingColor: '#e4e4e4',
-  }
+  },
 });

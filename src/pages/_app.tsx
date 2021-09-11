@@ -5,18 +5,17 @@ import Head from 'next/head';
 import * as React from 'react';
 import SEO from '../../next-seo.config';
 import { Footer } from '../components/footer/footer';
-import { GlobalAppStyle } from '../components/GlobalAppStyle';
 import { mdxComponents } from '../components/mdx/mdxComponents';
 import { NavAdjustedContent } from '../components/navbar/nav.styles';
 import { Navbar } from '../components/navbar/navbar';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { ContentProvider } from '../context/ContentContext';
-import { ThemeProvider } from '../context/ThemeContext';
 import { getAllBlogPosts } from '../data/blogPosts';
 import { projects } from '../data/projects';
-import { theme } from '../theme/theme';
+import { globalCss } from '../theme';
 
 const myApp = ({ Component, pageProps }: AppProps) => {
+  globalCss();
   return (
     <>
       <Head>
@@ -28,17 +27,15 @@ const myApp = ({ Component, pageProps }: AppProps) => {
       </Head>
       <DefaultSeo {...SEO} />
       <MDXProvider components={mdxComponents}>
-        <ThemeProvider theme={theme}>
-          <ContentProvider projects={projects} blogPosts={getAllBlogPosts()}>
-            <GlobalAppStyle />
-            <Navbar />
-            <NavAdjustedContent>
-              <Component {...pageProps} />
-            </NavAdjustedContent>
-            <MarginLarge />
-            <Footer />
-          </ContentProvider>
-        </ThemeProvider>
+        <ContentProvider projects={projects} blogPosts={getAllBlogPosts()}>
+          {/* <GlobalAppStyle /> */}
+          <Navbar />
+          <NavAdjustedContent>
+            <Component {...pageProps} />
+          </NavAdjustedContent>
+          <MarginLarge />
+          <Footer />
+        </ContentProvider>
       </MDXProvider>
     </>
   );
