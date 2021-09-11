@@ -1,7 +1,6 @@
 import { reset } from './reset.css';
-import { global } from './theme.config';
-
-export const globalCss = global({
+import { globalCss } from './theme.config';
+export const globalStyles = globalCss({
   ...reset,
   body: {
     background: '$backgroundColor',

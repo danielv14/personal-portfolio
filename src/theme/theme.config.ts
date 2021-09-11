@@ -1,4 +1,5 @@
-import { createCss } from '@stitches/react';
+import * as Stitches from '@stitches/react';
+import { createStitches } from '@stitches/react';
 import color from 'color';
 
 // Reusable theme tokens
@@ -9,7 +10,9 @@ const COLOR_PRIMARY_DARKEN = color(COLOR_PRIMARY).darken(0.05).hex();
 const COLOR_PRIMARY_LIGHTEN = color(COLOR_PRIMARY).lighten(0.38).hex();
 const COLOR_SECONDARY = '#3fc179';
 
-export const { theme, styled, getCssString, css, global } = createCss({
+export type CSS = Stitches.CSS<typeof config>;
+
+export const { theme, styled, getCssText, css, globalCss, createTheme, config } = createStitches({
   media: {
     small: '(min-width: 640px)',
     medium: '(min-width: 768px)',
@@ -91,7 +94,7 @@ export const { theme, styled, getCssString, css, global } = createCss({
   },
 });
 
-export const darkTheme = theme({
+export const darkTheme = createTheme({
   shadows: {
     main: 'none',
     button: 'none',

@@ -3,7 +3,7 @@ import { DefaultSeo } from 'next-seo';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import * as React from 'react';
-import { globalCss } from 'theme';
+import { globalStyles } from 'theme';
 import SEO from '../../next-seo.config';
 import { Footer } from '../components/footer/footer';
 import { mdxComponents } from '../components/mdx/mdxComponents';
@@ -15,7 +15,7 @@ import { getAllBlogPosts } from '../data/blogPosts';
 import { projects } from '../data/projects';
 
 const myApp = ({ Component, pageProps }: AppProps) => {
-  globalCss();
+  globalStyles();
   return (
     <>
       <Head>
