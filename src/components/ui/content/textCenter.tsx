@@ -1,7 +1,7 @@
-import { styled } from '../../../theme';
+import { styled } from 'theme';
 
 export const TextCenter = styled('div', {
-  textAlign: 'center'
+  textAlign: 'center',
 });
 
 TextCenter.displayName = 'TextCenter';

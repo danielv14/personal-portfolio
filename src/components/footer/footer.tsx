@@ -1,5 +1,5 @@
+import { styled } from 'theme';
 import { site } from '../../data/site';
-import { styled } from '../../theme';
 import { Column } from '../ui/container/column';
 import { Fill } from '../ui/container/fill';
 import { ResponsiveContainer } from '../ui/container/responsiveContainer';

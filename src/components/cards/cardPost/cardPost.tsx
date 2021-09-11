@@ -1,4 +1,4 @@
-import { styled } from '../../../theme';
+import { styled } from 'theme';
 import { PostMetaData } from '../../../types/FrontMatter';
 import { Card } from '../../ui/container/card';
 import { Column } from '../../ui/container/column';
@@ -9,14 +9,13 @@ import { UnstyledInternalLink } from '../../ui/content/unstyledLink';
 import { MarginSmall } from '../../ui/margins/marginSmall';
 import { animationSpring } from '../animations';
 
-
 interface CardPostProps {
   post: PostMetaData;
   subHeader?: string;
 }
 
 const SubHeader = styled(TextMuted, {
-  fontSize: '$smaller'
+  fontSize: '$smaller',
 });
 
 export const CardPost: React.FC<CardPostProps> = ({ post, subHeader }) => (

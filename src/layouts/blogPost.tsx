@@ -1,4 +1,5 @@
 import React from 'react';
+import { styled } from 'theme';
 import { CardPost } from '../components/cards/cardPost/cardPost';
 import { SeoBlogPost } from '../components/seo/seoBlogPost';
 import { Column } from '../components/ui/container/column';
@@ -10,12 +11,11 @@ import { TextMuted } from '../components/ui/content/textMuted';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginMedium } from '../components/ui/margins/marginMedium';
 import { usePrevAndNextBlogPost } from '../hooks/usePrevAndNextBlogPost';
-import { styled } from '../theme';
 import { PostLayoutProps } from '../types/Layout';
 import { toPostMetaData } from '../utils/postMappings';
 
 const DateText = styled(TextMuted, {
-  marginBottom: '0px'
+  marginBottom: '0px',
 });
 
 const LayoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {

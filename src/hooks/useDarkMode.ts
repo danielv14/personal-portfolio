@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { darkTheme } from 'theme';
 import { useMedia } from 'use-media';
 import { site } from '../data/site';
-import { darkTheme } from '../theme';
 import { ColorThemeVariant } from '../types/theme/Colors';
 import { storage } from '../utils/storage';
 

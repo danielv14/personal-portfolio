@@ -1,19 +1,19 @@
-import { styled } from '../../../theme';
+import { styled } from 'theme';
 
 export const Header = styled('h2', {
   variants: {
     bold: {
       true: {
-        fontWeight: 'bold'
-      }
-    }, 
+        fontWeight: 'bold',
+      },
+    },
     muted: {
       true: {
         fontWeight: '400',
-        color: '$textMutedColor'
-      }
-    }
-  }
+        color: '$textMutedColor',
+      },
+    },
+  },
 });
 
 Header.displayName = 'Header';

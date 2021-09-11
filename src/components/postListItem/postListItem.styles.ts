@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { styled } from '../../theme';
+import { styled } from 'theme';
 
 export const StyledItem = styled(motion.div, {
   cursor: 'pointer',

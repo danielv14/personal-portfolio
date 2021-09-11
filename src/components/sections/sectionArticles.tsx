@@ -1,4 +1,4 @@
-import { styled } from '../../theme';
+import { styled } from 'theme';
 import { PostMetaData } from '../../types/FrontMatter';
 import { PostListItem } from '../postListItem/postListItem';
 import { Header } from '../ui/content/header';
@@ -11,8 +11,8 @@ interface SectionArticlesProps {
 
 const ArticlesWrapper = styled('div', {
   '@medium': {
-    margin: '0 -15px'
-  }
+    margin: '0 -15px',
+  },
 });
 
 export const SectionArticles: React.FC<SectionArticlesProps> = ({ articles }) => {

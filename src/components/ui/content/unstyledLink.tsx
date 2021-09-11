@@ -1,5 +1,5 @@
 import Link, { LinkProps } from 'next/link';
-import { styled } from '../../../theme';
+import { styled } from 'theme';
 
 export const UnstyledLink = styled('a', {
   fontWeight: 'inherit',
@@ -7,8 +7,8 @@ export const UnstyledLink = styled('a', {
   margin: '0',
   padding: '0',
   '&:hover': {
-    textDecoration: 'none'
-  }
+    textDecoration: 'none',
+  },
 });
 
 UnstyledLink.displayName = 'UnstyledLink';

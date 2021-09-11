@@ -1,4 +1,4 @@
-import { styled } from '../../theme';
+import { styled } from 'theme';
 
 export const ListItem = styled('li', {
   listStyle: 'none',

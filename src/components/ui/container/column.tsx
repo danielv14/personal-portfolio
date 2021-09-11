@@ -1,8 +1,8 @@
-import { styled } from '../../../theme';
+import { styled } from 'theme';
 
 export const Column = styled('div', {
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
 });
 
 Column.displayName = 'Column';

@@ -1,10 +1,10 @@
 import React from 'react';
-import { styled } from '../../../theme';
+import { styled } from 'theme';
 
 const SiteWidthContainer = styled('div', {
   width: '100%',
   maxWidth: '$siteWidth',
-  margin: '0 auto'
+  margin: '0 auto',
 });
 
 const Margin = styled('div', {

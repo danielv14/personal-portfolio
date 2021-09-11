@@ -1,4 +1,4 @@
-import { styled } from '../../../theme';
+import { styled } from 'theme';
 
 export const GradientText = styled('h2', {
   display: 'inline-block',
@@ -7,6 +7,5 @@ export const GradientText = styled('h2', {
   backgroundRepeat: 'repeat',
   backgroundClip: 'text',
   WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent'
+  WebkitTextFillColor: 'transparent',
 });
-

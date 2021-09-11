@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { styled } from '../../../theme';
+import { styled } from 'theme';
 import { buttonAnimation } from './buttonAnimation';
 
 const StyledButton = styled(motion.div, {
@@ -16,13 +16,16 @@ const StyledButton = styled(motion.div, {
   display: 'inline-block',
   '&:hover': {
     background: '$primaryDarken',
-    boxShadow: '$buttonHover'
-  }
+    boxShadow: '$buttonHover',
+  },
 });
 
-type ButtonPrimaryProps = React.ComponentProps<typeof StyledButton>
+type ButtonPrimaryProps = React.ComponentProps<typeof StyledButton>;
 
-export const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({ children, ...rest }) => 
-  <StyledButton {...buttonAnimation} {...rest}>{children}</StyledButton>;
+export const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({ children, ...rest }) => (
+  <StyledButton {...buttonAnimation} {...rest}>
+    {children}
+  </StyledButton>
+);
 
 ButtonPrimary.displayName = 'ButtonPrimary';

@@ -1,4 +1,4 @@
-import { styled } from '../../../theme';
+import { styled } from 'theme';
 
 export const Margin = styled('div', {
   display: 'flex',
@@ -24,6 +24,6 @@ export const Margin = styled('div', {
         minWidth: '$mega',
         margin: '$mega',
       },
-    }
-  }
+    },
+  },
 });

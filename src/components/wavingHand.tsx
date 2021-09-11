@@ -1,5 +1,5 @@
 import { motion, MotionProps } from 'framer-motion';
-import { styled } from '../theme';
+import { styled } from 'theme';
 
 const wavingSequence = [0.0, 18.0, -8.0, 18.0, -4.0, 10.0, 0, 0];
 
