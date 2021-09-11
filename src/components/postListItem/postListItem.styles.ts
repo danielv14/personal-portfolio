@@ -7,6 +7,9 @@ export const StyledItem = styled(motion.div, {
   transition: 'background-color 0.2s ease',
   hoverHighlight: true,
   padding: '$small',
+  '&:hover': {
+    backgroundColor: '$backgroundColorHighlight',
+  },
   '@medium': {
     padding: '$small $large',
   },
