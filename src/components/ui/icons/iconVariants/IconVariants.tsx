@@ -10,7 +10,7 @@ type IconVariants = Record<IconVariant, (props: SVGIconProps) => JSX.Element>;
 
 const SVGIcon: React.FC<SVGIconProps> = ({ children, ...rest }) => (
   <Svg
-    viewBox="0 0 24px 24px"
+    viewBox="0 0 24 24"
     height="24px"
     width="24px"
     {...rest}
