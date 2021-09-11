@@ -1,3 +1,4 @@
+import { SyntaxHighlighter } from 'components/ui/SyntaxHighlighter';
 import React from 'react';
 import { styled } from 'theme';
 import { CardPost } from '../components/cards/cardPost/cardPost';
@@ -22,7 +23,7 @@ const LayoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
   const postMetaData = toPostMetaData(frontMatter);
   const [prevPost, nextPost] = usePrevAndNextBlogPost(postMetaData);
   return (
-    <>
+    <SyntaxHighlighter>
       <SeoBlogPost blogPost={postMetaData} />
       <ResponsiveContainer>
         <Column>
@@ -50,7 +51,7 @@ const LayoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
           )}
         </Column>
       </ResponsiveContainer>
-    </>
+    </SyntaxHighlighter>
   );
 };
 
