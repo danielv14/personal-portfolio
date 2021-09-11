@@ -1,5 +1,5 @@
-import { Icon, IconComponentProps } from './Icon';
+import { Icon, IconProps } from './Icon';
 
-export const IconMail: React.FC<IconComponentProps> = (props) => <Icon variant="Email" {...props} />;
+export const IconMail: React.FC<IconProps> = (props) => <Icon variant="Email" {...props} />;
 
 IconMail.displayName = 'IconMail';

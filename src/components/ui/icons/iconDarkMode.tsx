@@ -1,5 +1,5 @@
-import { Icon, IconComponentProps } from './Icon';
+import { Icon, IconProps } from './Icon';
 
-export const IconDarkMode: React.FC<IconComponentProps> = (props) => <Icon variant="Moon" {...props} />;
+export const IconDarkMode: React.FC<IconProps> = (props) => <Icon variant="Moon" {...props} />;
 
 IconDarkMode.displayName = 'IconDarkMode';

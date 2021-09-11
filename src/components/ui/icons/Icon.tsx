@@ -1,23 +1,19 @@
-import { StyledIconProps } from '@styled-icons/styled-icon';
-import { css } from 'theme';
 import { IconVariant } from '../../../types/icon/icons';
 import { IconAnimationWrapper, IconAnimationWrapperProps } from './iconAnimation/iconAnimationWrapper';
-import { iconMap } from './iconMap';
+import { iconVariants, SVGIconProps } from './iconVariants/IconVariants';
 
-interface IconProps {
+interface IconVariantProps {
   variant: IconVariant;
 }
-export type IconComponentProps = IconAnimationWrapperProps & StyledIconProps;
 
-const baseStyle = css({ color: '$textMutedColor' });
-const baseDimension = css({ height: '24px', widht: '24px' });
+export type IconProps = IconAnimationWrapperProps & SVGIconProps;
 
-export const Icon: React.FC<IconProps & IconComponentProps> = (props) => {
-  const { animation, customAnimation, variant, size, ...rest } = props;
-  const Icon = iconMap[variant];
+export const Icon: React.FC<IconVariantProps & IconProps> = (props) => {
+  const { animation, customAnimation, variant, ...rest } = props;
+  const Icon = iconVariants[variant];
   return (
     <IconAnimationWrapper animation={animation} customAnimation={customAnimation}>
-      <Icon className={`${baseStyle()} ${!size ? baseDimension() : ''}`} {...rest} />
+      <Icon {...rest} />
     </IconAnimationWrapper>
   );
 };
