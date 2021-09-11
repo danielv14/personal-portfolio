@@ -1,5 +1,4 @@
-import { Icon } from './Icon';
-import { IconComponentProps } from './iconBase/iconBase';
+import { Icon, IconComponentProps } from './Icon';
 
 export const IconGitHub: React.FC<IconComponentProps> = (props) => <Icon variant="Github" {...props} />;
 

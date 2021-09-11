@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useMedia } from 'use-media';
 import { site } from '../data/site';
-import { storage } from '../utils/storage';
 import { ColorThemeVariant } from '../types/theme/Colors';
+import { storage } from '../utils/storage';
 
 const themeStorageKey = `${site.author} - theme`;
 const darkModeClass = 'dark-mode';

@@ -37,7 +37,7 @@ export const { theme, styled, getCssString, css } = createCss({
       backgroundColorHighlight: COLOR_PRIMARY_LIGHTEN,
       backgroundColorNavBar: 'hsl(0deg 0% 100% / 75%)',
       textColor: '#585858',
-      textMutedColor: '#BDBDBD',
+      textMutedColor: '#a2a2a2',
       headingColor: '#444444',
     },
     fonts: {
@@ -73,10 +73,17 @@ export const { theme, styled, getCssString, css } = createCss({
       mega: '40px',
       siteWidth: '800px'
     },
+  },
+  utils: {
+    hoverHighlight: () => (shouldHighlight: boolean) => shouldHighlight ? {
+      '&:hover': {
+        backgroundColor: '$backgroundColorHighlight'
+      }
+    } : {}
   }
 });
 
-export const darkMode = theme({
+export const darkTheme = theme({
   shadows: {
     main: 'none',
     button: 'none',

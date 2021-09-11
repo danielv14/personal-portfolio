@@ -18,7 +18,7 @@ interface CardProjectProps {
 export const CardProject: React.FC<CardProjectProps> = ({ title, summary, urlSource, url }) => {
   return (
     <Card {...animationSpring}>
-      <Row style={{ height: '100%' }}>
+      <Row css={{ height: '100%' }}>
         <MarginSmall />
         <Column>
           <UnstyledLink href={urlSource}>

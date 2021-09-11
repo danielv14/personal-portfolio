@@ -17,13 +17,13 @@ export const ToolBox: React.FC<ToolBoxProps> = ({ categories }) => {
         TypeScript för front- och backend som ligger närmst till hands i form av React och Node.
       </p>
       <MarginSmall />
-      <ResponsiveGrid gutter={1} itemWidth="175px">
+      <ResponsiveGrid gutter={10} itemWidth="175px">
         {categories.map(({ title, items }) => (
           <div key={title}>
             <Header bold as="h3">
               {title}
             </Header>
-            <Line width="115px" />
+            <Line css={{width: '115px'}} />
             <List as="ul">
               {items.map((item) => (
                 <ListItem key={item}>{item}</ListItem>

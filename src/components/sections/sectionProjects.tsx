@@ -14,7 +14,7 @@ export const SectionProjects: React.FC<SectionProjectsProps> = ({ projects }) =>
       <Header muted as="h4">
         För en del projekt används gratis hosting, vilket kan leda till en längre initial laddtid
       </Header>
-      <ResponsiveGrid itemWidth="250px" gutter={2}>
+      <ResponsiveGrid itemWidth="250px" gutter={15}>
         {projects.map(({ title, icon, tags: _tags, ...rest }) => (
           <CardProject key={title} title={`${icon} ${title}`} {...rest} />
         ))}

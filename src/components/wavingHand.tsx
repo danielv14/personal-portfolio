@@ -1,5 +1,5 @@
 import { motion, MotionProps } from 'framer-motion';
-import styled from 'styled-components';
+import { styled } from '../theme';
 
 const wavingSequence = [0.0, 18.0, -8.0, 18.0, -4.0, 10.0, 0, 0];
 
@@ -8,11 +8,12 @@ const animation: MotionProps = {
   animate: { rotate: wavingSequence },
 };
 
-const AnimationWave = styled(motion.div)`
-  display: inline-block;
-  transform-origin: 70% 70%;
-  margin-right: var(--margin-small);
-`;
+const AnimationWave = styled(motion.div, {
+  display: 'inline-block',
+  transformOrigin: '70% 70%',
+  marginRight: '$small'
+});
+
 
 export const WavingHand: React.FC = () => <AnimationWave {...animation}>👋</AnimationWave>;
 

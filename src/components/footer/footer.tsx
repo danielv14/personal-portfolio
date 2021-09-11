@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { site } from '../../data/site';
+import { styled } from '../../theme';
 import { Column } from '../ui/container/column';
 import { Fill } from '../ui/container/fill';
 import { ResponsiveContainer } from '../ui/container/responsiveContainer';
@@ -9,11 +9,11 @@ import { IconMail } from '../ui/icons/iconMail';
 import { MarginMedium } from '../ui/margins/marginMedium';
 import { MarginSmall } from '../ui/margins/marginSmall';
 
-const FooterText = styled.p`
-  margin: 0;
-  color: var(--text-muted-color);
-  font-weight: bold;
-`;
+const FooterText = styled('p', {
+  margin: '0',
+  color: '$textMutedColor',
+  fontWeight: 'bold'
+});
 
 export const Footer: React.FC = () => {
   return (

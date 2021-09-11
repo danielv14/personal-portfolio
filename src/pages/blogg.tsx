@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import { PostListItem } from '../components/postListItem/postListItem';
 import { Seo } from '../components/seo/seo';
 import { Column } from '../components/ui/container/column';
@@ -8,13 +7,13 @@ import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
 import { MarginLarge } from '../components/ui/margins/marginLarge';
 import { MarginSmall } from '../components/ui/margins/marginSmall';
 import { useContent } from '../context/ContentContext';
-import { media } from '../theme/helpers/mediaQueries';
+import { styled } from '../theme';
 
-const ArticlesWrapper = styled.div`
-  ${media.medium`
-    margin: 0 -15px;
-  `}
-`;
+const ArticlesWrapper = styled('div', {
+  '@medium': {
+    margin: '0 -15px'
+  }
+});
 
 const BlogIndex = () => {
   const { blogPosts } = useContent();
