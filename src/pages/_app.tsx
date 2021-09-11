@@ -1,6 +1,7 @@
 import { MDXProvider } from '@mdx-js/react';
 import { DefaultSeo } from 'next-seo';
 import { AppProps } from 'next/app';
+import Head from 'next/head';
 import * as React from 'react';
 import { globalStyles } from 'theme';
 import SEO from '../../next-seo.config';
@@ -17,6 +18,9 @@ const myApp = ({ Component, pageProps }: AppProps) => {
   globalStyles();
   return (
     <>
+      <Head>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <DefaultSeo {...SEO} />
       <MDXProvider components={mdxComponents}>
         <ContentProvider projects={projects} blogPosts={getAllBlogPosts()}>
