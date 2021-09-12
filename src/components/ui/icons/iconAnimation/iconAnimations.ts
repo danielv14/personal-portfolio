@@ -1,7 +1,7 @@
-import { MotionProps } from 'framer-motion';
+import { MotionComponentProps } from 'components/ui/motion/MotionComponent';
 import { IconAnimation } from '../../../../types/icon/iconAnimation';
 
-const animationHover: MotionProps = {
+const animationHover: MotionComponentProps = {
   whileHover: { y: -2 },
   whileTap: {
     y: 0,
@@ -13,7 +13,7 @@ const animationHover: MotionProps = {
   },
 };
 
-const animationRotateLeft: MotionProps = {
+const animationRotateLeft: MotionComponentProps = {
   transition: {
     type: 'spring',
     stiffness: 100,
@@ -24,14 +24,14 @@ const animationRotateLeft: MotionProps = {
   },
 };
 
-const animationRotateRight: MotionProps = {
+const animationRotateRight: MotionComponentProps = {
   ...animationRotateLeft,
   animate: {
     rotate: 360,
   },
 };
 
-export const iconAnimations: Record<IconAnimation, MotionProps> = {
+export const iconAnimations: Record<IconAnimation, MotionComponentProps> = {
   none: {},
   hover: animationHover,
   'rotate-left': animationRotateLeft,

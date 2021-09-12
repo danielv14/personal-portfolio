@@ -13,6 +13,26 @@ export const Header = styled('h2', {
         color: '$textMutedColor',
       },
     },
+    gradient: {
+      true: {
+        backgroundImage: '$backgroundGradient',
+        backgroundSize: '100%',
+        backgroundRepeat: 'repeat',
+        backgroundClip: 'text',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+      },
+    },
+    inline: {
+      true: {
+        display: 'inline',
+      },
+    },
+    inlineBlock: {
+      true: {
+        display: 'inline-block',
+      },
+    },
   },
 });
 

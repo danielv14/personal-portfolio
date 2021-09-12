@@ -22,6 +22,7 @@ export const { theme, styled, getCssText, css, globalCss, createTheme, config } 
     radii: {
       small: '4px',
       default: '6px',
+      rouded: '10000px',
     },
     shadows: {
       main: '0px 4px 10px rgba(0, 0, 0, 0.09)',
@@ -29,7 +30,6 @@ export const { theme, styled, getCssText, css, globalCss, createTheme, config } 
       buttonHover: `0px 4px 10px ${color(COLOR_PRIMARY).lighten(0.1).opaquer(0.35)}`,
     },
     colors: {
-      // Brand colors
       primary: COLOR_PRIMARY,
       primaryDarken: COLOR_PRIMARY_DARKEN,
       primaryLighten: COLOR_PRIMARY_LIGHTEN,
@@ -41,6 +41,8 @@ export const { theme, styled, getCssText, css, globalCss, createTheme, config } 
       textColor: '#585858',
       textMutedColor: '#a2a2a2',
       headingColor: '#444444',
+      backgroundGradient: 'linear-gradient(45deg, $primary, $secondary)',
+      backgroundGradintDarker: 'linear-gradient(45deg, $primaryDarken, $secondary)',
     },
     fonts: {
       main: MAIN_FONT,

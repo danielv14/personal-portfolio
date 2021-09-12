@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion';
+import { MotionComponent } from 'components/ui/motion/MotionComponent';
 import { styled } from 'theme';
 
-export const StyledItem = styled(motion.div, {
+export const StyledItem = styled(MotionComponent, {
   cursor: 'pointer',
   borderRadius: '$small',
   transition: 'background-color 0.2s ease',

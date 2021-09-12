@@ -11,10 +11,10 @@ interface ToolBoxProps {
 export const ToolBox: React.FC<ToolBoxProps> = ({ categories }) => {
   return (
     <>
-      <h2>Min verktygslåda</h2>
+      <h2>Verktygslådan!</h2>
       <p>
-        Jag har tidigare använt allt från PHP och Ruby on Rails för att bygga sajter. Nu för tiden är det dock mest
-        TypeScript för front- och backend som ligger närmst till hands i form av React och Node.
+        Jag har tidigare använt allt från PHP och Ruby on Rails för att bygga sajter. Nu för tiden är det däremot mest
+        TypeScript för front- och backend som ligger närmst till hands i form av React och Node/Express.
       </p>
       <MarginSmall />
       <ResponsiveGrid gutter={10} itemWidth="175px">

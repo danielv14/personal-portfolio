@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion';
 import { styled } from 'theme';
+import { MotionComponent } from '../motion/MotionComponent';
 
-export const Card = styled(motion.div, {
+export const Card = styled(MotionComponent, {
   borderRadius: '$default',
   background: '$backgroundColorSecondary',
   padding: '$small',

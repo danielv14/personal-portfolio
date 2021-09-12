@@ -19,7 +19,7 @@ export const Navbar = () => {
             <NavbarItem>Daniel Vernberg</NavbarItem>
           </UnstyledInternalLink>
           <Fill />
-          <Row style={{ alignItems: 'center', cursor: 'pointer' }}>
+          <Row css={{ alignItems: 'center', cursor: 'pointer' }}>
             <UnstyledInternalLink href="/blogg">
               <NavbarItem>Blogg</NavbarItem>
             </UnstyledInternalLink>

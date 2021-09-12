@@ -1,4 +1,3 @@
-import { styled } from 'theme';
 import { PostMetaData } from '../../../types/FrontMatter';
 import { Card } from '../../ui/container/card';
 import { Column } from '../../ui/container/column';
@@ -14,19 +13,15 @@ interface CardPostProps {
   subHeader?: string;
 }
 
-const SubHeader = styled(TextMuted, {
-  fontSize: '$smaller',
-});
-
 export const CardPost: React.FC<CardPostProps> = ({ post, subHeader }) => (
-  <Card {...animationSpring} style={{ cursor: 'pointer' }}>
+  <Card {...animationSpring} css={{ cursor: 'pointer' }}>
     <UnstyledInternalLink href={post.url}>
-      <Row style={{ height: '100%' }}>
+      <Row css={{ height: '100%' }}>
         <MarginSmall />
-        <Column style={{ alignItems: 'stretch' }}>
+        <Column css={{ alignItems: 'stretch' }}>
           <MarginSmall />
-          {subHeader && <SubHeader>{subHeader}</SubHeader>}
-          <Header as="h3" style={{ marginTop: '0' }}>
+          {subHeader && <TextMuted css={{ fontSize: '$smaller' }}>{subHeader}</TextMuted>}
+          <Header as="h3" css={{ marginTop: '0' }}>
             {post.title}
           </Header>
           <TextMuted>{post.date}</TextMuted>

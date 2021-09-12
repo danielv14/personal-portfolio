@@ -9,7 +9,7 @@ export const List = styled('ul', {
 });
 
 export const Line = styled('div', {
-  background: 'linear-gradient(45deg, $primary, $secondary)',
+  background: '$backgroundGradient',
   borderRadius: '$default',
   height: '6px',
   marginBottom: '6px',
