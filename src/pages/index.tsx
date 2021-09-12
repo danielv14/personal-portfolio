@@ -3,7 +3,7 @@ import { SectionArticles } from '../components/sections/sectionArticles';
 import { SectionHero } from '../components/sections/sectionHero';
 import { SectionProjects } from '../components/sections/sectionProjects';
 import { ToolBox } from '../components/toolbox/toolBox';
-import { ButtonPrimary } from '../components/ui/buttons/ButtonPrimary';
+import { Button } from '../components/ui/buttons/Button';
 import { Column } from '../components/ui/container/column';
 import { Fill } from '../components/ui/container/fill';
 import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
@@ -30,7 +30,9 @@ const IndexPage = (): JSX.Element => {
           <MarginLarge />
           <SectionHero />
           <TextCenter>
-            <ButtonPrimary onClick={scrollToProjectElement}>Portfolio</ButtonPrimary>
+            <Button size="large" variant="gradient" onClick={scrollToProjectElement}>
+              Portfolio
+            </Button>
           </TextCenter>
         </Column>
         <MarginMega />
@@ -44,7 +46,7 @@ const IndexPage = (): JSX.Element => {
           <Row>
             <Fill />
             <a href={site.urlGithub}>
-              <ButtonPrimary>Mer på GitHub</ButtonPrimary>
+              <Button variant="gradient">Mer på GitHub</Button>
             </a>
             <Fill />
           </Row>
@@ -57,7 +59,7 @@ const IndexPage = (): JSX.Element => {
           <Row>
             <Fill />
             <UnstyledInternalLink href="/blogg">
-              <ButtonPrimary>Alla inlägg</ButtonPrimary>
+              <Button variant="gradient">Alla inlägg</Button>
             </UnstyledInternalLink>
             <Fill />
           </Row>

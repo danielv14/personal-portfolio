@@ -1,6 +1,6 @@
-import { MotionProps } from 'framer-motion';
+import { MotionComponentProps } from '../motion/MotionComponent';
 
-export const buttonAnimation: MotionProps = {
+export const buttonAnimation: MotionComponentProps = {
   whileHover: { y: -1 },
   whileTap: { y: 1 },
   transition: {

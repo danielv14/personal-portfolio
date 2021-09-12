@@ -1,10 +1,10 @@
-import { motion, MotionProps } from 'framer-motion';
+import { MotionComponent, MotionComponentProps } from 'components/ui/motion/MotionComponent';
 import { IconAnimation } from '../../../../types/icon/iconAnimation';
 import { iconAnimations } from './iconAnimations';
 
 export interface IconAnimationWrapperProps {
   animation?: IconAnimation;
-  customAnimation?: MotionProps;
+  customAnimation?: MotionComponentProps;
 }
 
 export const IconAnimationWrapper: React.FC<IconAnimationWrapperProps> = ({
@@ -13,6 +13,6 @@ export const IconAnimationWrapper: React.FC<IconAnimationWrapperProps> = ({
   children,
 }) => {
   const iconAnimation = customAnimation ?? iconAnimations[animation];
-  return <motion.div {...iconAnimation}>{children}</motion.div>;
+  return <MotionComponent {...iconAnimation}>{children}</MotionComponent>;
 };
 IconAnimationWrapper.displayName = 'IconAnimationWrapper';

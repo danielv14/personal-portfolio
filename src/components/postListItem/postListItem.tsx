@@ -1,4 +1,4 @@
-import { MotionProps } from 'framer-motion';
+import { MotionComponentProps } from 'components/ui/motion/MotionComponent';
 import React from 'react';
 import { Column } from '../ui/container/column';
 import { Header } from '../ui/content/header';
@@ -11,7 +11,7 @@ interface PostListItemProps {
   date?: string;
 }
 
-export const animation: MotionProps = {
+export const animation: MotionComponentProps = {
   whileHover: { y: -2, x: 1 },
   whileTap: {
     y: 0,

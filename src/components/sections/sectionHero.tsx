@@ -1,5 +1,4 @@
 import { Column } from '../ui/container/column';
-import { GradientText } from '../ui/content/gradientHeader';
 import { Header } from '../ui/content/header';
 import { TextCenter } from '../ui/content/textCenter';
 import { MarginMedium } from '../ui/margins/marginMedium';
@@ -14,7 +13,9 @@ export const SectionHero: React.FC = () => {
           <div>
             <TitleWrapper>
               <WavingHand />
-              <GradientText as="h1">Hallå där!</GradientText>
+              <Header inlineBlock gradient as="h1">
+                Hallå där!
+              </Header>
             </TitleWrapper>
           </div>
           <SubTitleWrapper>
