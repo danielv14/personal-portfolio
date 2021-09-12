@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
     "target": "esnext",
     "module": "esnext",
     "jsx": "preserve",
@@ -21,5 +22,9 @@
     "isolatedModules": true
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "paths": {
+    "theme/*": ["theme/*"],
+    "ui/*": ["components/ui/*"]
+  }
 }

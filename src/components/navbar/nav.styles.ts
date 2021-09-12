@@ -1,39 +1,38 @@
-import styled from 'styled-components';
+import { styled } from 'theme';
 import { Row } from '../ui/container/row';
 
-export const NavAdjustedContent = styled.div`
-  padding-top: 60px;
-`;
-
+export const NavAdjustedContent = styled('div', {
+  paddingTop: '60px',
+});
 NavAdjustedContent.displayName = 'NavAdjustedContent';
 
-export const NavbarWrapper = styled.div`
-  box-shadow: var(--box-shadow-main);
-  position: fixed;
-  width: 100%;
-  background: var(--bg-color);
-  z-index: 999;
-  @supports (backdrop-filter: blur(20px)) {
-    backdrop-filter: blur(20px);
-    background: var(--bg-color-navbar);
-  }
-`;
+export const NavbarWrapper = styled('div', {
+  boxShadow: '$main',
+  position: 'fixed',
+  width: '100%',
+  background: '$backgroundColor',
+  zIndex: '999',
+  '@supports (backdrop-filter: blur(20px))': {
+    backdropFilter: 'blur(20px)',
+    background: '$backgroundColorNavBar',
+  },
+});
 
 NavbarWrapper.displayName = 'NavbarWrapper';
 
-export const NavbarContentWrapper = styled(Row)`
-  width: 100%;
-  height: 60px;
-  align-items: center;
-  font-family: var(--headings-font);
-  font-weight: bold;
-  font-size: var(--font-size-h5);
-`;
+export const NavbarContentWrapper = styled(Row, {
+  width: '100%',
+  height: '60px',
+  alignItems: 'center',
+  fontFamily: '$headings',
+  fontWeight: 'bold',
+  fontSize: '$5',
+});
 
 NavbarContentWrapper.displayName = 'NavbarContentWrapper';
 
-export const NavbarItem = styled.span`
-  color: var(--text-muted-color);
-`;
+export const NavbarItem = styled('span', {
+  color: '$textMutedColor',
+});
 
 NavbarItem.displayName = 'NavbarItem';

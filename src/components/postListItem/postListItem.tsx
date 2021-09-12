@@ -3,7 +3,7 @@ import React from 'react';
 import { Column } from '../ui/container/column';
 import { Header } from '../ui/content/header';
 import { TextMuted } from '../ui/content/textMuted';
-import { Item } from './postListItem.styles';
+import { StyledItem } from './postListItem.styles';
 
 interface PostListItemProps {
   title: string;
@@ -26,13 +26,13 @@ export const animation: MotionProps = {
 export const PostListItem: React.FC<PostListItemProps> = ({ title, summary, date }) => {
   return (
     <Column>
-      <Item {...animation}>
+      <StyledItem {...animation}>
         <Header bold as="h4">
           {title}
         </Header>
         {date && <TextMuted>{date}</TextMuted>}
         <p>{summary}</p>
-      </Item>
+      </StyledItem>
     </Column>
   );
 };

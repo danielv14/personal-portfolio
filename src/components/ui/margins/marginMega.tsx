@@ -1,5 +1,5 @@
 import { Margin } from './margin';
 
-export const MarginMega: React.FC = () => <Margin size={3} />;
+export const MarginMega: React.FC = () => <Margin size='mega' />;
 
 MarginMega.displayName = 'MarginMega';

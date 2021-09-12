@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import { styled } from 'theme';
 
-export const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
+export const Row = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+});
 
 Row.displayName = 'Row';

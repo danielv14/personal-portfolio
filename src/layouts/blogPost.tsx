@@ -1,5 +1,6 @@
+import { SyntaxHighlighter } from 'components/ui/SyntaxHighlighter';
 import React from 'react';
-import styled from 'styled-components';
+import { styled } from 'theme';
 import { CardPost } from '../components/cards/cardPost/cardPost';
 import { SeoBlogPost } from '../components/seo/seoBlogPost';
 import { Column } from '../components/ui/container/column';
@@ -14,15 +15,15 @@ import { usePrevAndNextBlogPost } from '../hooks/usePrevAndNextBlogPost';
 import { PostLayoutProps } from '../types/Layout';
 import { toPostMetaData } from '../utils/postMappings';
 
-const DateText = styled(TextMuted)`
-  margin-bottom: 0px;
-`;
+const DateText = styled(TextMuted, {
+  marginBottom: '0px',
+});
 
 const LayoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
   const postMetaData = toPostMetaData(frontMatter);
   const [prevPost, nextPost] = usePrevAndNextBlogPost(postMetaData);
   return (
-    <>
+    <SyntaxHighlighter>
       <SeoBlogPost blogPost={postMetaData} />
       <ResponsiveContainer>
         <Column>
@@ -42,7 +43,7 @@ const LayoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
               <Divider />
               <MarginMedium />
               <h2>Mer innehåll</h2>
-              <ResponsiveGrid itemWidth="250px" gutter={2}>
+              <ResponsiveGrid itemWidth="250px" gutter={20}>
                 {prevPost && <CardPost subHeader="&larr; Föregående" post={prevPost} />}
                 {nextPost && <CardPost subHeader="Nästa &rarr;" post={nextPost} />}
               </ResponsiveGrid>
@@ -50,7 +51,7 @@ const LayoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
           )}
         </Column>
       </ResponsiveContainer>
-    </>
+    </SyntaxHighlighter>
   );
 };
 

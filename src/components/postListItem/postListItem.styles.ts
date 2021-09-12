@@ -1,17 +1,16 @@
 import { motion } from 'framer-motion';
-import styled from 'styled-components';
-import { media } from '../../theme/helpers/mediaQueries';
+import { styled } from 'theme';
 
-
-export const Item = styled(motion.div)`
-  cursor: pointer;
-  border-radius: var(--border-radius-small);
-  padding: var(--margin-small);
-  transition: background-color 0.2s ease;
-  &:hover {
-    background: var(--bg-color-highlight);
-  }
-  ${media.medium`
-    padding: var(--margin-small) var(--margin-large);
-  `}
-`;
+export const StyledItem = styled(motion.div, {
+  cursor: 'pointer',
+  borderRadius: '$small',
+  transition: 'background-color 0.2s ease',
+  hoverHighlight: true,
+  padding: '$small',
+  '&:hover': {
+    backgroundColor: '$backgroundColorHighlight',
+  },
+  '@medium': {
+    padding: '$small $large',
+  },
+});

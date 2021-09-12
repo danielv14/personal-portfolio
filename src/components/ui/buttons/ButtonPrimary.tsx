@@ -1,25 +1,31 @@
 import { motion } from 'framer-motion';
-import styled, { css } from 'styled-components';
+import { styled } from 'theme';
 import { buttonAnimation } from './buttonAnimation';
 
-const styles = () => css`
-  background: var(--primary-color);
-  color: white;
-  padding: 16px 20px;
-  text-align: center;
-  font-weight: bold;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow-button);
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer;
-  width: auto;
-  display: inline-block;
-  &:hover {
-    background: var(--primary-color-darken);
-    box-shadow: var(--box-shadow-button-hover);
-  }
-`;
+const StyledButton = styled(motion.div, {
+  background: '$primary',
+  color: 'white',
+  padding: '16px 20px',
+  textAlign: 'center',
+  fontWeight: 'bold',
+  borderRadius: '$default',
+  boxShadow: '$button',
+  transition: 'background-color 0.2s ease, box-shadow 0.2 ease',
+  cursor: 'pointer',
+  width: 'auto',
+  display: 'inline-block',
+  '&:hover': {
+    background: '$primaryDarken',
+    boxShadow: '$buttonHover',
+  },
+});
 
-export const ButtonPrimary = styled(motion.div).attrs({ ...buttonAnimation })(styles);
+type ButtonPrimaryProps = React.ComponentProps<typeof StyledButton>;
+
+export const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({ children, ...rest }) => (
+  <StyledButton {...buttonAnimation} {...rest}>
+    {children}
+  </StyledButton>
+);
 
 ButtonPrimary.displayName = 'ButtonPrimary';

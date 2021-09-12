@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'theme';
 import { site } from '../../data/site';
 import { Column } from '../ui/container/column';
 import { Fill } from '../ui/container/fill';
@@ -9,11 +9,11 @@ import { IconMail } from '../ui/icons/iconMail';
 import { MarginMedium } from '../ui/margins/marginMedium';
 import { MarginSmall } from '../ui/margins/marginSmall';
 
-const FooterText = styled.p`
-  margin: 0;
-  color: var(--text-muted-color);
-  font-weight: bold;
-`;
+const FooterText = styled('p', {
+  margin: '0',
+  color: '$textMutedColor',
+  fontWeight: 'bold',
+});
 
 export const Footer: React.FC = () => {
   return (
@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
           </a>
           <MarginSmall />
           <a href={`mailto:${site.email}`}>
-            <IconMail animation="none" />
+            <IconMail animation="hover" />
           </a>
         </Row>
         <MarginMedium />
