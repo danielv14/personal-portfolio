@@ -13,6 +13,10 @@ export const IconAnimationWrapper: React.FC<IconAnimationWrapperProps> = ({
   children,
 }) => {
   const iconAnimation = customAnimation ?? iconAnimations[animation];
-  return <MotionComponent {...iconAnimation}>{children}</MotionComponent>;
+  return (
+    <MotionComponent css={{ display: 'flex' }} {...iconAnimation}>
+      {children}
+    </MotionComponent>
+  );
 };
 IconAnimationWrapper.displayName = 'IconAnimationWrapper';
