@@ -8,7 +8,7 @@ const StyledButton = styled(MotionComponent, {
   fontWeight: 'bold',
   borderRadius: '$rouded',
   boxShadow: '$button',
-  transition: 'background 0.2s ease, box-shadow 0.2 ease',
+  transition: 'background 0.2s ease, box-shadow 0.2s ease-in-out',
   cursor: 'pointer',
   width: 'auto',
   display: 'inline-block',
