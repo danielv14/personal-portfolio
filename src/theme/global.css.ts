@@ -105,7 +105,6 @@ export const globalStyles = globalCss({
 
   code: {
     fontFamily: '$mono',
-    fontSize: '$code',
     color: '$textColor',
     background: '$backgroundColorHighlight',
     borderRadius: '$small',
