@@ -6,7 +6,7 @@ This is the latest iteration of my personal portfolio. It is statically generate
 
 - [Next.js](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [MDX](https://github.com/mdx-js/mdx)
+- [Contentlayer](https://www.contentlayer.dev/)
 - [Stitches](https://stitches.dev/)
 - [Framer Motion](https://www.framer.com/motion/)
 
@@ -15,11 +15,10 @@ Site is deployed through [Vercel](https://vercel.com)
 ## 📚 Folder overview
 
 - `src/components/*` - All react components.
-- `src/context/*` - All react context providers.
 - `src/data/*` - Various static data sources.
 - `src/hooks/*` - Custom react hooks.
 - `src/layout/*` - Layout templates for MDX content.
-- `src/pages/blogg/*` - Static blog posts written in [MDX](https://github.com/mdx-js/mdx).
+- `src/pages/blogg/[slug].tsx` - Dynamic but static page for all blog posts generated through [Contentlayer](https://www.contentlayer.dev/).
 - `src/pages/*` - All static pages built of react components and static content.
 - `src/theme/*` - Contains site-wide theming, global styling and stitches configuration.
 - `src/types/*` - Contains shareable types and interfaces used across site.

@@ -1,12 +1,12 @@
+import { PostListItem } from 'components/postListItem/postListItem';
+import { Post } from 'contentlayer/generated';
 import { styled } from 'theme';
-import { PostMetaData } from '../../types/FrontMatter';
-import { PostListItem } from '../postListItem/postListItem';
-import { Header } from '../ui/content/header';
-import { UnstyledInternalLink } from '../ui/content/unstyledLink';
-import { MarginMedium } from '../ui/margins/marginMedium';
+import { Header } from 'ui/content/header';
+import { UnstyledInternalLink } from 'ui/content/unstyledLink';
+import { MarginMedium } from 'ui/margins/marginMedium';
 
 interface SectionArticlesProps {
-  articles: PostMetaData[];
+  articles: Post[];
 }
 
 const ArticlesWrapper = styled('div', {

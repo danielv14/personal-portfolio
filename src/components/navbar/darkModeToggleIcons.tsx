@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { IconAnimation } from '../../types/icon/iconAnimation';
-import { IconDarkMode } from '../ui/icons/iconDarkMode';
-import { IconLightMode } from '../ui/icons/iconLightMode';
+import { IconAnimation } from 'types/icon/iconAnimation';
+import { IconDarkMode } from 'ui/icons/iconDarkMode';
+import { IconLightMode } from 'ui/icons/iconLightMode';
 
 interface DarkModeToggleIconsProps {
   isDarkMode: boolean;

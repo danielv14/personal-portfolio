@@ -1,5 +1,4 @@
 ---
-layout: blogPost
 title: 'Portfolio Redesign: Keep it simple'
 summary: 'Summering av några punkter kring omdesignen av denna webbplats: enklare mobile-first design, stöd för ljust och mörkt tema, css variabler och styling som reactkomponenter.'
 date: 2020-06-30
@@ -61,7 +60,7 @@ På så sätt behöver man inte bry sig och hålla koll på att switcha mellan f
 
 Utfrifrån färsättning i min Figmadesign skapade jag ett interface för all styling som jag visste behövde vara temad utifrån ett ljust och ett mörkt tema:
 
-```typescript{1,2,3,4,5,6,7,8,9}:src/theme/colors.ts
+```typescript:src/theme/colors.ts {1,2,3,4,5,6,7,8,9} showLineNumbers
 interface ColorTheme {
   backgroundColor: string;
   backgroundColorSecondary: string;
@@ -97,7 +96,7 @@ Dessa tema-objekt används i sin tur i ett annat objekt som representerar temat 
 
 Men just de temade variablerna konverteras till css variabler med en hjälpfunktion:
 
-```typescript:src/theme/setupThemeVariables.ts
+```typescript:src/theme/setupThemeVariables.ts showLineNumbers
 export const setupThemeVariables = (theme: ColorTheme) => css`
   --bg-color: theme.backgroundColor;
   --bg-color-secondary: theme.backgroundColorSecondary;
@@ -111,7 +110,7 @@ export const setupThemeVariables = (theme: ColorTheme) => css`
 
 Hela temat importeras och temade css variabler sätts:
 
-```typescript:src/components/ui/globalStyle.tsx
+```typescript:src/components/ui/globalStyle.tsx showLineNumbers
 export const GlobalStyle = createGlobalStyle`
   :root {
     /* Default to light theme */
@@ -140,7 +139,7 @@ Till och med **marginaler är komponenter**. Jag har arbetat en del i ett Reactb
 
 I **src/components/ui** i det här repot har jag skapat upp en del styled components som i princip bara har med layout och design att göra. Däri finns knappar, responsiva containers, ikoner och till och med marginaler:
 
-```typescript:src/components/ui/margins/marginLarge.tsx
+```typescript:src/components/ui/margins/marginLarge.tsx showLineNumbers
 import styled from 'styled-components';
 
 export const MarginLarge = styled.div`
@@ -152,7 +151,7 @@ MarginLarge.displayName = 'MarginLarge';
 
 Med hjälp av marginaler och andra styled components som bara är ui-baserade kan man skapa andra komponenter väldigt snabbt, så som den här komponenten som hjälper besökaren på denna sajt navigera mellan artiklar:
 
-```typescript:src/components/cardPost.tsx
+```typescript:src/components/cardPost.tsx showLineNumbers
 export const CardPost: React.FC<CardPostProps> = ({ post }) => (
   /* UI komponent som sätter skuggning, temad bakgrundsfärg och hover effekt */
   <Card style={{ cursor: 'pointer' }}>
@@ -178,7 +177,7 @@ export const CardPost: React.FC<CardPostProps> = ({ post }) => (
 
 **Responsiv layout** uppnås även med hjälp av en sån här UI komponent och css grid:
 
-```typescript:src/components/ui/container/responsiveGrid.tsx
+```typescript:src/components/ui/container/responsiveGrid.tsx showLineNumbers
 interface GridProps {
   itemWidth: string;
   gutter: string;
@@ -199,7 +198,7 @@ export const ResponsiveGrid: React.FC<GridProps> = ({ children, ...props }) => {
 **itemWidth** bestämmer minsta möjliga bredd på rutnätets barn och **gutters** sätter mellanrum i rutnätet.
 Komponenten ovan kan användas för att skapa en responsiv layout - som dessutom är **helt utan media queries**:
 
-```typescript
+```typescript showLineNumbers
 <ResponsiveGrid itemWidth="200px" gutter="10px">
   <Card>
     <p>Hello</p>
@@ -212,7 +211,7 @@ Komponenten ovan kan användas för att skapa en responsiv layout - som dessutom
 
 `<ResponsiveGrid />` tillsammans med `<Card />` skulle kunna skapa en layout som ser ut ungefär såhär:
 
-<ResponsiveGrid itemWidth="200px" gutter={1} style={{ marginBottom: '10px' }}>
+<ResponsiveGrid itemWidth="100px" gutter={20} style={{ marginBottom: '20px' }}>
   <Card style={{ height: '80px' }} />
   <Card style={{ height: '80px' }} />
   <Card style={{ height: '80px' }} />

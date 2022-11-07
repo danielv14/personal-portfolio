@@ -1,5 +1,5 @@
-import { MotionComponent } from 'components/ui/motion/MotionComponent';
 import { styled } from 'theme';
+import { MotionComponent } from 'ui/motion/MotionComponent';
 
 export const StyledItem = styled(MotionComponent, {
   cursor: 'pointer',

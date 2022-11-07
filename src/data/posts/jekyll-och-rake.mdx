@@ -1,5 +1,4 @@
 ---
-layout: blogPost
 title: Jekyll och Rake tasks
 summary: Enkla kommandon för att snabba upp skapandet av blogginlägg i markdown.
 date: 2017-03-26
@@ -9,15 +8,14 @@ Med hjälp av Rake och en Rakefile kan man enkelt skapa grunden till blogginläg
 
 > Den här lilla guiden förutsätter viss kunskap om static site generatorn [Jekyll](http://jekyllrb.com/) samt Ruby då jag inte redogör för allting i detalj.
 
-
 På den här webbplatsen finns en del portfolioprojekt i form av en [collection](https://jekyllrb.com/docs/collections/). Att lägga till nya projekt manuellt i denna collection och komma ihåg vilken typ av [front matter](https://jekyllrb.com/docs/frontmatter/) projekten skulle ha blev tradigt och repetativt. Med viss [inspiration](http://albertogrespan.com/blog/rake-tasks-and-jekyll-posts/) kunde jag knepa ihop en lösning som gjorde det enklare att skapa portfolio objekt med korrekt front matter.
 
 Följande rake task använder jag i min `Rakefile` för att skapa nya portfolio objekt:
 
-```ruby:Rakefile
+```ruby:Rakefile showLineNumbers
 desc "Create a new portfolio item"
  task :project do
- 
+
   puts "What's the name of the portfolio project?"
   @name = STDIN.gets.chomp
 
@@ -56,12 +54,12 @@ desc "Create a new portfolio item"
 end
 ```
 
-
-Kort och gott går denna rake task ut på att mata in **namnet** på ett portfolioprojekt, en kortare **beskrivning** och vilken sorts **layout** portfoliokortet ska ha på denna webbplats startsida. Rake tasken räknar själv ut vilken **ordning** projektet ska ha och visas upp sorterat på startsidan.   
+Kort och gott går denna rake task ut på att mata in **namnet** på ett portfolioprojekt, en kortare **beskrivning** och vilken sorts **layout** portfoliokortet ska ha på denna webbplats startsida. Rake tasken räknar själv ut vilken **ordning** projektet ska ha och visas upp sorterat på startsidan.
 
 Nu är jag medveten om att samma sorts rake task förmodligen går att skriva på ett mycket bättre sätt, där exempelvis användaren även får möjlighet att mata in ett projekts taggar istället för att fylla i dessa i efterhand. Men jag tycker ändå att denna task duger gott och väl än så länge.
 
 ## Kommandon
+
 Glömmer man bort hur en rake task ska köras i terminalen kan man lista alla task på följande sätt:
 
 ```bash
@@ -77,5 +75,6 @@ $ rake project
 ```
 
 ## Avslutningsvis
-Rake tasks kan användas för att underlätta repetativa uppgifter runtikring skapandet av innehåll till en Jekyllhemsida. Rake tasks kan både skapa nya markdownfiler och förse dessa filer med relevant front matter.    
+
+Rake tasks kan användas för att underlätta repetativa uppgifter runtikring skapandet av innehåll till en Jekyllhemsida. Rake tasks kan både skapa nya markdownfiler och förse dessa filer med relevant front matter.  
 Den rake task som har presenterats i den här artikeln går att [modifieras](http://albertogrespan.com/blog/rake-tasks-and-jekyll-posts/) om till att istället skapa det Jekyll kallar för `posts` och `drafts` eller varför inte för att sköta deploy. Möjligheterna med rake tasks är stora!

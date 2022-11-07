@@ -1,7 +1,6 @@
 ---
 title: När man förmodligen vill byta ut useState mot useReducer
 summary: Hook:en useState är bra till mycket. Men ibland räcker inte den inte hela vägen. Det här är lite reflektioner över första gången jag använde useReducer för att lösa lite mer avancerad state.
-layout: blogPost
 date: 2021-02-13
 ---
 
@@ -15,7 +14,7 @@ En uppenbar skillnad mellan useState och hur man ofta skriver och sätter state 
 
 Säg att man har ett formulär och vill använda useState för state-hantering med 3-4 inputfält. Det enklaste är nog att ha separata state-variabler för varje inputfält, ungefär så här:
 
-```js
+```ts showLineNumbers
 const [inputOne, setInputOne] = useState(’’);
 const [inputTwo, setInputTwo] = useState(’’);
 const [inputThree, setInputThree] = useState(’’);
@@ -62,7 +61,7 @@ Att gruppera allt i ett objekt hjälpte till avsevärt med överblicken av formu
 
 Vi slapp även flera individuella `setState()` anrop för flera sub-värden i state:t. Vi gick från sånt här:
 
-```js
+```js showLineNumbers
 const onInputChange = async (value) => {
   setInputOne(value);
   const data = await fetchFromAPI(value);
@@ -72,7 +71,7 @@ const onInputChange = async (value) => {
 
 Till att istället skriva sånt här:
 
-```js
+```js showLineNumbers
 const onInputChange = async (value) => {
   const data = await fetchFromAPI(value);
   setState({ ...state, inputOne: value, dataOne: data });
@@ -87,7 +86,7 @@ Ett konkret exempel på detta är att vi allt eftersom upptäckte att vi behövd
 
 Om användaren då försökte gå vidare till nästa steg i formuläret fick denne feedback om att viss input-data saknades. När användaren då började fylla i den datan skulle feedbacken försvinna. Vi började få sådana här exempel lite här och var i koden:
 
-```js
+```js showLineNumbers
 const onInputChange = (value) => {
   setState({ ...state, inputOne: value, feedback: [] });
 };
@@ -133,7 +132,7 @@ Vilka fördelar kunde vi då se när vi refaktorerade från lösningen med useSt
 
 Den allra största fördelen vi såg var att formulär-komponenten nu bara behövde fokusera på **vad** som skulle hända och inte exakt **hur** något skulle hända. Om man ska ta exemplet med att låta användaren backa i formuläret så gick vi från (ungefär):
 
-```js
+```js showLineNumbers
 const onStepChange = (step) => {
   if (step === 0) {
     setState(emptyFormData);
@@ -145,7 +144,7 @@ const onStepChange = (step) => {
 
 Till en lösning där formuläret inte behövde bry sig om sådana detaljer:
 
-```js
+```js showLineNumbers
 const onStepChange = (step) => {
 	dispatch({ type: ’FORM_STEP’, step: step });
 }

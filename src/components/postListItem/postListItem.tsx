@@ -1,8 +1,7 @@
-import { MotionComponentProps } from 'components/ui/motion/MotionComponent';
-import React from 'react';
-import { Column } from '../ui/container/column';
-import { Header } from '../ui/content/header';
-import { TextMuted } from '../ui/content/textMuted';
+import { Column } from 'ui/container/column';
+import { Header } from 'ui/content/header';
+import { TextMuted } from 'ui/content/textMuted';
+import { MotionComponentProps } from 'ui/motion/MotionComponent';
 import { StyledItem } from './postListItem.styles';
 
 interface PostListItemProps {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 interface Storage {
   set: (key: string, value: string) => void;
   get: (key: string) => string;

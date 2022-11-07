@@ -1,13 +1,15 @@
+import { PostListItem } from 'components/postListItem/postListItem';
+import { Seo } from 'components/seo/seo';
+import { getAllBlogPosts } from 'data/blogPosts';
+import { GetStaticProps } from 'next';
 import { styled } from 'theme';
-import { PostListItem } from '../components/postListItem/postListItem';
-import { Seo } from '../components/seo/seo';
-import { Column } from '../components/ui/container/column';
-import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
-import { Header } from '../components/ui/content/header';
-import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
-import { MarginLarge } from '../components/ui/margins/marginLarge';
-import { MarginSmall } from '../components/ui/margins/marginSmall';
-import { useContent } from '../context/ContentContext';
+import { Post } from 'types/Post';
+import { Column } from 'ui/container/column';
+import { ResponsiveContainer } from 'ui/container/responsiveContainer';
+import { Header } from 'ui/content/header';
+import { UnstyledInternalLink } from 'ui/content/unstyledLink';
+import { MarginLarge } from 'ui/margins/marginLarge';
+import { MarginSmall } from 'ui/margins/marginSmall';
 
 const ArticlesWrapper = styled('div', {
   '@medium': {
@@ -15,8 +17,16 @@ const ArticlesWrapper = styled('div', {
   },
 });
 
-const BlogIndex = () => {
-  const { blogPosts } = useContent();
+export const getStaticProps: GetStaticProps = () => {
+  const posts = getAllBlogPosts();
+  return {
+    props: {
+      posts: posts.map(({ title, summary, dateFormatted, url }) => ({ title, summary, date: dateFormatted, url })),
+    },
+  };
+};
+
+const BlogIndex = ({ posts }: { posts: Post[] }) => {
   return (
     <>
       <Seo title="Blogg" />
@@ -29,7 +39,7 @@ const BlogIndex = () => {
           </Header>
           <MarginLarge />
           <ArticlesWrapper>
-            {blogPosts.map((blogPost) => (
+            {posts.map((blogPost) => (
               <UnstyledInternalLink key={blogPost.title} href={blogPost.url}>
                 <div>
                   <PostListItem {...blogPost} />

@@ -1,38 +1,33 @@
-import { SyntaxHighlighter } from 'components/ui/SyntaxHighlighter';
-import React from 'react';
-import { styled } from 'theme';
-import { CardPost } from '../components/cards/cardPost/cardPost';
-import { SeoBlogPost } from '../components/seo/seoBlogPost';
-import { Column } from '../components/ui/container/column';
-import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
-import { ResponsiveGrid } from '../components/ui/container/responsiveGrid';
-import { Divider } from '../components/ui/content/divider';
-import { Header } from '../components/ui/content/header';
-import { TextMuted } from '../components/ui/content/textMuted';
-import { MarginLarge } from '../components/ui/margins/marginLarge';
-import { MarginMedium } from '../components/ui/margins/marginMedium';
-import { usePrevAndNextBlogPost } from '../hooks/usePrevAndNextBlogPost';
-import { PostLayoutProps } from '../types/Layout';
-import { toPostMetaData } from '../utils/postMappings';
+import { CardPost } from 'components/cards/cardPost/cardPost';
+import { SeoBlogPost } from 'components/seo/seoBlogPost';
+import { styled } from 'theme/index';
+import { PostPageProps } from 'types/Post';
+import { Column } from 'ui/container/column';
+import { ResponsiveContainer } from 'ui/container/responsiveContainer';
+import { ResponsiveGrid } from 'ui/container/responsiveGrid';
+import { Divider } from 'ui/content/divider';
+import { Header } from 'ui/content/header';
+import { TextMuted } from 'ui/content/textMuted';
+import { MarginLarge } from 'ui/margins/marginLarge';
+import { MarginMedium } from 'ui/margins/marginMedium';
+import { SyntaxHighlighter } from 'ui/SyntaxHighlighter';
 
 const DateText = styled(TextMuted, {
   marginBottom: '0px',
 });
 
-const LayoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
-  const postMetaData = toPostMetaData(frontMatter);
-  const [prevPost, nextPost] = usePrevAndNextBlogPost(postMetaData);
+export const BlogPostLayout: React.FC<PostPageProps> = ({ post, prevPost, nextPost, children }) => {
   return (
     <SyntaxHighlighter>
-      <SeoBlogPost blogPost={postMetaData} />
+      <SeoBlogPost blogPost={post} />
       <ResponsiveContainer>
         <Column>
           <MarginLarge />
-          <h1>{postMetaData.title}</h1>
-          <DateText>{postMetaData.date}</DateText>
-          {postMetaData.description && (
+          <h1>{post.title}</h1>
+          <DateText>{post.dateFormatted}</DateText>
+          {post.description && (
             <Header as="h2" muted>
-              {postMetaData.description}
+              {post.description}
             </Header>
           )}
           <MarginMedium />
@@ -54,5 +49,3 @@ const LayoutBlogPost = ({ frontMatter, children }: PostLayoutProps) => {
     </SyntaxHighlighter>
   );
 };
-
-export default LayoutBlogPost;

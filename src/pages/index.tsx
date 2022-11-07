@@ -1,25 +1,37 @@
-import { SectionAbout } from '../components/sections/sectionAbout';
-import { SectionArticles } from '../components/sections/sectionArticles';
-import { SectionHero } from '../components/sections/sectionHero';
-import { SectionProjects } from '../components/sections/sectionProjects';
-import { ToolBox } from '../components/toolbox/toolBox';
-import { Button } from '../components/ui/buttons/Button';
-import { Column } from '../components/ui/container/column';
-import { Fill } from '../components/ui/container/fill';
-import { ResponsiveContainer } from '../components/ui/container/responsiveContainer';
-import { Row } from '../components/ui/container/row';
-import { UnstyledInternalLink } from '../components/ui/content/unstyledLink';
-import { MarginLarge } from '../components/ui/margins/marginLarge';
-import { MarginMedium } from '../components/ui/margins/marginMedium';
-import { MarginMega } from '../components/ui/margins/marginMega';
-import { MarginSmall } from '../components/ui/margins/marginSmall';
-import { useContent } from '../context/ContentContext';
-import { site } from '../data/site';
-import { toolboxCategories } from '../data/toolBoxCategories';
+import { SectionAbout } from 'components/sections/sectionAbout';
+import { SectionArticles } from 'components/sections/sectionArticles';
+import { SectionHero } from 'components/sections/sectionHero';
+import { SectionProjects } from 'components/sections/sectionProjects';
+import { ToolBox } from 'components/toolbox/toolBox';
+import { getAllBlogPosts } from 'data/blogPosts';
+import { projects } from 'data/projects';
+import { site } from 'data/site';
+import { toolboxCategories } from 'data/toolBoxCategories';
+import { GetStaticProps } from 'next';
+import { Post } from 'types/Post';
+import { Project } from 'types/Project';
+import { Button } from 'ui/buttons/Button';
+import { Column } from 'ui/container/column';
+import { Fill } from 'ui/container/fill';
+import { ResponsiveContainer } from 'ui/container/responsiveContainer';
+import { Row } from 'ui/container/row';
+import { UnstyledInternalLink } from 'ui/content/unstyledLink';
+import { MarginLarge } from 'ui/margins/marginLarge';
+import { MarginMedium } from 'ui/margins/marginMedium';
+import { MarginMega } from 'ui/margins/marginMega';
+import { MarginSmall } from 'ui/margins/marginSmall';
 
-const IndexPage = (): JSX.Element => {
-  const { blogPosts, projects } = useContent();
-  const latestBlogPosts = blogPosts.slice(0, 4);
+export const getStaticProps: GetStaticProps = () => {
+  const latestPosts = getAllBlogPosts().slice(0, 4);
+  return {
+    props: {
+      posts: latestPosts,
+      projects,
+    },
+  };
+};
+
+const IndexPage = ({ posts, projects }: { posts: Post[]; projects: Project[] }): JSX.Element => {
   return (
     <>
       <ResponsiveContainer>
@@ -34,7 +46,7 @@ const IndexPage = (): JSX.Element => {
         <MarginMega />
         <Column>
           <MarginLarge />
-          <SectionArticles articles={latestBlogPosts} />
+          <SectionArticles articles={posts} />
           <MarginSmall />
           <Row>
             <Fill />

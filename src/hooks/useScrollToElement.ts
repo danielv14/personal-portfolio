@@ -1,4 +1,4 @@
-import { useRef, RefObject } from 'react';
+import { RefObject, useRef } from 'react';
 
 export const useScrollToElement = ({ offset = 0 } = {}): [RefObject<any>, () => void] => {
   const elementRef: RefObject<any> = useRef(null);
