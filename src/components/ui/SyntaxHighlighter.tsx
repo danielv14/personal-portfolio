@@ -75,12 +75,12 @@ export const SyntaxHighlighter = styled('div', {
   '.token.entity': {
     cursor: 'help',
   },
-  // '.code-line': {
-  //   fontSize: '$code',
-  //   '& span': {
-  //     fontSize: '$code',
-  //   },
-  // },
+  '.code-line': {
+    fontSize: '$code',
+    '& span': {
+      fontSize: '$code',
+    },
+  },
   '.rehype-code-title': {
     maxWidth: '100%',
     overflowY: 'hidden',
