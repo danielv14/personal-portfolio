@@ -88,7 +88,7 @@ export const globalStyles = globalCss({
 
   pre: {
     borderRadius: '$default',
-    fontSize: '1rem',
+    fontSize: '$code',
   },
 
   blockquote: {
