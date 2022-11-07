@@ -1,9 +1,9 @@
+import { site } from 'data/site';
 import { useEffect, useState } from 'react';
 import { darkTheme } from 'theme';
 import { Theme } from 'types/theme';
 import { useMedia } from 'use-media';
-import { site } from '../data/site';
-import { storage } from '../utils/storage';
+import { storage } from 'utils/storage';
 
 const themeStorageKey = `${site.author} - theme`;
 

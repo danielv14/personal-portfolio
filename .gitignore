@@ -29,5 +29,5 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# Ignore next-mdx-enhanced cache directory
-.mdx-data
+
+.contentlayer

@@ -11,6 +11,7 @@ export const globalStyles = globalCss({
 
   html: {
     fontSize: '$base',
+    'text-size-adjust': 'none',
     '@large': {
       fontSize: '$baseDesktop',
     },
@@ -119,5 +120,8 @@ export const globalStyles = globalCss({
   },
   em: {
     fontStyle: 'italic',
+  },
+  'span.token': {
+    fontSize: '$code',
   },
 });

@@ -1,15 +1,15 @@
-import { PostMetaData } from '../../../types/FrontMatter';
-import { Card } from '../../ui/container/card';
-import { Column } from '../../ui/container/column';
-import { Row } from '../../ui/container/row';
-import { Header } from '../../ui/content/header';
-import { TextMuted } from '../../ui/content/textMuted';
-import { UnstyledInternalLink } from '../../ui/content/unstyledLink';
-import { MarginSmall } from '../../ui/margins/marginSmall';
+import { Post } from 'contentlayer/generated';
+import { Card } from 'ui/container/card';
+import { Column } from 'ui/container/column';
+import { Row } from 'ui/container/row';
+import { Header } from 'ui/content/header';
+import { TextMuted } from 'ui/content/textMuted';
+import { UnstyledInternalLink } from 'ui/content/unstyledLink';
+import { MarginSmall } from 'ui/margins/marginSmall';
 import { animationSpring } from '../animations';
 
 interface CardPostProps {
-  post: PostMetaData;
+  post: Post;
   subHeader?: string;
 }
 
@@ -24,7 +24,7 @@ export const CardPost: React.FC<CardPostProps> = ({ post, subHeader }) => (
           <Header as="h3" css={{ marginTop: '0' }}>
             {post.title}
           </Header>
-          <TextMuted>{post.date}</TextMuted>
+          <TextMuted>{post.dateFormatted}</TextMuted>
         </Column>
         <MarginSmall />
       </Row>

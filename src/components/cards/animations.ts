@@ -1,4 +1,4 @@
-import { MotionComponentProps } from 'components/ui/motion/MotionComponent';
+import { MotionComponentProps } from 'ui/motion/MotionComponent';
 
 export const animationSpring: MotionComponentProps = {
   whileHover: { y: -4 },

@@ -1,11 +1,10 @@
-import React from 'react';
-import { Card } from '../../ui/container/card';
-import { Column } from '../../ui/container/column';
-import { Fill } from '../../ui/container/fill';
-import { Row } from '../../ui/container/row';
-import { Header } from '../../ui/content/header';
-import { UnstyledLink } from '../../ui/content/unstyledLink';
-import { MarginSmall } from '../../ui/margins/marginSmall';
+import { Card } from 'ui/container/card';
+import { Column } from 'ui/container/column';
+import { Fill } from 'ui/container/fill';
+import { Row } from 'ui/container/row';
+import { Header } from 'ui/content/header';
+import { UnstyledLink } from 'ui/content/unstyledLink';
+import { MarginSmall } from 'ui/margins/marginSmall';
 import { animationSpring } from '../animations';
 
 interface CardProjectProps {

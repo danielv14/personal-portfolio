@@ -1,5 +1,5 @@
 import { styled } from 'theme';
-import { MotionComponent, MotionComponentProps } from './ui/motion/MotionComponent';
+import { MotionComponent, MotionComponentProps } from 'ui/motion/MotionComponent';
 
 const wavingSequence = [0.0, 18.0, -8.0, 18.0, -4.0, 10.0, 0, 0];
 

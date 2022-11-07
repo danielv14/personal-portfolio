@@ -1,8 +1,8 @@
-import { Column } from '../ui/container/column';
-import { Header } from '../ui/content/header';
-import { TextCenter } from '../ui/content/textCenter';
-import { MarginMedium } from '../ui/margins/marginMedium';
-import { WavingHand } from '../wavingHand';
+import { WavingHand } from 'components/wavingHand';
+import { Column } from 'ui/container/column';
+import { Header } from 'ui/content/header';
+import { TextCenter } from 'ui/content/textCenter';
+import { MarginMedium } from 'ui/margins/marginMedium';
 import { SubTitleWrapper, TitleWrapper } from './sectionHero.styles';
 
 export const SectionHero: React.FC = () => {

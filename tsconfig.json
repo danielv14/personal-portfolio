@@ -19,12 +19,15 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "incremental": true,
+    "paths": {
+      "contentlayer/generated": ["../.contentlayer/generated"],
+      "theme/*": ["theme/*"],
+      "ui/*": ["components/ui/*"],
+      "components/*": ["components/*"]
+    }
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "paths": {
-    "theme/*": ["theme/*"],
-    "ui/*": ["components/ui/*"]
-  }
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".contentlayer/generated"]
 }

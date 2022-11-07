@@ -1,4 +1,4 @@
-import { ToolboxCategory } from '../types/ToolboxCategory';
+import { ToolboxCategory } from 'types/ToolboxCategory';
 
 export const toolboxCategories: ToolboxCategory[] = [
   {

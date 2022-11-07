@@ -1,7 +1,6 @@
 ---
 title: 'Styled Components och ikonhantering i olika stadier'
 summary: 'Hur många gånger kan man behöva refaktorera ikoner egentligen? Minst två gånger i alla fall - allt eftersom behovet på funktionalitet ändras.'
-layout: blogPost
 date: 2020-07-03
 ---
 
@@ -23,7 +22,7 @@ När jag skapde den första ikonen var jag inte speciellt brydd om varken återa
 
 I ett första stadie skapade jag ikoner på följande sätt:
 
-```tsx:src/components/ui/icons/iconDarkMode.tsx
+```tsx:src/components/ui/icons/iconDarkMode.tsx showLineNumbers
 import { Sunset } from '@styled-icons/feather';
 import styled from 'styled-components';
 
@@ -38,7 +37,7 @@ IconDarkMode.displayName = 'IconDarkMode';
 
 Bra - nu hade jag en ikon som representerar "Dark mode" och som har lite generell styling. Men om man har en ikon för "Dark mode" så behövs ju en ikon för "Light mode" också:
 
-```tsx:src/components/ui/icons/iconLightMode.tsx
+```tsx:src/components/ui/icons/iconLightMode.tsx showLineNumbers
 import { Sunrise } from '@styled-icons/feather';
 import styled from 'styled-components';
 
@@ -63,7 +62,7 @@ Jag behövde råda bot på den duplicerade stylingen.
 
 Problemet med duplicerad styling går att lösa på en rad olika sätt men i iteration två av introducerade jag en separat källa för standardstyling:
 
-```tsx{9}:src/components/ui/icons/iconBase.ts
+```tsx:src/components/ui/icons/iconBase.ts showLineNumbers
 import styled, { css } from 'styled-components';
 
 export interface IconProps {
@@ -93,7 +92,7 @@ export const IconBase = styled.svg<IconProps>`
 
 Ikoner i sin tur byggdes ovanpå `iconBase.ts` på följande vis:
 
-```tsx:src/components/ui/icons/iconLightMode.tsx
+```tsx:src/components/ui/icons/iconLightMode.tsx showLineNumbers
 import { Sunrise } from '@styled-icons/feather';
 import styled from 'styled-components';
 import { BaseStyle, IconProps } from './iconBase';
@@ -115,7 +114,7 @@ Vore det inte bättre om alla olika ikonkomponenter istället _bara_ ansvarade f
 
 Så klart det vore! I iteration tre och nuvarande version (i skrivande stund) separerades det ansvaret genom en mindre refaktorering av `iconBase.ts`:
 
-```tsx{4,14,15,16}:src/components/ui/icons/iconBase.ts
+```tsx:src/components/ui/icons/iconBase.ts {4,26-28} showLineNumbers
 import styled, { css } from 'styled-components';
 import { StyledIconProps, StyledIcon } from '@styled-icons/styled-icon';
 
@@ -156,7 +155,7 @@ Några små ändringar (som är markerade i kodsnutten ovan) visar på skillnade
 
 Ikonkomponenter refaktorerades i iteration tre att se ut på följande vis:
 
-```tsx{4}:src/components/ui/icons/iconLightMode.tsx
+```tsx:src/components/ui/icons/iconLightMode.tsx {4} showLineNumbers
 import { Sunrise } from '@styled-icons/feather';
 import { IconBase, IconProps } from './iconBase';
 

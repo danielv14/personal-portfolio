@@ -75,7 +75,8 @@ export const SyntaxHighlighter = styled('div', {
   '.token.entity': {
     cursor: 'help',
   },
-  '.remark-code-title': {
+
+  '.rehype-code-title': {
     maxWidth: '100%',
     overflowY: 'hidden',
     fontFamily: '$mono',
@@ -90,13 +91,32 @@ export const SyntaxHighlighter = styled('div', {
     fontSize: '$small',
     zIndex: 1,
   },
-  '.mdx-marker': {
+  /**
+   * Inspired by gatsby remark prism - https://www.gatsbyjs.com/plugins/gatsby-remark-prismjs/
+   * 1. Make the element just wide enough to fit its content.
+   * 2. Always fill the visible space in .code-highlight.
+   */
+  '.code-highlight': {
+    float: 'left' /* 1 */,
+    minWidth: '100%' /* 2 */,
+  },
+
+  '.highlight-line': {
     marginLeft: '-1.55em',
     paddingLeft: '1em',
+    display: 'block',
     borderLeft: '6px solid #88c0d0',
-    '@medium': {
-      marginRight: '-1.5em',
-      background: '#3b414ccc',
-    },
+    marginRight: '-1.5em',
+    background: '#3b414ccc',
+  },
+
+  '.line-number::before': {
+    display: 'inline-block',
+    width: '1rem',
+    textAlign: 'right',
+    marginRight: '16px',
+    marginLeft: '-8px',
+    color: 'rgb(99, 111, 136)',
+    content: 'attr(line)',
   },
 });
