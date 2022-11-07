@@ -1,4 +1,5 @@
 // import { MDXProvider } from '@mdx-js/react';
+import { Analytics } from '@vercel/analytics/react';
 import { Footer } from 'components/footer/footer';
 import { NavAdjustedContent } from 'components/navbar/nav.styles';
 import { Navbar } from 'components/navbar/navbar';
@@ -23,6 +24,7 @@ const myApp = ({ Component, pageProps }: AppProps) => {
       </NavAdjustedContent>
       <MarginLarge />
       <Footer />
+      <Analytics />
     </>
   );
 };
