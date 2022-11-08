@@ -23,7 +23,9 @@ export const BlogPostLayout: React.FC<PostPageProps> = ({ post, prevPost, nextPo
       <ResponsiveContainer>
         <Column>
           <MarginLarge />
-          <h1>{post.title}</h1>
+          <Header as="h1" gradient>
+            {post.title}
+          </Header>
           <DateText>{post.dateFormatted}</DateText>
           {post.description && (
             <Header as="h2" muted>

@@ -1,8 +1,26 @@
+import color from 'color';
 import { styled } from 'theme';
 
+const background = '#2E3440';
+const highlight = color(background).lighten(0.3).hex();
+
 export const SyntaxHighlighter = styled('div', {
+  $$tokenBackground: background,
+  $$tokenBackgroundHighlight: highlight,
+  $$tokenCommentColor: '#636f88',
+  $$tokenRegexColor: '#ebcb8b',
+  $$tokenPropertyColor: '#81A1C1',
+  $$tokenNumberColor: '#B48EAD',
+  $$tokenSelectorColor: 'rgb(199, 146, 234)',
+  $$tokenBooleanColor: '$$tokenPropertyColor',
+  $$tokenPunctuationColor: '#81A1C1',
+  $$tokenFunctionColor: '#88C0D0',
+  $$tokenStringColor: '#A3BE8C',
+  $$tokenOperator: '#81A1C1',
+  $$tokenBaseColor: '#f8f8f2',
+
   'code[class*="language-"], pre[class*="language-"]': {
-    color: '#f8f8f2',
+    color: '$$tokenBaseColor',
     background: 'none',
     display: 'block',
     fontFamily: '$mono',
@@ -24,7 +42,7 @@ export const SyntaxHighlighter = styled('div', {
     borderRadius: '$small',
   },
   ':not(pre) > code[class*="language-"], pre[class*="language-"]': {
-    background: '#2e3440',
+    background: '$$tokenBackground',
   },
   ':not(pre) > code[class*="language-"]': {
     padding: '01.em',
@@ -32,38 +50,38 @@ export const SyntaxHighlighter = styled('div', {
     whiteSpace: 'normal',
   },
   '.token.comment, .token.prolog, .token.doctype, .token.cdata': {
-    color: '#636f88',
+    color: '$$tokenCommentColor',
   },
   '.token.punctuation': {
-    color: '#81a1c1',
+    color: '$$tokenPunctuationColor',
   },
   '.namespace': {
     opacity: 0.7,
   },
   '.token.property, .token.tag, .token.constant, .token.symbol, .token.deleted': {
-    color: '#81a1c1',
+    color: '$$tokenPropertyColor',
   },
   '.token.number': {
-    color: '#b48ead',
+    color: '$$tokenNumberColor',
   },
   '.token.boolean': {
-    color: '#81a1c1',
+    color: '$$tokenBooleanColor',
   },
   '.token.selector, .token.attr-name, .token.string, .token.char, .token.builtin, .token.inserted': {
-    color: '#a3be8c',
+    color: '$$tokenStringColor',
   },
   '.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string, .token.variable': {
-    color: '#81a1c1',
+    color: '$$tokenOperator',
   },
   '.token.atrule, .token.attr-value, .token.function, .token.class-name': {
-    color: '#88c0d0',
+    color: '$$tokenFunctionColor',
   },
   '.token.keyword': {
-    color: '#81a1c1',
+    color: '$$tokenPropertyColor',
   },
 
   '.token.regex, .token.important': {
-    color: '#ebcb8b',
+    color: '$$tokenRegexColor',
   },
 
   '.token.important, .token.bold': {
@@ -82,10 +100,10 @@ export const SyntaxHighlighter = styled('div', {
     fontFamily: '$mono',
     marginBottom: '-0.8rem',
     padding: '0.7em 1em 0.5em 1em',
-    background: '#2e3440',
+    background: '$$tokenBackground',
     textAligh: 'left',
     fontWeight: 400,
-    color: '#636f88',
+    color: '$$tokenCommentColor',
     borderTopRightRadius: '4px',
     borderTopLeftRadius: '4px',
     fontSize: '$small',
@@ -98,16 +116,16 @@ export const SyntaxHighlighter = styled('div', {
    */
   '.code-highlight': {
     float: 'left' /* 1 */,
-    minWidth: '100%' /* 2 */,
+    minWidth: '97%' /* 2 */,
   },
 
   '.highlight-line': {
-    marginLeft: '-1.55em',
-    paddingLeft: '1em',
+    background: '$$tokenBackgroundHighlight',
     display: 'block',
-    borderLeft: '6px solid #88c0d0',
-    marginRight: '-1.5em',
-    background: '#3b414ccc',
+    marginLeft: '-30px',
+    paddingLeft: '30px',
+    marginRight: '-30px',
+    paddingRight: '30px',
   },
 
   '.line-number::before': {
@@ -116,7 +134,7 @@ export const SyntaxHighlighter = styled('div', {
     textAlign: 'right',
     marginRight: '16px',
     marginLeft: '-8px',
-    color: 'rgb(99, 111, 136)',
+    color: '$$tokenCommentColor',
     content: 'attr(line)',
   },
 });

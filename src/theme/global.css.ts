@@ -110,8 +110,14 @@ export const globalStyles = globalCss({
     color: '$textColor',
     background: '$backgroundColorHighlight',
     borderRadius: '$small',
-    fontWeight: 400,
-    padding: '4px',
+    fontWeight: 'bold',
+    padding: '6px',
+  },
+  'code:not([class^="language"])': {
+    '&:after, &:before': {
+      content: '`',
+      fontWeight: 'bold',
+    },
   },
 
   strong: {
