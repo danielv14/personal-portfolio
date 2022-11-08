@@ -115,10 +115,7 @@ export const globalStyles = globalCss({
     fontFamily: '$mono',
     fontSize: '$code',
     color: '$textColor',
-    background: '$backgroundColorHighlight',
-    borderRadius: '$small',
     fontWeight: 'bold',
-    padding: '6px',
   },
   'code:not([class^="language"])': {
     '&:after, &:before': {
