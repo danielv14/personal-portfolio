@@ -32,7 +32,6 @@ export const { theme, styled, getCssText, css, globalCss, createTheme, config } 
     colors: {
       primary: COLOR_PRIMARY,
       primaryDarken: COLOR_PRIMARY_DARKEN,
-      primaryLighten: COLOR_PRIMARY_LIGHTEN,
       secondary: COLOR_SECONDARY,
       backgroundColor: '#FFF',
       backgroundColorSecondary: '#FFF',
