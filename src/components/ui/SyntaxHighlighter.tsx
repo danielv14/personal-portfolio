@@ -108,7 +108,7 @@ export const SyntaxHighlighter = styled('div', {
    */
   '.code-highlight': {
     float: 'left' /* 1 */,
-    minWidth: '100%' /* 2 */,
+    minWidth: '97%' /* 2 */,
   },
 
   '.highlight-line': {
