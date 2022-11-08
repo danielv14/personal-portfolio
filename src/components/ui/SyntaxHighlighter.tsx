@@ -1,14 +1,22 @@
+import color from 'color';
 import { styled } from 'theme';
 
+const background = '#2E3440';
+const highlight = color(background).lighten(0.3).hex();
+
 export const SyntaxHighlighter = styled('div', {
-  $$tokenBackground: '#2e3440',
-  $$tokenBackgroundHighlight: '#3b414ccc',
+  $$tokenBackground: background,
+  $$tokenBackgroundHighlight: highlight,
   $$tokenCommentColor: '#636f88',
   $$tokenRegexColor: '#ebcb8b',
-  $$tokenPropertyColor: '#81a1c1',
-  $$tokenNumberColor: '#b48ead',
-  $$tokenSelectorColor: '#a3be8c',
-  $$tokenFunctionColor: '#88c0d0',
+  $$tokenPropertyColor: '#81A1C1',
+  $$tokenNumberColor: '#B48EAD',
+  $$tokenSelectorColor: 'rgb(199, 146, 234)',
+  $$tokenBooleanColor: '$$tokenPropertyColor',
+  $$tokenPunctuationColor: '#81A1C1',
+  $$tokenFunctionColor: '#88C0D0',
+  $$tokenStringColor: '#A3BE8C',
+  $$tokenOperator: '#81A1C1',
   $$tokenBaseColor: '#f8f8f2',
 
   'code[class*="language-"], pre[class*="language-"]': {
@@ -45,7 +53,7 @@ export const SyntaxHighlighter = styled('div', {
     color: '$$tokenCommentColor',
   },
   '.token.punctuation': {
-    color: '$$tokenPropertyColor',
+    color: '$$tokenPunctuationColor',
   },
   '.namespace': {
     opacity: 0.7,
@@ -57,13 +65,13 @@ export const SyntaxHighlighter = styled('div', {
     color: '$$tokenNumberColor',
   },
   '.token.boolean': {
-    color: '$$tokenPropertyColor',
+    color: '$$tokenBooleanColor',
   },
   '.token.selector, .token.attr-name, .token.string, .token.char, .token.builtin, .token.inserted': {
-    color: '$$tokenSelectorColor',
+    color: '$$tokenStringColor',
   },
   '.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string, .token.variable': {
-    color: '$$tokenPropertyColor',
+    color: '$$tokenOperator',
   },
   '.token.atrule, .token.attr-value, .token.function, .token.class-name': {
     color: '$$tokenFunctionColor',
@@ -114,10 +122,10 @@ export const SyntaxHighlighter = styled('div', {
   '.highlight-line': {
     background: '$$tokenBackgroundHighlight',
     display: 'block',
-    marginLeft: '-20px',
-    paddingLeft: '20px',
-    marginRight: '-20px',
-    paddingRight: '20px',
+    marginLeft: '-30px',
+    paddingLeft: '30px',
+    marginRight: '-30px',
+    paddingRight: '30px',
   },
 
   '.line-number::before': {
