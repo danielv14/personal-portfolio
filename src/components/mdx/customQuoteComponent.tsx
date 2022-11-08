@@ -3,7 +3,6 @@ import { styled } from 'theme';
 const BlockQuote = styled('blockquote', {
   margin: '1rem auto',
   maxWidth: '97%',
-  width: '97%',
   padding: '1rem ',
   background: '$backgroundColorHighlight',
   borderRadius: '0.3rem',
