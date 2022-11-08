@@ -106,8 +106,6 @@ export const globalStyles = globalCss({
     padding: '1rem',
     background: '$backgroundColorHighlight',
     borderRadius: '0.3rem',
-    borderLeft: '1px solid $primary',
-    borderLeftWidth: '8px',
     '& p': {
       marginBottom: 0,
     },

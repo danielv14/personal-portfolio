@@ -3,12 +3,10 @@ import { styled } from 'theme';
 const BlockQuote = styled('blockquote', {
   margin: '1rem auto',
   maxWidth: '97%',
+  width: '100%',
   padding: '1rem ',
   background: '$backgroundColorHighlight',
   borderRadius: '0.3rem',
-  borderBottomLeftRadius: '0',
-  borderLeft: '1px solid $primary',
-  borderLeftWidth: '8px',
   position: 'relative',
   '& p': {
     marginBottom: 0,
@@ -16,11 +14,16 @@ const BlockQuote = styled('blockquote', {
   '&::before': {
     content: '💡',
     position: 'absolute',
-    top: '-12px',
-    left: '-19px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: '-14px',
+    left: '-4px',
+    width: '25px',
+    height: '25px',
+    borderRadius: '14.5px',
     background: '$backgroundGradient',
-    padding: '4px 6px',
-    borderRadius: '$rouded',
+    padding: '2px',
   },
 });
 
