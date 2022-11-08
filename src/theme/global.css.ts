@@ -65,22 +65,31 @@ export const globalStyles = globalCss({
   },
 
   p: {
-    margin: '0 0 1.6rem',
+    margin: '0 0 1.2rem',
     overflowWrap: 'break-word',
   },
 
   ul: {
     listStyle: 'disc',
+    '& li::marker': {
+      color: '$primary',
+      fontSize: '$5',
+    },
   },
   ol: {
     listStyle: 'decimal',
+    '& li::marker': {
+      color: '$primary',
+      fontWeight: 'bold',
+      fontStyle: 'italic',
+    },
   },
   'ul, ol': {
     marginBottom: '10px',
     paddingInlineStart: '1rem',
   },
   li: {
-    margin: '$small',
+    margin: '$medium $small',
   },
 
   img: {

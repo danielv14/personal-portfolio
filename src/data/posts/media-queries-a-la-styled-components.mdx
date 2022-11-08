@@ -135,18 +135,14 @@ export const media = {
 }
 ```
 
-Oj...Nu vart det kanske lite mycket på en gång 🧐
+Oj...Nu vart det kanske lite mycket på en gång 🧐 Let's break it down:
 
-Den minsta funktionen `getBreakpointScaleFromTheme` tar som parameter en breakpoint, som i det här fallet är **small**, **medium**, eller **large**.
-
-Den funktionen använder i sina tur `css()`. Vad är då det för något? Det är en hjälpfunktion som exponerar hela ThemeContext, men även eventuella props på en styled component.
-
-`getBreakpointScaleFromTheme` ser alltså till att läsa av ThemeContext och hämta ut efterfrågad breakpoint-värde.
-
-`breakpointToMediaQuery` är den funktion som bygger upp själva media queryn. Även denna funktion tar en breakpoint som parameter.
-Den här funktionen returnerar i sin tur _en funktion_ som tar in templateStrings som parameter och skickar den parametern till ett `css(templateStrings)` funktionsanrop - inuti själva media queryn.
-
-Slutligen så exporteras ett objekt som innehåller olika variationer av den templateStrings-funktion som `breakpointToMediaQuery` returnerar.
+1. Den minsta funktionen `getBreakpointScaleFromTheme` tar som parameter en breakpoint, som i det här fallet är **small**, **medium**, eller **large**.
+2. Den funktionen använder i sina tur `css()`. Vad är då det för något? Det är en hjälpfunktion som exponerar hela ThemeContext, men även eventuella props på en styled component.
+3. `getBreakpointScaleFromTheme` ser alltså till att läsa av ThemeContext och hämta ut efterfrågad breakpoint-värde.
+4. `breakpointToMediaQuery` är den funktion som bygger upp själva media queryn. Även denna funktion tar en breakpoint som parameter.
+   - Den här funktionen returnerar i sin tur _en funktion_ som tar in templateStrings som parameter och skickar den parametern till ett `css(templateStrings)` funktionsanrop - inuti själva media queryn.
+5. Slutligen så exporteras ett objekt som innehåller olika variationer av den templateStrings-funktion som `breakpointToMediaQuery` returnerar.
 
 > Vill man läsa mer om temlate strings (eller template literals) så har Wes Bos [skrivit](https://wesbos.com/tagged-template-literals) en bra genomgång av hur det hela funkar.
 
@@ -175,9 +171,9 @@ Varje nyckel representerar en funktion som tar en template string som parameter.
 
 I bakgrunden gör funktionerna på objektet det som behövs för att läsa ut breakpoints från Context och tar hand om implementationsdetaljerna, utan att sådant läcker ut i komponenterna.
 
-- **media.small** mappas mot det pixelvärde man har specificerat i Context på theme.breakpoints.small
-- **media.medium** mappas mot det pixelvärde man har specificerat i Context på theme.breakpoints.medium
-- **media.large** mappas mot det pixelvärde man har specificerat i Context på theme.breakpoints.large
+1. **media.small** mappas mot det pixelvärde man har specificerat i Context på theme.breakpoints.small
+2. **media.medium** mappas mot det pixelvärde man har specificerat i Context på theme.breakpoints.medium
+3. **media.large** mappas mot det pixelvärde man har specificerat i Context på theme.breakpoints.large
 
 ### Varför använda ett sånt här tillvägagångssätt?
 
