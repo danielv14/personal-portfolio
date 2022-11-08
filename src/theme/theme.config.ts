@@ -107,7 +107,7 @@ export const darkTheme = createTheme({
     backgroundColorSecondary: '#202438',
     backgroundColorHighlight: '#202438',
     backgroundColorNavBar: 'hsl(230deg 21% 11% / 75%)',
-    textColor: '#bec0c9',
+    textColor: '#cdcdcd',
     textMutedColor: '#87919e',
     headingColor: '#e4e4e4',
   },
