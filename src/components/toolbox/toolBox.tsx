@@ -12,10 +12,10 @@ export const ToolBox: React.FC<ToolBoxProps> = ({ categories }) => {
   return (
     <>
       <h2>Verktygslådan!</h2>
-      <p>
+      <Header as="h4" muted>
         Jag har tidigare använt allt från PHP och Ruby on Rails för att bygga sajter. Nu för tiden är det däremot mest
         TypeScript för front- och backend som ligger närmst till hands i form av React och Node/Express.
-      </p>
+      </Header>
       <MarginSmall />
       <ResponsiveGrid gutter={10} itemWidth="175px">
         {categories.map(({ title, items }) => (

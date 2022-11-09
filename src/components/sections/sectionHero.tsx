@@ -1,5 +1,6 @@
 import { WavingHand } from 'components/wavingHand';
 import { Column } from 'ui/container/column';
+import { FunText } from 'ui/content/funText';
 import { Header } from 'ui/content/header';
 import { TextCenter } from 'ui/content/textCenter';
 import { MarginMedium } from 'ui/margins/marginMedium';
@@ -20,8 +21,8 @@ export const SectionHero: React.FC = () => {
           </div>
           <SubTitleWrapper>
             <Header muted as="h4">
-              Daniel här! Webbutvecklare med förkärlek till JavaScript, schysst design och tv-serier. På den här sajten
-              delar jag med mig av diverse kodprojekt och skriver några rader ibland.
+              Daniel här! På den här sajten <FunText>(lekplatsen)</FunText> testar jag nya grejer, delar med mig av
+              diverse kodprojekt samt skriver högt och lågt om utveckling i allmänt.
             </Header>
           </SubTitleWrapper>
         </TextCenter>

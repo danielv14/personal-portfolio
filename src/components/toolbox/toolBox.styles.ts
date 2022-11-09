@@ -2,6 +2,7 @@ import { styled } from 'theme';
 
 export const ListItem = styled('li', {
   listStyle: 'none',
+  margin: '$medium 0',
 });
 
 export const List = styled('ul', {

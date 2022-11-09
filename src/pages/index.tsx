@@ -43,7 +43,7 @@ const IndexPage = ({ posts, projects }: { posts: Post[]; projects: Project[] }):
         <Column>
           <SectionAbout />
         </Column>
-        <MarginMega />
+        <MarginLarge />
         <Column>
           <MarginLarge />
           <SectionArticles articles={posts} />
@@ -56,7 +56,7 @@ const IndexPage = ({ posts, projects }: { posts: Post[]; projects: Project[] }):
             <Fill />
           </Row>
         </Column>
-        <MarginMega />
+        <MarginLarge />
         <Column>
           <SectionProjects projects={projects} />
           <MarginLarge />
@@ -68,12 +68,12 @@ const IndexPage = ({ posts, projects }: { posts: Post[]; projects: Project[] }):
             <Fill />
           </Row>
         </Column>
-        <MarginMega />
+        <MarginLarge />
         <Column>
           <MarginMedium />
           <ToolBox categories={toolboxCategories} />
         </Column>
-        <MarginMega />
+        <MarginLarge />
       </ResponsiveContainer>
     </>
   );
