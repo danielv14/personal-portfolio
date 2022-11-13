@@ -2,12 +2,12 @@ import { Project } from 'types/Project';
 
 export const projects: Project[] = [
   {
-    title: 'ColorPix',
+    title: 'Pic Palette',
     icon: '🎨',
     summary: 'Webbapp som hjälper användaren hitta intressanta färgpaletter utifrån bilder från Unsplash API:et',
-    tags: ['Vue', 'Node'],
-    urlSource: 'https://github.com/danielv14/ColorPix',
-    url: 'https://colorpix.herokuapp.com/',
+    tags: ['Next.js', 'React', 'Tailwind'],
+    urlSource: 'https://github.com/danielv14/Pic-Palette',
+    url: 'https://pic-palette.vercel.app/',
   },
   {
     title: 'IMDb CLI',
