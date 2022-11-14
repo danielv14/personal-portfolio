@@ -15,6 +15,10 @@ const StyledListItem = styled('li', {
   listStyle: 'none',
   paddingInlineStart: '0',
 
+  '> p': {
+    display: 'inline',
+  },
+
   '&::before': {
     content: 'attr(data-emoji)',
     paddingRight: '8px',
@@ -27,7 +31,7 @@ const EmojiListItem = ({ emoji, children }: EmojiListItemProps) => {
 };
 
 export const EmojiList = ({ as: Component, children }: EmojiListProps) => {
-  return <Component>{children}</Component>;
+  return <Component style={{ paddingInlineStart: '0' }}>{children}</Component>;
 };
 
 EmojiList.Item = EmojiListItem;
