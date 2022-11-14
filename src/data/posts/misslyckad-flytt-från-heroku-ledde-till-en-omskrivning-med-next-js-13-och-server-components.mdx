@@ -1,0 +1,184 @@
+---
+title: Misslyckad flytt från Heroku ledde till en omskrivning med Next.js 13 och Server Components
+summary: Jag försökte för ett tag sen flytta en gammal Nuxt applikation (som snart skulle släckas ned) från Heroku men istället blev det en ny sajt med annan hosting
+description: Heroku stänger ned sin "free-plan" och jag behövde flytta en sajt jag hade där. Försökte flytta till Vercel istället men gräset var grönare på andra sidan med Next.js 13 och Server Components istället.
+date: 2022-11-13
+---
+
+Heroku var valt att [sluta med gratis hosting](https://blog.heroku.com/next-chapter). Jag som många andra har en del sajter som snurrar där med deras "free plan". I slutet på november 2022 kommer dessa sajter släckas ned. Jag, som så många andra, står inför valet att låta mina sajter som är hostade där dö eller försöka flytta dom till ett annat hem.
+
+Jag försökte i första hand flytta den sajt som jag kände var viktigast. Jag försökte flytta den till Vercel men efter för mycket problem längs vägen kom jag fram till: Jag skiter i att flytta den gamla sajten och **bygger en ny version med Next.js v13 som släpptes nyss!** Varför då? Jo för att denna version introducerar <FunText>React server components</FunText> vilket man gärna vill prova på!
+
+> Sajten i fråga som jag försökte flytta är en sajt som använder Unsplash API för att hitta intressanta färgpalletter från bilders dominanta färger.
+
+## Misslyckad flytt från Heroku till Vercel
+
+Jag försökte alltså i första hand att flytta hostingen av sajten till Vercel. Till en början gick det bra och det tog inte lång tid förrän repot var ihopkopplat med Vercel och `git push` innebar att kod pushades till Vercel.
+
+Där jag dock stötte på mycket patrull var på grund av den custom express server som jag använde tillsammans med Nuxt samt den serverless arkitektur som Vercel förväntade sig. För att få det hela att fungera så skulle en något större refaktorering behöva ske på serversidan i min applikation. I en ren JavaScript-kodbas dessutom. Det hade jag ingen lust med.
+
+Efter ett tag insåg jag att det vore bäst att strunta i att försöka porta den gamla sajten och istället se detta som ett tillfälle att doppa tårna i Next.js v13 som släpptes nyss. Som dessutom innebär rätt stora förändringar.
+
+## Ny version med Next.js
+
+Varför var jag då sugen på att testa senaste versionen av Next.js? <FunText>REACT SERVER COMPONENTS</FunText>.
+
+Nä men [här kan man läsa](https://nextjs.org/blog/next-13) om nyheterna i den här versionen. Det var alltså framförallt introduceringen av `/app` foldern som bygger på server components som jag var sugen på att testa.
+
+Värt att påpeka är att i skrivande stund är `/app` foldern i beta och dokumetationen är ännu inte komplett.
+
+## Server components
+
+Att använda server components var först rätt konstigt. Man är ju van sedan tidigare att använda bland annat `getStaticProps` och `getServerSideProps` när man jobbar med Next.js, eller kanske `react-query` för datahämtning i en React SPA.
+
+Det var således rätt skumt att skriva kod som detta:
+
+```tsx:app/page.tsx {1, 7} showLineNumbers
+const getData = async () => {
+  const data = await db.getData();
+  return data;
+};
+
+const Page = async () => {
+  const data = await getData();
+  return <p>{data.name}</p>;
+};
+
+export default page;
+```
+
+Kodexemplet ovan är lite förenklat men visar ändå hur en server component kan vara uppbyggd. Inga API-anrop görs utan en komponent anropar en funktion som _direkt_ pratar med en databas 🤯. Funktionen `getData()` på rad ett behövs inte heller egentligen som "mellanhand".
+
+> Det intressanta med Server components är dessutom att en komponent mycket längre ned i React-trädet kan hämta data på liknande sätt direkt, istället för att en `container` komponent eller liknande behöver vara inblandad. Eller att props drillas från `getServerSide` props. Man hämtar helt enkelt data i den komponent där det behövs.
+
+Koden i min Next.js 13 applikation vart således rätt simpel. Inga API-endpoints behövdes. Jag hade bara en server component som anropade ett Unsplash API direkt och det hela server renderades automagiskt.
+
+## Enklare kod
+
+På tal om att inga API-anrop görs. Detta ledde till väldigt enkel och straight-forward kod överlag.
+
+Sajten har en söksida på `/search` som tar emot två stycken queryparametrar:
+
+1. `query` - det man söker efter
+2. `page` - klassisk paginering
+
+Söksidan förväntas alltså ha denna url-struktur: `/search?query=cats&page=2`. Hur hanterar man detta då i kontexten av React server components där inga API-anrop görs eller inga nätverksanrop överlag från browsern? Gamla hederliga `<form />` såklart
+
+### Sökfält
+
+Själva sökfältet, som bygger `?query=[QUERY]` strängen är helt enkelt ett vanligt `<form>` element med en `<input />`, helt fritt från `event.preventDefault()` eller `<form onSubmit={submitForm} />` hantering. Sökfältet är istället uppbyggt såhär:
+
+```tsx:app/Searchbar.tsx {1,8,10,20} showLineNumbers
+"use client";
+
+import { useSearchParams } from "next/navigation";
+import { useState } from "react";
+
+export const Searchbar = () => {
+  const searchParams = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get("query") ?? "");
+  return (
+    <form action={`/search`} method="get">
+      <div>
+        <input
+          required
+          type="text"
+          onChange={(e) => {
+            setQuery(e.target.value);
+          }}
+          value={query}
+          placeholder="Search for kittens, dogs or whatever"
+          name="query"
+        />
+      </div>
+    </form>
+  );
+};
+```
+
+Några detaljer som är highlight:ade:
+
+1. På rad 1 används `use-client` vilket säger åt Next att detta är en komponent som ska klient-renderas, även om den ligger i `/app` foldern som per default behandlar komponenter som Server komponenter. Detta görs för att kunna använda hooks såsom `useSearchParams` och `useState`.
+
+2. På rad 8 används `useState` som sätter en söksträng, med default värde utifrån `searchParams`. Observera att `useState` och `onChange` på input-fältet bara är till för att ge input-fältet ett `value`.
+
+3. På rad 10 sätts `action` och `method` på formuläret. Ingen specialare med `onSubmit` och `event.preventDefault()` görs.
+
+4. På rad 20 sätts `name="query"` på input-fältet och det kommer ju då innebära att när fomuläret submittas så kommer värdet från input-fältet att åka med som query-parameter `?query=[INPUT_VALUE]`
+
+### Paginering
+
+Paginering av sökresultat är i princip lika enkelt som själva formuläret för sökfältet:
+
+```tsx app/PrevNextPage.tsx {13-15, 20-22} showLineNumbers
+'use client';
+
+import { useSearchParams } from 'next/navigation';
+
+export const PrevNextPage = () => {
+  const searchParams = useSearchParams();
+  const currentPage = searchParams.has('page') ? parseInt(searchParams.get('page')!) : 0;
+  const nextpage = searchParams.has('page') ? currentPage + 1 : 2;
+  const prevPage = currentPage - 1;
+
+  return (
+    <div>
+      <form action="/search" method="get">
+        <input readOnly type="text" name="query" value={searchParams.get('query')} hidden />
+        <input readOnly type="text" name="page" value={prevPage} hidden />
+        <button disabled={prevPage < 1} type="submit">
+          Previous page
+        </button>
+      </form>
+      <form action="/search" method="get">
+        <input readOnly type="text" name="query" value={searchParams.get('query')} hidden />
+        <input readOnly type="text" name="page" value={nextpage} hidden />
+        <button disabled={hasNoMoreContent} type="submit">
+          Next page
+        </button>
+      </form>
+    </div>
+  );
+};
+```
+
+Några nämnvärda detaljer med den här komponenten:
+
+1. Då paginering antingen kan gå till **nästa** eller **föregående sida** så behövs två stycken formulär. Jag försökte först trixa med ett och använda en massa logik men bland trumfar enkelheten.
+2. För att få till `?page=` som query parameter och samtidigt behålla `?query=` sökfrågan så använder formulären två stycken input-fält som är både `readOnly` och `hidden`
+
+## Tailwind
+
+Jag ville passa på att slå två flugor i en smäll när det gällde det här projektet:
+
+1. Testa Next.js v.13
+2. Doppa tårna mer i **Tailwind**
+
+Till ett sånt här enkelt projekt tycker jag att Tailwind passade perfekt (även om Tailwind förmodligen fungerar lika bra till projekt av större skala).
+
+Men för min del såg jag en rad fördelar:
+
+<EmojiList as="ol">
+  <EmojiList.Item emoji="🎉">
+    Tailwind kommer med rätt bra defaultvärden för paddings, färger, font-storlekar osv.
+  </EmojiList.Item>
+  <EmojiList.Item emoji="🤷‍♂️">
+    Man behöver inte bry sig om att namnge css klasser, skapa separata `StyledX` komponenter med någon `CSS-in-JS`
+    lösning. Man behöver inte ens bry sig om separata css-filer och importera css-modules.
+  </EmojiList.Item>
+  <EmojiList.Item emoji="🌓">
+    Support för light / darkmode utifrån en enhets systeminställningar är sjukt enkelt.
+  </EmojiList.Item>
+</EmojiList>
+
+För ett litet tag sedan blev [Tailwind CSS det mest nedladdade CSS-ramverket](https://twitter.com/adamwathan/status/1590877529141051392) på npm dessutom. Så det var dags att se what the fuzz is about så att säga.
+
+## What about Next.js 13 då?
+
+Ja så här på andra sidan av projektet så måste jag ändå säga att det var rätt intressant att labba med React server components, även om det var rätt förvirrande i början.
+
+Man fick liksom försöka lära av sig att grejer som man vanligtvis gör en React SPA:er eller liknande. Inga `useEffect` nödvändigtvis för att hämta data, inga `event.preventDefault()` i formulär i onödan. Inte heller behöver man nödvädnigsvis skapa endpoints serverside som React-komponenterna kan slå mot.
+
+Det var helt klart intressant att utforska `/app` foldern så här för första gången och förmodligen är det inte heller den sista då React-världen, eller webb-världen överlag, verkar pendla från SPA:er till server-renderingen igen.
+
+För den som är intresserad finns repot att [kika på här](https://github.com/danielv14/Pic-Palette) och sajten att [besöka här](https://pic-palette.vercel.app/)
