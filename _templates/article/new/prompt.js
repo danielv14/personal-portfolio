@@ -15,11 +15,11 @@ module.exports = {
           },
           {
             type: 'input',
-            name: 'description',
-            message: 'Enter short optional description of the article.',
+            name: 'preamble',
+            message: 'Enter short optional preamble of the article. It can be omitted.',
           },
         ])
-        .then(({ name, summary, description }) => {
+        .then(({ name, summary, preamble }) => {
           const date = new Date().toISOString().split('T')[0];
           if (!name) {
             reject('You have to provide a article name');
@@ -29,7 +29,7 @@ module.exports = {
             name,
             date,
             summary: summary.length ? summary : 'Please add a relevant summary',
-            description,
+            preamble,
           });
         })
         .catch((_error) => {

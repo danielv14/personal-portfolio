@@ -27,9 +27,9 @@ export const Post = defineDocumentType(() => ({
       description: 'Summary of post',
       required: true,
     },
-    description: {
+    preamble: {
       type: 'string',
-      description: 'Desc of post',
+      description: 'Optional preamble of post',
       required: false,
     },
   },

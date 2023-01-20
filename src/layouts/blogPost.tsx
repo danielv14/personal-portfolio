@@ -27,9 +27,9 @@ export const BlogPostLayout: React.FC<PostPageProps> = ({ post, prevPost, nextPo
             {post.title}
           </Header>
           <DateText>{post.dateFormatted}</DateText>
-          {post.description && (
+          {post.preamble && (
             <Header as="h2" muted>
-              {post.description}
+              {post.preamble}
             </Header>
           )}
           <MarginMedium />

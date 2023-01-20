@@ -7,7 +7,7 @@ unless_exists: true
 ---
 title: <%= name %>
 summary: <%= summary %>
-description: <%= description %>
+preamble: <%= preamble %>
 date: <%= date %>
 ---
 
