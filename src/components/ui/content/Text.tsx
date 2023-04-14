@@ -1,6 +1,6 @@
 import { styled } from 'theme';
 
-export const Text = styled('h2', {
+export const Text = styled('p', {
   variants: {
     bold: {
       true: {
