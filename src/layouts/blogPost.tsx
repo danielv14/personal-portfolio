@@ -16,6 +16,10 @@ const DateText = styled(TextMuted, {
   marginBottom: '0px',
 });
 
+const Preamble = styled(Text, {
+  fontSize: '$h4',
+});
+
 export const BlogPostLayout: React.FC<PostPageProps> = ({ post, prevPost, nextPost, children }) => {
   return (
     <SyntaxHighlighter>
@@ -30,9 +34,7 @@ export const BlogPostLayout: React.FC<PostPageProps> = ({ post, prevPost, nextPo
           {post.preamble && (
             <>
               <MarginMedium />
-              <Text as="p" bold>
-                {post.preamble}
-              </Text>
+              <Preamble bold>{post.preamble}</Preamble>
             </>
           )}
           <MarginMedium />
