@@ -1,7 +1,7 @@
 import { PostListItem } from 'components/postListItem/postListItem';
 import { Post } from 'contentlayer/generated';
 import { styled } from 'theme';
-import { Header } from 'ui/content/header';
+import { Text } from 'ui/content/Text';
 import { UnstyledInternalLink } from 'ui/content/unstyledLink';
 import { MarginMedium } from 'ui/margins/marginMedium';
 
@@ -19,9 +19,9 @@ export const SectionArticles: React.FC<SectionArticlesProps> = ({ articles }) =>
   return (
     <section>
       <h2>Inlägg</h2>
-      <Header muted as="h4">
+      <Text muted as="h4">
         Ibland skriver jag om saker och ting som förhoppningsvis kan vara intressant
-      </Header>
+      </Text>
       <MarginMedium />
       <ArticlesWrapper>
         {articles.map((post) => (

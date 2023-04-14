@@ -1,6 +1,6 @@
 import { styled } from 'theme';
 
-export const Header = styled('h2', {
+export const Text = styled('h2', {
   variants: {
     bold: {
       true: {
@@ -36,4 +36,4 @@ export const Header = styled('h2', {
   },
 });
 
-Header.displayName = 'Header';
+Text.displayName = 'Text';

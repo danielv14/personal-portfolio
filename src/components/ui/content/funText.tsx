@@ -1,8 +1,8 @@
 import React from 'react';
-import { Header } from './header';
+import { Text } from './Text';
 
 export const FunText: React.FC = ({ children }) => (
-  <Header gradient bold inline as="span">
+  <Text gradient bold inline as="span">
     {children}
-  </Header>
+  </Text>
 );

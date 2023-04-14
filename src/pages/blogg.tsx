@@ -6,7 +6,7 @@ import { styled } from 'theme';
 import { Post } from 'types/Post';
 import { Column } from 'ui/container/column';
 import { ResponsiveContainer } from 'ui/container/responsiveContainer';
-import { Header } from 'ui/content/header';
+import { Text } from 'ui/content/Text';
 import { UnstyledInternalLink } from 'ui/content/unstyledLink';
 import { MarginLarge } from 'ui/margins/marginLarge';
 import { MarginSmall } from 'ui/margins/marginSmall';
@@ -34,9 +34,9 @@ const BlogIndex = ({ posts }: { posts: Post[] }) => {
         <Column>
           <MarginLarge />
           <h1>Alla inlägg</h1>
-          <Header muted as="h3">
+          <Text muted as="h3">
             Då och då skriver jag ned några tankar, dokumenterar upptäckter eller skriver om lite allt möjligt.
-          </Header>
+          </Text>
           <MarginLarge />
           <ArticlesWrapper>
             {posts.map((blogPost) => (

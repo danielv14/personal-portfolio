@@ -2,7 +2,7 @@ import { Card } from 'ui/container/card';
 import { Column } from 'ui/container/column';
 import { Fill } from 'ui/container/fill';
 import { Row } from 'ui/container/row';
-import { Header } from 'ui/content/header';
+import { Text } from 'ui/content/Text';
 import { UnstyledLink } from 'ui/content/unstyledLink';
 import { MarginSmall } from 'ui/margins/marginSmall';
 import { animationSpring } from '../animations';
@@ -22,9 +22,9 @@ export const CardProject: React.FC<CardProjectProps> = ({ title, summary, urlSou
         <Column>
           <UnstyledLink href={urlSource}>
             <MarginSmall />
-            <Header as="h3" bold>
+            <Text as="h3" bold>
               {title}
-            </Header>
+            </Text>
             <MarginSmall />
             <p>{summary}</p>
           </UnstyledLink>

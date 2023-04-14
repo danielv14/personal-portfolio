@@ -1,5 +1,5 @@
 import { Column } from 'ui/container/column';
-import { Header } from 'ui/content/header';
+import { Text } from 'ui/content/Text';
 import { TextMuted } from 'ui/content/textMuted';
 import { MotionComponentProps } from 'ui/motion/MotionComponent';
 import { StyledItem } from './postListItem.styles';
@@ -26,9 +26,9 @@ export const PostListItem: React.FC<PostListItemProps> = ({ title, summary, date
   return (
     <Column>
       <StyledItem {...animation}>
-        <Header bold as="h4">
+        <Text bold as="h4">
           {title}
-        </Header>
+        </Text>
         {date && <TextMuted>{date}</TextMuted>}
         <p>{summary}</p>
       </StyledItem>

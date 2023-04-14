@@ -2,7 +2,7 @@ import { Post } from 'contentlayer/generated';
 import { Card } from 'ui/container/card';
 import { Column } from 'ui/container/column';
 import { Row } from 'ui/container/row';
-import { Header } from 'ui/content/header';
+import { Text } from 'ui/content/Text';
 import { TextMuted } from 'ui/content/textMuted';
 import { UnstyledInternalLink } from 'ui/content/unstyledLink';
 import { MarginSmall } from 'ui/margins/marginSmall';
@@ -21,9 +21,9 @@ export const CardPost: React.FC<CardPostProps> = ({ post, subHeader }) => (
         <Column css={{ alignItems: 'stretch' }}>
           <MarginSmall />
           {subHeader && <TextMuted css={{ fontSize: '$smaller' }}>{subHeader}</TextMuted>}
-          <Header as="h3" css={{ marginTop: '0' }}>
+          <Text as="h3" css={{ marginTop: '0' }}>
             {post.title}
-          </Header>
+          </Text>
           <TextMuted>{post.dateFormatted}</TextMuted>
         </Column>
         <MarginSmall />

@@ -6,7 +6,7 @@ import { Column } from 'ui/container/column';
 import { ResponsiveContainer } from 'ui/container/responsiveContainer';
 import { ResponsiveGrid } from 'ui/container/responsiveGrid';
 import { Divider } from 'ui/content/divider';
-import { Header } from 'ui/content/header';
+import { Text } from 'ui/content/Text';
 import { TextMuted } from 'ui/content/textMuted';
 import { MarginLarge } from 'ui/margins/marginLarge';
 import { MarginMedium } from 'ui/margins/marginMedium';
@@ -23,14 +23,17 @@ export const BlogPostLayout: React.FC<PostPageProps> = ({ post, prevPost, nextPo
       <ResponsiveContainer>
         <Column>
           <MarginLarge />
-          <Header as="h1" gradient>
+          <Text as="h1" gradient>
             {post.title}
-          </Header>
+          </Text>
           <DateText>{post.dateFormatted}</DateText>
           {post.preamble && (
-            <Header as="h2" muted>
-              {post.preamble}
-            </Header>
+            <>
+              <MarginMedium />
+              <Text as="p" bold>
+                {post.preamble}
+              </Text>
+            </>
           )}
           <MarginMedium />
           {children}
