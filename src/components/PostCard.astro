@@ -10,25 +10,29 @@ interface Props {
 const { title, date, summary, slug, category } = Astro.props;
 
 const day = date.getDate();
-const year = date.getFullYear();
 const monthNames = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
-const formattedDate = `${day} ${monthNames[date.getMonth()]}, ${year}`;
+const month = monthNames[date.getMonth()];
 ---
 
 <a
   href={`/blogg/${slug}`}
-  class="block p-6 rounded-lg bg-surface border border-border hover:bg-surface/80 transition-colors group"
+  class="flex rounded-lg bg-surface border border-border hover:bg-surface/80 transition-colors group overflow-hidden"
 >
-  <div class="flex items-center gap-2">
-    <time class="text-xs text-text-muted">{formattedDate}</time>
-    {category && (
-      <span class="text-xs px-1.5 py-0.5 rounded-full border border-border text-text-muted lowercase">
-        {category}
-      </span>
-    )}
+  <div class="flex flex-col items-center justify-center px-5 py-4 border-r border-border bg-surface min-w-[4.5rem]">
+    <span class="text-2xl font-semibold text-text">{day}</span>
+    <span class="text-xs text-text-muted uppercase tracking-wide">{month}</span>
   </div>
-  <h3 class="text-xl font-semibold text-text group-hover:underline mt-1">
-    {title}
-  </h3>
-  <p class="text-text-muted mt-2">{summary}</p>
+  <div class="flex-1 p-4">
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg font-semibold text-text group-hover:underline">
+        {title}
+      </h3>
+      {category && (
+        <span class="text-xs px-1.5 py-0.5 rounded-full border border-border text-text-muted lowercase">
+          {category}
+        </span>
+      )}
+    </div>
+    <p class="text-text-muted text-sm mt-1">{summary}</p>
+  </div>
 </a>
