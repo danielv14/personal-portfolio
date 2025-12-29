@@ -42,6 +42,10 @@ export const getStaticPaths = async () => {
 
 const { post, prevPost, nextPost } = Astro.props;
 const { Content } = await render(post);
+
+// Beräkna lästid (~200 ord/min för svenska)
+const wordCount = post.body.split(/\s+/).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 ---
 
 <BlogPostLayout
@@ -52,6 +56,7 @@ const { Content } = await render(post);
   preamble={post.data.preamble}
   prevPost={prevPost}
   nextPost={nextPost}
+  readingTime={readingTime}
 >
   <Content components={components} />
 </BlogPostLayout>
