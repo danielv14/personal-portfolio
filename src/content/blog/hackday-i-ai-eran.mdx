@@ -1,0 +1,70 @@
+---
+title: Hackday i AI-eran
+summary: '6000 rader kod utan att skriva en enda rad själv.'
+date: 2025-12-29T17:00:00
+category: AI
+---
+
+På jobbet kör vi två hackdays per år. En inför sommaren, en inför julen. Det är en dag där vi får bygga vad vi vill, testa nya tekniker, eller fixa den där grejen som aldrig får prioritet i sprintplaneringen.
+
+Tidigare har tankarna inför en hackday sett ungefär likadana ut. Man har en idé, kanske lite väl ambitiös, och frågar sig: *Hinner jag verkligen koda klart det här på en dag? Hinner jag researcha dokumentationen tillräckligt? Blir det bara ett halvfärdigt proof of concept?*
+
+## Hur det brukade vara
+
+Jag minns en tidigare hackday där jag ville migrera en av våra frontend-tjänster från vanilla Redux till Redux Toolkit. Jag valde medvetet en av de mindre tjänsterna, mindre kod att ändra. Ändå gick halva dagen åt till att läsa dokumentation. Hade jag gjort samma sak idag hade jag bett Claude ansluta till [context7 MCP-servern](https://github.com/upstash/context7) för att läsa up-to-date dokumentation om Redux Toolkit, titta på befintlig implementation, och sedan sköta migreringen åt mig.
+
+Men något hände på vår senaste hackday, den innan sommarsemestern. Något hade skiftat.
+
+## Hela teamet gick all-in
+
+I princip alla utvecklare i vårt team hade samma approach: vibe-coding med AI. Inte som ett experiment eller en gimmick, utan som det primära sättet att få saker gjorda.
+
+## Mitt projekt: Ett CLI i React
+
+Inför hackdayen frågade jag Claude om inspiration. Vi har ett CLI vi använder dagligen för att snurra igång vår lokala utvecklingsmiljö - Docker-containers för frontend, backend, och alla tjänster i vårt monorepo. Det gamla CLI:et hade tjänat oss väl, men det hade samlat på sig en del legacy. Gamla beroenden, föråldrad TypeScript-konfiguration, och kod jag ärligt talat inte hade så bra koll på.
+
+Claudes förslag? Skriv om hela CLI:et med [Ink](https://github.com/vadimdemedes/ink) - ett bibliotek för att bygga CLI-gränssnitt med React. Rendera komponenter direkt i terminalen. Det lät kul.
+
+Men att skriva om ett helt CLI på en dag? Med en kodbas jag inte hade full koll på, och Docker-hantering som inte direkt är min starkaste sida? Det lät inte realistiskt. Men också utmanande och roligt.
+
+## Förberedelserna gjorde skillnaden
+
+Istället för att hoppa in huvudstupa bad jag Claude skapa en utförlig migreringsguide några dagar innan hackdayen. Inte vag eller övergripande, utan konkret och fasindelad. Resultatet blev en markdown-fil på cirka 4 000 rader.
+
+Planen innehöll:
+- Tydliga faser med specifika mål
+- En markerad brytpunkt för MVP
+- Vilka features som *måste* fungera för att det skulle vara värt att mergea
+- Vilka features som var nice-to-have
+
+Jag committade planen till en branch och lät den vänta.
+
+## Hackday: Exekvering fas för fas
+
+När hackdayen började checkade jag ut branchen med migreringsplanen och bad Claude jobba utifrån den. Fas efter fas betade vi av planen, med mindre justeringar längs vägen. Ibland bad jag Claude ta ett steg tillbaka och granska koden vi redan hade, leta efter saker att refaktorera eller förenkla.
+
+I slutet av dagen hade vi vibe-kodat ihop ungefär 6 000 rader kod. Ett helt nytt CLI byggt med Ink, modernare arkitektur, och några nya features som inte fanns i originalet.
+
+## Vem skrev koden?
+
+När jag skapade pull requesten var jag tydlig. Jag hade inte skrivit en enda rad kod själv. Inte en. Men jag hade guidat Claude att skriva kod på ett sätt som jag *ändå* hade skrivit den. Samma patterns, samma struktur, samma val.
+
+## Det nya normalläget
+
+En tanke slog mig under dagen. Det här är nog så våra hackdays kommer se ut framöver.
+
+Frågan är inte längre *"Hinner jag koda klart det här själv?"*
+
+Frågan är *"Tänker jag tillräckligt stort? Och räcker mina tokens?"*
+
+(Mina tokens tog slut på eftermiddagen. Så det är tydligen den nya flaskhalsen.)
+
+## Spelar det någon roll?
+
+I slutändan hade jag inte nödvändigtvis bättre koll på koden i v2 av vårt CLI jämfört med v1. Jag hade trots allt inte skrivit den själv.
+
+Men jag agerade kravställare och testare. Jag guidade Claude att skriva kod på ett sätt som vi i övrigt gör i vårt monorepo. Jag vet exakt hur CLI:et fungerar, även om jag inte har stenkoll på varje rad kod. Det enda jag inte gjorde var att skriva koden själv, rad för rad.
+
+Och nästa gång jag behöver ändra något kan jag be Claude sätta sig in i kodbasen - snabbare än vad jag själv hade kunnat.
+
+Spelar det så stor roll längre vem som skrev koden?
