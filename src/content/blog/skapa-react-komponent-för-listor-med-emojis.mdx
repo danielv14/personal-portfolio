@@ -1,0 +1,98 @@
+---
+title: Skapa React-komponent för listor med emojis
+summary: Listelement går att göra roligare och vad är roligare än listor med emojis! Så här kan man skapa en EmojiList komponent med stöd för emojis istället för listbullets.
+preamble: Använd emojis med hjälp av css attribut och html data-attribut för (kanske) roligare listor
+date: 2022-11-08
+updatedAt: 2025-12-29
+---
+
+Jag håller just nu på att göra den här sajten lite mer _rolig_. Eller `add x because MORE FUN` som jag skriver i commit-meddelanden just nu.
+
+En idé jag fick var att skapa en React-komponent för att skapa listor, alltså `ul`, `ol` och `li` med emojis istället för bullets och siffor. Tanken är att kunna använda den här komponenten i de `*.mdx` artiklar jag skriver, för att addera <FunText>MORE FUN</FunText>
+
+**Slutresultatet ser ut såhär:**
+
+<EmojiList as="ul">
+  <EmojiListItem emoji="🎉">Så här kan det se ut!</EmojiListItem>
+  <EmojiListItem emoji="🤯">Det kan även se ut såhär</EmojiListItem>
+  <EmojiListItem emoji="🚀">Eller **såhär?**</EmojiListItem>
+</EmojiList>
+
+Men hur gjorde jag då? Jo det ska jag ta och berätta.
+
+> **Disclaimer:** I exemplen under används `stitches` som `CSS-in-JS` bibliotek men css:en är ändå typ densamma, bara att det skrivs med object-syntax. Tittar man bara på syntaxen så ser man hur det skulle skrivas med vanlig css.
+
+Först skapade jag själva `EmojiList` komponenten som kan agera `ul` eller `ol`:
+
+```tsx showLineNumbers
+interface EmojiListProps {
+  as: 'ul' | 'ol';
+  children: React.ReactNode
+}
+
+export const EmojiList = ({ as: Component, children }: EmojiListProps) => {
+  return <Component>{children}</Component>;
+};
+
+```
+
+Därefter skapade jag den komponent som ska agera `<li />` elementet. Här nedan är koden för den komponenten, så går vi igenom vad som händer efteråt.
+
+```tsx {7, 11, 18} showLineNumbers
+interface EmojiListItemProps {
+  emoji: string;
+  children: React.ReactNode;
+}
+
+const StyledListItem = styled('li', {
+  listStyle: 'none',
+  paddingInlineStart: '0',
+
+  '&::before': {
+    content: 'attr(data-emoji)',
+    paddingRight: '8px',
+    fontSize: '1.2em',
+  },
+});
+
+const EmojiListItem = ({ emoji, children }: EmojiListItemProps) => {
+  return <StyledListItem data-emoji={emoji}>{children}</StyledListItem>;
+};
+
+```
+
+Jag har highlight:at några intressanta rader:
+
+1. `listStyle: 'none'` tar bort default list style.
+2. `content: 'attr(data-emoji)'` är den rad som egentligen får det hela att fungera.
+   - Här används css `attr()` attributet för att kan hämta ett visst attribut från elementet.
+3. `data-emoji` tar emot `emoji` prop och sätter den som data-attribut. Det är det här attributet som css regeln ovan fångar upp.
+   - Elemetet renderas typ såhär: `<li data-emoji="🤯">Mind blown</li>`
+
+För att det ska bli så enkelt som möjligt att använda de här två komponenterna tillsammans i mdx-filerna så exporteras dom tillsammans på följande vis:
+
+```tsx {8} showLineNumbers
+export const EmojiList = () => {
+  // Kod bortplockad från exemplet
+}
+const EmojiListItem = () => {
+  // Kod bortplockad från exemplet
+
+}
+EmojiList.Item = EmojiListItem;
+
+```
+
+Den typen av export gör att det går att använda enklare i `*.mdx` filer i och med att endast **en komponent** faktiskt behöver importeras, nämligen `EmojiList`. `EmojiListItem` får man på köpet via `<EmojiListItem />`
+
+Slutresultatet som visades i början på denna artikel 👆 ser ut såhär:
+
+```tsx showLineNumbers
+<EmojiList as="ul">
+  <EmojiListItem emoji="🎉">Så här kan det se ut!</EmojiListItem>
+  <EmojiListItem emoji="🤯">Det kan även se ut såhär</EmojiListItem>
+  <EmojiListItem emoji="🚀">Eller **såhär?**</EmojiListItem>
+</EmojiList>
+```
+
+Var det superkomplicerat? Njae. Var det revolutionerande? Nope. Men syftet med den här sajten är _delvis_ att jag ska ha en lättillgänglig yta att <FunText>testa roliga grejer</FunText> och de här två komponenterna är ju ändå lite kul 🎉

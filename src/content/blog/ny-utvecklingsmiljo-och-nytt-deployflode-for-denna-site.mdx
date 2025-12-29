@@ -1,0 +1,58 @@
+---
+title: Ny utvecklingsmiljö och nytt deployflöde för denna sajt
+summary: 'Vad betydde det för utvecklingsmiljön och deployflödet för denna sajt när den gick från Jekyll till Next.js?'
+date: 2020-07-01
+updatedAt: 2025-12-29
+---
+
+Jag tänkte lite kortfattat gå igenom hur utvecklingsmiljön ser ut för den här sajten och hur den deployas till produktion - sen jag gjorde om sajten helt från Jekyll till Next.js
+
+För några dagar sedan gjorde jag ett [omtag](/blogg/att-ga-fran-jekyll-till-next-pa-tre-dagar) när det gällde denna sajt. Den gick från att vara statiskt genererad med hjälp av Jekyll till att nu vara statiskt genererad med hjälp av Next.js istället. Sajten fick sig även en [ny design](/blogg/portfolio-redesign).
+
+**Vad innebar det då för utvecklingsmiljön att gå från Jekyll till Next.js?**
+
+- **Behagligare utvecklingsmiljö** - Modernare och snabbare utveckling med React och TypeScript.
+- **Ny byggprocess** - Mer up-to-date byggprocess i och med Next.js.
+- **Nytt deployflöde** - Möjlighet att se och testa ändringar live innan de skjuts till produktion.
+
+## Behagligare utvecklingsmiljö
+
+Den nya modernare utvecklingsmiljön återspeglar bättre de utvecklingsmiljöer jag sitter i på daglig basis just nu. Fördelarna med det är många men en stor grej är att jag inte behöver mentalt kontext-switcha speciellt mycket då jag till mångt och mycket använder samma grejer - mycket på grund av **TypeScript** och **React**.
+
+Jag behöver inte längre varje gång jag ska göra en små-ändring googla på hur man gör saker _“The Jekyll way“_ utan kan luta mig tillbaka mot en utvecklingsmiljö som är snarlik de jag kommer i kontakt med dagligen.
+
+## Ny byggprocess
+
+I och med tidigare version av denna sajt hade jag stöd för **SCSS** out-of-the-box. Utöver det använde jag [gulp](https://gulpjs.com/) för att slå ihop JavaScript-filer, skapa sourcemaps och för att komprimera bilder. Gulp-versionen jag använde hade inte stöd för nyare node-versioner utan portfoliot fick lov att byggas med node version < 11. För att lösa det problemet hade jag behövt uppdatera Gulp till nyare major-versioner med lite för många breaking charges för att det skulle kännas värt (då jag ändå gått i tankarna länge att göra om denna sajt från grunden).
+
+Nu däremot så används webpack i och med Next.js och byggprocessen är lite mer behind-the-scenes, vilket känns helt okej då jag inte vill hålla på så mycket med tooling för ett sånt här litet projekt.
+
+## Nytt deployflöde
+
+Tidigare auto-deployades ändringar på **master branchen** direkt med hjälp av [GitHub pages](https://pages.github.com). Det fungerade rätt så smidigt men det var två stycken punkter som fick mig att byta till [Vercel](https://vercel.com).
+
+### Zero configuration deploy för Next.js
+
+Att det är Vercel själva som ligger bakom ramverket Next.js märks. Att deploya en Next.js application på den platformen var oerhört smidigt. Jag behöver bara koppla ett Github-repo för den här sajten till Vercel och ändringar på master branchen deployas automatiskt till produktion. Vercel känner av att det handlar om en Next.js applikation och bygger automatiskt en statiskt genererad sajt.
+
+### Git branch previews
+
+När man har integrerat Vercel med Github får man automatiska deploys, även för remote git brancher som _inte_ är master. Det innebär att man kan jobba på en feature / bug branch, committa ändringar, pusha upp till repot och Vercel bygger automatiskt en version av applikationen på en temporär url.
+
+Detta är något jag fick användning av efter att sajten rullat hos Vercel endast några dagar. Jag upptäckte en bugg när jag testade responsiviten på min iPad i ett [slide over fönster](https://support.apple.com/sv-se/guide/ipad/ipadfe7c65e9/ipados) och flödet för buggfixen såg ut såhär:
+
+1. Jag **skapade en branch**, testade av buggfixen lokalt i Chrome.
+2. **Pushade ändringarna** och gjorde en [pull request](https://github.com/danielv14/personal-portfolio/pull/9).
+3. Vercel i sin tur **byggde en version** av sajten på en url.
+4. Jag kunde **testa av buggfixen** ”live” på den url:en på en faktiskt iPad-enhet i samma slide over fönster.
+5. Buggfixen verifierades och **branchen mergades** till master.
+6. Vercel snappade upp ändringar på master branchen och gjorde en **deploy till produktion**.
+
+Hela det flödet utan att jag ens behövde kavla upp ärmarna och skapa deploy-flöden manuellt. Det bara funka!
+
+## Sammanfattning
+
+Den nya versionen av denna sajt innebar inte bara ett rent visuellt ansiktslyft utan invändigt blev det en hel del förbättringar i och med flytten från Jekyll till Next.js och en annan plattform för hosting.
+
+Utvecklingsmiljön är mer lik sådana miljöer jag sitter i på daglig basis och den är även nu modernare och utveckling sker i **TypeScript**.
+Byggprocessen är mer "behind-the-scenes" och jag kan fokusera mer på annat. Nya features och bugfixar kan **testas av live** innan de hamnar i produktion.

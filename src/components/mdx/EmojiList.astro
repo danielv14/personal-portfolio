@@ -1,0 +1,10 @@
+---
+interface Props {
+  as?: 'ul' | 'ol';
+}
+
+const { as: Element = 'ul' } = Astro.props;
+---
+<Element class="space-y-2 pl-0 my-4 list-none">
+  <slot />
+</Element>

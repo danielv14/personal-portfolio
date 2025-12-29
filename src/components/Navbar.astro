@@ -1,0 +1,26 @@
+---
+import { site } from '@/data/site';
+
+const currentPath = Astro.url.pathname;
+const isActive = (path: string) => currentPath === path || currentPath.startsWith(path + '/');
+---
+
+<nav class="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-surface">
+  <div class="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a
+      href="/"
+      class="text-lg font-semibold bg-gradient-to-r from-primary to-emerald-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+    >
+      {site.author}
+    </a>
+    <a
+      href="/blogg"
+      class:list={[
+        "text-lg font-medium transition-colors hover:text-text",
+        isActive("/blogg") ? "text-text" : "text-text-muted"
+      ]}
+    >
+      Blogg
+    </a>
+  </div>
+</nav>

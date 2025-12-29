@@ -1,0 +1,71 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  date: Date;
+  updatedAt?: Date;
+  summary: string;
+  preamble?: string;
+  prevPost?: { title: string; slug: string } | null;
+  nextPost?: { title: string; slug: string } | null;
+}
+
+const { title, date, updatedAt, summary, preamble, prevPost, nextPost } = Astro.props;
+
+const monthNames = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+
+const formatDate = (d: Date) => `${d.getDate()} ${monthNames[d.getMonth()]}, ${d.getFullYear()}`;
+
+const formattedDate = formatDate(date);
+const formattedUpdatedAt = updatedAt ? formatDate(updatedAt) : null;
+---
+
+<BaseLayout title={title} description={summary}>
+  <article>
+    <header class="mb-8">
+      <time class="text-sm text-text-muted">
+        {formattedDate}{formattedUpdatedAt && <span> · uppdaterad {formattedUpdatedAt}</span>}
+      </time>
+      <h1 class="text-3xl md:text-4xl font-bold mt-2">{title}</h1>
+      {preamble && (
+        <p class="text-lg text-text-muted mt-4 font-medium">{preamble}</p>
+      )}
+    </header>
+
+    <div class="prose md:prose-lg max-w-none">
+      <slot />
+    </div>
+
+    <nav class="mt-12 pt-8 border-t border-surface">
+      <div class="flex flex-col md:flex-row justify-between gap-4">
+        {prevPost ? (
+          <a
+            href={`/blogg/${prevPost.slug}`}
+            class="flex-1 p-4 rounded-lg bg-surface border border-border hover:bg-surface/80 transition-colors group"
+          >
+            <span class="text-sm text-text-muted">&larr; Föregående</span>
+            <p class="font-medium text-text group-hover:underline mt-1">
+              {prevPost.title}
+            </p>
+          </a>
+        ) : (
+          <div class="flex-1" />
+        )}
+        {nextPost ? (
+          <a
+            href={`/blogg/${nextPost.slug}`}
+            class="flex-1 p-4 rounded-lg bg-surface border border-border hover:bg-surface/80 transition-colors group text-right"
+          >
+            <span class="text-sm text-text-muted">Nästa &rarr;</span>
+            <p class="font-medium text-text group-hover:underline mt-1">
+              {nextPost.title}
+            </p>
+          </a>
+        ) : (
+          <div class="flex-1" />
+        )}
+      </div>
+    </nav>
+  </article>
+</BaseLayout>

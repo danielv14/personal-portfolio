@@ -1,0 +1,43 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PostCard from '@components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const postsByYear = sortedPosts.reduce((acc, post) => {
+  const year = post.data.date.getFullYear();
+  if (!acc[year]) {
+    acc[year] = [];
+  }
+  acc[year].push(post);
+  return acc;
+}, {} as Record<number, typeof sortedPosts>);
+
+const years = Object.keys(postsByYear).map(Number).sort((a, b) => b - a);
+---
+
+<BaseLayout title="Blogg" description="Tankar om webbutveckling, TypeScript, React och mer.">
+  <header class="mb-12">
+    <h1 class="text-3xl md:text-4xl font-bold">Alla inlägg</h1>
+    <p class="text-lg text-text-muted mt-4">Då och då skriver jag ned några tankar, dokumenterar upptäckter eller skriver om lite allt möjligt.</p>
+  </header>
+  {years.map((year) => (
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold text-text-muted mb-4">{year}</h2>
+      <div class="grid gap-4">
+        {postsByYear[year].map((post) => (
+          <PostCard
+            title={post.data.title}
+            date={post.data.date}
+            summary={post.data.summary}
+            slug={post.id}
+          />
+        ))}
+      </div>
+    </section>
+  ))}
+</BaseLayout>

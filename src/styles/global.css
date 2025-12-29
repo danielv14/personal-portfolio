@@ -1,0 +1,75 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-background: #0a0a0a;
+  --color-surface: #161616;
+  --color-border: #222222;
+  --color-text: #ececec;
+  --color-text-muted: color-mix(in srgb, var(--color-text) 75%, transparent);
+  --color-primary: #6691ff;
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  --font-mono: "Noto Sans Mono Variable", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, monospace;
+  --radius-lg: 0.5rem;
+}
+
+html {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+}
+
+/* Custom prose styling for dark mode */
+.prose {
+  --tw-prose-body: var(--color-text-muted);
+  --tw-prose-headings: #fff;
+  --tw-prose-lead: var(--color-text-muted);
+  --tw-prose-links: var(--color-text);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-counters: var(--color-text);
+  --tw-prose-bullets: var(--color-text);
+  --tw-prose-hr: var(--color-surface);
+  --tw-prose-quotes: var(--color-text);
+  --tw-prose-quote-borders: var(--color-text);
+  --tw-prose-captions: var(--color-text-muted);
+  --tw-prose-code: var(--color-text);
+  --tw-prose-pre-code: var(--color-text-muted);
+  --tw-prose-pre-bg: var(--color-surface);
+  --tw-prose-th-borders: var(--color-surface);
+  --tw-prose-td-borders: var(--color-surface);
+}
+
+/* Balanced text wrapping for headings */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  text-wrap: balance;
+}
+
+/* Links always underlined */
+.prose a {
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  color: #fff;
+}
+
+/* Hide empty code block headers */
+.expressive-code figcaption.header:empty {
+  display: none;
+}
+
+/* Code blocks - override Expressive Code variables to match site's card styling */
+.expressive-code {
+  --ec-codeBg: var(--color-surface);
+  --ec-brdCol: var(--color-border);
+  --ec-brdRad: var(--radius-lg);
+  --ec-frm-edBg: var(--color-surface);
+  --ec-frm-trmBg: var(--color-surface);
+  --ec-frm-frameBoxShdCssVal: none;
+  --ec-codeFontFml: var(--font-mono);
+}

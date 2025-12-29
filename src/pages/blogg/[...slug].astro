@@ -1,0 +1,57 @@
+---
+import BlogPostLayout from '@layouts/BlogPostLayout.astro';
+import { getCollection, render } from 'astro:content';
+import FunText from '@components/mdx/FunText.astro';
+import EmojiList from '@components/mdx/EmojiList.astro';
+import EmojiListItem from '@components/mdx/EmojiListItem.astro';
+import Card from '@components/mdx/Card.astro';
+import ResponsiveGrid from '@components/mdx/ResponsiveGrid.astro';
+
+const components = {
+  FunText,
+  EmojiList,
+  EmojiListItem,
+  Card,
+  ResponsiveGrid,
+};
+
+export const getStaticPaths = async () => {
+  const posts = await getCollection('blog');
+  const sortedPosts = posts.sort(
+    (a, b) => b.data.date.getTime() - a.data.date.getTime()
+  );
+
+  return sortedPosts.map((post, index) => {
+    const prevPost = sortedPosts[index + 1];
+    const nextPost = sortedPosts[index - 1];
+
+    return {
+      params: { slug: post.id },
+      props: {
+        post,
+        prevPost: prevPost
+          ? { title: prevPost.data.title, slug: prevPost.id }
+          : null,
+        nextPost: nextPost
+          ? { title: nextPost.data.title, slug: nextPost.id }
+          : null,
+      },
+    };
+  });
+};
+
+const { post, prevPost, nextPost } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BlogPostLayout
+  title={post.data.title}
+  date={post.data.date}
+  updatedAt={post.data.updatedAt}
+  summary={post.data.summary}
+  preamble={post.data.preamble}
+  prevPost={prevPost}
+  nextPost={nextPost}
+>
+  <Content components={components} />
+</BlogPostLayout>

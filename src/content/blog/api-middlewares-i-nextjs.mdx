@@ -1,0 +1,119 @@
+---
+title: Skapa API-middlewares i Next.js
+summary: Att implementera middlewares i Next.js behöver inte vara svårt. Så här kan man enkelt skapa återanvändbara middlewares för API-endpoints i sin applikation.
+date: 2020-07-09
+updatedAt: 2025-12-29
+---
+
+Routing i Next.js är baserat på [struktur i filsystemet](https://nextjs.org/docs/routing/introduction) och detsamma gäller [API routes](https://nextjs.org/docs/api-routes/introduction).
+
+Kortfattat innebär det att om man skapar en fil i sitt Next.js projekt under **pages/api/** och exporterar en funktion så mappas det mot en endpoint. Ungefär såhär:
+
+```js title="pages/api/users.js" showLineNumbers
+// Fake users data
+const users = [{ id: 1 }, { id: 2 }, { id: 3 }];
+
+export default function handler(req, res) {
+  // Get data from your database
+  res.status(200).json(users);
+}
+```
+
+Med `export default` exporterar man en funktion som Next.js behind-the-scenes mappar mot en url och funktionen kommer anropas när man curl:ar:
+
+```bash
+curl http://localhost:3000/api/users
+```
+
+Det här sättet att bygga API:er kan man ju så klart tycka vad man vill om.
+Det går även att skapa endpoints på [andra sätt](https://nextjs.org/docs/advanced-features/custom-server) i Next.js men det här är det enklaste sättet om man bara lite snabbt vill fixa en endpoint för att exempelvis hämta och massera lite data innan man presenterar det i frontend-delen av sin Next.js applikation.
+
+**Men hur gör man då med middlewares om man har API routes som är strukterade på det här sättet?**  
+En del routes i Next.js applikationer kanske man vill skydda bakom nån slags authenticering med en API nyckel exempelvis. **Hur gör man då?**
+
+## Skapa återanvändbara middlewares
+
+Låt säga att man står inför följande scenario: Man har fil med tillhörande GET-endpoint under `/api/scrape` som används för att skrapa valfri sajt och spara ned innehåll i en databas:
+
+```js title="pages/api/scrape.js" showLineNumbers
+export default async function handler(req, res) {
+  // get scraped content
+  const scrapedContent = await scrapeForContent();
+  // Insert data in database
+  await insertDataInDb(scrapedContent);
+  // Return response with status 200 - everything OK
+  res.status(200).json({ message: 'Scraped content inserted into database' });
+}
+```
+
+> Att via ett GET-anrop både hämta/skrapa och lägga in data i en databas kanske inte är 100% optimalt - men får duga i det här enklare exemplet.
+> I en större applikation kanske själva hämtningen av skrapad data och databas-inmatningen borde vara två anrop - en GET och en POST.
+
+En sån route kan man ju tänkas vilja skydda på ett eller annat sätt - för man vill ju inte att vem som helt ska kunna göra ett anrop mot `/api/scrape` för mata in data i databasen.
+
+## Använda middlewares i Next.js
+
+Hade ovanstående scrape-route varit skriven med express hade man ju lagt till ett middleware ungefär såhär:
+
+```js showLineNumbers
+app.get('/api/scrape', requiresAuth, (req, res, next) => {
+  // get scraped content
+  const scrapedContent = await scrapeForContent();
+  // Insert data in database
+  await insertDataInDb(scrapedContent);
+  // Return response with status 200 - everything OK
+  res.status(200).json({ message: 'Scraped content inserted into database' });
+```
+
+`requiresAuth()` hade då kunnat vara en funktion som kollade om inkommande anrop hade en tillhörande API-nyckel. Om nyckeln hade varit valid hade `requiresAuth` anropat `next()`, såsom [express middlewares gör](https://expressjs.com/en/guide/using-middleware.html).
+
+**Men hur ska man då egentligen göra med Next.js och våran default exported funktion i scrape.js?**
+
+Så här är ett sätt att göra det på: Eftersom att man bara exporterar en funktion i **pages/api/scrape.js** så kan man enkelt wrappa den funktionen i en annan funktion, som då agerar middleware.
+
+Vart man skapar filen spelar inte så stor roll för Next.js, så länge man inte lägger den i `pages/*` - som är en ["reserverad katalog"](https://nextjs.org/docs/basic-features/pages).
+
+Men förslagsvis skapar man en katalog `middlewares/*` och lägger sina middlewares däri, som med **withAuthorization.js**
+
+```js title="middlewares/withAuthorization.js" showLineNumbers
+export const withAuthorization = (handler) => (req, res) => {
+  // Check if API key in query param is valid
+  if (invalidAPIKey(req.query.apiKey)) {
+    return res.status(403).json({ message: 'This route requires authorization' });
+  }
+  // If API key is valid just return the passed handler function
+  return handler(req, res);
+};
+```
+
+Tanken är då alltså att `withAuthorization()` ska wrappa den funktion som exporteras från **pages/api/scrape.js** och bara tillåta att innehållet i den API-metoden körs om valideringen i `withAuthorization` går igenom.
+
+**pages/api/scrape.js** uppdateras till följande:
+
+```js title="pages/api/scrape.js" {12,13} showLineNumbers
+import { withAuthorization } from '../../middlewares/withAuthorization';
+
+const requestHandler = async (req, res) => {
+  // get scraped content
+  const scrapedContent = await scrapeForContent();
+  // Insert data in database
+  await insertDataInDb(scrapedContent);
+  // Return response with status 200 - everything OK
+  res.status(200).json({ message: 'Scraped content inserted into database' });
+};
+
+// Export requestHandler wrapped by our authorization middleware
+export default withAuthorization(requestHandler);
+```
+
+På den sista raden så exporteras `withAuthorization(requestHandler)` som innebär att routen `/api/scrape` endast kommer gå in i `requestHandler`, skrapa och spara data till databasen om anropet görs med valid API nyckel:
+
+```bash
+curl http://localhost:3000/api/scrape?apiKey=VALID_API_KEY
+```
+
+Om nyckeln saknas eller inte är valid så kommer curl-anropet returnera en **403** med `{ message: 'This route requires authorization' }`.
+
+På så vis har man nu skapat en middleware-funktion som går att återanvända på andra tänkbara routes i sin Next.js applikation som behöver skyddas bakom en api-nyckel.
+
+Vill man kika lite mer kring hur man kan använda middlewares på det här sättet så är det bara [kika i källkoden](https://github.com/danielv14/aftonbladet-checkr-next/tree/master/src/middlewares) för ett av mina projekt som använder middlewares på just det här sättet för att skydda vissa routes.

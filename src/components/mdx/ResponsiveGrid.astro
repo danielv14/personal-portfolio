@@ -1,0 +1,20 @@
+---
+interface Props {
+  itemWidth?: string;
+  gutter?: string | number;
+  style?: Record<string, string>;
+}
+
+const { itemWidth = '200px', gutter = '10px', style } = Astro.props;
+const gap = typeof gutter === 'number' ? `${gutter}px` : gutter;
+---
+<div
+  class="grid"
+  style={{
+    gridTemplateColumns: `repeat(auto-fit, minmax(${itemWidth}, 1fr))`,
+    gap,
+    ...style,
+  }}
+>
+  <slot />
+</div>
