@@ -35,6 +35,7 @@ const years = Object.keys(postsByYear).map(Number).sort((a, b) => b - a);
             date={post.data.date}
             summary={post.data.summary}
             slug={post.id}
+            category={post.data.category}
           />
         ))}
       </div>
