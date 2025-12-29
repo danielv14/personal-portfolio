@@ -9,7 +9,7 @@ category: Sidoprojekt
 
 Heroku har valt att [sluta med gratis hosting](https://blog.heroku.com/next-chapter). Jag som många andra har en del sajter som snurrar där med deras "free plan". I slutet på november 2022 kommer dessa sajter släckas ned. Jag och många andra står inför valet att låta mina sajter som är hostade där dö ut eller försöka flytta dom till ett annat hem.
 
-Jag försökte i första hand flytta den sajt som jag kände var viktigast och flytta den till Vercel. Men efter för mycket problem längs vägen kom jag fram till: Jag skiter i att flytta den gamla sajten och **bygger en ny version med Next.js v13, som släpptes nyss!** Varför då? Jo för att denna version introducerar ett helt nytt sätt att bygga Next.js applikationer/sajter med, med hjälp av <FunText>React server components!</FunText>. Det vill man ju prova på!
+Jag försökte i första hand flytta den sajt som jag kände var viktigast och flytta den till Vercel. Men efter för mycket problem längs vägen kom jag fram till: Jag skiter i att flytta den gamla sajten och **bygger en ny version med Next.js v13, som släpptes nyss!** Varför då? Jo för att denna version introducerar ett helt nytt sätt att bygga Next.js applikationer/sajter med, med hjälp av React Server Components.
 
 > Sajten i fråga som jag försökte flytta är en sajt som använder Unsplash API för att hitta intressanta färgpalletter från bilders dominanta färger.
 
@@ -23,7 +23,7 @@ Efter ett tag insåg jag att det vore bäst att strunta i att försöka porta de
 
 ## Ny version med Next.js
 
-Varför var jag då sugen på att testa senaste versionen av Next.js? ✨ <FunText>React Server Components</FunText> ✨ såklart!
+Varför var jag då sugen på att testa senaste versionen av Next.js? **React Server Components** såklart!
 
 Skämt och sido. [Här kan man läsa](https://nextjs.org/blog/next-13) om nyheterna i den här versionen. Men överlag är det server components och introduceringen av `/app` foldern som möjliggör server components som jag var sugen på att testa. Samt ett enklare sätt att jobba med layouter, nested layouter och routes.
 
@@ -49,7 +49,7 @@ const Page = async () => {
 export default page;
 ```
 
-Kodexemplet ovan är lite förenklat men visar ändå hur en server component kan vara uppbyggd. Inga API-anrop görs utan en komponent anropar en funktion som _direkt_ pratar med en databas 🤯. Funktionen `getData()` på rad ett behövs inte heller egentligen som "mellanhand".
+Kodexemplet ovan är lite förenklat men visar ändå hur en server component kan vara uppbyggd. Inga API-anrop görs utan en komponent anropar en funktion som _direkt_ pratar med en databas. Funktionen `getData()` på rad ett behövs inte heller egentligen som "mellanhand".
 
 > Det intressanta med Server components är dessutom att en komponent mycket längre ned i React-trädet kan hämta data på liknande sätt direkt, istället för att en `container` komponent eller liknande behöver vara inblandad. Eller att props drillas från `getServerSide` props. Man hämtar helt enkelt data i den komponent där det behövs.
 
@@ -158,20 +158,11 @@ Till ett sånt här enkelt projekt tycker jag att Tailwind passade perfekt (äve
 
 Men för min del såg jag en rad fördelar:
 
-<EmojiList as="ol">
-  <EmojiListItem emoji="🎉">
-    Tailwind kommer med rätt bra defaultvärden för paddings, färger, font-storlekar osv.
-  </EmojiListItem>
-  <EmojiListItem emoji="🤷‍♂️">
-    Man behöver inte bry sig om att namnge css klasser, skapa separata `StyledX` komponenter med någon `CSS-in-JS`
-    lösning. Man behöver inte ens bry sig om separata css-filer och importera css-modules.
-  </EmojiListItem>
-  <EmojiListItem emoji="🌓">
-    Support för light / darkmode utifrån en enhets systeminställningar är sjukt enkelt.
-  </EmojiListItem>
-</EmojiList>
+1. Tailwind kommer med bra defaultvärden för paddings, färger, font-storlekar osv.
+2. Man behöver inte bry sig om att namnge css klasser, skapa separata `StyledX` komponenter med någon `CSS-in-JS` lösning. Man behöver inte ens bry sig om separata css-filer och importera css-modules.
+3. Support för light/darkmode utifrån en enhets systeminställningar är enkelt.
 
-För ett litet tag sedan blev [Tailwind CSS det mest nedladdade CSS-ramverket](https://twitter.com/adamwathan/status/1590877529141051392) på npm dessutom. Så det var dags att se what the fuzz is about så att säga.
+För ett litet tag sedan blev [Tailwind CSS det mest nedladdade CSS-ramverket](https://twitter.com/adamwathan/status/1590877529141051392) på npm dessutom.
 
 ## What about Next.js 13 då?
 

@@ -24,7 +24,7 @@ Men på vilket sätt hjälper detta en sprint och hur för det med sig effektiva
 
 > De exempel jag tänkte ta upp är bara löst baserade på de uppgifter och mål som de faktiska sprintarna innebar. Jag beskriver bara uppgifterna löst då det är inte uppgifterna i sig som driver poängen.
 
-## Exempel från en sprint 🏃‍♂️
+## Exempel från en sprint
 
 I första sprinten, som för övrigt varade två veckor, hade jag och en till kollega i uppgift att bland annat (förenklat):
 
@@ -52,7 +52,7 @@ Istället för att vara helt blockad med min ticket kunde jag jag genomföra 90%
 
 > **Andra fördelar:** Ytterligare en fördel med att arbeta utifrån samma dataformat från olika håll tidigt i sprinten är att man mer ordentligt testar dataformatet och kan ”känna sig för” på ett bättre sätt. Är dataformatet rimligt? Går det att använda på det sätt vi tänkt oss? Sådana frågor får man snabbare svar på.
 
-## Exempel från en andra sprint 🏃‍♂️
+## Exempel från en andra sprint
 
 I andra sprinten, som också varade i två veckor, hade jag och en till kollega i uppgift att bland annat (förenklat):
 
@@ -69,7 +69,7 @@ Utifrån dataformatet som REST-endpointen skulle leverera kunde vi arbeta i mot 
 
 När endpointen sen var på plats handlade det bara för min del om att byta ut datakällan i en container-komponent i frontend:en från hårdkodad mock-data till att anropa endpointen.
 
-> 👆 Precis som med allt annat så vill man separera ansvar för React komponenter. Ett vanligt mönster är att man har _container-komponenter_ som ansvarar för att hämta data från datakällor och så har man _presentation-komponenter_ som sköter själva utritningen.
+> Precis som med allt annat så vill man separera ansvar för React komponenter. Ett vanligt mönster är att man har _container-komponenter_ som ansvarar för att hämta data från datakällor och så har man _presentation-komponenter_ som sköter själva utritningen.
 >
 > Tanken är då att containern hämtar datan och ger datan som `props` till presentationskomponenten för utritning.
 
@@ -77,8 +77,8 @@ När endpointen sen var på plats handlade det bara för min del om att byta ut 
 
 Återigen gjorde det gemensamma dataformatet att jag kunde jobba på en annars blockad ticket till 90% färdig innan de sista 10% gjordes, genom att anropa den faktiska endpointen.
 
-## Get to the poäng
+## Sammanfattning
 
-Vad är det jag vill få sagt egentligen? 🤔 Jo... nämligen att man många gånger kan kringgå blockers i projekt/sprintar genom att enas om det dataformat som då och då genomsyrar ett helt projekt eller en hel sprint.
+Vad är det jag vill få sagt egentligen? Jo, att man många gånger kan kringgå blockers i projekt/sprintar genom att enas om det dataformat som då och då genomsyrar ett helt projekt eller en hel sprint.
 
 Ett dataformat kan ses som ett kontrakt mellan exempelvis en front- och backend. Att i ett tidigt stadie bestämma hur detta dataformat, eller kontrakt, ska se ut innebär att man kan jobba mer effektivt, hålla antalet blockers nere och mjuka upp beroenden och helt enkelt jobba mer effektivt.
