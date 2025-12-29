@@ -13,21 +13,19 @@ Men något hände på vår senaste hackday, den innan sommarsemestern. Något ha
 
 ## Hela teamet gick all-in
 
-I princip alla utvecklare i vårt team hade samma approach: vibe-coding med AI. Inte som ett experiment eller en gimmick, utan som det primära sättet att få saker gjorda. Det var första gången jag såg det hända i den skalan.
-
-Och det funkade. Projekt efter projekt rullade fram under dagen.
+I princip alla utvecklare i vårt team hade samma approach: vibe-coding med AI. Inte som ett experiment eller en gimmick, utan som det primära sättet att få saker gjorda.
 
 ## Mitt projekt: Ett CLI i React
 
-Jag tog mig an ett verktyg vi använder dagligen - ett CLI för att snurra igång vår lokala utvecklingsmiljö. Docker-containers för frontend, backend, och alla tjänster i vårt monorepo. Det gamla CLI:et hade tjänat oss väl, men det hade samlat på sig en del legacy. Gamla beroenden, föråldrad TypeScript-konfiguration, och kod jag ärligt talat inte hade så bra koll på.
+Inför hackdayen frågade jag Claude om inspiration. Vi har ett CLI vi använder dagligen för att snurra igång vår lokala utvecklingsmiljö - Docker-containers för frontend, backend, och alla tjänster i vårt monorepo. Det gamla CLI:et hade tjänat oss väl, men det hade samlat på sig en del legacy. Gamla beroenden, föråldrad TypeScript-konfiguration, och kod jag ärligt talat inte hade så bra koll på.
 
-När jag frågade Claude om inspiration inför hackdayen fick jag ett tips: [Ink](https://github.com/vadimdemedes/ink). Ett bibliotek för att bygga CLI-gränssnitt med React. Rendera komponenter direkt i terminalen. Det lät kul.
+Claudes förslag? Skriv om hela CLI:et med [Ink](https://github.com/vadimdemedes/ink) - ett bibliotek för att bygga CLI-gränssnitt med React. Rendera komponenter direkt i terminalen. Det lät kul.
 
 Men att skriva om ett helt CLI på en dag? Med en kodbas jag inte hade full koll på? Det lät inte realistiskt.
 
 ## Förberedelserna gjorde skillnaden
 
-Istället för att hoppa in huvudstupa bad jag Claude skapa en utförlig migreringsguide några dagar innan hackdayen. Inte vag eller övergripande, utan konkret och fasindelad.
+Istället för att hoppa in huvudstupa bad jag Claude skapa en utförlig migreringsguide några dagar innan hackdayen. Inte vag eller övergripande, utan konkret och fasindelad. Resultatet blev en markdown-fil på cirka 4 000 rader.
 
 Planen innehöll:
 - Tydliga faser med specifika mål
@@ -39,11 +37,9 @@ Jag committade planen till en branch och lät den vänta.
 
 ## Hackday: Exekvering fas för fas
 
-När hackdayen började checkade jag ut branchen med migreringsplanen och bad Claude jobba utifrån den. Fas efter fas. Metodiskt.
+När hackdayen började checkade jag ut branchen med migreringsplanen och bad Claude jobba utifrån den. Fas efter fas betade vi av planen, med mindre justeringar längs vägen. Ibland bad jag Claude ta ett steg tillbaka och granska koden vi redan hade, leta efter saker att refaktorera eller förenkla.
 
-Det var inte kaotiskt. Det var inte stressigt. Claude arbetade igenom varje steg medan jag följde med, ställde frågor, och gjorde mindre justeringar längs vägen. Ibland bad jag Claude ta ett steg tillbaka och titta på den kod som redan skrivits, leta efter områden att refaktorera eller förenkla.
-
-I slutet av dagen hade vi vibe-kodat ihop ungefär 6 000 rader kod. Ett helt nytt CLI byggt med Ink, modernare arkitektur, och till och med några nya features som inte fanns i originalet.
+I slutet av dagen hade vi vibe-kodat ihop ungefär 6 000 rader kod. Ett helt nytt CLI byggt med Ink, modernare arkitektur, och några nya features som inte fanns i originalet.
 
 ## Transparens i PR:en
 
@@ -65,6 +61,4 @@ Frågan är *"Tänker jag tillräckligt stort? Och räcker mina tokens?"*
 
 I slutändan hade jag inte nödvändigtvis bättre koll på koden i v2 av vårt CLI jämfört med v1. Jag hade trots allt inte skrivit den själv.
 
-Men spelar det så stor roll längre? I det AI-landskap vi nu lever i?
-
-Jag vet inte. Men det är en fråga jag funderar mer och mer på.
+Men spelar det så stor roll längre? I det AI-landskap vi nu lever i, där en AI kan införskaffa sig bra koll på en kodbas snabbare än de flesta människor?
