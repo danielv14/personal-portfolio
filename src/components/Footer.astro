@@ -1,6 +1,4 @@
 ---
-import { site } from '@/data/site';
-
 const currentYear = new Date().getFullYear();
 ---
 
@@ -8,7 +6,7 @@ const currentYear = new Date().getFullYear();
   <div class="max-w-3xl mx-auto px-4 flex flex-col items-center gap-4">
     <div class="flex items-center gap-4">
       <a
-        href={site.urlGithub}
+        href="https://github.com/danielv14"
         target="_blank"
         rel="noopener noreferrer"
         class="text-text-muted hover:text-text transition-colors"
@@ -19,7 +17,7 @@ const currentYear = new Date().getFullYear();
         </svg>
       </a>
       <a
-        href={`mailto:${site.email}`}
+        href="mailto:daniel.vernberg@gmail.com"
         class="text-text-muted hover:text-text transition-colors"
         aria-label="Email"
       >
@@ -28,6 +26,6 @@ const currentYear = new Date().getFullYear();
         </svg>
       </a>
     </div>
-    <p class="text-text-muted text-sm">&copy; {currentYear} {site.author}</p>
+    <p class="text-text-muted text-sm">&copy; {currentYear} Daniel Vernberg</p>
   </div>
 </footer>

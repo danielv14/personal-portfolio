@@ -26,8 +26,6 @@ src/
 ├── content/
 │   └── blog/            # MDX blog posts
 ├── content.config.ts    # Content collection schema
-├── data/
-│   └── site.ts          # Site metadata (author, github, email)
 ├── layouts/
 │   ├── BaseLayout.astro
 │   └── BlogPostLayout.astro
