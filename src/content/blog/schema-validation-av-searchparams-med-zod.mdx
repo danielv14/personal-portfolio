@@ -1,0 +1,184 @@
+---
+title: Schema Validation av SearchParams med Zod
+summary: Använd Zod som är ett "TypeScript-first schema validation" paket för att validera och transformera datastrukturer
+date: 2023-01-20
+updatedAt: 2025-12-29
+---
+
+I en [Next.js applikation](https://pic-palette.vercel.app/) som jag har byggt används `URL.searchparams` för att hantera söksträngar och paginering. URL-strukturen för en söksida på sajten ser ut såhär: `/search?page=2&query=cats&perPage=12`.
+
+Just strukturen för paginering, alltså `?page=2&perPage=12` är parametrar som återanvänds på ett annat ställe på sajten. Den andra URL:en ser ut såhär: `/list?type=popular&page=2&perPage=12`
+
+## Manuell parsning av searchparams
+
+I ett första stadie så läste jag av och parsade ut värden ur `searchparams` manuellt. Ungefär såhär:
+
+```ts showLineNumbers
+const options = {
+  query: searchParams?.query ?? '',
+  perPage: parseInt(searchParams?.perPage ?? '12'),
+  page: parseInt(searchParams?.page ?? '0'),
+};
+
+// Call API to fetch paginated stuff by the query
+const data = await API.getByQuery(options);
+```
+
+Observera att null-checkar behöver göras med `searchParams?.[VALUE]` samt att fallback-värden används.
+På rad 3 och 4 görs även en `parseInt()` för att konvertera till integers. Detta eftersom att alla searchParams hanteras som strängar och det API jag anropar förväntar sig att `page` och `perPage` är siffor (vilket är rimligt ändå).
+
+Det var söksidan det. Sen var det ju den andra sidan, `/list`. Den sidan byggde upp ett snarlikt `options` objekt:
+
+```ts showLineNumbers
+const options = {
+  type: searchParams?.type || ListType.Latest, // Enum for 'latest' or 'popular'
+  perPage: parseInt(searchParams?.perPage ?? '12'),
+  page: parseInt(searchParams?.page ?? '0'),
+};
+
+// Call API to fetch paginated stuff by the list type
+const data = await API.getByListType(options);
+```
+
+Två stycken sidor (eller Next.js routes om man så vill) hade lite duplicerad logik alltså. Förvisso hade man kunnat extrahera ut logiken som manglar `searchParams` till en gemensam funktion men jag valde istället att testa på `zod`.
+
+## General Zod has entered the game
+
+Det här är ingen bloggpost om _vad_ Zod är, utan mer hur man kan använda det och hur det gick till när jag testade att använda det. Men kortfattat (hämtat från [Zods dokumentation](https://zod.dev/)) så beskrivs Zod såhär: <FunText>TypeScript-first schema validation with static type inference.</FunText>
+
+Kortfattat handlar det bland annat om att säkerställa exempelvis ett objekts struktur med hjälp av ett definierat `schema` som man använder för att parsa data. `static type inference` biten handlar om att man utifrån ett Zod Schema kan extrahera typings (types och interfaces m.m) för hur den förväntade datastrukturen ser ut.
+
+Men hur använder man då ett sånt där `schema` för att parsa searchParams? I mitt fall med min Next.js applikation så gick refaktoreringen till Zod i två steg:
+
+1. Skapa scheman som går att använda för att parsa searchParams.
+2. Parsa searchParams och skicka som input till API:et.
+
+### Skapa scheman
+
+Jag började med att skapa ett schema för `/search` sidan, där `query`, `page` och `perPage` var aktuella searchParams:
+
+```ts showLineNumbers
+import { z } from 'zod';
+
+export const QuerySchema = z.object({
+  page: z
+    .string()
+    .default("0")
+    .transform((val) => parseInt(val)),
+  perPage: z
+    .string()
+    .default(`${12}`)
+    .transform((val) => parseInt(val)),
+  query: z.string().default(""),
+})
+
+export type QueryOptions = z.infer<typeof QuerySchema>;
+
+```
+
+`QuerySchema` är alltså själva schemat som kommer användas för att parsa ut värden ut searchParams. Typen `QueryOptions` är en type som utifrån ovanstående schema skulle se ut såhär: `{query: string; perPage: number; page: number;}`. Typen blir automatiskt infered utifrån schemat.
+
+Observera att schemat tar höjd för att transformera `page` och `perPage` till siffror och hanterar defaultvärden.
+
+Schemat för `/list` sidan blir väldigt snarlik:
+
+```ts showLineNumbers
+import { z } from 'zod';
+
+export const ListSchema = z.object({
+  page: z
+    .string()
+    .default("0")
+    .transform((val) => parseInt(val)),
+  perPage: z
+    .string()
+    .default(`${12}`)
+    .transform((val) => parseInt(val)),
+  type: z.nativeEnum(OrderBy).default(OrderBy.POPULAR)
+})
+
+export type ListOptions = z.infer<typeof ListSchema>;
+
+```
+
+Skillnaden här är att `type` är en `z.nativeEnum()` vilket är ett schysst sätt att använda enums eller types i zod schemas.
+
+### Få bort duplicerad paginering
+
+När jag satte upp mina två schemas störde jag mig fortfarande på att `page` och `perPage` var duplicerade i bägge schemas. Det är ju såklart inte så trevligt.
+
+Zod har ett smidigt sätt att hantera den här sortens problem. Scheman har stöd för en `.merge()` funktion, där man helt enkelt slår ihop flertalet schemas till ett.
+
+Det jag då kunde göra var att sätta upp ett separat schema för paginering och sen slå ihop det schemat med `QuerySchema` och `ListSchema`:
+
+```ts showLineNumbers
+import { z } from 'zod';
+
+export const PaginationSchema = z.object({
+  page: z
+    .string()
+    .default("0")
+    .transform((val) => parseInt(val)),
+  perPage: z
+    .string()
+    .default(`${12}`)
+    .transform((val) => parseInt(val)),
+})
+
+```
+
+Sen i exempelvis `schemas/ListSchema.ts` såg det ut såhär:
+
+```ts showLineNumbers {8}
+import { z } from 'zod';
+import { PaginationSchema } from './PaginationSchema';
+
+const ListSchemaBase = z.object({
+  type: z.nativeEnum(OrderBy).default(OrderBy.POPULAR)
+})
+
+export const ListSchema = ImageListBaseSchema.merge(PaginationSchema);
+export type ListOptions = z.infer<typeof ListSchema>;
+```
+
+Nu var inte logiken kring pagineringen duplicerad utan scheman mergades istället ihop 👍. `ListOption` typen är även fortfarande intakt jämfört med tidigare och innehåller `page` och `perPage` som siffor.
+
+### Parsa searchParams
+
+När man väl har sina scheman kan man applicera dem på datastrukturer med två funktioner, `.parse()` och `safeParse()`. Så här säger dokumentationen om de två alternativen:
+
+1. `parse()` - _Given any Zod schema, you can call its `.parse` method to check data is valid. If it is, a value is returned with full type information! Otherwise, an error is thrown._
+2. `safeParse()` - _If you don't want Zod to throw errors when validation fails, use `.safeParse`. This method returns an object containing either the successfully parsed data or a ZodError instance containing detailed information about the validation problems._
+
+I mitt fall, då min Next.js applikation bara är ett enkelt hobbyprojekt valde jag `parse` och struntade i felhanteringen. I en riktig produktionsmiljö vill man såklart se över valet här och implementera ordentlig felhanterning.
+
+Anyhow... Så här såg nu en route ut:
+
+```ts showLineNumbers
+import { QuerySchema } from '../schemas/QuerySchema';
+
+const options = QuerySchema.parse(searchParams);
+
+// Call API to fetch paginated stuff by the query
+const data = await API.getByQuery(options);
+```
+
+Aningen mer <FunText>cleant</FunText> än tidigare kan jag tycka 🏆
+
+Men kunde jag använda det typer som extraherades med `z.infer<T>` på något sätt? Jodå, dom typerna användes i `API` wrappern för att typa input till `getByQuery(options: QueryOptions)` och `getByListType(options: ListOptions)` funktionerna. Fördelarna med det är:
+
+- Kopplingen mellan schemat och hur datan används blir tydligare.
+- Man slipper hålla separat typings för parametrar till API funktionerna i synk med övrig kod då det bara finns en sanning (schemat).
+
+### Summa kardemumma
+
+Zod kan kanske tyckas lite overkill för en sån här enkel grej men jag kan ändå tycka att det var värt att refaktorera till att använda Zod i hobbyprojektet. Detta för att jag tyckte det innebar en del fördelar:
+
+1. Bättre DX: Den type inference som Zod kommer med är väldigt smidigt.
+2. Bättre DX: Ett robust verktyg för att validera och transformera data.
+3. Alltid kul att prova något nytt!
+4. Tyckte inte det innebar speciellt ökad komplexitet i applikationen.
+
+Nu har jag bara tagit upp ett användningsområde för Zod och ett rätt litet sådant. Det finns ju väldigt mycket mer man kan använda Zod till såsom exempelvis middlewares till en express-server för att validera request bodies, mappa databasobjekt till DTO:er, validering av formulärdata och säkert mycket, mycket mer.
+
+Men i framtiden om jag behöver manipulera searchParams eller kanske skapa middlewares i express för att validera användardata kommer nog `yarn add zod` inte vara långt bort.

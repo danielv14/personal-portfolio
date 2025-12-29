@@ -1,0 +1,45 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PostCard from '@components/PostCard.astro';
+import { getCollection } from 'astro:content';
+import { site } from '@/data/site';
+
+const allPosts = await getCollection('blog');
+const latestPosts = allPosts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 4);
+---
+
+<BaseLayout>
+  <section class="py-12">
+    <h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-emerald-400 bg-clip-text text-transparent inline-block leading-normal">Hej!</h1>
+    <p class="text-lg text-text-muted mt-4 max-w-2xl">
+      Daniel här! På den här sajten (lekplatsen) testar jag nya grejer, delar med mig av diverse kodprojekt samt skriver högt och lågt om utveckling i allmänt.
+    </p>
+    <p class="text-lg text-text-muted mt-4 max-w-2xl">
+      Just nu jobbar jag hos VK Media med fullstack TypeScript &ndash; React och Node.
+      I grunden är jag systemvetare och har jobbat med
+      webbutveckling sedan 2017.
+    </p>
+  </section>
+
+  <section class="py-8">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-bold">Senaste inlägg</h2>
+      <a href="/blogg" class="text-text hover:text-white underline transition-colors">
+        Visa alla &rarr;
+      </a>
+    </div>
+    <div class="grid gap-4">
+      {latestPosts.map((post) => (
+        <PostCard
+          title={post.data.title}
+          date={post.data.date}
+          summary={post.data.summary}
+          slug={post.id}
+          showDate={false}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

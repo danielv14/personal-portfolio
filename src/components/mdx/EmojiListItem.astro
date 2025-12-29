@@ -1,0 +1,11 @@
+---
+interface Props {
+  emoji: string;
+}
+
+const { emoji } = Astro.props;
+---
+<li class="flex gap-3 items-start list-none">
+  <span class="flex-shrink-0">{emoji}</span>
+  <span><slot /></span>
+</li>

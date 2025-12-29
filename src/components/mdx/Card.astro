@@ -1,0 +1,10 @@
+---
+interface Props {
+  style?: Record<string, string>;
+}
+
+const { style } = Astro.props;
+---
+<div class="bg-surface rounded-lg p-4" style={style}>
+  <slot />
+</div>

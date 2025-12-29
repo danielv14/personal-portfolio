@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+  date: Date;
+  summary: string;
+  slug: string;
+  showDate?: boolean;
+}
+
+const { title, date, summary, slug, showDate = true } = Astro.props;
+
+const day = date.getDate();
+const year = date.getFullYear();
+const monthNames = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+const formattedDate = `${day} ${monthNames[date.getMonth()]}, ${year}`;
+---
+
+<a
+  href={`/blogg/${slug}`}
+  class="block p-6 rounded-lg bg-surface border border-border hover:bg-surface/80 transition-colors group"
+>
+  {showDate && <time class="text-sm text-text-muted">{formattedDate}</time>}
+  <h3 class:list={["text-xl font-semibold text-text group-hover:underline", { "mt-1": showDate }]}>
+    {title}
+  </h3>
+  <p class="text-text-muted mt-2 line-clamp-2">{summary}</p>
+</a>

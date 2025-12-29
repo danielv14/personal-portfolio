@@ -1,0 +1,80 @@
+---
+title: Jekyll och Rake tasks
+summary: Enkla kommandon för att snabba upp skapandet av blogginlägg i markdown.
+date: 2017-03-26
+---
+
+Med hjälp av Rake och en Rakefile kan man enkelt skapa grunden till blogginlägg i Jekyll eller varför inte portfolio projekt, som i mitt fall. En Rakefile gör att man enkelt kan skapa grunden till de markdown filer Jekyll använder sig av.
+
+> Den här lilla guiden förutsätter viss kunskap om static site generatorn [Jekyll](http://jekyllrb.com/) samt Ruby då jag inte redogör för allting i detalj.
+
+På den här webbplatsen finns en del portfolioprojekt i form av en [collection](https://jekyllrb.com/docs/collections/). Att lägga till nya projekt manuellt i denna collection och komma ihåg vilken typ av [front matter](https://jekyllrb.com/docs/frontmatter/) projekten skulle ha blev tradigt och repetativt. Med viss [inspiration](http://albertogrespan.com/blog/rake-tasks-and-jekyll-posts/) kunde jag knepa ihop en lösning som gjorde det enklare att skapa portfolio objekt med korrekt front matter.
+
+Följande rake task använder jag i min `Rakefile` för att skapa nya portfolio objekt:
+
+```ruby showLineNumbers
+desc "Create a new portfolio item"
+ task :project do
+
+  puts "What's the name of the portfolio project?"
+  @name = STDIN.gets.chomp
+
+  puts "Enter short description for the portfolio project"
+  @desc = STDIN.gets.chomp
+
+  puts "left/right layout for the project?"
+  @layout = STDIN.gets.chomp
+
+  # Slugify the name
+  @slug = "#{@name}"
+  @slug = @slug.tr('ÁáÉéÍíÓóÚú', 'AaEeIiOoUu')
+  @slug = @slug.downcase.strip.gsub(' ', '-')
+
+  # Determine what order file should have based on files in the folder
+  @order = Dir["_projects/*"].length + 1
+
+  # Create the file
+  FileUtils.touch("_projects/#{@slug}.md")
+
+  # Open and write to the file
+  open("_projects/#{@slug}.md", 'a' ) do |file|
+    file.puts "---"
+    file.puts "title: #{@name}"
+    file.puts "desc: #{@desc}"
+    file.puts "card-layout: #{@layout}"
+    file.puts "order: #{@order}"
+    file.puts "tags: [some, tags]"
+    file.puts "github: optional github repo link"
+    file.puts "website: optional website link"
+    file.puts "thumbnail: /assets/img/projects/thumbnails/#{@slug}.png"
+    file.puts "image: /assets/img/projects/#{@slug}.png"
+    file.puts "---"
+  end
+  puts "Portfolio project created. Extend the front matter with tags"
+end
+```
+
+Kort och gott går denna rake task ut på att mata in **namnet** på ett portfolioprojekt, en kortare **beskrivning** och vilken sorts **layout** portfoliokortet ska ha på denna webbplats startsida. Rake tasken räknar själv ut vilken **ordning** projektet ska ha och visas upp sorterat på startsidan.
+
+Nu är jag medveten om att samma sorts rake task förmodligen går att skriva på ett mycket bättre sätt, där exempelvis användaren även får möjlighet att mata in ett projekts taggar istället för att fylla i dessa i efterhand. Men jag tycker ändå att denna task duger gott och väl än så länge.
+
+## Kommandon
+
+Glömmer man bort hur en rake task ska köras i terminalen kan man lista alla task på följande sätt:
+
+```bash
+$ rake --tasks
+```
+
+Då visas alla definerade task med den beskrivning man har gett via `desc` som återfinns i kodexemplets första rad.
+
+För att då exekvera en rake task skriver man på följande vis:
+
+```bash
+$ rake project
+```
+
+## Avslutningsvis
+
+Rake tasks kan användas för att underlätta repetativa uppgifter runtikring skapandet av innehåll till en Jekyllhemsida. Rake tasks kan både skapa nya markdownfiler och förse dessa filer med relevant front matter.  
+Den rake task som har presenterats i den här artikeln går att [modifieras](http://albertogrespan.com/blog/rake-tasks-and-jekyll-posts/) om till att istället skapa det Jekyll kallar för `posts` och `drafts` eller varför inte för att sköta deploy. Möjligheterna med rake tasks är stora!

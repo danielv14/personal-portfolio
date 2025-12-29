@@ -1,0 +1,54 @@
+---
+title: Ladda ned trailers via terminalen
+summary: Kombinera cli-verktyg för att snabbt och enkelt ladda ned trailers från YouTube.
+date: 2017-03-30
+---
+
+Ladda ned trailers från YouTube har aldrig varit smidigare än den här ihopslagningen av två CLI-verktyg.
+
+> Det här inlägget har egentligen inte speciellt mycket med just utveckling att göra men jag tycker ändå det är ett litet behändigt tips som kan uppskattas ändå.
+
+Anledningarna kan vara många till att behöva kolla på trailers och i mitt fall handlar det om att trailers hjälper mig bestämma vilken rulle man ska se för kvällen. Dessutom använder jag mig av ett [plexbibliotek](https://www.plex.tv/) och genom att ladda ner trailers på förhand kan jag streama filmtrailers innan jag bestämmer mig för vilken film i biblioteket jag ska se. Det gör jag genom att kombinera [youtube-dl](https://rg3.github.io/youtube-dl/) och [movie-trailer](https://www.npmjs.com/package/movie-trailer).
+
+**youtube-dl** är ett smidigt och flexibelt CLI verktyg för att ladda ned från YouTube medan `movie-trailer` är ett CLI verktyg för att lokalisera URL's till trailers på YouTube. Kombinerar man dessa kan man väldigt enkelt ladda ned en trailer utan att ens besöka YouTube.
+
+## Installation
+
+**youtube-dl** installeras enklast med hjälp av Homebrew, men andra installationsalternativ finns på [hemsidan](https://rg3.github.io/youtube-dl/). I alla fall så installeras det på följande vis med Homebrew:
+
+```bash
+$ brew install youtube-dl
+```
+
+För att `youtube-dl` ska fungera så bra som möjligt (ibland måste verktyget omvandla från ett filformat till ett annat) är det rekommenderat att man installer `ffmpeg` också. Lyckligtvis går det att bra att installera `ffmpeg` med hjälp av Homebrew:
+
+```bash
+$ brew install ffmpeg
+```
+
+**movie-trailer** å andra sidan kommer från [npm](https://www.npmjs.com/) och installeras på följande vis (förutsatt att npm är installerat på din maskin):
+
+```bash
+# Installera movie-trailer globalt
+$ npm install --global movie-trailer
+```
+
+## Kombinera verktygen
+
+När bägge CLI verktygen är installerade kan det kombineras genom att skapa följande funktion i din `~/.bashrc`, `~/.bash_profile` eller `~/.zshrc` som i mitt fall då jag använder zsh istället för bash.
+
+```bash showLineNumbers
+function trailer-dl() {
+    echo "Downloading trailer"
+    if [ -n $2 ]
+    then
+      # Ladda ned efter endast filmtitel
+      youtube-dl --output "$1-trailer.%(ext)s" $(movie-trailer "$1")
+    else
+      # Ladda ned efter årtal också
+      youtube-dl --output "$1-trailer.%(ext)s" $(movie-trailer "$1" "$2" )
+    fi
+}
+```
+
+**movie-trailer** kan antingen söka efter URL till en trailer efter enbart namnet på en film eller också namnet plus årtalet. Således innehåller funktionen ovan två scenarion beroende på om man anger ett årtal eller ej.

@@ -1,0 +1,290 @@
+---
+title: Node-baserat CLI för att skrapa IMDb
+summary: Enkelt CLI för att få tag i viss information från IMDb genom att skrapa sajten.
+date: 2017-09-01
+---
+
+För ett tag sedan stod jag inför en uppgift som delvis gick ut på att använda filmer och tv-seriers IMDb ID:n. Att manuellt söka upp filmer i webbläsaren och kopiera ID:n från URLen vart fort tradigt... Node-baserat CLI to the rescue!
+
+För den som inte vet vad ett IMDb ID är så är det kortfattat ett unikt identifieringsnummer för varje film, tv-serie, skådespelarare och så vidare. Dessa id:n används bland annat i URLen på följande sätt: `http://www.imdb.com/title/tt0411008/`. Strängen som börjar på **"tt"** är sjävla id:t. Just **tt0411008** är id:t för tv-serien Lost för övrigt.
+
+Jag behövde alltså på ett smidigt sätt komma åt just de här numren och efter att ha gjort manuella sökningar på IMDbs hemsida ett ex antal gånger, klickat mig in på rätt sökresultat och kopierat id:t från URLen så kändes hela den processen väldigt tradig. Dags att effektivisera!
+
+Det här var dessutom ett utmärkt tillfälle att skapa ett Node-baserat CLI och lära mig lite mer om det då jag inte skapat så många sådana förut men är sedan tidigare relativt bekväm med Node och Javascript. Inte heller hade jag tidigare använt skrapning speciellt mycket med Javascrip.
+
+## Vad behöver CLI:t åtstakomma?
+
+Innan jag ens gjorde `git init` funderade jag över hur jag ville att mitt CLI skulle fungera, vad det skulle spotta ut för information och började fundera på vilka npm-paket som skulle kunna underlätta och göra CLI:t bättre.
+
+Min tanke var att CLI:t först skulle fråga användaren efter en söksträng att söka efter, göra en request till IMDb:s hemsida och sökresultat, skrapa den information som behövdes och spotta ut det i terminalen på ett överskådligt sätt. Jag tänkte mig att det främst handla om att skrapa fram titlar, årtal och självfallet IMDb ID:n.
+
+### Struktur
+
+Då jag i ett slags version 1.0.0 av CLI:t endast behöver ett enkelt sätt att komma åt IMDb ID:n skulle man lika gärna kunna skriva all kod i en och samma **index.js** fil. Men ska CLI:t längre fram kunna göra mer saker blir det lite svårt att skala projektet och bygga vidare på det så därför valde jag att dela upp CLI:t i två olika klasser och en **index.js**. Klasserna som skapades var en IMDb klass och en klass `queryHelper` för att genomföra lite manipulering av strängar.
+
+### NPM-paket
+
+Jag anväde mig av följande npm-paket för att skapa mitt CLI:
+
+- [Chalk](https://www.npmjs.com/package/chalk) - För att sätta lite färg på bland annat `console.log`.
+- [Request](https://www.npmjs.com/package/request) - Ett enkelt sätt att göra http requests.
+- [Cheerio](https://www.npmjs.com/package/cheerio) - För att skrapa IMDbs hemsida med en jQuery-liknande syntax.
+- [Clear](https://www.npmjs.com/package/clear) - Ett paket vars enkla uppgift är att rensa terminalfönstret.
+- [Figlet](https://www.npmjs.com/package/figlet) - Ett paket för att enkelt skapa ascii-konst av text. CLI:t måste ju vara lite snyggt också.
+- [Inquirer](https://www.npmjs.com/package/inquirer) - Användes för att fråga användaren om söksträng och validera svaret.
+- [Ora](https://www.npmjs.com/package/ora) - Ett paket för att ge användaren lite feedback i form av en spinner undertiden som IMDb skrapas och sökresultatet samlas in.
+- [Table-master](https://www.npmjs.com/package/table-master) - Användes för att visa upp sökresultatet i en tabell.
+
+## Genomförande
+
+Hur bygger man då ett Node-baserat CLI för att skrapa IMDb:s hemsida och visa upp resultatet? Jag tänkte här gå igenom steg för steg hur det skulle kunna se ut, förhoppningsvis utan att gå in i för noga detalj om allt.
+
+Starta projektet med en `npm init` för att skapa generera en **package.json** följt av en `git init`. Varför inte använda git liksom?
+
+Installera därefter alla npm-paket som kommer att användas:
+
+```bash
+$ npm install --save chalk request cheerio clear figlet inquirer ora table-master
+```
+
+Skapa därefter en **index.js** fil som agerar själva utgångspunkten för CLI:t. De enda npm-paket som behövs i just denna fil är `clear` och `inquirer` då de övriga paketen främst kommer användas i ett senare skeda av IMDb klassen.
+
+Följande kod finns i min **index.js**:
+
+```javascript showLineNumbers
+const clear = require('clear');
+const inquirer = require('inquirer');
+
+const inputError = 'Please enter a query to search for...';
+
+// setup of question
+const question = [
+  {
+    type: 'input',
+    name: 'searchString',
+    message: 'What do you want to search for?\n',
+    validate: (value) => value.length ? true : inputError
+  }
+]
+
+// clear the terminal window
+clear();
+
+// display colorful IMDb header
+IMDb.displayHeader();
+
+// prompt the user for a search string
+inquirer.prompt(question).then((answer) => {
+  let query = new queryHelper(answer.searchString);
+  let result = new IMDb(query.getSanitizedQuery(), answer.searchString);
+  result.scrape();
+})
+
+```
+
+Först och främst används `require` för att få in de npm-paket som används av filen, men även importeras de två klasserna som än så länge inte finns.
+
+`const question = [...]` deklarerar en fråga med en tillhörande validering. Om inte valideringen går igenom så skrivs `inputError` strängen ut i terminalen.
+
+Därefter rensas terminalfönstret på samma sätt som att själv skriva `clear` i terminalen.
+Sedan kallas en statisk metod från IMDb klassen som av sitt namn kanske avslöjar vad den gör, men mer om metoden när jag går igenom min IMDb klass.
+
+Längst ner i filen skapas själva prompten med hjälp av `inquirer` där den tidigare question-arrayen skickas in och ett svar ges i ett promise.  
+Inuti detta promise skapas först en ny instans av `queryHelper` klassen och en instans av IMDb klassen skapas med hjälp av en två parametrar:
+
+1. Den första parametern `query.getSanitizedQuer()` går ut på omvandla en sträng från "Harry Potter" till "Harry+Potter" då det formatet behövs senare när IMDbs webbplats skrapas.
+2. Den andra parametern `answer.searchString` är söksträngen som användaren matar in i orörd form, det vill säga exmpelvis "Harry Potter". Varför det är intressant att hålla kvar i originalsöksträngen kommer visa sig i själva IMDb klassen.
+
+Men innan vi går igenom själva IMDb klassen där själva tyngdlyften i det här CLI:t händer går vi igenom queryHelper klassen då den (i alla fall för version 1.0.0) är relativt liten.
+
+```javascript {7,8,9,11,12,13} showLineNumbers
+exports.queryHelper = class {
+  /**
+   * Creates an instance of queryHelper.
+   * @param {string} initialQuery
+   * @memberof queryHelper
+   */
+  constructor(initialQuery) {
+    this.query = initialQuery;
+  }
+  /**
+   * returns the query but sanitized
+   * replace all spaces with pluses
+   * @returns {string}
+   */
+  getSanitizedQuery() {
+    return this.query.replace(/ /g, '+');
+  }
+  /**
+   * Match IMDb ID's from hrefs
+   *
+   * @static
+   * @param {string} href
+   * @returns {string} containing IMDb ID
+   */
+  static getIMDbID(href) {
+    return href.match(/tt(.*)[0-9]/g).toString();
+  }
+};
+```
+
+Klassen består alltså av en konstruktor och två metoder. Den första metoden `getSanitizedQuery()` returnerar en söksträng där alla mellanrum i strängen har bytts ut mot plustecken. Den andra metoden `getIMDbID()` tar **href** som parameter och resturnerar själva IMDb ID:t från en URL. Den extraherar alltså **tt0411008** från **http://www.imdb.com/title/tt0411008/** Metoden är statisk därför att IMDb klassen använder sig av denna metod, men det fanns inget behov av att skapa en ny instans av `queryHelper` inuti IMDb klassen.
+
+Slutligen har vi kvar själva IMDb klassen **IMDb.js** som består av ett antal metoder.
+
+Först så används require för att få in de övriga npm-paket som ännu inte använts, men också queryHelper klassen:
+
+```javascript showLineNumbers
+const request = require('request');
+const cheerio = require('cheerio');
+const ora = require('ora');
+const tab = require('table-master');
+const chalk = require('chalk');
+const figlet = require('figlet');
+
+const { queryHelper } = require('./queryHelper');
+```
+
+Därefter skapas och exporteras själva IMDb klassen med en konstruktor:
+
+```javascript showLineNumbers
+exports.IMDb = class {
+
+  /**
+   * Creates an instance of IMDb.
+   * @param {string} query - search query that has been sanitized
+   * @param {string} originalQuery - The original search query
+  */
+  constructor(query, originalQuery) {
+    this.query = query;
+    this.originalQuery = originalQuery;
+    this.url = `http://www.imdb.com/search/title?title=${this.query}`;
+    this.results = [];
+    this.outputColor = chalk.hex('#f3ce13');
+  }
+}
+```
+
+Konstruktorn har två parametrar och det är alltså själva söksträngen i dess original och i den "plussade" formen. Därefter sätts `this.url` med hjälp av den plussade söksträngen som i en annan metod kommer användas för att göra en reuqest och skrapa IMDb.  
+`this.results` är en tom array som senare ska fyllas på med sökresultat och `this.outputColor` använder npm-paketet `chalk` för att spara ner IMDb:s gula färg som i en annan metod kommer användas för lite färgrannare utskrift i terminalen.
+
+Därefter innehåller klassen en statisk metod för att visa lite ascii-text. Metoden är statisk eftersom att den anropas i **index.js** innan en instans av själva IMDb klassen har skapats. Eftersom att metoden anropas innan klassen har skapats går den inte att använda IMDbfärgen som deklarerats som `this.outputColor` i klassens konstruktor. Det kan ändå vara bra att ha denna färg sparad om den gula färgen skulle användas längre fram till andra saker också.
+
+```javascript showLineNumbers
+  /**
+   * Static method to display IMDB header for the CLI
+   *
+   */
+  static displayHeader() {
+    var imdbColor = chalk.hex('#f3ce13');
+    console.log(imdbColor(figlet.textSync('IMDb')));
+  }
+```
+
+För att bygga ut `this.results` arrayen skapas ytterligare en metod på IMDb klassen som kan se ut på följande vis:
+
+```javascript showLineNumbers
+  /**
+   * Push to results array
+   *
+   * @param {any} title
+   * @param {any} year
+   * @param {any} imdbID
+   */
+  createSearchResult(title, year, imdbID) {
+    this.results.push({title, year, imdbID});
+  }
+```
+
+Denna metod använder `push` för att bygga ut arrayen med ett objekt som innehåller titel, årtal och IMDb ID.
+
+IMDb klassen innehåller sedan en något tung metod för att utföra själva skrapandet av IMDb och komma åt sökresultaten. Metoden går kort och gott ut på att göra en request till IMDb och loopa genom ett ex antal sökresultat och pusha dessa till `this.results`
+
+```javascript showLineNumbers
+ /**
+   * Perform the scrape of imdb to gather search results
+   *
+   */
+  scrape() {
+
+    const spinner = ora('Searching IMDb. Please wait...').start();
+    request(this.url, (error, response, body) => {
+
+      if (!error) {
+
+        let $ = cheerio.load(body);
+
+        $('.lister-item-header a').each((index, value) => {
+          // create variables to be pushed as search result
+          let title = $(value).text();
+          let year = $(value).next().text().replace(/\D/g, '');
+          let imdbID = this.outputColor(queryHelper.getIMDbID($(value).attr('href')));
+
+          this.createSearchResult(title, year, imdbID);
+
+          // stop the loop after 15 items
+          return index < 14;
+        });
+
+        spinner.stop();
+        this.renderSearchResults();
+
+      } else {
+        spinner.stop();
+        console.log(`Program exit with error: ${error}`);
+      }
+    });
+  }
+```
+
+Några nyckeldetaljer i den här metoden är att först och främst används `ora` npm-paketet för att starta en spinner som ger användaren lite feedback. Sökresultaten loopas genom med hjälp av `cheerio` och `$(.lister-item-header a).each()` där titlar, årtal och id:n sparas till `this.results` med hjälp av metoden `this.createSearchResult()`.
+
+När loopen har stannat efter att de femton första sökresultaten har pushats till `this.results` stoppas spinnern med hjälp av `spinner.stop()` och en tabell med sökresultaten visas upp i terminalen med hjälp av metoden `this.renderSearchResults()`. Den metoden ser ut på följande vis:
+
+```javascript showLineNumbers
+  /**
+   * Render either a table with search results
+   * or a message of no search results were found
+   */
+  renderSearchResults() {
+    if (Object.keys(this.results).length === 0) {
+      console.log(chalk.red(`Could not find any search results for "${this.originalQuery}". Please try again.`));
+    } else {
+      console.table(this.results);
+    }
+  }
+```
+
+Denna metod kollar först om `this.results` är tom (inga sökresultat hittades) eller ej och antingen renderar en tabell med sökresultaten eller ger feedback om att inga sökresultat kunde hittas. Här används `this.originalQuery` som alltså exempelvis skulle motsvara `Harry Potter` och inte `Harry+Potter`.
+
+### Gör CLI:t körbart globalt
+
+För att slippa skriva `node index.js` och hela tiden befinna sig i samma path som **index.js** finns det ett enkelt knep att göra det här CLI:t globalt tillgängligt genom att endast skriva exempelvis `imdb` i terminalen, oberoende vilken path man har.
+
+Börja med att uppgradera **package.json** med följande:
+
+```json
+  "bin": {
+    "imdb": "./index.js"
+  }
+```
+
+Detta binder kommandot `imdb` till att köra **index.js**. Lägg därefter till följande shebang högst upp i **index.js**:
+
+```javascript showLineNumbers
+#!/usr/bin/env node
+const clear = require('clear');
+const inquirer = require('inquirer');
+
+//........
+```
+
+Installera därefter CLI:t globalt med hjälp av:
+
+```bash
+$ npm install -g
+```
+
+Nu är CLI:t körbart globalt 🎉
+
+Det var kort och gott all funktionalitet som finns i skrivande stund i detta Node-baserade CLI som skrapar IMDb efter sökresultat och IMDb ID:n. Det färdiga CLI:et finns på [GitHub](https://github.com/danielv14/imdb-cli)
