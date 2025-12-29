@@ -1,6 +1,4 @@
 ---
-import { site } from '@/data/site';
-
 const currentPath = Astro.url.pathname;
 const isActive = (path: string) => currentPath === path || currentPath.startsWith(path + '/');
 ---
@@ -11,7 +9,7 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
       href="/"
       class="text-lg font-semibold bg-gradient-to-r from-primary to-emerald-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
     >
-      {site.author}
+      Daniel Vernberg
     </a>
     <a
       href="/blogg"
