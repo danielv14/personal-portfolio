@@ -20,10 +20,10 @@ const formattedDate = `${day} ${monthNames[date.getMonth()]}, ${year}`;
   href={`/blogg/${slug}`}
   class="block p-6 rounded-lg bg-surface border border-border hover:bg-surface/80 transition-colors group"
 >
-  <div class="flex items-center gap-3">
-    {showDate && <time class="text-sm text-text-muted">{formattedDate}</time>}
+  <div class="flex items-center gap-2">
+    {showDate && <time class="text-xs text-text-muted">{formattedDate}</time>}
     {category && (
-      <span class="text-xs px-2 py-0.5 rounded-full border border-border text-text-muted">
+      <span class="text-[10px] px-1.5 py-0.5 rounded-full border border-border text-text-muted">
         {category}
       </span>
     )}
