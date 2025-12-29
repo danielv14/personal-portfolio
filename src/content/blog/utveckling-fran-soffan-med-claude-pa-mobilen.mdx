@@ -1,0 +1,43 @@
+---
+title: Utveckling från soffan med Claude på mobilen
+summary: 'Att pusha ändringar till kodbasen utan att lämna soffan. Framtiden är konstig.'
+date: 2025-12-29
+---
+
+Det är söndag kväll. Jag ligger i soffan och scrollar igenom min portfolio-sajt på telefonen. Något stör mig. En rubrik som känns fel, en marginal som är för tight. Små saker.
+
+Tidigare hade jag antingen ignorerat det eller gjort en mental notering att fixa det "nästa gång jag sitter vid datorn". Nu öppnar jag Claude-appen istället.
+
+## Workflow från soffan
+
+Flödet ser ut ungefär så här:
+
+1. Jag ser något jag vill ändra på sajten
+2. Öppnar Claude-appen på telefonen
+3. Beskriver vad jag vill ha ändrat
+4. Claude skapar en PR med ändringarna
+5. Jag kollar preview-branchen på Vercel direkt i telefonen
+6. Ser bra ut? Merge till main
+7. Vercel deployer automatiskt
+
+Hela processen tar några minuter. Utan att resa mig från soffan.
+
+## Det sjuka är att det funkar
+
+Claude har tillgång till kodbasen via GitHub. Jag berättar vad jag vill, den letar rätt på rätt filer, gör ändringarna och pushar upp en branch. Vercel bygger automatiskt en preview som jag kan klicka mig in på.
+
+Jag sitter med telefonen i handen, tittar på förändringen live, och om allt ser rätt ut är det bara att mergea. Några knapptryck senare är ändringen i produktion.
+
+Det känns lite absurt första gångerna. Man är van vid att kodändringar kräver en dator, en editor, terminalen. Nu räcker det med en app och några meningar.
+
+## Begränsningar
+
+Det funkar bäst för mindre ändringar. Textjusteringar, styling-tweaks, små fixar. För större features vill jag fortfarande sitta vid datorn med [Claude Code](/blogg/fran-next-till-astro-pa-30-minuter-med-claude-code) och ha mer kontroll över processen.
+
+Men för de där småsakerna som man annars skjuter upp? Perfekt.
+
+## Reflektion
+
+Det här är ännu ett steg i riktningen mot att min roll blir mer att beskriva vad jag vill ha, mindre att skriva kod själv. I soffan med telefonen kan jag nu göra samma sak som tidigare krävde att jag satte mig vid datorn.
+
+Är det lathet? Kanske. Men det är också effektivt. Och lite magiskt, om jag ska vara ärlig.
