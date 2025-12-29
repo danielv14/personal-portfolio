@@ -5,12 +5,13 @@
   --color-background: #0a0a0a;
   --color-surface: #161616;
   --color-border: #222222;
-  --color-text: #ecececff;
-  --color-text-muted: #b8b8b8ff;
+  --color-text: #ececec;
+  --color-text-muted: color-mix(in srgb, var(--color-text) 75%, transparent);
   --color-primary: #6691ff;
   --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji";
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-mono: "Noto Sans Mono Variable", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, monospace;
   --radius-lg: 0.5rem;
 }
 
@@ -70,4 +71,5 @@ html {
   --ec-frm-edBg: var(--color-surface);
   --ec-frm-trmBg: var(--color-surface);
   --ec-frm-frameBoxShdCssVal: none;
+  --ec-codeFontFml: var(--font-mono);
 }
