@@ -63,16 +63,6 @@ html {
   display: none;
 }
 
-/* Subtle cursor pulse for terminal logo */
-@keyframes cursor-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-.cursor-pulse {
-  animation: cursor-pulse 2s ease-in-out infinite;
-}
-
 /* Code blocks - override Expressive Code variables to match site's card styling */
 .expressive-code {
   --ec-codeBg: var(--color-surface);
