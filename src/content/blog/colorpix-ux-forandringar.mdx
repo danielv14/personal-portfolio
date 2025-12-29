@@ -2,12 +2,13 @@
 title: ColorPix och "Less is more" UX-förändringar
 summary: 'Med några enklare refaktoreringar blev användarupplevelsen enklare men låter samtidigt användaren göra mer.'
 date: 2019-07-31
+updatedAt: 2025-12-29
 ---
 
 ## Bakgrund
 
-För ett tag sedan lanserade jag de första releaserna ([1.0.0](https://github.com/danielv14/ColorPix/releases/tag/v1.0.0) och [1.0.1](https://github.com/danielv14/ColorPix/releases/tag/v.1.0.1)) för ColorPix - en webbapp som hjälper användare att upptäcka förgpaletter via bilder från Unsplash. Applikationen genererar färgpaletter utifrån bildernas dominanta färger och låter även användare finjustera färgmättnad och ljusstyrka.
-Justeringen av färpaletterna görs med olika reglage och jag tänkte gå igenom lite förändringar UX-mässigt som gjorts i och med release 1.1.0 - där en ”_less is more_” approach har förenklat samt förbättrat färgmanipuleringen i ColorPix.
+För ett tag sedan lanserade jag de första releaserna ([1.0.0](https://github.com/danielv14/ColorPix/releases/tag/v1.0.0) och [1.0.1](https://github.com/danielv14/ColorPix/releases/tag/v.1.0.1)) för ColorPix - en webbapp som hjälper användare att upptäcka färgpaletter via bilder från Unsplash. Applikationen genererar färgpaletter utifrån bildernas dominanta färger och låter även användare finjustera färgmättnad och ljusstyrka.
+Justeringen av färgpaletterna görs med olika reglage och jag tänkte gå igenom lite förändringar UX-mässigt som gjorts i och med release 1.1.0 - där en ”_less is more_” approach har förenklat samt förbättrat färgmanipuleringen i ColorPix.
 
 ## Hantering i version 1.0.1
 
@@ -26,7 +27,7 @@ _Bilden visar manipuleringsvertyget i version 1.0.1_
 
 ### Begränsningar
 
-Vad finns det för begränsningar med gränssnittet i bilden ovan? På rak arm utifrån punktlistan ovan för hur använaren nyttjar verktygen samt skärmbilden för version 1.0.1 kunde jag identifiera följande begränsningar:
+Vad finns det för begränsningar med gränssnittet i bilden ovan? På rak arm utifrån punktlistan ovan för hur användaren nyttjar verktygen samt skärmbilden för version 1.0.1 kunde jag identifiera följande begränsningar:
 
 #### Plottrigt
 
@@ -58,7 +59,7 @@ Då manipuleringarna är grupperade under flikar minskar en eventuell risk för 
 
 ## Förbättrad UX i version 1.1.0
 
-Fyra begränsningar och två möjligheter identifierade jag efter att ha använt ColorPix själv sporadiskt i ungefär en månads tid. Sammanfattningsvis kände jag mig begränsad av hur manipuleringsvektyget var utformat och jag kände att jag behövde ta tag i de identifierade begränsningarna för att skapa en bättre användarupplevlese.
+Fyra begränsningar och två möjligheter identifierade jag efter att ha använt ColorPix själv sporadiskt i ungefär en månads tid. Sammanfattningsvis kände jag mig begränsad av hur manipuleringsvektyget var utformat och jag kände att jag behövde ta tag i de identifierade begränsningarna för att skapa en bättre användarupplevelse.
 
 ![Gränssnitt-version-1-1-0](/img/posts/colorpix-ux-after.png)
 
@@ -82,7 +83,7 @@ I och med att reglagen för ökning och minskning inte längre är separerade g�
 
 #### Multipla manipuleringar samtidigt
 
-I och med att reglagen och färgrepresentationerna inte längre är lika hårt knutna i kodbasen går det att låta flera reglage påverka en och samma färgåtergivning. Detta innebär att användaren kan justera exempelvis ökning av färmättnad samtidigt som en minskning av ljusstyrka.
+I och med att reglagen och färgrepresentationerna inte längre är lika hårt knutna i kodbasen går det att låta flera reglage påverka en och samma färgåtergivning. Detta innebär att användaren kan justera exempelvis ökning av färgmättnad samtidigt som en minskning av ljusstyrka.
 
 En följdeffekt av att två reglage nu används för att hantera ökning och minskning av exempelvis färgmättnad är att användare inte behöver separera de två handlingarna rent kognitivt. Man arbetar med "färgmättnad" i sin helhet - inte ökning och minskning av färgmättnad separat.
 
@@ -96,4 +97,4 @@ Vad finns det då för nya begränsningar med det nya gränssnittet? Tittar man 
 
 I ett tidigt stadie av ColorPix gjordes några designval som har lett till en del upplevda UX-problem och begränsningar kring verktyget för färgmanipluering. Efter en del användning av befintlig funktionalitet kunde begränsningar identifieras. Problemen handlade i stora drag kring begränsningar i vad användaren kunde göra - på grund av designbeslut i kodbasen. Verktyget upplevdes även otydligt och hade viss dold funktionalitet.
 
-En ”less is more” approach anammades och en del refraktorering av koden för att ta bort för hårt knutna beroenden mellan komponenter. När komponenterna inte längre var lika hårt knutna med varandra kunde en bättre upplevelse skapas där användare kan på ett enklare sätt än tidigare göra mer avancerade färgmanipuleringar.
+En ”less is more” approach anammades och en del refaktorering av koden för att ta bort för hårt knutna beroenden mellan komponenter. När komponenterna inte längre var lika hårt knutna med varandra kunde en bättre upplevelse skapas där användare kan på ett enklare sätt än tidigare göra mer avancerade färgmanipuleringar.

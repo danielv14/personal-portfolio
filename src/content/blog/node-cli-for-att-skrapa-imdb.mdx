@@ -2,17 +2,18 @@
 title: Node-baserat CLI för att skrapa IMDb
 summary: Enkelt CLI för att få tag i viss information från IMDb genom att skrapa sajten.
 date: 2017-09-01
+updatedAt: 2025-12-29
 ---
 
-För ett tag sedan stod jag inför en uppgift som delvis gick ut på att använda filmer och tv-seriers IMDb ID:n. Att manuellt söka upp filmer i webbläsaren och kopiera ID:n från URLen vart fort tradigt... Node-baserat CLI to the rescue!
+För ett tag sedan stod jag inför en uppgift som delvis gick ut på att använda filmer och tv-seriers IMDb ID:n. Att manuellt söka upp filmer i webbläsaren och kopiera ID:n från URLen blev fort tråkigt... Node-baserat CLI to the rescue!
 
-För den som inte vet vad ett IMDb ID är så är det kortfattat ett unikt identifieringsnummer för varje film, tv-serie, skådespelarare och så vidare. Dessa id:n används bland annat i URLen på följande sätt: `http://www.imdb.com/title/tt0411008/`. Strängen som börjar på **"tt"** är sjävla id:t. Just **tt0411008** är id:t för tv-serien Lost för övrigt.
+För den som inte vet vad ett IMDb ID är så är det kortfattat ett unikt identifieringsnummer för varje film, tv-serie, skådespelarare och så vidare. Dessa id:n används bland annat i URLen på följande sätt: `http://www.imdb.com/title/tt0411008/`. Strängen som börjar på **"tt"** är själva id:t. Just **tt0411008** är id:t för tv-serien Lost för övrigt.
 
 Jag behövde alltså på ett smidigt sätt komma åt just de här numren och efter att ha gjort manuella sökningar på IMDbs hemsida ett ex antal gånger, klickat mig in på rätt sökresultat och kopierat id:t från URLen så kändes hela den processen väldigt tradig. Dags att effektivisera!
 
-Det här var dessutom ett utmärkt tillfälle att skapa ett Node-baserat CLI och lära mig lite mer om det då jag inte skapat så många sådana förut men är sedan tidigare relativt bekväm med Node och Javascript. Inte heller hade jag tidigare använt skrapning speciellt mycket med Javascrip.
+Det här var dessutom ett utmärkt tillfälle att skapa ett Node-baserat CLI och lära mig lite mer om det då jag inte skapat så många sådana förut men är sedan tidigare relativt bekväm med Node och Javascript. Inte heller hade jag tidigare använt skrapning speciellt mycket med JavaScript.
 
-## Vad behöver CLI:t åtstakomma?
+## Vad behöver CLI:t åstadkomma?
 
 Innan jag ens gjorde `git init` funderade jag över hur jag ville att mitt CLI skulle fungera, vad det skulle spotta ut för information och började fundera på vilka npm-paket som skulle kunna underlätta och göra CLI:t bättre.
 
@@ -47,7 +48,7 @@ Installera därefter alla npm-paket som kommer att användas:
 $ npm install --save chalk request cheerio clear figlet inquirer ora table-master
 ```
 
-Skapa därefter en **index.js** fil som agerar själva utgångspunkten för CLI:t. De enda npm-paket som behövs i just denna fil är `clear` och `inquirer` då de övriga paketen främst kommer användas i ett senare skeda av IMDb klassen.
+Skapa därefter en **index.js** fil som agerar själva utgångspunkten för CLI:t. De enda npm-paket som behövs i just denna fil är `clear` och `inquirer` då de övriga paketen främst kommer användas i ett senare skede av IMDb klassen.
 
 Följande kod finns i min **index.js**:
 

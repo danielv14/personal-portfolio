@@ -2,6 +2,7 @@
 title: 'Styled Components och ikonhantering i olika stadier'
 summary: 'Hur många gånger kan man behöva refaktorera ikoner egentligen? Minst två gånger i alla fall - allt eftersom behovet på funktionalitet ändras.'
 date: 2020-07-03
+updatedAt: 2025-12-29
 ---
 
 Denna sajt är byggt med hjälp av [Styled Components](https://styled-components.com/) och använder ikoner sparsamt, med hjälp av [styled-icons](https://styled-icons.js.org/) - ett paket som gör det väldigt enkelt kan skapa komponenter från svg-ikoner.
@@ -150,7 +151,7 @@ export const IconBase = (icon: StyledIcon): StyledIcon => styled(icon)<IconProps
 
 Några små ändringar (som är markerade i kodsnutten ovan) visar på skillnaderna:
 
-- Interfacet `IconProps` bygger nu vidare på interfacet `StyledIconProps` - som är det interface som alla styled-icons har. Det innebär att kopplingen mellan påbyggd funktionalitet i form av props tydligare kopplas ihop med betinflig funktionalitet och props från _styled-icons_ ikoner.
+- Interfacet `IconProps` bygger nu vidare på interfacet `StyledIconProps` - som är det interface som alla styled-icons har. Det innebär att kopplingen mellan påbyggd funktionalitet i form av props tydligare kopplas ihop med befintlig funktionalitet och props från _styled-icons_ ikoner.
 - `IconBase` var tidigare bara en `styled.svg` som hade lite grundläggande styling i och med `BaseStyle`. Nu är det en funktion som tar in en `icon` av typen `StyledIcon` och returnerar en styled-icon som har default styling och som har korrekt interface för props.
 
 Ikonkomponenter refaktorerades i iteration tre att se ut på följande vis:

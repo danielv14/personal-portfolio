@@ -2,6 +2,7 @@
 title: Ny utvecklingsmiljö och nytt deployflöde för denna sajt
 summary: 'Vad betydde det för utvecklingsmiljön och deployflödet för denna sajt när den gick från Jekyll till Next.js?'
 date: 2020-07-01
+updatedAt: 2025-12-29
 ---
 
 Jag tänkte lite kortfattat gå igenom hur utvecklingsmiljön ser ut för den här sajten och hur den deployas till produktion - sen jag gjorde om sajten helt från Jekyll till Next.js
@@ -38,7 +39,7 @@ Att det är Vercel själva som ligger bakom ramverket Next.js märks. Att deploy
 
 När man har integrerat Vercel med Github får man automatiska deploys, även för remote git brancher som _inte_ är master. Det innebär att man kan jobba på en feature / bug branch, committa ändringar, pusha upp till repot och Vercel bygger automatiskt en version av applikationen på en temporär url.
 
-Detta är något jag fick användning av efter att sajten rullat hos Vercel endast några dagar. Jag upptäckte en bugg när jag testade responsiviten på min iPad i ett [slide over fönster](https://support.apple.com/sv-se/guide/ipad/ipadfe7c65e9/ipados) och flödet för bugxfixen såg ut såhär:
+Detta är något jag fick användning av efter att sajten rullat hos Vercel endast några dagar. Jag upptäckte en bugg när jag testade responsiviten på min iPad i ett [slide over fönster](https://support.apple.com/sv-se/guide/ipad/ipadfe7c65e9/ipados) och flödet för buggfixen såg ut såhär:
 
 1. Jag **skapade en branch**, testade av buggfixen lokalt i Chrome.
 2. **Pushade ändringarna** och gjorde en [pull request](https://github.com/danielv14/personal-portfolio/pull/9).

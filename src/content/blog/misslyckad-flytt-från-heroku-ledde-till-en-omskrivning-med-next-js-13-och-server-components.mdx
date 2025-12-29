@@ -3,6 +3,7 @@ title: Misslyckad flytt från Heroku ledde till en omskrivning med Next.js 13 oc
 summary: Jag försökte för ett tag sen flytta en gammal Nuxt applikation (som snart skulle släckas ned) från Heroku men istället blev det en ny sajt med annan hosting
 preamble: Heroku stänger ned sin "free-plan" och jag behövde flytta en sajt jag hade där. Initialt försökte jag flytta till Vercel men gräset var grönare på andra sidan med Next.js 13 och Server Components. Istället för flytt blev det en omskrivning av sajt och ny hosting.
 date: 2022-11-13
+updatedAt: 2025-12-29
 ---
 
 Heroku har valt att [sluta med gratis hosting](https://blog.heroku.com/next-chapter). Jag som många andra har en del sajter som snurrar där med deras "free plan". I slutet på november 2022 kommer dessa sajter släckas ned. Jag och många andra står inför valet att låta mina sajter som är hostade där dö ut eller försöka flytta dom till ett annat hem.
@@ -25,7 +26,7 @@ Varför var jag då sugen på att testa senaste versionen av Next.js? ✨ <FunTe
 
 Skämt och sido. [Här kan man läsa](https://nextjs.org/blog/next-13) om nyheterna i den här versionen. Men överlag är det server components och introduceringen av `/app` foldern som möjliggör server components som jag var sugen på att testa. Samt ett enklare sätt att jobba med layouter, nested layouter och routes.
 
-Värt att påpeka är att i skrivande stund är `/app` foldern i beta och dokumetationen är ännu inte komplett.
+Värt att påpeka är att i skrivande stund är `/app` foldern i beta och dokumentationen är ännu inte komplett.
 
 ## Server components
 
@@ -175,7 +176,7 @@ För ett litet tag sedan blev [Tailwind CSS det mest nedladdade CSS-ramverket](h
 
 Så här på andra sidan av projektet måste jag ändå säga att det var rätt intressant att labba med React server components, även om det var rätt förvirrande i början.
 
-Man fick liksom försöka lära av sig grejer som man vanligtvis gör en React SPA:er eller liknande. Inga `useEffect` nödvändigtvis för att hämta data, inga `event.preventDefault()` i formulär i onödan. Inte heller behöver man nödvädnigsvis skapa endpoints serverside som React-komponenterna kan slå mot med hjälp av `getServerSideProps()` och prop-drill:a djupt.
+Man fick liksom försöka lära av sig grejer som man vanligtvis gör en React SPA:er eller liknande. Inga `useEffect` nödvändigtvis för att hämta data, inga `event.preventDefault()` i formulär i onödan. Inte heller behöver man nödvändigtvis skapa endpoints serverside som React-komponenterna kan slå mot med hjälp av `getServerSideProps()` och prop-drill:a djupt.
 
 Det var helt klart intressant att utforska `/app` foldern så här för första gången och förmodligen är det inte heller den sista då React-världen, eller webb-världen överlag, verkar pendla från SPA:er och mot server-rendering igen.
 

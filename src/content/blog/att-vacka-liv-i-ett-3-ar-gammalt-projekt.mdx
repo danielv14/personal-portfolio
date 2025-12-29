@@ -2,11 +2,12 @@
 title: Att väcka liv i ett 3 år gammalt projekt i 6 enkla steg
 summary: 'För tre år sedan skapade jag ett projekt som skrapade Aftonbladet dagligen. Det här är historien om vad som hände 3 år senare.'
 date: 2020-03-29
+updatedAt: 2025-12-29
 ---
 
 ## Bakgrund
 
-År 2017 använda jag PHP-ramverket Laravel en del för att bygga sajter, tillsammans med Vue som frontend. En sajt jag byggde gick ut på att varje dag skrapa Aftonbladet på lite onödig information så att sajten kunde visa upp denna information i en schysst graf. Sajten skrapade hur många ✔ Aftonbladet använde varje dag och sparade ner antalet i en postgesdatabas som snurrade på Heroku.
+År 2017 använde jag PHP-ramverket Laravel en del för att bygga sajter, tillsammans med Vue som frontend. En sajt jag byggde gick ut på att varje dag skrapa Aftonbladet på lite onödig information så att sajten kunde visa upp denna information i en schysst graf. Sajten skrapade hur många ✔ Aftonbladet använde varje dag och sparade ner antalet i en postgresdatabas som snurrade på Heroku.
 
 Jag byggde sajten, satte upp ett cronjob i Heroku, implementerade en graf som visade antalet ”checkers” de senaste dagarna och gick sedan vidare till andra projekt.
 
@@ -68,7 +69,7 @@ Men nu hade jag alltså data för 3 år som behöver seedas in i Firestore. Det 
 
 ### 3.2 API för att slanga in data
 
-En schysst grej med Next är att om man exporterar en modul i `pages/api/example.ts` så representerar modulen ett api anrop. Det är alltså filstrukturen som bestämmer hur api-anropen sätts upp.Jag skapade ett API-anrop på det här sättet och skyddade anropet bakom API nyckel och nu hade jag ett sätt att mata den nya källan med all historisk data.
+En schysst grej med Next är att om man exporterar en modul i `pages/api/example.ts` så representerar modulen ett api anrop. Det är alltså filstrukturen som bestämmer hur api-anropen sätts upp. Jag skapade ett API-anrop på det här sättet och skyddade anropet bakom API nyckel och nu hade jag ett sätt att mata den nya källan med all historisk data.
 
 ✓ Steg 3 check!
 
@@ -113,6 +114,6 @@ Men hur blev det med cronjob för att skrapa Aftonbladet dagligen? Ja… tidigar
 
 ## Slutet gott allting gott
 
-Det var alltså min lilla historia om hur jag i 6 steg väckte liv ett 3 år gammalt projekt. Eller tja.. väckte liv i och väkte liv i...Jag slängde ut allting förutom själva datan - men datan var ju ändå trots allt det viktigaste att spara och behålla i en återuppståndelse likt denna historia.
+Det var alltså min lilla historia om hur jag i 6 steg väckte liv ett 3 år gammalt projekt. Eller tja.. väckte liv i och väckte liv i... Jag slängde ut allting förutom själva datan - men datan var ju ändå trots allt det viktigaste att spara och behålla i en återuppståndelse likt denna historia.
 
 För den som är intresserad finns källkoden [här](https://github.com/danielv14/aftonbladet-checkr-next) och sajten går att besöka på [https://aftonbladet-checker.Herokuapp.com/](https://aftonbladet-checker.Herokuapp.com/)

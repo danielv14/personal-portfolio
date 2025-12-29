@@ -2,6 +2,7 @@
 title: Media Queries á la styled-components
 summary: Tre olika, men också snarlika, exempel på hur man kan jobba med CSS Media Queries i styled-components.
 date: 2020-11-01
+updatedAt: 2025-12-29
 ---
 
 Häromdagen experimenterade jag lite med styled-components, som är den CSS-in-JS lösning för styling på den här sajten.
@@ -135,10 +136,10 @@ export const media = {
 }
 ```
 
-Oj...Nu vart det kanske lite mycket på en gång 🧐 Let's break it down:
+Oj...Nu blev det kanske lite mycket på en gång 🧐 Let's break it down:
 
 1. Den minsta funktionen `getBreakpointScaleFromTheme` tar som parameter en breakpoint, som i det här fallet är **small**, **medium**, eller **large**.
-2. Den funktionen använder i sina tur `css()`. Vad är då det för något? Det är en hjälpfunktion som exponerar hela ThemeContext, men även eventuella props på en styled component.
+2. Den funktionen använder i sin tur `css()`. Vad är då det för något? Det är en hjälpfunktion som exponerar hela ThemeContext, men även eventuella props på en styled component.
 3. `getBreakpointScaleFromTheme` ser alltså till att läsa av ThemeContext och hämta ut efterfrågad breakpoint-värde.
 4. `breakpointToMediaQuery` är den funktion som bygger upp själva media queryn. Även denna funktion tar en breakpoint som parameter.
    - Den här funktionen returnerar i sin tur _en funktion_ som tar in templateStrings som parameter och skickar den parametern till ett `css(templateStrings)` funktionsanrop - inuti själva media queryn.

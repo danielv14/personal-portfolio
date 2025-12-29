@@ -2,13 +2,14 @@
 title: Jekyll och Rake tasks
 summary: Enkla kommandon för att snabba upp skapandet av blogginlägg i markdown.
 date: 2017-03-26
+updatedAt: 2025-12-29
 ---
 
 Med hjälp av Rake och en Rakefile kan man enkelt skapa grunden till blogginlägg i Jekyll eller varför inte portfolio projekt, som i mitt fall. En Rakefile gör att man enkelt kan skapa grunden till de markdown filer Jekyll använder sig av.
 
 > Den här lilla guiden förutsätter viss kunskap om static site generatorn [Jekyll](http://jekyllrb.com/) samt Ruby då jag inte redogör för allting i detalj.
 
-På den här webbplatsen finns en del portfolioprojekt i form av en [collection](https://jekyllrb.com/docs/collections/). Att lägga till nya projekt manuellt i denna collection och komma ihåg vilken typ av [front matter](https://jekyllrb.com/docs/frontmatter/) projekten skulle ha blev tradigt och repetativt. Med viss [inspiration](http://albertogrespan.com/blog/rake-tasks-and-jekyll-posts/) kunde jag knepa ihop en lösning som gjorde det enklare att skapa portfolio objekt med korrekt front matter.
+På den här webbplatsen finns en del portfolioprojekt i form av en [collection](https://jekyllrb.com/docs/collections/). Att lägga till nya projekt manuellt i denna collection och komma ihåg vilken typ av [front matter](https://jekyllrb.com/docs/frontmatter/) projekten skulle ha blev tråkigt och repetitivt. Med viss [inspiration](http://albertogrespan.com/blog/rake-tasks-and-jekyll-posts/) kunde jag knepa ihop en lösning som gjorde det enklare att skapa portfolio objekt med korrekt front matter.
 
 Följande rake task använder jag i min `Rakefile` för att skapa nya portfolio objekt:
 
