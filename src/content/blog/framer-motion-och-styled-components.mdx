@@ -17,7 +17,7 @@ Det är delvis till just sånt här jag har denna sajten - ett utrymme för att 
 Med Framer Motion kan man bland annat skapa komponent-baserade animationer - med hjälp av **motion components**.
 Så här beskrivs motion components enligt [api-dokumentationen](https://www.framer.com/api/motion/component): _"motion components are DOM primitives optimised for 60fps animation and gestures."_
 
-## Kombinera Framer Motion med styled-components för ✨
+## Kombinera Framer Motion med styled-components
 
 Hur gör man då för att lägga till animationer med Framer Motion till en react-applikation som redan använder styled-components?
 
@@ -63,7 +63,7 @@ export const CardProject: React.FC<CardProjectProps> = ({ title, summary }) => {
 
 CardProject tar in lite props och har ett tillhörande interface för sina props och komponenten använder i sin tur `Card` komponenten.
 
-**Hur blandar man då in Framer Motion i denna goda kaksmet?** Jo, det är egentligen bara två små grejer som behöver justeras:
+**Hur blandar man då in Framer Motion?** Det är egentligen bara två små grejer som behöver justeras:
 
 1. Ändra `Card` till att vara en `styled(motion.div)` istället för en `styled.div`.
 2. Ändra `cardProject` till att ge `Card` lite animations-props.
@@ -85,7 +85,7 @@ export const Card = styled(motion.div)`
 
 Märk hur `motion` importeras och `Card` numera är en `styled(motion.div)` istället för en `styled.div`.
 
-Så enkelt kan det vara att refaktorera en befinlig styled-component av bli en ✨**_styled motion component_** ✨.
+Så enkelt kan det vara att refaktorera en befintlig styled-component att bli en **styled motion component**.
 
 ## Ändra användning av en styled-component
 
@@ -135,7 +135,7 @@ När man sen har skapat upp sitt animationsobject är det bara **spreada** objek
 
 Jag tänkte inte gå in i detalj för animationsobjektet mer än att nämna att det skapas en animation med en **transition** som aktiveras på hover - samt en liten animation när man trycker (med datormusen exempelvis) på komponenten.
 
-## Framer Motion + styled-components = ✨✨
+## Sammanfattning
 
-**Det var i stort sätt allt!** Så enkelt kan man komma igång med Framer Motion om man redan använder sig av styled-components.
-Det här var ju som sagt bara en kortare how-to. Det finns ju så klart mycket mer inom Framer Motion att upptäcka, det var bara roligt att det gick så smidigt att komma igång med enklare Framer Motion animationer i samband med styled-components.
+Det var i stort sett allt. Så enkelt kan man komma igång med Framer Motion om man redan använder sig av styled-components.
+Det här var ju som sagt bara en kortare how-to. Det finns mycket mer inom Framer Motion att upptäcka, men det gick smidigt att komma igång med enklare animationer i samband med styled-components.

@@ -45,7 +45,7 @@ Två stycken sidor (eller Next.js routes om man så vill) hade lite duplicerad l
 
 ## General Zod has entered the game
 
-Det här är ingen bloggpost om _vad_ Zod är, utan mer hur man kan använda det och hur det gick till när jag testade att använda det. Men kortfattat (hämtat från [Zods dokumentation](https://zod.dev/)) så beskrivs Zod såhär: <FunText>TypeScript-first schema validation with static type inference.</FunText>
+Det här är ingen bloggpost om _vad_ Zod är, utan mer hur man kan använda det och hur det gick till när jag testade att använda det. Men kortfattat (hämtat från [Zods dokumentation](https://zod.dev/)) så beskrivs Zod såhär: **TypeScript-first schema validation with static type inference**.
 
 Kortfattat handlar det bland annat om att säkerställa exempelvis ett objekts struktur med hjälp av ett definierat `schema` som man använder för att parsa data. `static type inference` biten handlar om att man utifrån ett Zod Schema kan extrahera typings (types och interfaces m.m) för hur den förväntade datastrukturen ser ut.
 
@@ -142,7 +142,7 @@ export const ListSchema = ImageListBaseSchema.merge(PaginationSchema);
 export type ListOptions = z.infer<typeof ListSchema>;
 ```
 
-Nu var inte logiken kring pagineringen duplicerad utan scheman mergades istället ihop 👍. `ListOption` typen är även fortfarande intakt jämfört med tidigare och innehåller `page` och `perPage` som siffor.
+Nu var inte logiken kring pagineringen duplicerad utan scheman mergades istället ihop. `ListOption` typen är även fortfarande intakt jämfört med tidigare och innehåller `page` och `perPage` som siffror.
 
 ### Parsa searchParams
 
@@ -164,7 +164,7 @@ const options = QuerySchema.parse(searchParams);
 const data = await API.getByQuery(options);
 ```
 
-Aningen mer <FunText>cleant</FunText> än tidigare kan jag tycka 🏆
+Aningen renare kod än tidigare.
 
 Men kunde jag använda det typer som extraherades med `z.infer<T>` på något sätt? Jodå, dom typerna användes i `API` wrappern för att typa input till `getByQuery(options: QueryOptions)` och `getByListType(options: ListOptions)` funktionerna. Fördelarna med det är:
 

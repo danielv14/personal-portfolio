@@ -37,7 +37,7 @@ Räcker det då att fortsätta använda useState tillsammans med ett objekt ist�
 
 Flera individuella useState-variabler, ett enda state-objekt och sen useReducer. Det är i stora drag de tre olika stadier som jag och en kollega gick igenom när vi för ett tag sedan i ett projekt skulle bygga ett multi-stegs formulär. Ett formulär som involverade datahämtning via ett API och där de olika formulär-stegen hade beroenden av state mellan sig.
 
-## Fas 1: useState-variabler everywhere!
+## Fas 1: useState-variabler överallt
 
 Jag och en kollega skulle som sagt bygga ett formulär som hade flera olika steg. Kortfattad och simplifierat skulle formuläret bete sig så här:
 
@@ -130,9 +130,13 @@ För den komponent som ska uppdatera state handlar det förenklat om att man gå
 
 ### Vilka fördelar såg vi?
 
-Vilka fördelar kunde vi då se när vi refaktorerade från lösningen med useState och vårat state-objekt till att använda useReducer istället?
+Vilka fördelar kunde vi då se när vi refaktorerade från useState till useReducer?
 
-Den allra största fördelen vi såg var att formulär-komponenten nu bara behövde fokusera på **vad** som skulle hända och inte exakt **hur** något skulle hända. Om man ska ta exemplet med att låta användaren backa i formuläret så gick vi från (ungefär):
+1. **Fokus på "vad" istället för "hur":** Formulär-komponenten behövde inte längre veta exakt hur state skulle uppdateras.
+2. **Automatisk hantering av beroenden:** Reducern skötte beroenden mellan sub-värden (som att rensa feedback).
+3. **Enklare att följa flödet:** All state-logik samlades på ett ställe istället för utspridd i callbacks.
+
+Den allra största fördelen var den första punkten. Om man ska ta exemplet med att låta användaren backa i formuläret så gick vi från:
 
 ```js showLineNumbers
 const onStepChange = (step) => {
@@ -152,11 +156,7 @@ const onStepChange = (step) => {
 }
 ```
 
-Vår formulär-reducer såg då till att själv antingen bara backa ett steg eller rensa hela formuläret i sin helhet, då användaren backade till första steget.
-
-En annan fördel vi såg var att formuläret inte längre behövde bry sig om att i vissa lägen rensa den validerings-feedback array som fanns i state. Sådana detaljer var upp till reducern att sköta, beroende på vilken action som formuläret dispatchade.
-
-En tredje fördel var att formuläret nu inte längre behövde bry sig alls om eventuella beroenden mellan sub-värden i state:t. Formuläret dispatchade bara sina actions med tillhörande data och reducern såg till att sätta eventuella boolean-flaggor osv själv.
+Vår formulär-reducer såg då till att själv antingen bara backa ett steg eller rensa hela formuläret, beroende på vilket steg användaren navigerade till.
 
 ### Mer boilerplate-kod men kontrollerade state-förändringar
 
@@ -168,7 +168,7 @@ All faktiskt state-hantering lyftes ut till en separat fil. Behövde vi se hur s
 
 ## Summering
 
-Phew! Där var vi i mål!
+Där var vi i mål.
 
 Vad kan man då dra för summerande slutsatser av det hela? Ska man strunta i useState helt och istället använda useReducer? Absolut inte! Hook:en useState är väldigt bra om man har ett state som inte är speciellt komplext. Att alltid använda useReducer skulle förmodligen innebära onödigt komplex lösning för en icke-komplex utmaning.
 
