@@ -58,9 +58,10 @@ Code blocks and PostCards share the same surface/border styling via CSS variable
 ## Content
 
 - Blog posts are MDX files in `src/content/blog/`
-- Frontmatter: `title`, `date`, `summary`, `preamble` (optional)
+- Frontmatter: `title`, `date`, `summary`, `preamble` (optional), `updatedAt` (optional)
 - Custom MDX components: `FunText`, `EmojiList`, `EmojiListItem`, `Card`, `ResponsiveGrid`
 - Syntax highlighting: Expressive Code (github-dark theme) with `showLineNumbers` and line highlighting (`{1,3-5}`)
+- **When modifying existing MDX articles, always update the frontmatter with today's date as `updatedAt`**
 
 ## Commands
 
