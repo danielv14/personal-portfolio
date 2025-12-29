@@ -164,12 +164,15 @@ Men för min del såg jag en rad fördelar:
 
 För ett litet tag sedan blev [Tailwind CSS det mest nedladdade CSS-ramverket](https://twitter.com/adamwathan/status/1590877529141051392) på npm dessutom.
 
-## What about Next.js 13 då?
+## Reflektioner kring Next.js 13
 
-Så här på andra sidan av projektet måste jag ändå säga att det var rätt intressant att labba med React server components, även om det var rätt förvirrande i början.
+Det var rätt intressant att labba med React server components, även om det var förvirrande i början. Man fick lära av sig saker man vanligtvis gör i React SPA:er:
 
-Man fick liksom försöka lära av sig grejer som man vanligtvis gör en React SPA:er eller liknande. Inga `useEffect` nödvändigtvis för att hämta data, inga `event.preventDefault()` i formulär i onödan. Inte heller behöver man nödvändigtvis skapa endpoints serverside som React-komponenterna kan slå mot med hjälp av `getServerSideProps()` och prop-drill:a djupt.
+- Inga `useEffect` för att hämta data
+- Inga `event.preventDefault()` i formulär i onödan
+- Inga API-endpoints som komponenter slår mot via `getServerSideProps()`
+- Mindre prop-drilling
 
-Det var helt klart intressant att utforska `/app` foldern så här för första gången och förmodligen är det inte heller den sista då React-världen, eller webb-världen överlag, verkar pendla från SPA:er och mot server-rendering igen.
+Det var helt klart intressant att utforska `/app` foldern och förmodligen inte den sista gången - React-världen verkar pendla tillbaka mot server-rendering igen.
 
-För den som är intresserad finns repot att [kika på här](https://github.com/danielv14/Pic-Palette) och sajten att [besöka här](https://pic-palette.vercel.app/)
+För den som är intresserad finns repot att [kika på här](https://github.com/danielv14/Pic-Palette) och sajten att [besöka här](https://pic-palette.vercel.app/).

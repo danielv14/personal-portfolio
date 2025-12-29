@@ -39,15 +39,12 @@ Komponenten skulle nu alltså resultera i en rosa paragraf på alla skärmstorle
 
 ### Vad kan man då säga om den här lösningen?
 
-Jo... den är väldigt enkel och straight-forward.
+Den är väldigt enkel och straight-forward, men har några nackdelar:
 
-Nackdelen blir dock att den här komponenten själv måste hålla reda på vilken bredd som gäller för att applicera responsiva ändringar.
-
-Den här lösningen innebär att varje komponent måste hålla reda på att det är en mobile-first approach som används i och med `min-width`.
-
-Har man flera komponenter med likande media queries med just `min-width: 700px` hårdkodade i varje komponent måste varje komponent hållas i synk om man ändrar sin breakpoint-skala. Om man vill ändra 700px till 675px exempelvis.
-
-Dessutom säger inte 700px _ingenting_ egentligen. Det beskriver inte vad 700px faktiskt _representerar_ - vilket kanske skulle kunna vara ”Alla medium-skärmar såsom tablets och uppåt”.
+- **Komponenten äger sin egen breakpoint:** Varje komponent måste själv hålla reda på vilken bredd som gäller för responsiva ändringar.
+- **Mobile-first är inte explicit:** Varje komponent måste veta att `min-width` används (och inte `max-width`).
+- **Svårt att hålla synkade:** Har man flera komponenter med `min-width: 700px` hårdkodat måste alla uppdateras om breakpoint-skalan ändras.
+- **Pixelvärden är inte beskrivande:** 700px säger ingenting om vad det representerar - exempelvis "tablets och uppåt".
 
 ## Den lite mer dynamiska och beskrivande lösningen
 
@@ -86,13 +83,11 @@ I just det här exemplet visade det sig dessutom att 700px ligger i mitten på b
 
 ### Några nackdelar?
 
-Självklart finns det några nackdelar med den här lösningen.
+Självklart finns det några nackdelar med den här lösningen:
 
-Varje komponent som ska vara responsiv måste importera breakpoint-skalan som man med fördel har skapat upp i ett slags theme-objekt.
-
-Dessutom måste varje komponent fortfarande hålla koll på att det är `min-width` som gäller och inte `max-width` exempelvis.
-
-Komponenterna måste alltså fortfarande veta vissa implementationsdetaljer kring hur media queries ska användas.
+- Varje responsiv komponent måste importera breakpoint-skalan.
+- Komponenterna måste fortfarande veta att `min-width` gäller (inte `max-width`).
+- Komponenterna behöver alltså fortfarande känna till implementationsdetaljer kring hur media queries ska skrivas.
 
 ## Lösningen á la styled-components
 
