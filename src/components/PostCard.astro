@@ -5,9 +5,10 @@ interface Props {
   summary: string;
   slug: string;
   showDate?: boolean;
+  category?: string;
 }
 
-const { title, date, summary, slug, showDate = true } = Astro.props;
+const { title, date, summary, slug, showDate = true, category } = Astro.props;
 
 const day = date.getDate();
 const year = date.getFullYear();
@@ -19,8 +20,15 @@ const formattedDate = `${day} ${monthNames[date.getMonth()]}, ${year}`;
   href={`/blogg/${slug}`}
   class="block p-6 rounded-lg bg-surface border border-border hover:bg-surface/80 transition-colors group"
 >
-  {showDate && <time class="text-sm text-text-muted">{formattedDate}</time>}
-  <h3 class:list={["text-xl font-semibold text-text group-hover:underline", { "mt-1": showDate }]}>
+  <div class="flex items-center gap-3">
+    {showDate && <time class="text-sm text-text-muted">{formattedDate}</time>}
+    {category && (
+      <span class="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary">
+        {category}
+      </span>
+    )}
+  </div>
+  <h3 class:list={["text-xl font-semibold text-text group-hover:underline", { "mt-1": showDate || category }]}>
     {title}
   </h3>
   <p class="text-text-muted mt-2">{summary}</p>
