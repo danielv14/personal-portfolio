@@ -7,9 +7,9 @@ updatedAt: 2025-12-29
 category: Frontend
 ---
 
-Jag håller just nu på att göra den här sajten lite mer _rolig_. Eller `add x because MORE FUN` som jag skriver i commit-meddelanden just nu.
+Jag håller just nu på att göra den här sajten lite mer lekfull.
 
-En idé jag fick var att skapa en React-komponent för att skapa listor, alltså `ul`, `ol` och `li` med emojis istället för bullets och siffor. Tanken är att kunna använda den här komponenten i de `*.mdx` artiklar jag skriver, för att addera <FunText>MORE FUN</FunText>
+En idé jag fick var att skapa en React-komponent för att skapa listor, alltså `ul`, `ol` och `li` med emojis istället för bullets och siffror. Tanken är att kunna använda den här komponenten i de `*.mdx` artiklar jag skriver.
 
 **Slutresultatet ser ut såhär:**
 
@@ -86,7 +86,7 @@ EmojiList.Item = EmojiListItem;
 
 Den typen av export gör att det går att använda enklare i `*.mdx` filer i och med att endast **en komponent** faktiskt behöver importeras, nämligen `EmojiList`. `EmojiListItem` får man på köpet via `<EmojiListItem />`
 
-Slutresultatet som visades i början på denna artikel 👆 ser ut såhär:
+Slutresultatet som visades i början på denna artikel ser ut såhär:
 
 ```tsx showLineNumbers
 <EmojiList as="ul">
@@ -96,4 +96,4 @@ Slutresultatet som visades i början på denna artikel 👆 ser ut såhär:
 </EmojiList>
 ```
 
-Var det superkomplicerat? Njae. Var det revolutionerande? Nope. Men syftet med den här sajten är _delvis_ att jag ska ha en lättillgänglig yta att <FunText>testa roliga grejer</FunText> och de här två komponenterna är ju ändå lite kul 🎉
+Var det superkomplicerat? Nej. Var det revolutionerande? Knappast. Men syftet med den här sajten är delvis att jag ska ha en lättillgänglig yta att experimentera på och de här två komponenterna fyller det syftet.

@@ -14,7 +14,7 @@ Med det sagt så tänkte jag gå igenom lite olika sätt man kan implementera me
 
 > Alla exempel på media queries kommer utgå från en mobile-first approach och använda **@media (min-width: pixelbredd) {}** som exempel.
 
-## Den allra enklaste lösningen 👶🏼
+## Den allra enklaste lösningen
 
 Låt säga att man har en `<Paragraph />` styled-component som ser ut ungefär så här:
 
@@ -49,7 +49,7 @@ Har man flera komponenter med likande media queries med just `min-width: 700px` 
 
 Dessutom säger inte 700px _ingenting_ egentligen. Det beskriver inte vad 700px faktiskt _representerar_ - vilket kanske skulle kunna vara ”Alla medium-skärmar såsom tablets och uppåt”.
 
-## Den lite mer dynamiska och beskrivande lösningen 🧒🏼
+## Den lite mer dynamiska och beskrivande lösningen
 
 Hur gör man föregående lösning lite mer dynamisk på så sätt att varje komponent inte själva behöver hålla reda på de faktiska skärmbredderna? Samtidigt som man får en media query som är lite mer beskrivande?
 
@@ -94,7 +94,7 @@ Dessutom måste varje komponent fortfarande hålla koll på att det är `min-wid
 
 Komponenterna måste alltså fortfarande veta vissa implementationsdetaljer kring hur media queries ska användas.
 
-## Lösningen á la styled-components 👨🏻‍🎓
+## Lösningen á la styled-components
 
 Hur bygger man då egentligen vidare på föregående exempel? Hur får man en media-query-lösning som är mer i linje med hur styled-components fungerar?
 
@@ -137,7 +137,7 @@ export const media = {
 }
 ```
 
-Oj...Nu blev det kanske lite mycket på en gång 🧐 Let's break it down:
+Nu blev det kanske lite mycket på en gång. Låt oss gå igenom det steg för steg:
 
 1. Den minsta funktionen `getBreakpointScaleFromTheme` tar som parameter en breakpoint, som i det här fallet är **small**, **medium**, eller **large**.
 2. Den funktionen använder i sin tur `css()`. Vad är då det för något? Det är en hjälpfunktion som exponerar hela ThemeContext, men även eventuella props på en styled component.
@@ -191,10 +191,8 @@ Det här tredje exemplet må vara lite mer komplicerat men kommer, enligt mig, m
 - Komponenter är **inte hårt kopplade till den konfiguration** som säger vilka exakta skärmbredder som utgör en viss breakpoint. Den konfigurationen är inte intressant för komponenterna egentligen.
 - Breakpoint-skalan har till **stor del abstraherats bort från komponenterna** i och med att avläsning av Context sker i hjälpfunktionerna.
 
-🙋🏼‍♂️ Personligen gillar jag det här sista sättet att jobba med media queries. För denna sajt så landade jag i en lösning väldigt lik det tredje exemplet, i alla fall i skrivande stund. Detta för att jag redan nyttjar ett tema-objekt som läses in i Context och tillgängliggörs i mina styled-components.
+Personligen gillar jag det här sista sättet att jobba med media queries. För denna sajt så landade jag i en lösning väldigt lik det tredje exemplet, i alla fall i skrivande stund. Detta för att jag redan nyttjar ett tema-objekt som läses in i Context och tillgängliggörs i mina styled-components.
 
 När jag då skriver mina komponenter behöver jag inte bry mig om implementationsdetaljer kring hur media queries struktureras i det specifika projektet.
 
-Jag importerar bara media-objektet och slipper fokusera på _hur_ jag ska skriva mina media queries varje gång en komponent ska ha responsivitet. Istället fokuserar jag helt på _vad_ som ska hända vid varje breakpoint istället.
-
-Ganska smidigt ändå!
+Jag importerar bara media-objektet och slipper fokusera på _hur_ jag ska skriva mina media queries varje gång en komponent ska ha responsivitet. Istället fokuserar jag helt på _vad_ som ska hända vid varje breakpoint.

@@ -37,7 +37,7 @@ Räcker det då att fortsätta använda useState tillsammans med ett objekt ist�
 
 Flera individuella useState-variabler, ett enda state-objekt och sen useReducer. Det är i stora drag de tre olika stadier som jag och en kollega gick igenom när vi för ett tag sedan i ett projekt skulle bygga ett multi-stegs formulär. Ett formulär som involverade datahämtning via ett API och där de olika formulär-stegen hade beroenden av state mellan sig.
 
-## Fas 1: useState-variabler everywhere!
+## Fas 1: useState-variabler överallt
 
 Jag och en kollega skulle som sagt bygga ett formulär som hade flera olika steg. Kortfattad och simplifierat skulle formuläret bete sig så här:
 
@@ -168,7 +168,7 @@ All faktiskt state-hantering lyftes ut till en separat fil. Behövde vi se hur s
 
 ## Summering
 
-Phew! Där var vi i mål!
+Där var vi i mål.
 
 Vad kan man då dra för summerande slutsatser av det hela? Ska man strunta i useState helt och istället använda useReducer? Absolut inte! Hook:en useState är väldigt bra om man har ett state som inte är speciellt komplext. Att alltid använda useReducer skulle förmodligen innebära onödigt komplex lösning för en icke-komplex utmaning.
 

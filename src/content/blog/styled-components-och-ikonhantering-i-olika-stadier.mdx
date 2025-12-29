@@ -18,7 +18,7 @@ Det här är en liten sammanfattning om hur ikonhanteringen ändrades i tre olik
 
 > Jag går här inte in i detalj igenom hur styled-components samt styled-icons fungerar utan jag använder mer de två för att visa ett exempel på hur man kan strukturera ui-komponenter med React och tar upp några saker att tänka på.
 
-## Skapa komponenter bara - hur svårt ska det vara? 🤷‍♂️
+## Skapa komponenter bara - hur svårt ska det vara?
 
 När jag skapde den första ikonen var jag inte speciellt brydd om varken återanvändbarhet eller potentiellt duplicerad kod. Jag behövde bara skapa några mindre ikonkomponenter för att visa upp ikoner i headern och footern.
 
@@ -57,7 +57,7 @@ Perfekt - nu hade jag en ikon med samma styling men som representerar "Light mod
 **Men vänta lite nu...** Bägge komponenterna `iconDarkMode.tsx` och `iconLightMode.tsx` ansvarar för en generell styling samt bestämmer vilken ikon från styled-icons som ska användas.
 Det är inte speciellt skalbart ifall jag behöver **ändra standard stylingen** eller **lägga till ännu fler ikoner** - mer kod skulle dupliceras. Nått måste man väl kunna göra åt det problemet?
 
-## Skapa en återanvändbar default styling 👨‍🎨
+## Skapa en återanvändbar default styling
 
 Som med så mycket annat ville jag lägga till ny funktionalitet. Ikonerna skulle ha en liten effekt med `transform: translateY(2px)` när man skulle klicka på dom.
 Jag behövde råda bot på den duplicerade stylingen.
@@ -106,9 +106,9 @@ export const IconLightMode = styled(Sunrise)<IconProps>`
 IconLightMode.displayName = 'IconLightMode';
 ```
 
-**Perfekt!** Nu var duplicerad kod borttagen och endast en källa till ikonstyling existerade. Nu måste väl allt vara frid och fröjd?
+Nu var duplicerad kod borttagen och endast en källa till ikonstyling existerade. Men var allt löst?
 
-## Skapa komponenter med (ett) tydligt ansvar 🙋‍♂️
+## Skapa komponenter med (ett) tydligt ansvar
 
 Det var ändå något som inte kändes helt rätt. Alla ikoner som bygger vidare på `iconBase.ts` ansvarar inte _bara_ för vilken svg-ikon de importerar och använder sig av. De ansvarar _även_ för att se till att ikonerna applicerar den grundläggande stylingen från `iconBase.ts`.
 
