@@ -23,7 +23,7 @@ const formattedDate = `${day} ${monthNames[date.getMonth()]}, ${year}`;
   <div class="flex items-center gap-3">
     {showDate && <time class="text-sm text-text-muted">{formattedDate}</time>}
     {category && (
-      <span class="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary">
+      <span class="text-xs px-2 py-0.5 rounded-full border border-border text-text-muted">
         {category}
       </span>
     )}
