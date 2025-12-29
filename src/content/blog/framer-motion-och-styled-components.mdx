@@ -21,7 +21,7 @@ Hur gör man då för att lägga till animationer med Framer Motion till en reac
 
 Låt säga att man har en `Card` styled-components som ser ut ungefär så här:
 
-```ts showLineNumbers
+```ts title="src/card.ts" showLineNumbers
 import styled from 'styled-components';
 
 export const Card = styled.div`
@@ -40,7 +40,7 @@ Komponenten `Card` sätter lite styling såsom borders och färger utifrån dive
 
 Låt säga att man då har en annan komponent som använder sig av `Card`, kanske en `CardProject` komponent:
 
-```tsx showLineNumbers
+```tsx title="src/cardProject.tsx" showLineNumbers
 import React from 'react';
 import { Card } from './card';
 
@@ -72,7 +72,7 @@ Det handlar alltså om små justeringar för att ändra implementationen av en k
 
 Som tidigare nämnt så använder sig ju Framer Motion av **motion components** och vi behöver alltså ändra `Card` till att bli en sådan:
 
-```ts {2,4} showLineNumbers
+```ts title="src/card.ts" {2,4} showLineNumbers
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -89,7 +89,7 @@ Så enkelt kan det vara att refaktorera en befinlig styled-component av bli en �
 
 Nu när `Card` är en **styled motion component** behöver den lite `props` för att animeras som man vill:
 
-```tsx {2,10,11,12,13,14,15,16,17,18,19,20,24} showLineNumbers
+```tsx title="src/cardProject.tsx" {2,10,11,12,13,14,15,16,17,18,19,20,24} showLineNumbers
 import React from 'react';
 import { MotionProps } from 'framer-motion';
 import { Card } from './card';

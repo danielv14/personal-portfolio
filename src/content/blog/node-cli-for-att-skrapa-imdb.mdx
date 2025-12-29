@@ -52,7 +52,7 @@ Skapa därefter en **index.js** fil som agerar själva utgångspunkten för CLI:
 
 Följande kod finns i min **index.js**:
 
-```javascript showLineNumbers
+```javascript title="index.js" showLineNumbers
 const clear = require('clear');
 const inquirer = require('inquirer');
 
@@ -98,7 +98,7 @@ Inuti detta promise skapas först en ny instans av `queryHelper` klassen och en 
 
 Men innan vi går igenom själva IMDb klassen där själva tyngdlyften i det här CLI:t händer går vi igenom queryHelper klassen då den (i alla fall för version 1.0.0) är relativt liten.
 
-```javascript {7,8,9,11,12,13} showLineNumbers
+```javascript title="queryHelper.js" {7,8,9,11,12,13} showLineNumbers
 exports.queryHelper = class {
   /**
    * Creates an instance of queryHelper.
@@ -135,7 +135,7 @@ Slutligen har vi kvar själva IMDb klassen **IMDb.js** som består av ett antal 
 
 Först så används require för att få in de övriga npm-paket som ännu inte använts, men också queryHelper klassen:
 
-```javascript showLineNumbers
+```javascript title="IMDb.js" showLineNumbers
 const request = require('request');
 const cheerio = require('cheerio');
 const ora = require('ora');
@@ -148,7 +148,7 @@ const { queryHelper } = require('./queryHelper');
 
 Därefter skapas och exporteras själva IMDb klassen med en konstruktor:
 
-```javascript showLineNumbers
+```javascript title="IMDb.js" showLineNumbers
 exports.IMDb = class {
 
   /**
@@ -171,7 +171,7 @@ Konstruktorn har två parametrar och det är alltså själva söksträngen i des
 
 Därefter innehåller klassen en statisk metod för att visa lite ascii-text. Metoden är statisk eftersom att den anropas i **index.js** innan en instans av själva IMDb klassen har skapats. Eftersom att metoden anropas innan klassen har skapats går den inte att använda IMDbfärgen som deklarerats som `this.outputColor` i klassens konstruktor. Det kan ändå vara bra att ha denna färg sparad om den gula färgen skulle användas längre fram till andra saker också.
 
-```javascript showLineNumbers
+```javascript title="IMDb.js" showLineNumbers
   /**
    * Static method to display IMDB header for the CLI
    *

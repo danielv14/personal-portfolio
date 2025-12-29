@@ -57,7 +57,7 @@ Men hur använder man då ett sånt där `schema` för att parsa searchParams? I
 
 Jag började med att skapa ett schema för `/search` sidan, där `query`, `page` och `perPage` var aktuella searchParams:
 
-```ts showLineNumbers
+```ts title="schemas/QuerySchema.ts" showLineNumbers
 import { z } from 'zod';
 
 export const QuerySchema = z.object({
@@ -82,7 +82,7 @@ Observera att schemat tar höjd för att transformera `page` och `perPage` till 
 
 Schemat för `/list` sidan blir väldigt snarlik:
 
-```ts showLineNumbers
+```ts title="schemas/ListSchema.ts" showLineNumbers
 import { z } from 'zod';
 
 export const ListSchema = z.object({
@@ -111,7 +111,7 @@ Zod har ett smidigt sätt att hantera den här sortens problem. Scheman har stö
 
 Det jag då kunde göra var att sätta upp ett separat schema för paginering och sen slå ihop det schemat med `QuerySchema` och `ListSchema`:
 
-```ts showLineNumbers
+```ts title="schemas/PaginationSchema.ts" showLineNumbers
 import { z } from 'zod';
 
 export const PaginationSchema = z.object({
@@ -129,7 +129,7 @@ export const PaginationSchema = z.object({
 
 Sen i exempelvis `schemas/ListSchema.ts` såg det ut såhär:
 
-```ts showLineNumbers {8}
+```ts title="schemas/ListSchema.ts" {8} showLineNumbers
 import { z } from 'zod';
 import { PaginationSchema } from './PaginationSchema';
 

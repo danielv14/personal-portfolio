@@ -21,7 +21,7 @@ Det fungerar helt okej att använda axios modulen direkt i Vue komponenterna, vu
 Det i det här läget man kan använda sig av en av fördelarna med Nuxt, nämligen [plugin-systemet](https://nuxtjs.org/guide/plugins), för att skapa ett request plugin.
 Det man då kan göra är att skapa en fil **plugins/api.js** som man i sin **nuxt.config.json** inkluderar på följande vis:
 
-```javascript showLineNumbers
+```javascript title="nuxt.config.json" showLineNumbers
 // Other configuration
 plugins: [
 '@/plugins/api',
@@ -33,7 +33,7 @@ Det innebär att Nuxt kommer läsa in **plugins/api.js** före applikationen sta
 
 Det är i **plugins/api.js** man gör en ”inject” för att registrera sitt plugin och gör det tillgängligt i applikationen.
 
-```javascript {5,6} showLineNumbers
+```javascript title="plugins/api.js" {5,6} showLineNumbers
 import API from './some/place/';
 export default ({ $axios }, inject) => {
   // Create new api class with provided nuxt axios module
@@ -47,7 +47,7 @@ Pluginet importerar en ”API” klass och skapar upp en ny instans av klassen o
 
 Det är då alltså i `API` klassen som alla requests via axios modulen görs. Förenklat skulle man kunna skapa en `API.js` fil med följande innehåll:
 
-```javascript showLineNumbers
+```javascript title="API.js" showLineNumbers
 class API {
 	constructor({ request }) {
 		// this.request will reference nuxt axios mudule
@@ -62,7 +62,7 @@ Därefter är det bara att fylla på med de metoder som man anser behövs, konfi
 När väl pluginet är registrerat är det bara att börja använda `this.$api` i applikationen och exempelvis alla vue komponenter har tillgång till ett enkelt API utan att behöva göra alla HTTP anrop själva och behöva tänka på eventuell parsning av svar, token hantering med mera.
 En async method i en vue komponent skulle till exempel kunna göra ett anrop med följande syntax:
 
-```javascript {4,5,6} showLineNumbers
+```javascript title="example-vue-component.vue" {4,5,6} showLineNumbers
 // Example of a vue component with methods
 methods: {
 	async getQuote() {

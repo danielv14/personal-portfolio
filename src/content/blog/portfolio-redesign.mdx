@@ -59,7 +59,7 @@ På så sätt behöver man inte bry sig och hålla koll på att switcha mellan f
 
 Utfrifrån färsättning i min Figmadesign skapade jag ett interface för all styling som jag visste behövde vara temad utifrån ett ljust och ett mörkt tema:
 
-```typescript {1,2,3,4,5,6,7,8,9} showLineNumbers
+```typescript title="src/theme/colors.ts" {1,2,3,4,5,6,7,8,9} showLineNumbers
 interface ColorTheme {
   backgroundColor: string;
   backgroundColorSecondary: string;
@@ -95,7 +95,7 @@ Dessa tema-objekt används i sin tur i ett annat objekt som representerar temat 
 
 Men just de temade variablerna konverteras till css variabler med en hjälpfunktion:
 
-```typescript showLineNumbers
+```typescript title="src/theme/setupThemeVariables.ts" showLineNumbers
 export const setupThemeVariables = (theme: ColorTheme) => css`
   --bg-color: theme.backgroundColor;
   --bg-color-secondary: theme.backgroundColorSecondary;
@@ -109,7 +109,7 @@ export const setupThemeVariables = (theme: ColorTheme) => css`
 
 Hela temat importeras och temade css variabler sätts:
 
-```typescript showLineNumbers
+```typescript title="src/components/ui/globalStyle.tsx" showLineNumbers
 export const GlobalStyle = createGlobalStyle`
   :root {
     /* Default to light theme */
@@ -138,7 +138,7 @@ Till och med **marginaler är komponenter**. Jag har arbetat en del i ett Reactb
 
 I **src/components/ui** i det här repot har jag skapat upp en del styled components som i princip bara har med layout och design att göra. Däri finns knappar, responsiva containers, ikoner och till och med marginaler:
 
-```typescript showLineNumbers
+```typescript title="src/components/ui/margins/marginLarge.tsx" showLineNumbers
 import styled from 'styled-components';
 
 export const MarginLarge = styled.div`
@@ -150,7 +150,7 @@ MarginLarge.displayName = 'MarginLarge';
 
 Med hjälp av marginaler och andra styled components som bara är ui-baserade kan man skapa andra komponenter väldigt snabbt, så som den här komponenten som hjälper besökaren på denna sajt navigera mellan artiklar:
 
-```typescript showLineNumbers
+```typescript title="src/components/cardPost.tsx" showLineNumbers
 export const CardPost: React.FC<CardPostProps> = ({ post }) => (
   /* UI komponent som sätter skuggning, temad bakgrundsfärg och hover effekt */
   <Card style={{ cursor: 'pointer' }}>

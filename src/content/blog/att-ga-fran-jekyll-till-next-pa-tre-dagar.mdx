@@ -55,7 +55,7 @@ I och med den här flytten till Next.js är läget däremot annorlunda. Jag beh�
 I dag när man bygger modernare frontends använder man kanske React, Angular eller Vue för att bygga återanvändbara komponenter.  
 Något sådant komponenttänk fanns inte i strukturen för mitt portfolio direkt. Eller jo... till viss del kunde man skapa "komponenter" med Jekyll i och med html templates och scopa css till dem.
 
-```html {7} showLineNumbers
+```html title="_includes/sections/projects.html" {7} showLineNumbers
 <!-- Assign sorted order for portfolio projects -->
 {% assign sorted_portfolio = site.projects | sort:"order" %}
 <!-- loop through sorted portfolio items -->
@@ -77,7 +77,7 @@ Detta innebar att skulle man inkludera templaten med `{% include _portfolioCard.
 
 **\_portfolioCard.html** såg i sin tur ut såhär:
 
-```html showLineNumbers
+```html title="_includes/_portfolioCard.html" showLineNumbers
 <!-- Card template for portfolio items -->
 <!-- Different left or right layout depending on the front matter -->
 <div class="col-md-6 {% if portfolio.card-layout == 'right' %}col-md-push-6{% endif %}">
