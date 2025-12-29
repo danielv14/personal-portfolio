@@ -26,9 +26,8 @@ const formattedUpdatedAt = updatedAt ? formatDate(updatedAt) : null;
   <article>
     <header class="mb-8">
       <div class="text-sm text-text-muted">
-        <span>{readingTime} min läsning</span>
-        <span> · </span>
         <time>{formattedDate}{formattedUpdatedAt && <span> · uppdaterad {formattedUpdatedAt}</span>}</time>
+        <p>{readingTime} min läsning</p>
       </div>
       <h1 class="text-3xl md:text-4xl font-bold mt-2">{title}</h1>
       {preamble && (
