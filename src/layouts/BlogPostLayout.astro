@@ -25,7 +25,7 @@ const formattedUpdatedAt = updatedAt ? formatDate(updatedAt) : null;
 <BaseLayout title={title} description={summary}>
   <article>
     <header class="mb-8">
-      <div class="text-sm text-text-muted">
+      <div class="text-xs text-text-muted opacity-70">
         <time>{formattedDate}{formattedUpdatedAt && <span> · uppdaterad {formattedUpdatedAt}</span>}</time>
         <p>{readingTime} min läsning</p>
       </div>
