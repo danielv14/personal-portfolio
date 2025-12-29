@@ -58,6 +58,24 @@ html {
   color: #fff;
 }
 
+/* Blockquotes - match card styling */
+.prose blockquote {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  border-left: none;
+  font-style: normal;
+}
+
+.prose blockquote p:first-child {
+  margin-top: 0;
+}
+
+.prose blockquote p:last-child {
+  margin-bottom: 0;
+}
+
 /* Hide empty code block headers */
 .expressive-code figcaption.header:empty {
   display: none;
