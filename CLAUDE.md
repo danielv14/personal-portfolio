@@ -60,6 +60,7 @@ Code blocks and PostCards share the same surface/border styling via CSS variable
 - Custom MDX components: `FunText`, `EmojiList`, `EmojiListItem`, `Card`, `ResponsiveGrid`
 - Syntax highlighting: Expressive Code (github-dark theme) with `showLineNumbers` and line highlighting (`{1,3-5}`)
 - **When modifying existing MDX articles, always update the frontmatter with today's date as `updatedAt`**
+- **When creating new posts**: Scan existing blog posts first to see which categories are already in use, and prefer reusing an existing category for consistency. If no existing category fits, it's fine to create a new one.
 
 ## Commands
 
