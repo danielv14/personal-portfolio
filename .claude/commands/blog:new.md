@@ -12,7 +12,7 @@ Before diving into the conversation, do some quick research:
 
 1. **Scan for existing categories** - Look through `src/content/blog/*.mdx` frontmatter to find which categories are currently in use. Prefer these for consistency, but suggest a new one if nothing fits.
 
-2. **Read recent posts for tone** - Read 2-3 of the most recent blog posts (by date in frontmatter) to get a feel for my writing style. Older posts may not reflect how I write today.
+2. **Read recent posts for tone** - Read up to 10 of the most recent blog posts (from the past year, based on date in frontmatter) to get a feel for my current writing style. Older posts may not reflect how I write today.
 
 Use this context naturally in our conversation - don't dump it all at once.
 
