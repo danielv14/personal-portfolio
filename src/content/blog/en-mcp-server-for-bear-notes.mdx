@@ -1,0 +1,33 @@
+---
+title: En MCP-server för Bear notes
+summary: 'Från iOS-genväg till att prata med mina anteckningar via Claude Code.'
+date: 2025-12-30T12:00:00
+category: AI
+---
+
+I en av mina Bear-anteckningar håller jag koll på vår elförbrukning. Varje månad noterar jag mätarställningen och räknar ut hur mycket el vi dragit.
+
+Tidigare skötte jag det med en iOS-genväg. Den frågade efter förra månadens mätarställning och den nuvarande, räknade ut förbrukningen och priset. Det funkade, men det var pilligt. Jag var tvungen att själv leta upp förra månadens värde i anteckningen först.
+
+En stund funderade jag på att bygga en hel webbapp för det här. En liten Hono-backend med en frontend. Kanske med statistik och grafer, snittförbrukning per månad, jämförelser mellan sommar och vinter. Men det behövde persistent lagring, alltså hitta en bra gratis databashosting eller köra SQLite lokalt någonstans. Jämfört med iOS-genvägen som bara funkade kändes det som för mycket teknisk skuld för vad jag fick ut av det.
+
+Med en MCP-server behöver jag inte bygga ett UI för statistiken. Jag kan bara be Claude Code slica datan hur jag vill. Summera månader, räkna ut snitt, jämföra perioder. Flexibelt nog för mig.
+
+Så jag vibe-codade en MCP-server istället. Nu kan Claude Code prata direkt med Bear.
+
+## Hur servern fungerar
+
+Hybridarkitektur:
+
+- **Läsoperationer** (söka, lista, hämta) går direkt mot Bears SQLite-databas med råa SQL-frågor. Lite fragilt, men Bear saknar ett riktigt API. Vi får se över tid hur mycket jag måste patcha sql-frågorna
+- **Skrivoperationer** (skapa, uppdatera, ta bort) går via Bears URL-schema API
+
+Åtta verktyg exponeras: `bear_search`, `bear_get_note`, `bear_create_note`, `bear_append`, `bear_replace_content`, `bear_list_tags`, `bear_list_by_tag`, `bear_trash_note`.
+
+## Elräkningskommandot
+
+Jag skapade ett eget Claude Code-kommando, `bear:calculate-electricity`. Det frågar mig bara efter den aktuella mätarställningen. Sen hämtar det automatiskt förra månadens värde från Bear-anteckningen via MCP-servern, räknar ut förbrukning och kostnad, och uppdaterar anteckningen.
+
+Det som tidigare krävde manuellt letande och en iOS-genväg är nu ett kommando i terminalen. Och som bonus kan jag chatta med mina anteckningar om jag vill.
+
+Koden finns på [GitHub](https://github.com/danielv14/bear-notes-mcp-server).
