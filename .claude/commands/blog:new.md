@@ -44,6 +44,8 @@ Suggest a few different ways to structure the post. Be opinionated - tell me wha
 
 Write a draft based on our conversation. Match the tone of my existing posts - personal, practical, not overly formal. Think out loud in the text where appropriate.
 
+Use formatting that serves the content: subheadings to break up longer posts, lists when comparing options, blockquotes sparingly for emphasis, and inline `code` for function/command names. For code blocks, always specify the correct language (e.g. `tsx`, `typescript`, `bash`, `json`) to get proper syntax highlighting.
+
 After the draft, ask what's working and what isn't. Be ready to:
 - Rewrite sections that don't land
 - Try a completely different angle if needed
