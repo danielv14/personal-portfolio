@@ -58,6 +58,11 @@ html {
   color: #fff;
 }
 
+/* Blockquotes - no italic by default */
+.prose blockquote {
+  font-style: normal;
+}
+
 /* Hide empty code block headers */
 .expressive-code figcaption.header:empty {
   display: none;
