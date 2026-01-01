@@ -1,0 +1,43 @@
+---
+title: Showtime MCP
+summary: 'En MCP-server för att söka filmer, hitta rekommendationer och kolla var saker går att streama. Byggt med OpenCode.'
+date: 2026-01-01T12:00:00
+category: AI
+---
+
+Efter att ha byggt en [MCP-server för Bear notes](/blogg/en-mcp-server-for-bear-notes) ville jag testa något lite mer ambitiöst. Samtidigt hade jag sett lite buzz kring OpenCode och var nyfiken på vad grejen var. Så jag slog ihop de två sakerna: bygga en MCP-server för film- och TV-data, och göra det helt i OpenCode.
+
+## OpenCode-intryck
+
+Gränssnittet har en sidebar som håller koll på kontext och vilka filer som rörts. Todo-listor syns tydligt. Kändes som bättre DX än Claude Code i terminalen, i alla fall om man kör det rent utan VS Code-integrationen. Måste prova det mer för att avgöra om det är något att fortsätta med, men det spontana intrycket var trevligt.
+
+## Från ett API till två
+
+Från början tänkte jag bygga mot OMDB:s API. Det räckte ett tag, men när jag började ställa frågor via servern - typ "visa alla filmer med den här regissören" - så svarade OpenCode att det inte gick smidigt. OMDB kräver ett API-anrop per film, så att hämta en hel filmografi blir tungt.
+
+Tipset jag fick från OpenCode var att integrera TMDB också. Där kan man söka på personer och få tillbaka hela filmografin i ett anrop. TMDB öppnade också upp för frågor som kändes naturliga att ställa men som OMDB inte stödjer - typ "ge mig trendande sci-fi-filmer i år" eller "vilka serier liknar Stranger Things?". Rekommendationer och trending-listor är inbyggt i TMDB:s API.
+
+Så nu använder servern båda API:erna beroende på vad som passar bäst.
+
+## Vad den kan göra
+
+Det blev en rätt omfattande server till slut:
+
+- Söka och hämta info om filmer och serier
+- Hitta rekommendationer baserat på en film eller serie
+- Kolla var något finns att streama
+- Söka på skådespelare och regissörer, hämta filmografier
+- Hämta trending-listor
+
+Ratings kommer från flera källor - IMDb, Rotten Tomatoes, Metacritic.
+
+Några exempel på frågor man kan ställa:
+
+- "Should I bother watching Game of Thrones or does it get worse over time?"
+- "Give me a list of the highest rated sci-fi movies for 2024 and 2025 and order them by rating"
+
+## Framåt
+
+Just nu måste man klona repot och köra servern lokalt. Har en tanke om att göra om den till en Cloudflare Worker så att det blir enklare att ansluta till den utan lokal setup, men vi får se.
+
+Koden finns på [GitHub](https://github.com/danielv14/showtime-mcp).
