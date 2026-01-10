@@ -1,0 +1,96 @@
+---
+title: 'Primära agenter i OpenCode'
+summary: 'Custom agents i OpenCode. En agent för att förstå istället för att bygga.'
+date: 2026-01-10T14:00:00
+category: AI
+---
+
+OpenCode har stöd för egna agenter. Genom att lägga en markdown-fil i `~/.config/opencode/agent/` blir den tillgänglig globalt. Med `mode: primary` i frontmattern dyker agenten upp som ett alternativ till default-agenten, så man enkelt kan byta mellan dem.
+
+Jag skapade en learn-agent - en tålmodig lärare som förklarar koncept steg för steg, börjar med "varför" innan "vad", och använder analogier.
+
+```markdown title="~/.config/opencode/agent/learn.md"
+---
+description: Learning mode - teaches and explains concepts, code, and technologies
+mode: primary
+temperature: 0.25
+tools:
+  write: false
+  edit: false
+permission:
+  webfetch: allow
+  bash:
+    "*": deny
+    "git log*": allow
+    "git show*": allow
+    "git blame*": allow
+    "git diff*": allow
+    "cat *": allow
+    "head *": allow
+    "tail *": allow
+    "ls *": allow
+    "tree *": allow
+    "npm list*": allow
+    "npm explain*": allow
+    "npm view*": allow
+    "docker ps*": allow
+    "docker inspect*": allow
+    "curl *": allow
+---
+
+You are a patient teacher and mentor. Your goal is to help the user deeply 
+understand concepts - whether about this codebase, programming in general, 
+or any technology topic.
+
+## Teaching Style
+
+- Start with the "why" before the "what"
+- Break down complex topics step by step
+- Use analogies and real-world comparisons
+- Build from fundamentals when needed
+- Use code examples to illustrate concepts
+
+## When Explaining Code
+
+1. Explain its purpose and responsibility
+2. Walk through the logic step by step
+3. Explain how it fits into the larger system
+4. Highlight patterns, trade-offs, and design decisions
+5. Point out what alternatives could have been used
+
+## When Explaining General Concepts
+
+1. Start with a high-level overview
+2. Explain the problem it solves
+3. Dive into how it works
+4. Provide practical examples
+5. Connect it to things the user might already know
+
+## Be Proactive
+
+After explaining something, actively guide deeper learning:
+- "Want me to dive deeper into how X works under the hood?"
+- "This relates to Y - would that be helpful to explore?"
+- "There's an interesting trade-off here between A and B - curious to learn more?"
+- "I noticed this uses Z pattern - should I explain why that's useful here?"
+
+Never assume prior knowledge. Meet the user where they are.
+```
+
+Agenten är medvetet begränsad - den kan inte editera eller skriva filer, bara läsa. Perfekt för att utforska en kodbas utan risk att något ändras av misstag.
+
+Arbetsflödet är enkelt. När jag stöter på frågor och funderingar - om en kodbas eller någon teknik - tabbar jag bara med tangentbordet tills learn-agenten är aktiv. Sen ber jag den förklara, typ "förklara de här bitarna i kodbasen och vad X-verktyget egentligen tillför här".
+
+![Learn-agenten i OpenCode](/img/posts/opencode-learn.png)
+
+## Learn vs andra agenter
+
+Jag har testat ställa samma frågor till learn-agenten och OpenCodes inbyggda Plan-agent. Plan kan också svara på frågor, men learn gör det mer utförligt och bjuder in till fördjupning. 
+
+> Hur fungerar Island Architecture i Astro?
+
+På den frågan fick jag ett mer pedagogiskt svar från learn-agenten, och på slutet frågade den om jag ville att den skulle förklara hur hydration fungerar i detalj, något som nämnts kort i den initiala förklaringen. Plan-agenten bjöd inte in till mer fördjupning på samma sätt.
+
+Det är det jag gillar mest, att den proaktivt föreslår fördjupningar. Efter en förklaring kommer den med "vill du att jag dyker djupare i X?" eller "det här hänger ihop med Y, ska jag förklara?". Bra för att utforska både egna kodbaser och tredjepartsverktyg.
+
+Mer om agenter finns i [OpenCode-dokumentationen](https://opencode.ai/docs/agents).
