@@ -1,7 +1,8 @@
 ---
-title: 'Skymning: Hur vibe-coding gav mig tillbaka hobbyprojekten'
+title: 'Skymning: När AI fick hobbykodandet att bli kul igen'
 summary: 'Det blev kul igen när jag slutade skriva all kod själv.'
 date: 2026-01-07T14:00:00
+updatedAt: 2026-01-10
 category: AI
 preamble: 'En reflektion över julledigheten, vibe-coding, och att hitta tillbaka till något jag trodde jag tappat.'
 ---
@@ -12,47 +13,39 @@ Men över julledigheten byggde jag en hel app på några kvällar. Utan att skri
 
 > Det har blivit kul att utforska idéer igen.
 
-## Appen
+## Vad jag byggde
 
 Skymning är en dagboks- och moodtracking-app. Man chattar med en AI som hjälper en reflektera över dagen, väljer ett humör, och får en sammanfattning. Över tid kan man se trender och veckosammanfattningar.
 
 Jag valde det här projektet för att jag ville använda det jag byggde. Och för att testa att vibe-coda något med en riktig frontend, inte bara backend-servrar som mina MCP-projekt.
 
-## Idé till MVP på en kväll
+## Från markdown till fungerande app
 
 Idéer som tidigare kunde ta flera veckor kan jag nu testa på en kväll. Det går helt enkelt snabbare när man promptar istället för att skriva varje rad själv.
 
 Allt började med `git init` och en markdown-fil. Ingen scaffolding, inga CLI-verktyg för att sätta upp projektet. Bara en `project-spec.md` där jag beskrev vad appen skulle göra, och en `plan.md` med faserna för att ta sig dit. AI:n byggde utifrån specen.
 
-## Bear som feature-backlog
+## Anteckningar som blir kod
 
 Eftersom jag har en [MCP-server för Bear](/blogg/en-mcp-server-for-bear-notes) kunde jag skriva lösa feature-idéer i anteckningar när de dök upp. Sen bad jag OpenCode läsa anteckningarna och förfina dem till riktiga feature-dokument i repot.
 
-Tankarna förfinades i markdown-filer så att helt nya sessioner kunde plocka upp arbetet utan att behöva så mycket initial kontext. En idé som började som en lös anteckning blev till kod via några promptar. Det blev ett rätt asynkront sätt att jobba - tänka när man har tid, förfina när man har tid, implementera när man har tid.
+Tankarna förfinades i markdown-filer så att helt nya sessioner kunde plocka upp arbetet utan att behöva så mycket initial kontext. En idé som började som en lös anteckning blev till kod via några promptar. Det blev ett rätt asynkront sätt att jobba. Tänka när man har tid, förfina när man har tid, implementera när man har tid.
 
 ## Snabbare loopar, billigare experiment
 
-När AI skriver koden går loopen från tanke till färdig feature mycket snabbare än när man gör allt själv. Men det är inte bara hastigheten. Det blir också lättare att testa idéer som man inte vet om de håller. Om det visar sig att en idé var dålig har man inte lagt ned timmar på att koda den - bara några minuter på att prompta fram den. Lättare att slänga och prova något annat. Mindre sunken cost.
+När AI skriver koden går loopen från tanke till färdig feature mycket snabbare än när man gör allt själv. Men det är inte bara hastigheten. Det blir också lättare att testa idéer som man inte vet om de håller. Om det visar sig att en idé var dålig har man inte lagt ned timmar på att koda den, bara några minuter på att prompta fram den. Lättare att slänga och prova något annat. Mindre sunken cost.
 
-## AI som bollplank
+AI är också ett bra bollplank för att utforska områden man inte kan så bra. Istället för att söka upp dokumentation och läsa mig in på saker kunde jag be AI förklara saker utifrån det jag faktiskt höll på att bygga. TanStack Start var nytt för mig. Drizzle likaså. Men med Context7 som MCP-server kunde AI:n slå upp dokumentationen och förklara hur saker fungerade, i kontexten av min kod. Jag besökte aldrig dokumentationen själv.
 
-Det är inte bara kodandet som går snabbare. AI är ett bra bollplank för att utforska områden man inte kan så bra. Istället för att söka upp dokumentation och läsa mig in på saker kunde jag be AI förklara saker utifrån det jag faktiskt höll på att bygga.
+## Bun, Opus och inga code reviews
 
-TanStack Start var nytt för mig. Drizzle likaså. Men med Context7 som MCP-server kunde AI:n slå upp dokumentationen och förklara hur saker fungerade - i kontexten av min kod. Jag besökte aldrig dokumentationen själv.
+Bun visade sig passa vibe-coding bra. Ingen byggkedja för TypeScript, inbyggt stöd för SQLite. Smidigt när man vill prototypa snabbt utan att konfigurera en massa. Opus 4.5 träffade rätt för det mesta. Mindre fram och tillbaka än jag förväntat mig.
 
-## Verktygen
-
-Bun visade sig passa vibe-coding bra. Ingen byggkedja för TypeScript, inbyggt stöd för SQLite. Smidigt när man vill prototypa snabbt utan att konfigurera en massa.
-
-Opus 4.5 träffade rätt för det mesta. Mindre fram och tillbaka än jag förväntat mig.
-
-## Tempot
-
-På jobbet finns processer som saktar ner saker. Code review, diskussioner, planering - allt det som gör att saker tar den tid de tar. Hemma kunde jag köra i rasande fart. Prompta, se resultatet, prompta igen.
+På jobbet finns processer som saktar ner saker. Code review, diskussioner, planering. Allt det som gör att saker tar den tid de tar. Hemma kunde jag köra i rasande fart. Prompta, se resultatet, prompta igen. Istället för att vänta på en mänsklig kollega hade jag ett slash-kommando i OpenCode för code reviews som användes flitigt. Feedback-loopen blev mycket snabbare, vilket passar bra för den här typen av mindre produktionskritiska projekt.
 
 Det är skönt att bara prompta sig fram hemma efter en dag av kodande på jobbet. Inte behöva tänka på varje rad, bara beskriva vad jag vill ha och se det hända. **Det har blivit kul att bygga saker igen.**
 
-## Framåt
+## Ett år av förändring
 
 Jag känner mig egentligen sen på bollen. Många utvecklare har använt AI på det här sättet längre än jag, och jag ser mig inte direkt ligga i framkant. Men skillnaden i hur jag förhåller mig till AI och utveckling jämfört med för bara ett år sedan är ändå stor.
 
