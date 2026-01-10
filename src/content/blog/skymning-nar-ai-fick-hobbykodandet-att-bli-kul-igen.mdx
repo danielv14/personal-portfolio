@@ -29,19 +29,19 @@ Allt började med `git init` och en markdown-fil. Ingen scaffolding, inga CLI-ve
 
 Eftersom jag har en [MCP-server för Bear](/blogg/en-mcp-server-for-bear-notes) kunde jag skriva lösa feature-idéer i anteckningar när de dök upp. Sen bad jag OpenCode läsa anteckningarna och förfina dem till riktiga feature-dokument i repot.
 
-Tankarna förfinades i markdown-filer så att helt nya sessioner kunde plocka upp arbetet utan att behöva så mycket initial kontext. En idé som började som en lös anteckning blev till kod via några promptar. Det blev ett rätt asynkront sätt att jobba - tänka när man har tid, förfina när man har tid, implementera när man har tid.
+Tankarna förfinades i markdown-filer så att helt nya sessioner kunde plocka upp arbetet utan att behöva så mycket initial kontext. En idé som började som en lös anteckning blev till kod via några promptar. Det blev ett rätt asynkront sätt att jobba. Tänka när man har tid, förfina när man har tid, implementera när man har tid.
 
 ## Snabbare loopar, billigare experiment
 
-När AI skriver koden går loopen från tanke till färdig feature mycket snabbare än när man gör allt själv. Men det är inte bara hastigheten. Det blir också lättare att testa idéer som man inte vet om de håller. Om det visar sig att en idé var dålig har man inte lagt ned timmar på att koda den - bara några minuter på att prompta fram den. Lättare att slänga och prova något annat. Mindre sunken cost.
+När AI skriver koden går loopen från tanke till färdig feature mycket snabbare än när man gör allt själv. Men det är inte bara hastigheten. Det blir också lättare att testa idéer som man inte vet om de håller. Om det visar sig att en idé var dålig har man inte lagt ned timmar på att koda den, bara några minuter på att prompta fram den. Lättare att slänga och prova något annat. Mindre sunken cost.
 
-AI är också ett bra bollplank för att utforska områden man inte kan så bra. Istället för att söka upp dokumentation och läsa mig in på saker kunde jag be AI förklara saker utifrån det jag faktiskt höll på att bygga. TanStack Start var nytt för mig. Drizzle likaså. Men med Context7 som MCP-server kunde AI:n slå upp dokumentationen och förklara hur saker fungerade - i kontexten av min kod. Jag besökte aldrig dokumentationen själv.
+AI är också ett bra bollplank för att utforska områden man inte kan så bra. Istället för att söka upp dokumentation och läsa mig in på saker kunde jag be AI förklara saker utifrån det jag faktiskt höll på att bygga. TanStack Start var nytt för mig. Drizzle likaså. Men med Context7 som MCP-server kunde AI:n slå upp dokumentationen och förklara hur saker fungerade, i kontexten av min kod. Jag besökte aldrig dokumentationen själv.
 
 ## Bun, Opus och inga code reviews
 
 Bun visade sig passa vibe-coding bra. Ingen byggkedja för TypeScript, inbyggt stöd för SQLite. Smidigt när man vill prototypa snabbt utan att konfigurera en massa. Opus 4.5 träffade rätt för det mesta. Mindre fram och tillbaka än jag förväntat mig.
 
-På jobbet finns processer som saktar ner saker. Code review, diskussioner, planering - allt det som gör att saker tar den tid de tar. Hemma kunde jag köra i rasande fart. Prompta, se resultatet, prompta igen. Istället för att vänta på en mänsklig kollega hade jag ett slash-kommando i OpenCode för code reviews som användes flitigt. Feedback-loopen blev mycket snabbare - passar bra för den här typen av mindre produktionskritiska projekt.
+På jobbet finns processer som saktar ner saker. Code review, diskussioner, planering. Allt det som gör att saker tar den tid de tar. Hemma kunde jag köra i rasande fart. Prompta, se resultatet, prompta igen. Istället för att vänta på en mänsklig kollega hade jag ett slash-kommando i OpenCode för code reviews som användes flitigt. Feedback-loopen blev mycket snabbare, vilket passar bra för den här typen av mindre produktionskritiska projekt.
 
 Det är skönt att bara prompta sig fram hemma efter en dag av kodande på jobbet. Inte behöva tänka på varje rad, bara beskriva vad jag vill ha och se det hända. **Det har blivit kul att bygga saker igen.**
 
