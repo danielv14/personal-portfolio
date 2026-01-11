@@ -1,6 +1,6 @@
-# Personal Portfolio
+# Personal Blog
 
-Personal portfolio and blog built with Astro and Tailwind CSS.
+My personal blog built with Astro and Tailwind CSS.
 
 ## Tech Stack
 
