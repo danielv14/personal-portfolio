@@ -18,7 +18,9 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
         isActive("/blogg") ? "text-text" : "text-text-muted"
       ]}
     >
-      /inlägg
+      <span class:list={[
+        isActive("/blogg") && "bg-gradient-to-r from-primary to-emerald-400 bg-clip-text text-transparent"
+      ]}>/</span>inlägg
     </a>
   </div>
 </nav>
