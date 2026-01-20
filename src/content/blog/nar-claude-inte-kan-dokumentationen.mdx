@@ -1,0 +1,22 @@
+---
+title: När Claude inte kan dokumentationen
+summary: 'Ibland behöver Claude hjälp att hjälpa dig.'
+date: 2026-01-20T19:00:00
+category: AI
+---
+
+Jag sitter i ett projekt på jobbet där vi integrerar en tredjepartslösning. Dokumentationen är rätt bra. Utförlig, välstrukturerad, tydliga exempel. Ett problem bara: det går inte att söka i den.
+
+Det är frustrerande. Varje gång jag behöver kolla något klickar jag mig fram genom menyer och sidor, Ctrl+F:ar, backar, provar en annan väg.
+
+Claude kan inte hjälpa heller. Det här är inte React eller Tailwind. Det är ett tredjepartsverktyg som inte är open source och som inte finns i träningsdatan. Frågar jag Claude om deras API får jag antingen ett ärligt "det vet jag inte" eller, värre, ett självsäkert svar som är helt fel.
+
+Så jag testade en grej.
+
+Jag bad Claude skrapa dokumentationen. Följa länkar, hämta innehållet, spara som markdown-filer. En enkel skrapning med basic auth. Filerna committades tillfälligt till repot medan vi bygger integrationen.
+
+Nu när jag behöver veta något ber jag Claude läsa de relevanta markdown-filerna istället. Claude blir expert på deras dokumentation, för nu *har* Claude dokumentationen.
+
+Jag slipper lämna terminalen. Jag behöver inte tabba över till en webbsida som saknar sök och klicka runt. Jag frågar Claude, Claude läser filerna, jag får svar.
+
+I slutändan handlar det om kontext. Ge Claude tillgång till källan så kan Claude guida mig rätt även i områden den egentligen inte har någon aning om.
