@@ -1,0 +1,42 @@
+---
+title: Git worktrees och AI som beslutsunderlag
+summary: 'Istället för att spekulera vilken migreringsväg som är bäst, lät jag tre agenter implementera alla tre.'
+date: 2026-02-08T12:00:00
+category: AI
+---
+
+Vi stod inför en strikt null checks-migrering på jobbet. TypeScript-kompilatorn pekade ut en drös med ställen i kodbasen där typer inte stämde. Det finns olika sätt att hantera det på, och inget av dem är självklart rätt.
+
+Normalt hade vi diskuterat. Spekulerat vilken approach som var rimligast, försökt föreställa oss hur koden skulle se ut efteråt, och till slut valt en väg på magkänsla. Sen hade vi börjat implementera och hoppats att vi valde rätt.
+
+Den här gången gjorde jag något annat.
+
+## Tre planer istället för en
+
+Jag bad Claude skanna kodbasen, följa dataflödena, köra `tsc` och kartlägga var det var fel. Utifrån det skapade Claude tre migreringsplaner i markdown, tre olika strategier för samma problem, med olika trade-offs:
+
+1. **Den enkla vägen.** Strössla null checks överallt. Snabbt, minimalt invasivt, men resulterar i defensiv kod som skjuter problemen framför sig.
+2. **Den grundliga vägen.** Följ dataflödena ner till datastrukturerna och fixa dem så att null checks inte behövs. Mer arbete, fler rörda filer, men renare resultat.
+3. **Mellanvägen.** En pragmatisk mix. Fixa datastrukturerna där det är rimligt, acceptera null checks där kostnaden att gå djupare inte är värt det.
+
+Varje plan committades till en egen git worktree. Tre separata arbetskopior av samma kodbas, redo att implementeras parallellt.
+
+## Tre implementationer istället för en
+
+Sedan lät jag Claude implementera alla tre. Fullt ut. Inte skisser, inte halvfärdiga försök, utan tre kompletta migreringar.
+
+Det tog en bråkdel av vad det hade tagit att implementera ens en av dem manuellt. Och det är hela poängen. När kostnaden att implementera är tillräckligt låg behöver man inte välja i förväg. Man kan testa alla vägar och jämföra efteråt.
+
+## Jämförelsen
+
+Med tre färdiga implementationer kunde jag faktiskt jämföra. Inte spekulera om hur det *skulle kunna* se ut, utan titta på hur det *faktiskt* såg ut.
+
+Jag kombinerade AI-baserad review med stickprover. Tittade på antal rörda filer, hur invasiva ändringarna var, och till vilken grad jag var bekväm med resultatet. Det var en annan typ av beslutsprocess, informerad istället för spekulativ.
+
+## Att inte behöva gissa
+
+Jag vet inte med säkerhet att vägen vi valde är den mest korrekta. Det är inte poängen.
+
+Poängen är att jag slapp gissa. Tre fullt genomförda implementationer att granska, jämföra och väga mot varandra. Quirks och edge cases som dyker upp längs vägen fångas i den faktiska implementationen, inte i en spekulativ diskussion.
+
+Hade jag gjort det utan AI hade det blivit en approach. Den vi trodde var bäst. Och vi hade aldrig vetat hur de andra hade sett ut.
