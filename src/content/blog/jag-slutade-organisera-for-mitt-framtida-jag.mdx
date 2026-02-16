@@ -1,0 +1,52 @@
+---
+title: Jag slutade organisera för mitt framtida jag
+summary: 'Nu hämtar AI datan, skriver sammanfattningen och läser den åt mig senare.'
+date: 2026-02-16T12:00:00
+category: AI
+preamble: 'Nu hämtar AI datan, skriver sammanfattningen och läser den åt mig senare.'
+---
+
+Varje morgon när jag loggar in frågar jag Claude vad jag jobbade med igår.
+
+Det är inte en retorisk fråga. Jag har en custom agent i Claude Code som analyserar mina Jira-tickets och pull requests. Den kollar vilka tickets jag rörde igår, vilket state de är i nu, vilka PR:s som blivit godkända, vad som ligger i stage for released. Sen ger den mig en rapport inför standup.
+
+Det låter kanske överdrivet. Men det hjälper mig plocka upp bollen där jag lämnade den. Varje morgon får jag en överblick av vad jag höll på med, var saker befinner sig och vad som väntar. Särskilt värdefullt de dagar man har fem saker igång och inte riktigt minns vad som hände igår.
+
+## Från standup till månadssammanfattning
+
+Samma agent kan zooma ut. Inför sprint-retros ber jag den sammanfatta vad jag bidragit med under sprinten. I slutet av månaden ber jag om en månadsrapport - en strukturerad sammanfattning av projekt, arbetsområden och statistik.
+
+Agenten hämtar data från GitHub via `gh api` och från Jira via en MCP-server. Den korrelerar tickets med pull requests, grupperar arbetet och formaterar allt enligt markdown-mallar.
+
+Standup, retro och månadssammanfattning är tre specifika format där jag gett agenten tydliga instruktioner och mallar. Men egentligen är den flexibel nog att svara på det mesta som rör mitt arbete - den har verktygen att läsa från GitHub och Jira, så jag kan lika gärna fråga "hur mycket jobbade jag med projekt X i januari?" eller "vilka PR:s tog längst tid att få igenom?". De tre formaten är bara de jag har mest nytta av i vardagen.
+
+Utan agenten hade det varit manuellt scrollande genom commits och Jira-tickets för att få en bild av vad jag gjort. Det funkade, men det var tråkigt nog att jag sällan orkade göra det ordentligt.
+
+## Bear som långtidsminne
+
+Månadsrapporterna sparar jag i Bear. Jag har en [MCP-server för Bear](/blogg/en-mcp-server-for-bear-notes) sedan tidigare, så jag ber Claude spara sammanfattningen direkt som en anteckning.
+
+Tidigare var jag sparsam i mina anteckningar. Jag visste att det var *jag själv* som skulle gå tillbaka och läsa dem, så jag höll dem korta och organiserade. Skrev jag för mycket skulle jag drunkna i text nästa gång jag letade efter något.
+
+Nu skriver jag inte alls. AI:n genererar månadssammanfattningarna och de är mer utförliga än vad jag någonsin hade gjort manuellt. Och det är okej - för det är inte längre jag som ska navigera dem. Nästa gång jag behöver veta något ber jag AI summera, filtrera och svara på frågor istället.
+
+"Vilka projekt jobbade jag med under hösten?" är en fråga jag kan ställa utan att gräva själv.
+
+Egentligen behöver jag inte ens spara sammanfattningarna. Jag skulle kunna be agenten summera hela hösten i ett svep direkt från GitHub och Jira. Men det känns bra att ha dem liggande. Snabbare att komma åt, och mer lättillgängligt de gånger jag själv är inne i anteckningarna och funderar på vad jag egentligen gjorde för tre månader sedan.
+
+## Det som faller utanför
+
+Allt spåras inte i GitHub och Jira. Diskussioner, undersökningar som inte ledde någonstans, hjälp man gav en kollega. De sakerna fångas inte av agenten. Men det mesta av det konkreta arbetet gör det, och det räcker för att göra sammanfattningarna användbara.
+
+## AI hela vägen ner
+
+Om man tar ett steg tillbaka och tittar på kedjan är den lite lustig:
+
+1. AI hämtar data från GitHub och Jira
+2. AI sammanfattar datan till en månadsrapport
+3. AI sparar rapporten i Bear
+4. AI summerar rapporterna när jag frågar senare
+
+Det är AI som summerar AI-summeringar av AI-hämtad data. Varje lager bygger på det föregående.
+
+Jag har tagit bort mig själv som flaskhals i båda ändar. AI skriver, AI läser. Jag ställer frågor.
