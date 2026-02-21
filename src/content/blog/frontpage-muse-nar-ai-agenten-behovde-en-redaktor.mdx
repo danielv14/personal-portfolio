@@ -1,0 +1,47 @@
+---
+title: "Frontpage Muse: När AI-agenten behövde en redaktör"
+date: 2026-02-21T20:30:00
+summary: "En AI som dagligen läser Hacker News och skriver kreativa inlägg fastnade i samma format varje gång. Lösningen blev att ge den en redaktör."
+category: "AI"
+---
+
+För ett par veckor sedan byggde jag [The Frontpage Muse](https://the-frontpage-muse.vercel.app/) - en blogg där en AI varje dag läser igenom Hacker News, väljer ut det som verkar intressant, och sedan skriver ett inlägg med full kreativ frihet. Enda regeln är att samma HN-post inte får återkomma dagen efter.
+
+Flödet är fire and forget. AI:n sköter hela kedjan själv:
+
+1. Läs startsidan på Hacker News
+2. Välj ut ett antal artiklar som verkar intressanta
+3. Djupdyk i artiklarna och läs kommentarerna
+4. Skriv ett inlägg helt fritt utifrån materialet
+5. Committa och pusha
+6. Sajten bygger automatiskt efter push
+
+Ingen av inläggen är sammanfattningar. Det har blivit rättegångsdramer, naturdokumentärer, dödsrunor och satiriska prov. Ibland blir det bra, ibland mindre bra, men det är en del av experimentet.
+
+## Samma skelett under ytan
+
+Efter ungefär en vecka började jag märka ett mönster. Inläggen *såg* olika ut, kreativa koncept och varierande tonläge, men strukturen var alltid densamma: en sektion per artikel.
+
+Ta [The Silicon Serengeti](https://the-frontpage-muse.vercel.app/posts/2026-02-09-the-silicon-serengeti) som exempel. Det är en naturdokumentär i tio kapitel. Kreativt och välskrivet. Men titta närmare: kapitel I handlar om en artikel, kapitel II om nästa, kapitel III om en tredje. Det kreativa konceptet blev en fernissa över vad som i grunden var en sammanfattning.
+
+Eller [The Obituaries](https://the-frontpage-muse.vercel.app/posts/2026-02-10-the-obituaries) där varje HN-artikel fick sin egen dödsruna. Kul idé, men samma mönster: en artikel in, en sektion ut.
+
+## Bättre instruktioner hjälpte inte
+
+Min första tanke var att agenten behövde tydligare instruktioner. Jag var explicit med att inte göra 1:1-mappningar, att artiklarna skulle vävas samman, att strukturen skulle följa en tes snarare än att spegla källorna.
+
+Det fungerade inte. Agenten läste instruktionerna, gick iväg och researcha, dök ner i artiklar och kommentarer, och när det var dags att skriva hade de initiala instruktionerna tappat sitt grepp. Uppgiften i sig drog mot 1:1-formatet. Researchen fyllde kontexten och regeln om att inte göra sammanfattningar drunknade i allt material.
+
+## En redaktör som inte läst materialet
+
+Lösningen blev att dela upp arbetet i två roller. En writer-agent som gör research och skriver ett utkast, och en editor-agent (huvudagenten) som granskar och ger feedback.
+
+Writer-agenten fick behålla sitt fria uppdrag: researcha, hitta det intressanta, skriv kreativt. Inga regler om format eller struktur. Editorn däremot hade koll på meta-perspektivet och kunde direkt identifiera om utkastet fallit tillbaka i 1:1-mönstret.
+
+Och det är det som är intressant: det räckte ofta med en enda runda feedback. Editorn såg direkt att "det här är en artikel per sektion" och slog ner på det. Writer-agenten kom tillbaka med något bättre. Problemet var inte att agenten *inte kunde* skriva på ett annat sätt, det var att den inte kunde se sitt eget mönster medan den var mitt i materialet.
+
+## Skillnaden
+
+De tidiga inläggen hade alltid samma skelett oavsett hur kreativt konceptet var. En naturdokumentär i tio kapitel där varje kapitel behandlade exakt en artikel. En samling dödsrunor där varje artikel fick sin egen. Kreativt, men förutsägbart.
+
+De senaste inläggen ser annorlunda ut. Nio artiklar kan blandas fritt över fem sektioner utan någon 1:1-mappning. Eller så används bara tre av fem källor som huvudberättelser medan resten blir bakgrundskontext som informerar utan att kräva en egen sektion. Strukturen styrs av tesen nu, inte av antalet artiklar som hittades.
