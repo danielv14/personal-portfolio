@@ -25,11 +25,5 @@ const formattedDate = `${day} ${monthNames[date.getMonth()]}, ${year}`;
   <p class="text-text-muted text-sm mt-2">{summary}</p>
   <div class="flex items-center gap-2 mt-3 text-xs text-text-muted opacity-70">
     <time>{formattedDate}</time>
-    {category && (
-      <>
-        <span>·</span>
-        <span class="lowercase">{category}</span>
-      </>
-    )}
   </div>
 </a>
