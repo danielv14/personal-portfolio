@@ -4,10 +4,9 @@ interface Props {
   date: Date;
   summary: string;
   slug: string;
-  category?: string;
 }
 
-const { title, date, summary, slug, category } = Astro.props;
+const { title, date, summary, slug } = Astro.props;
 
 const day = date.getDate();
 const year = date.getFullYear();
