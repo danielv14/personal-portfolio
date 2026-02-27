@@ -1,0 +1,41 @@
+---
+title: Tre terminalpaneler och ingen editor
+summary: 'Claude Code, lazygit och en dev-server. VS Code behövs inte (lika mycket) längre.'
+date: 2026-02-22T20:00:00
+category: AI
+preamble: 'VS Code har sakta blivit överflödigt för mina sidoprojekt. Claude Code, lazygit och en dev-server räcker. Frågan är hur länge det dröjer innan arbetssättet på jobbet förändras också.'
+---
+
+Jag har märkt att jag öppnar VS Code allt mer sällan. Det var ingen medveten strategi, snarare något som hände gradvis under de senaste månaderna.
+
+## Julledigheten som vändpunkt
+
+Under några semesterdagar över jul kodade jag en del egna projekt vid sidan om jobbet. Jag körde Claude Code intensivt och någonstans där kände jag att jag ville börja koda på ett annat sätt. Opus 4.5 hade precis släppts och agenten var tillräckligt bra för att jag inte längre kände behovet att granska varje enskild ändring den ville göra. Tidigare var det naturligt att köra Claude Code via VS Code-pluginet, där man ser filerna bredvid och kan följa med i realtid.
+
+Nu kunde jag istället låta agenten jobba klart, funktionstesta själv och köra en AI-baserad code review via en skill som spawnade subagenter med olika fokusområden under granskningen.
+
+## Tre paneler
+
+Min setup nu ser ut så här: en terminalpanel med `claude --dangerously-skip-permissions`, en med lazygit, och en tredje med dev-servern. Det är allt.
+
+Lazygit ger mig det jag saknade från VS Code. En överblick över vilka filer som ändrats, vilka brancher jag jobbar på, möjligheten att söka och navigera. Fast i terminalen, bredvid Claude Code. Jag *kan* committa och skapa brancher i lazygit om jag vill, men för det mesta ber jag Claude sköta det.
+
+För mina sidoprojekt har VS Code bortrationaliserats helt. Det gick förvånansvärt snabbt. Med det sagt händer det fortfarande att jag öppnar VS Code och navigerar runt lite. Men det är mer sällan.
+
+## Från telefonen
+
+Jag använder också Claude via telefonen en hel del för att kicka igång mindre features och buggfixar i mina sidoprojekt. Där blir det 100% utan att gå igenom kod. Jag beskriver vad jag vill ha, Claude skapar en PR, och i projekt där jag satt upp preview-deploys via GitHub Actions kan jag kolla resultatet live och merga om det ser bra ut.
+
+## På jobbet ser det annorlunda ut
+
+Jag vill inte måla upp en bild av att jag släppt ratten helt. På jobbet, när det handlar om icke-triviala saker, granskar jag fortfarande pö om pö medan Claude jobbar. Jag styr agenten att skriva kod som jag själv hade skrivit den. Försöker följa konventioner i den existerande kodbasen. Det är en annan typ av samarbete. Mer aktivt, mer hands-on.
+
+Kodbasen på jobbet är också betydligt större. Många gånger behöver jag säga åt Claude att börja i en specifik fil och trace:a flödet uppåt och neråt. Innan dess söker jag ofta runt i VS Code själv för att bilda mig ett hum om var saker bor. Så där växlar jag fortfarande fram och tillbaka mellan editor och terminal. I sidoprojekten är kodbasen liten nog att jag kan säga "kika på flödet på about-sidan" och Claude hittar rätt.
+
+Men även på jobbet har jag börjat låta Claude jobba mer ostört. Jag accepterar inte längre varje enskild kodändring utan låter agenten köra klart större bitar innan jag granskar. Det händer att jag kör flera Claude-sessioner parallellt i isolerade worktrees medan jag gör annat. Eller startar en session med `--dangerously-skip-permissions` för att tugga igenom tyngre refaktoriseringar och npm-uppgraderingar medan jag hjälper en kollega. Sen kommer jag tillbaka, granskar de pull requests sessionerna skapat och kompletterar med AI-baserade code reviews.
+
+## Frågan jag inte har svar på
+
+Det som funkar för sidoprojekt är en sak. Frågan är när delar av det här arbetssättet blir vanligare i kodbaserna på jobbet. När tilliten till agenten når den punkt där autonom körning inte bara är ett experiment vid köksbordet utan ett rimligt sätt att arbeta i team.
+
+Jag vet inte när det skiftar. Men riktningen känns tydlig.
