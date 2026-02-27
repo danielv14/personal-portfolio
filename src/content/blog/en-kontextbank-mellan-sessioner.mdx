@@ -1,0 +1,31 @@
+---
+title: En kontextbank mellan sessioner
+summary: '/done sparar kontexten, /recap hämtar tillbaka den. Bear blev ett arbetsminne för Claude Code.'
+date: 2026-02-27T12:00:00
+category: AI
+preamble: 'Bear MCP-servern jag byggde på skoj har blivit en central del av hur jag jobbar med Claude Code.'
+---
+
+Det finns ett problem med att jobba i sessioner. Man researchar, resonerar, tar beslut, landar i en approach. Sen stänger man terminalen. Nästa gång man sätter sig börjar man om. Man kan köra `--resume` om man vet vilken session man ska tillbaka till, men ofta är det inte hela sessionen man vill ha utan specifika bitar. Ett beslut som togs, en avvägning som gjordes, en riktning man valde.
+
+## /done
+
+Jag har byggt en skill i Claude Code som jag kör i slutet av sessioner som innehöll något matnyttigt. Claude analyserar konversationen och sparar en strukturerad sammanfattning som en anteckning i Bear: vad som gjordes, vilka beslut som togs och varför, öppna frågor, relevant kontext. Allt taggat med `claude-context`.
+
+Jag kör det inte varje gång. Det är mer en känsla i slutet av en session. "Det här kanske vi kommer referera till senare" eller "det här kan vara bra att ha nedskrivet och lätt att jobba vidare med". Ibland är det tekniska vägval som landade i något. Ibland resonemang kring en arkitektur som jag inte ska implementera just nu men som jag vill kunna plocka upp igen.
+
+## /recap
+
+Komplettet till `/done`. När jag startar en ny session och vill plocka upp en tråd kör jag `/recap`. Claude söker igenom alla sparade kontextanteckningar och sammanfattar det som är relevant.
+
+Istället för att manuellt instruera Claude att "kolla mina anteckningar med taggen claude-context och se om det finns något om..." så laddar jag bara skillen. Claude vet var den ska gräva.
+
+Tillsammans blir det ett flöde: jobba, spara det viktiga, starta nytt, plocka upp bollen. Bear blir en kontextbank som Claude navigerar åt mig.
+
+## Bear som idébank
+
+Det här hade inte funkat utan MCP-servern jag byggde för Bear. Den skapades ursprungligen för att hålla koll på elkostnader hemma, men kopplingen mot AI gjorde användningsområdet större än jag tänkt mig. Samma server som beräknar min elförbrukning låter nu Claude söka igenom mina anteckningar, organisera lösa tankar och spara sessionskontext.
+
+Bear har blivit mer användbart sedan Claude kan läsa och skriva i det. Jag skriver ner lösa tankar om features och idéer när de dyker upp, och sen kan Claude ta del av dem utan att jag behöver copy-paste:a eller sammanfatta. Claude söker, läser och organiserar mina tankar bättre än jag själv hade gjort. Det är inte längre bara en anteckningsapp. Det är en förlängning av arbetsminnet.
+
+Det finns säkert mer eleganta lösningar där ute. Folk som byggt sofistikerade minnesystem för sina AI-agenter. Obsidian ska väl vara bra på den här typen av AI-kopplingar, men jag är redan så pass bekväm med Bear att jag inte har lust att byta anteckningsapp just nu. Det här räcker för mig. Det löser ett konkret problem med verktyg jag redan hade. Och det var enkelt nog att jag faktiskt använder det.
