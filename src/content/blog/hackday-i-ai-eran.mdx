@@ -1,8 +1,8 @@
 ---
 title: Hackday i AI-eran
-summary: '6000 rader kod utan att skriva en enda rad själv.'
+summary: 'Vad händer med hackdays när hela teamet vibe-codar?'
 date: 2025-12-29T17:00:00
-updatedAt: 2026-01-10
+updatedAt: 2026-02-28
 category: AI
 ---
 
@@ -44,28 +44,22 @@ Jag committade planen till en branch och lät den vänta.
 
 När hackdayen började checkade jag ut branchen med migreringsplanen och bad Claude jobba utifrån den. Fas efter fas betade vi av planen, med mindre justeringar längs vägen. Ibland bad jag Claude ta ett steg tillbaka och granska koden vi redan hade, leta efter saker att refaktorera eller förenkla.
 
-I slutet av dagen hade vi vibe-kodat ihop ungefär 6 000 rader kod. Ett helt nytt CLI byggt med Ink, modernare arkitektur, och några nya features som inte fanns i originalet.
+I slutet av dagen hade vi ett nytt CLI byggt med Ink. Modernare arkitektur, några nya features, och en hel del kod jag inte granskat tillräckligt noga. Det sista visade sig vara ett problem.
 
 ## Vem skrev koden?
 
-När jag skapade pull requesten var jag tydlig. Jag hade inte skrivit en enda rad kod själv. Inte en. Men jag hade guidat Claude att skriva kod på ett sätt som jag *ändå* hade skrivit den. Samma patterns, samma struktur, samma val.
+Jag hade inte skrivit en enda rad kod själv. Men jag hade guidat Claude att följa samma patterns och struktur som vi använder i resten av repot.
 
 ## Det nya normalläget
 
 En tanke slog mig under dagen. Det här är nog så våra hackdays kommer se ut framöver.
 
-Frågan är inte längre *"Hinner jag koda klart det här själv?"*
-
-Frågan är *"Tänker jag tillräckligt stort? Och räcker mina tokens?"*
-
-(Mina tokens tog slut på eftermiddagen. Så det är tydligen den nya flaskhalsen.)
+Frågan inför hackdays är inte längre *"Hinner jag koda klart det här själv?"* utan snarare *"Hur mycket av det här vågar jag lita på efteråt?"*
 
 ## Spelar det någon roll?
 
-I slutändan hade jag inte nödvändigtvis bättre koll på koden i v2 av vårt CLI jämfört med v1. Jag hade trots allt inte skrivit den själv.
+I slutändan hade jag inte nödvändigtvis bättre koll på koden i v2 jämfört med v1. Jag hade trots allt inte skrivit den själv. Jag agerade kravställare och testare, men det är inte samma sak som att förstå varje beslut i koden.
 
-Men jag agerade kravställare och testare. Jag guidade Claude att skriva kod på ett sätt som vi i övrigt gör i vårt monorepo. Jag vet exakt hur CLI:et fungerar, även om jag inte har stenkoll på varje rad kod. Det enda jag inte gjorde var att skriva koden själv, rad för rad.
+Det märktes under veckorna efter hackdayen. Småsaker dök upp som behövde justeras, och varje gång fick jag sätta mig in i kod jag inte skrivit. Det gick, men det var inte friktionsfritt.
 
-Och nästa gång jag behöver ändra något kan jag be Claude sätta sig in i kodbasen - snabbare än vad jag själv hade kunnat.
-
-Spelar det så stor roll längre vem som skrev koden?
+Spelar det så stor roll vem som skrev koden? Kanske inte. Men det spelar roll att någon förstår den.

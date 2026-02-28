@@ -2,6 +2,7 @@
 title: Git worktrees och AI som beslutsunderlag
 summary: 'Istället för att spekulera vilken migreringsväg som är bäst, lät jag tre agenter implementera alla tre.'
 date: 2026-02-08T12:00:00
+updatedAt: 2026-02-28
 category: AI
 ---
 
@@ -25,7 +26,7 @@ Varje plan committades till en egen git worktree. Tre separata arbetskopior av s
 
 Sedan lät jag Claude implementera alla tre. Fullt ut. Inte skisser, inte halvfärdiga försök, utan tre kompletta migreringar.
 
-Det tog en bråkdel av vad det hade tagit att implementera ens en av dem manuellt. Och det är hela poängen. När kostnaden att implementera är tillräckligt låg behöver man inte välja i förväg. Man kan testa alla vägar och jämföra efteråt.
+Resultaten var inte perfekta. Det krävdes en del manuell granskning och jag hittade ställen där Claude tagit genvägar jag inte hade tagit. Men poängen var inte att få tre produktionsklara lösningar, utan att ha tillräckligt med substans för att kunna jämföra på riktigt istället för att spekulera.
 
 ## Jämförelsen
 
@@ -37,6 +38,4 @@ Jag kombinerade AI-baserad review med stickprover. Tittade på antal rörda file
 
 Jag vet inte med säkerhet att vägen vi valde är den mest korrekta. Det är inte poängen.
 
-Poängen är att jag slapp gissa. Tre fullt genomförda implementationer att granska, jämföra och väga mot varandra. Quirks och edge cases som dyker upp längs vägen fångas i den faktiska implementationen, inte i en spekulativ diskussion.
-
-Hade jag gjort det utan AI hade det blivit en approach. Den vi trodde var bäst. Och vi hade aldrig vetat hur de andra hade sett ut.
+Poängen är att vi hade mer att utgå ifrån. Quirks och edge cases som dyker upp längs vägen fångas i den faktiska implementationen, inte i en spekulativ diskussion. Det ersätter inte omdöme, men det ger omdömet bättre underlag.
