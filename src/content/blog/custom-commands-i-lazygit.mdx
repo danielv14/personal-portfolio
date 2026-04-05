@@ -1,0 +1,157 @@
+---
+title: Custom commands i lazygit
+summary: 'Lazygit blev mer än en git-klient när Claude kunde generera konfigurationen åt mig.'
+date: 2026-03-18T20:00:00
+category: Verktyg
+---
+
+Jag har skrivit tidigare om att min terminal-setup ofta består av tre paneler: Claude Code, lazygit och en dev-server. Det ser inte alltid ut exakt så, men någon kombination av en eller flera Claude-sessioner, en pane med lazygit och en med dev-servern. Jag använder mycket Warps "Maximize pane" för att ge fullscreen-yta åt en panel när den tillfälligt behöver fullt fokus.
+
+Lazygit använder jag mer och mer för de vanliga sakerna: committa filer, skriva commit-meddelanden, skapa brancher, byta branch, pusha. Ibland, lite beroende på repo, låter jag Claude sköta det mesta av git-grejerna. Men lazygit är alltid öppet bredvid.
+
+Med custom commands har det dock blivit något mer än en git-klient. En hub som kopplar ihop GitHub, Jira och Claude CLI.
+
+## Det började med en fråga
+
+Jag bad Claude om idéer kring vad man kan göra med custom commands i lazygit. Fick tillbaka några förslag, bland annat AI-genererade commit-meddelanden. Det kändes som en vettig startpunkt, så jag körde på det.
+
+Sen ju mer jag använde lazygit, desto fler idéer dök upp. Inte från Claude den här gången, utan från mina egna arbetsflöden. Saker jag gjorde manuellt hela tiden. Checka ut PR:s. Skapa brancher från Jira-ärenden. Varje gång jag lämnade terminalen för att göra något i webbläsaren tänkte jag: det här borde gå att lösa i lazygit.
+
+## AI-genererade commit-meddelanden
+
+Det första kommandot, och det jag fortfarande använder mest i mina egna projekt. Trycker `C` i filvyn och Claude genererar ett commit-meddelande baserat på diffen.
+
+```yaml
+customCommands:
+  - key: "C"
+    description: "AI commit message"
+    context: "files"
+    command: >-
+      MSG=$(claude -p "Generate a single short commit message
+      (max 50 chars, lowercase, no period, english) for these
+      staged changes. Output ONLY the message, nothing else:
+      $(git diff --cached)") && git commit -m "$MSG"
+    loadingText: "Generating AI commit..."
+    output: popup
+```
+
+`claude -p` kör Claude CLI i pipe-mode, skickar in diffen, och får tillbaka ett meddelande. Det sparar inte mycket tid per commit, men det tar bort friktionen. Jag slipper kontextväxla från "vad har jag ändrat" till "hur formulerar jag det här på engelska i 50 tecken".
+
+## PR-lista med färgkoder
+
+Trycker `v` i branch-vyn och får upp en meny med alla öppna pull requests. Varje PR är färgkodad baserat på status - grönt för approved, gult för changes requested, grått för draft. Väljer jag en PR checkas den ut direkt.
+
+```yaml
+  - key: "v"
+    description: "Checkout GitHub PR"
+    context: "localBranches"
+    loadingText: "Checking out PR..."
+    command: "gh pr checkout {{.Form.PullRequestNumber}}"
+    prompts:
+      - type: "menuFromCommand"
+        title: "Which PR?"
+        key: "PullRequestNumber"
+        command: "~/.config/lazygit/list-prs.sh"
+        filter: '#(?P<number>[0-9]+) \| (?P<title>.+) \| (?P<ref_name>[^ ]+) \| (?P<status>\w+)'
+        valueFormat: '{{ .number }}'
+        labelFormat: >-
+          {{ if eq .status "approved" }}{{ .title | green }}
+          {{ else if eq .status "draft" }}{{ .title | black }}
+          {{ else if eq .status "changes" }}{{ .title | yellow }}
+          {{ else }}{{ .title | white }}{{ end }}
+```
+
+Bakom det här ligger ett shell-script som hämtar PR:s via `gh pr list` och klassificerar status med `jq`:
+
+```bash
+#!/bin/bash
+gh pr list --json number,title,headRefName,reviewDecision,isDraft \
+  | jq -r '
+  .[] |
+  (
+    if .isDraft then "draft"
+    elif .reviewDecision == "CHANGES_REQUESTED" then "changes"
+    elif .reviewDecision == "APPROVED" then "approved"
+    else "pending"
+    end
+  ) as $status |
+  "#\(.number) | \(.title) | \(.headRefName) | \($status)"
+'
+```
+
+Det fina med `menuFromCommand` i lazygit är att man definierar ett regex-filter som plockar ut namngivna fält ur output, och sen använder dem i både `valueFormat` och `labelFormat`. Scriptet spottar ut en pipe-separerad rad per PR, och lazygit parsar och renderar det.
+
+Jag använder det här kommandot mycket för att hoppa tillbaka till kollegors brancher. Om jag gjort en review lokalt, kontextswitchat till något annat och sen behöver kika på den branchen igen är det ofta lättare att härleda vilken branch det var utifrån PR-titeln i listan än att försöka komma ihåg branch-namnet.
+
+## Branch från Jira-ärende
+
+Trycker `J` i branch-vyn och får upp en lista med mina tilldelade Jira-ärenden. Väljer jag ett skapas en branch med ärendenumret och en slugifierad titel.
+
+```yaml
+  - key: "J"
+    description: "Branch from Jira issue"
+    context: "localBranches"
+    loadingText: "Creating branch..."
+    command: "git checkout -b '{{.Form.BranchName}}'"
+    prompts:
+      - type: "menuFromCommand"
+        title: "Create branch from Jira ticket"
+        key: "JiraIssue"
+        command: "~/.config/lazygit/list-jira-issues.sh"
+        filter: '(?P<key>[\w-]+) \| (?P<title>.+) \| (?P<slug>[^ ]+) \| (?P<status>.+)'
+        valueFormat: '{{ .key }}/{{ .slug }}'
+        labelFormat: '{{ .key }} - {{ .title }} [{{ .status }}]'
+      - type: "input"
+        title: "Branch name (edit or accept)"
+        key: "BranchName"
+        initialValue: '{{ .Form.JiraIssue }}'
+```
+
+Flödet har två steg. Först väljer jag ärende ur listan, sedan får jag redigera branch-namnet innan det skapas. `initialValue` sätts till ärendenumret plus slug, t.ex. `JIRA-1234/fix-search-in-sidebar`, men jag kan justera det om jag vill.
+
+Shell-scriptet bakom hämtar ärenden via Jira REST API och slugifierar titlarna med Python:
+
+```bash
+#!/bin/bash
+source "$(dirname "$0")/.jira-env"
+
+JQL='assignee = currentUser() AND statusCategory != Done ORDER BY updated DESC'
+ENCODED_JQL=$(python3 -c "import urllib.parse; print(urllib.parse.quote('${JQL}')")
+
+curl -s -u "${JIRA_EMAIL}:${JIRA_API_TOKEN}" \
+  -H "Content-Type: application/json" \
+  "${JIRA_BASE_URL}/rest/api/3/search/jql?jql=${ENCODED_JQL}&fields=summary,status&maxResults=30" \
+| python3 -c "
+import json, sys, re, unicodedata
+
+data = json.load(sys.stdin)
+for issue in data.get('issues', []):
+    key = issue['key']
+    summary = issue['fields']['summary']
+    status = issue['fields']['status']['name']
+    slug = unicodedata.normalize('NFKD', summary.lower())
+    slug = slug.encode('ascii', 'ignore').decode('ascii')
+    slug = re.sub(r'[^a-z0-9\s-]', '', slug)
+    slug = re.sub(r'[\s]+', '-', slug.strip())[:50].rstrip('-')
+    print(f'{key} | {summary} | {slug} | {status}')
+"
+```
+
+## Andra kommandon
+
+Utöver de tre huvudkommandona har jag ett par till:
+
+- `I` i branch-vyn visar PR-info: review-status, antal ändrade filer och review-kommentarer i en popup.
+- `I` i commit-vyn kör diffen genom Claude och ger en kort sammanfattning av vad committen gör.
+- `I` i filvyn förklarar filen och dess ändringar via Claude.
+- `G` i branch-vyn öppnar PR:n i webbläsaren.
+
+Samma tangent, olika kontext. Lazygit avgör vilken panel som är aktiv och kör rätt kommando.
+
+## Tröskeln var låg
+
+Inget av det här påverkar mitt arbetsflöde dramatiskt. Det är "nice to have"-grejer. Jag hade klarat mig utan, och det blir fortfarande kontextväxlingar ändå.
+
+Men tröskeln att bygga det var väldigt låg. Jag behövde inte sitta och läsa lazygit-dokumentation eller pussla med YAML-syntax. Jag beskrev vad jag ville, Claude genererade konfigurationen, och jag testade. Funkade det inte justerade vi.
+
+Det är det som gör det värt det. Inte att varje enskilt kommando sparar massa tid, utan att kostnaden att skapa dem var så låg att det inte behöver spara massa tid för att vara värt besväret.
