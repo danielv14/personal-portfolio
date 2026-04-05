@@ -9,7 +9,7 @@ My personal blog built with Astro and Tailwind CSS.
 - [TypeScript](https://www.typescriptlang.org/)
 - [MDX](https://mdxjs.com/) - Markdown with JSX components
 
-Deployed on [Vercel](https://vercel.com).
+Deployed on [Cloudflare Pages](https://pages.cloudflare.com/).
 
 ## Project Structure
 
