@@ -2,6 +2,7 @@
 title: Custom commands i lazygit
 summary: 'Lazygit blev mer än en git-klient när Claude kunde generera konfigurationen åt mig.'
 date: 2026-03-18T20:00:00
+updatedAt: 2026-04-23
 category: Verktyg
 ---
 
@@ -116,7 +117,7 @@ Shell-scriptet bakom hämtar ärenden via Jira REST API och slugifierar titlarna
 source "$(dirname "$0")/.jira-env"
 
 JQL='assignee = currentUser() AND statusCategory != Done ORDER BY updated DESC'
-ENCODED_JQL=$(python3 -c "import urllib.parse; print(urllib.parse.quote('${JQL}')")
+ENCODED_JQL=$(python3 -c "import urllib.parse; print(urllib.parse.quote('${JQL}'))")
 
 curl -s -u "${JIRA_EMAIL}:${JIRA_API_TOKEN}" \
   -H "Content-Type: application/json" \
