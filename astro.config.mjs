@@ -4,8 +4,11 @@ import tailwindcss from '@tailwindcss/vite';
 import expressiveCode from 'astro-expressive-code';
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
   site: 'https://danielvernberg.se',
+
   integrations: [
     expressiveCode({
       themes: ['github-dark'],
@@ -21,7 +24,10 @@ export default defineConfig({
     }),
     mdx(),
   ],
+
   vite: {
     plugins: [tailwindcss()],
   },
+
+  adapter: cloudflare()
 });
