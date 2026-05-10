@@ -3,28 +3,31 @@
   "type": "module",
   "version": "1.0.0",
   "engines": {
-    "node": ">=20"
+    "node": ">=22.12.0"
   },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "npm run build && wrangler dev",
+    "preview": "astro build && astro preview",
     "deploy": "npm run build && wrangler deploy",
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "12",
-    "@astrojs/mdx": "^4.0.0",
-    "@expressive-code/plugin-line-numbers": "^0.41.5",
+    "@astrojs/cloudflare": "^13.5.0",
+    "@astrojs/mdx": "^5.0.4",
+    "@expressive-code/plugin-line-numbers": "^0.42.0",
     "@fontsource-variable/noto-sans-mono": "^5.2.10",
-    "astro": "^5.0.0",
-    "astro-expressive-code": "^0.41.5"
+    "astro": "^6.3.1",
+    "astro-expressive-code": "^0.42.0"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.0.0",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.0",
-    "wrangler": "^4.84.1"
+    "wrangler": "^4.90.0"
+  },
+  "overrides": {
+    "vite": "^7"
   }
 }
