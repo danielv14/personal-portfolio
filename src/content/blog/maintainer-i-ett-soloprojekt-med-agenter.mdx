@@ -1,0 +1,36 @@
+---
+title: Maintainer i ett soloprojekt med agenter
+summary: 'När agenterna jobbar i repon för mina sidoprojekt börjar GitHub issues kännas rätt.'
+date: 2026-05-26T20:00:00
+category: AI
+---
+
+På jobbet kör vi Jira. För mina egna sidoprojekt har jag inte använt GitHub issues på flera år. Det har känts krystat och onödigt. Att skriva strukturerade issues som ingen annan ska läsa är inte något jag orkar med. Det är lättare att bara börja koda.
+
+## Var idéerna låg innan
+
+Lösa tankar har jag sparat i Bear via min [kontextbank](/blogg/en-kontextbank-mellan-sessioner). Det funkar bra för det den är till för: lösa idéer, inte bundna till något specifikt repo.
+
+Mer konkreta saker som "det här borde refaktoreras" eller "den här endpointen är bristfällig" har jag tidigare skrivit som tillfälliga markdown-filer i repot. Checka in en `TODO.md` eller `notes/something.md`, jobba mot den, ta bort den när det var klart. Det har varit klumpigt och skräpar ner.
+
+Inget av det var rätt verktyg för "det här borde fixas i det här repot, men inte just nu".
+
+## När agenten började skriva åt mig
+
+I mitt senaste sidoprojekt började jag testa något nytt. Jag plockade in tre skills från [Matt Pocock](https://www.skills.sh/mattpocock): [`/to-issues`](https://www.skills.sh/mattpocock/skills/to-issues), [`/to-prd`](https://www.skills.sh/mattpocock/skills/to-prd) och [`/improve-codebase-architecture`](https://www.skills.sh/mattpocock/skills/improve-codebase-architecture). Tillsammans lät de en agent skanna kodbasen själv och skapa GitHub issues.
+
+Det intressanta var inte att jag började *använda* issues, för det hade jag kunnat göra när som helst, utan att jag inte längre behövde *skriva* dem. Agenten letar upp refactor-möjligheter, hittar buggar, identifierar features som borde finnas, och skapar issues med beskrivning, prioritet och länkar till relaterade issues.
+
+Plötsligt fanns ingen overhead att orka med. Bara att kicka igång ett kommando och granska resultatet.
+
+## Issues som kontext
+
+Med en backlog full av detaljerade issues kunde jag sen bussa nya agent-sessioner på dem en åt gången. Eller flera parallellt, i olika worktrees. Jag behövde inte längre flytta kontext mellan sessioner. Ett issue *är* kontextpaketet. `gh issue view 42` ersätter handoff-dokumentet.
+
+Ibland körde jag flera parallellt: en agent löste ett issue medan en annan letade efter nya buggar. Det blev rätt asynkront.
+
+## Strukturen behövs igen
+
+Det här var första sidoprojektet där jag testade strukturen. Jag kommer förmodligen återanvända den. Det smidiga är inte att jag "äntligen började använda issues". Det smidiga är att overhead:en flyttades från mig till agenterna. Jag orkar fortfarande inte skriva strukturerade issues. Skillnaden är att jag inte behöver.
+
+Markdown-filer har säkert sin plats fortfarande, men om jag vill jobba lite mer seriöst med ett sidoprojekt lutar jag åt GitHub issues istället. Det är redan ett robust arbetssätt, det har bara känts som overkill för soloprojekt. Nu agerar jag mer som maintainer, och agenterna är de som jobbar i repot.
