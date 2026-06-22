@@ -1,0 +1,82 @@
+---
+title: 'Cerebro: ett permanent minne för Claude Code'
+summary: 'Förr sparade jag intressanta Claude Code-sessioner manuellt och glömde ofta. Nu arkiverar ett CLI allt automatiskt och gör det sökbart, via hooks jag aldrig behöver tänka på.'
+date: 2026-06-22T20:00:00
+category: AI
+preamble: 'Hur "minne för Claude Code" gått från något jag handplockade till ett CLI som sköter sig självt.'
+---
+
+I [En kontextbank mellan sessioner](/blogg/en-kontextbank-mellan-sessioner) skrev jag om `/done` och `/recap`: en skill som sparar en sammanfattning av en session i Bear, och en som plockar tillbaka den. Den ärliga avigsidan var att det krävde att jag kom ihåg att köra `/done`. Glömde jag, fanns det inget att plocka upp. Och Claude Code gör det värre: den raderar gamla sessionsfiler efter ett tag, default 30 dagar via `cleanupPeriodDays`. Allt vi kom fram till, alla beslut, all felsökning, försvinner med tiden.
+
+cerebro är min lösning på det. Ett litet CLI som indexerar alla mina Claude Code-sessioner till en lokal databas och gör dem sökbara, så att minnet överlever även när verktyget självt glömmer.
+
+## Vad cerebro är
+
+Ett lokalt CLI i TypeScript och Bun. Det läser alla sessioner Claude Code lägger under `~/.claude/projects` och skriver dem till en SQLite-databas med fulltextsök. Det är ett verbatim-arkiv: hela konversationer, vilket repo och mapp de hörde till, och subagent-transkript, bevarade även efter att Claude Code raderat originalen.
+
+Det är inte en daemon. Det fångar det som finns på disk när jag kör `cerebro index`, och bygger på en handfull kommandon: `index`, `search`, `sessions`, `recent`, `relevant`, `show` och `digest` (mer om den sista längre ner).
+
+## Index-först
+
+Designprincipen är inte min egen. Den är lånad från hur liknande verktyg är byggda, framför allt claude-mem: index-först och progressiv exponering. `search` ger bara id, tidsstämpel, projekt och en snippet. Vill jag ha mer hämtar jag en outline av tråden med `show`. Vill jag ha allt drar jag hela transkriptet med `show --full`. Poängen är att inte spränga kontextfönstret. En framtida Claude-session ska kunna navigera tusentals meddelanden utan att läsa in allt på en gång.
+
+Det finns också en skill som gör att Claude själv vet när och hur cerebro ska användas, så minnet blir tillgängligt mitt i ett samtal, inte bara från terminalen.
+
+Jag testade det direkt på riktigt arbete och lät cerebro rekonstruera hur ett annat projekt, en intern feedback-tjänst, hade byggts genom att söka i mina gamla sessioner. Det kunde svara på frågor som "hur gick bygget" och till och med "blev databas-migreringen klar i den där sessionen".
+
+## Att hålla minnet färskt
+
+Eftersom cerebro är on-demand fångar det bara det som finns på disk när `index` körs, och Claude Code raderar gamla filer efter sin retention-period. Två grepp:
+
+- Höjde `cleanupPeriodDays` till 60, så filerna lever dubbelt så länge.
+- En `SessionEnd`-hook som triggar när jag clearar en session. Den indexerar synkront, så det jag nyss gjorde fångas direkt, och fyrar sedan av en summering i bakgrunden (mer om det strax).
+
+Jag började faktiskt med ett dagligt schemalagt jobb, men hooken vid clear visade sig både enklare och mer omedelbar. Ingen bakgrundsprocess att hålla vid liv, och minnet är färskt precis i det ögonblick jag börjar om i stället för upp till ett dygn senare.
+
+## Att slippa söka
+
+Att lagra och kunna söka är en sak. Nästa steg är att slippa söka. Lösningen är en `UserPromptSubmit`-hook. Vid varje prompt kör den `cerebro relevant` mot det jag just skrev, fulltextsöker arkivet och injicerar de mest relevanta tidigare trådarna som korta brödsmulor: id, datum, titel, öppnings-prompt och en matchande snippet. Index-först igen, den injicerar pekare, inte innehåll. Verkar en tråd träffa det jag håller på med drar modellen hela den med `cerebro show`.
+
+## Ett kurerat lager ovanpå
+
+Rådatan är allt ordagrant, men ordagrant är inte alltid det bästa att söka i. Ovanpå arkivet ligger därför ett kurerat lager: en LLM-skriven sammanfattning per tråd, lagrat i samma databas. Sammanfattningarna är täta och ämnesinriktade, så att söka i dem hittar "vad jobbade jag med kring X" mycket bättre än att söka i rådatan i första hand.
+
+Det viktiga är att cerebro aldrig anropar en LLM själv. Det förblir ren lagring: det äger prompten och lagringsformatet, och tar emot en sammanfattning som modellen producerat. Själva modellsteget bor utanför binären, i en hook eller skill som pipear ett transkript genom `claude -p` och skriver tillbaka resultatet:
+
+```bash
+cerebro digest input <id> | claude -p "$(cerebro digest prompt)" | cerebro digest write <id>
+```
+
+Summeringarna sköter sig mestadels själva. `SessionEnd`-hooken jag nämnde summerar den just rensade sessionen i bakgrunden vid `/clear`, så att `/clear` aldrig får vänta på modellen, och ett kommando jag kan köra då och då fångar upp resten: trådar som aldrig summerats eller fått nytt innehåll sedan sist.
+
+Vilken modell som skriver summeringen beror på hur stor tråden är. En billig modell räcker för de flesta, medan de riktigt långa trådarna får en med större kontextfönster så att de kan summeras hela i stället för trunkerade. Och `relevant`-hooken jag beskrev letar numera i summeringarna först och faller tillbaka på rådatan för det som ännu inte hunnit summeras.
+
+## Tröskeln som försvann
+
+Jag hade nog aldrig byggt det här utan AI-assisterad utveckling. Utan Claude Code hade jag förmodligen inte ens kommit på idén, och hade jag gjort det hade jag googlat efter en färdig lösning som gjorde ungefär det jag ville och nöjt mig med den. Tidsinvesteringen att bygga något eget hade varit för stor för att vara värd det.
+
+Nu är den inte enorm längre. I stället körde jag en grilling-session med Claude Code där vi benade ut hur jag ville att det skulle fungera och vad som var en rimlig nivå för ett sånt här verktyg. Claude fick göra lite research online på liknande verktyg för inspiration. Det var så jag hittade claude-mem och index-först-principen jag nämnde tidigare. Sen byggde agenterna något skräddarsytt utifrån mina behov.
+
+Det är en annan sorts bygge. Inte "hitta och anpassa något befintligt", utan "definiera vad jag faktiskt vill ha och låt det växa fram, lagom ambitiöst".
+
+Det skräddarsydda har en baksida. cerebro är byggt för lokalt bruk och fångar ingenting från de agent-sessioner som kör i molnet. Men i princip allt mitt kodande med Claude Code sker lokalt i terminalen, åtminstone på jobbet, så för mig spelar det knappt någon roll. Det är också därför cerebro är ett CLI och en SQLite-databas, inte en MCP-server mot en databas man kan nå remote. Enkelt, lokalt, och precis lagom för hur jag faktiskt jobbar.
+
+## Byggt av agenter
+
+Och bygget fortsatte i samma anda. I [Maintainer i ett soloprojekt med agenter](/blogg/maintainer-i-ett-soloprojekt-med-agenter) skrev jag att jag kanske skulle börja använda GitHub issues mer för egna projekt, nu när agenter kan skriva dem åt mig. Här tog jag det ett par steg längre. Jag lät ett agent-team köra `improve-codebase-architecture`, diskutera vad som borde fixas och bryta ner det till issues, och sen betade huvudsessionen av dem en efter en: en PR per issue, en subagent som körde review, fixa, merga, vidare till nästa.
+
+När CLI:et väl var i ett bra skick körde jag igenom två sådana vändor där jag i princip sköt ut mig själv helt och lät agenterna hitta, resonera, fixa, testa och implementera på egen hand.
+
+## Varför ett permanent minne?
+
+Det växte fram ur konkreta situationer. Ibland har jag långkörande sessioner som jag döper till något igenkännbart så att jag hittar tillbaka till dem med Claude Codes resume-kommando. Jobbar jag länge med en PR och får feedback några dagar senare hoppar jag hellre tillbaka in i den sessionen än börjar om på ny kula. Eller så har jag låtit Claude utforska delar av en kodbas för att hitta saker att förbättra, och sparat ned det med `/done` för att kunna plocka upp bollen igen.
+
+Ett annat fall är när en agent mitt i ett arbete stöter på något orelaterat som ändå behöver fixas. Då kan jag spara den pågående sessionen i minnet och låta en annan agent ta vid det orelaterade spåret. Det finns visserligen andra handoff-strategier för just det.
+
+Och även när jag bygger något helt nytt, där all kontext först ryms i en och samma session, växer kodbasen till slut sig stor nog att flera agenter kan jobba parallellt utan att behöva front-loadas med så mycket kontext. Då hjälper clear-hooken till att spara undan sessionerna, så att nya sessioner snabbt och naturligt kan ta vid.
+
+Det är den sortens saker som fått mig att känna att någon form av permanent minne vore bra att ha. Poängen är enkel: separera lagring från återhämtning. Lagra allt ordagrant, exponera det index-först så att både jag och en framtida agent kan hitta tillbaka utan att drunkna. Ett minne som överlever att verktyget självt glömmer.
+
+Förr handplockade jag vad som var värt att spara, och glömde ofta. Nu behöver jag inte bry mig. Allt finns kvar, och hooks gör det tillgängligt utan att jag ber om det.
+
+Koden finns på [GitHub](https://github.com/danielv14/cerebro).
