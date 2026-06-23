@@ -4,7 +4,7 @@ Personal portfolio and blog built with Astro and Tailwind CSS v4.
 
 ## Tech Stack
 
-- **Framework**: Astro 5 (static output)
+- **Framework**: Astro 6 with the `@astrojs/cloudflare` adapter
 - **Styling**: Tailwind CSS v4 with `@tailwindcss/typography`
 - **Content**: MDX via Astro Content Collections
 - **Syntax Highlighting**: Expressive Code with line numbers plugin
@@ -72,4 +72,4 @@ npm run preview  # Preview production build
 
 ## Deployment
 
-Deployed on Vercel (auto-detects Astro).
+Deployed on Cloudflare Workers (config in `wrangler.jsonc`, worker name `personal-portfolio`, site `danielvernberg.se`). Pushes to `master` auto-deploy via Cloudflare's git integration. Manual deploy: `npm run deploy` (runs `npm run build && wrangler deploy`).
