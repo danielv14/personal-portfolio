@@ -7,7 +7,7 @@ import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
 import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
-  site: 'https://danielvernberg.se',
+  site: 'https://danielwernberg.blog',
 
   integrations: [
     expressiveCode({
