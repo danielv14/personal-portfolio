@@ -72,4 +72,4 @@ npm run preview  # Preview production build
 
 ## Deployment
 
-Deployed on Cloudflare Workers (config in `wrangler.jsonc`, worker name `personal-portfolio`, site `danielvernberg.se`). Pushes to `master` auto-deploy via Cloudflare's git integration. Manual deploy: `npm run deploy` (runs `npm run build && wrangler deploy`).
+Deployed on Cloudflare Workers (config in `wrangler.jsonc`, worker name `personal-portfolio`). Pushes to `master` auto-deploy via Cloudflare's git integration. Manual deploy: `npm run deploy` (runs `npm run build && wrangler deploy`).
