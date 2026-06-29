@@ -1,0 +1,38 @@
+---
+title: Kvällsskiftet
+summary: 'Jag fyllde en backlog med issues, startade en agent och gick och la mig. Dagen efter var allt avbetat.'
+date: 2026-06-29T20:00:00
+category: AI
+preamble: 'Vad händer om man slutar babysitta agenten per issue och låter den jobba hela natten själv?'
+---
+
+I [Maintainer i ett soloprojekt med agenter](/blogg/maintainer-i-ett-soloprojekt-med-agenter) skrev jag om hur jag slutade skriva GitHub issues själv och lät en agent göra det åt mig. Det här är fortsättningen: vad som händer när issuesen är tydliga och utförliga nog för att en *annan* agent ska kunna ta dem och jobba helt på egen hand, utan mig i loopen.
+
+## Prepp på kvällen
+
+En kväll satte jag mig med två av mina MCP-repon och körde `/improve-codebase-architecture`, `/to-prd` och `/to-issues`. Skillsen skannar kodbasen, resonerar om vad som borde fixas och bryter ner det till en backlog av issues. Beskrivningar, prioritet, länkar mellan relaterade issues. Allt det där jag inte orkar skriva själv.
+
+Det var här jag faktiskt var med. När agenten gick igenom kodbasen och letade förbättringspunkter satt jag bredvid och la mitt tycke och tänk: vad som var värt att göra, vad som kunde vänta, vad jag tyckte var prioriterat. Kalla det dagsskiftet.
+
+När backloggen var full och speglade det jag tyckte var viktigt startade jag en loop i vardera repot: en orchestrator-agent som betar av issues en och en. Den löser ett, spawnar en subagent som gör code review, fixar det som dyker upp, mergar och går vidare till nästa. Tills backloggen är tom. Här sköt jag ut mig själv och lät "någon annan" sköta kodandet.
+
+Sen lät jag datorn stå på och gick och la mig.
+
+## Dagen efter
+
+På morgonen var alla issues avbetade. Kodbasen i bättre skick, fler tester skrivna, och code review-stegen hade fångat riktiga fel längs vägen, sånt som faktiskt behövde korrigeras.
+
+Och hade jag suttit kvar och godkänt varje steg manuellt? Då hade jag nog ändå mest bara suttit och godkänt. Godkänt koden agenten skrev, godkänt reviewen som gjordes. På sin höjd hittat någon liten grej där jag haft en subjektiv åsikt om hur en funktion borde skrivits. Men för mina egna MCP-servrar är det i det stora hela irrelevant.
+
+Tidigare hade flödet sett ut så här, per issue:
+
+1. Fixa issuet på en branch
+2. Kolla koden själv, trigga en code review
+3. Säg åt agenten att fixa
+4. Säg åt agenten att skapa en PR
+5. Säg åt agenten att merga
+6. Om och om igen, manuellt, tills allt var klart
+
+Genom att tänka "autonomt arbetsflöde" istället för "ett steg i taget" kunde jag kliva ur loopen helt. Att några issues var blockade av andra spelade ingen roll, orchestratorn tog dem i rätt ordning.
+
+Det känns som ett arbetssätt jag kommer återkomma till. Värdet låg i prepet, i att bestämma vad som var värt att göra. Själva kodandet kunde sköta sig självt över natten.
