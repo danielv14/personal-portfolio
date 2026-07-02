@@ -60,7 +60,7 @@ Code blocks and PostCards share the same surface/border styling via CSS variable
 - Custom MDX components: `FunText`, `EmojiList`, `EmojiListItem`, `Card`, `ResponsiveGrid`
 - Syntax highlighting: Expressive Code (github-dark theme) with `showLineNumbers` and line highlighting (`{1,3-5}`)
 - **When modifying existing MDX articles, always update the frontmatter with today's date as `updatedAt`**
-- **When creating new posts**: Scan existing blog posts first to see which categories are already in use, and prefer reusing an existing category for consistency. If no existing category fits, it's fine to create a new one. If it's unclear which category to use, suggest options and ask the user which one to use.
+- **When creating new posts**: Scan existing blog posts first to see which categories are already in use. A category should describe what the post is about, not the method used to build it - avoid cramming posts into broad catch-all categories (this happened with "AI"). Reuse an existing category when it genuinely fits, but don't be afraid to create a new, more specific one when it doesn't. If it's unclear which category to use, suggest options and ask the user which one to use.
 
 ## Commands
 
